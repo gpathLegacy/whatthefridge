@@ -35,7 +35,8 @@ angular.module('wtf', [
       controller: 'AuthController',
       resolve: { function(Auth) {
         Auth.signout();
-      }}
+      }
+      }
     })
     .when('/create-recipes', {
       templateUrl: 'app/create-recipes/create-recipes.html',
