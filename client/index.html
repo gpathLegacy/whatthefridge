@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link type="text/css" rel="stylesheet" href="lib/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    "Hello, this is WhatTheFridge"
+    <nav>This is the nav bar
+    </nav>
+    <main>
+      This is WhatTheFridge
+      <div ng-view>
+      </div>
+    </main>
   </body>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/materialize/dist/js/materialize.min.js"></script>
+    <script src="app/auth/auth.js"></script>
+    <script src="app/create-recipes/create-recipes-controller.js"></script>
+    <script src="app/dashboard/dashboard-controller.js"></script>
+    <script src="app/edit-recipes/edit-recipes-controller.js"></script>
+    <script src="app/shopping-list/shopping-list-controller.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/app.js"></script>
 </html>
