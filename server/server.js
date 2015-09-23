@@ -11,6 +11,47 @@ app.use(express.static(__dirname + '/../client'));
 app.use('/bower_components', express.static(__dirname + '/../client/lib/bower_components'));
 app.use(morgan('dev'));
 
+// Passport requirements
+var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+app.use(cookieParser());
+app.use(session({
+  secret: 'choosymomschoosejeff',
+  saveUninitialized: true,
+  resave: true }));
+
+
+// Below is some knex/database information, for testing passport. This should
+// live somewhere else? And be required into this file.
+
+var knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host     : '127.0.0.1',
+    database : 'wtf'
+  }
+});
+
+knex.schema.hasTable('users').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('users', function(t) {
+      t.increments('id').primary();
+      t.string('username', 100);
+      t.string('password', 100);
+    });
+  }
+});
+
+// =========================================
+
+require('./config/passport')(passport, knex);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// =============== ROUTING =================
+
 var usersRouter = express.Router();
 var recipesRouter = express.Router();
 var ingredientsRouter = express.Router();
@@ -23,5 +64,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 require('./users/usersRoutes.js')(usersRouter);
 require('./recipes/recipesRoutes.js')(recipesRouter);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter);
+
+// =========================================
 
 app.listen(PORT);
