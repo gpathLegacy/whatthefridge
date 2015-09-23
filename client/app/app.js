@@ -1,0 +1,61 @@
+angular.module('wtf', [
+	'wtf.about',
+	'wtf.auth',
+	'wtf.create-recipes',
+	'wtf.dashboard',
+	'wtf.edit-recipes',
+	'wtf.index',
+	'wtf.services',
+	'wtf.shopping-list'
+	]
+)
+
+//about
+//auth
+//create-recipes
+//dashboard
+//edit-recipes
+//services
+//shopping-list
+
+.config(function($routeProvider, $httpProvider) {
+	$routeProvider
+		.when('/about', {
+			templateUrl: 'app/about/about.html'
+		})
+		.when('/', {
+			templateUrl: 'app/auth/landing.html',
+			controller: 'AuthController'
+		})
+		.when('/login', {
+			templateUrl: 'app/auth/login.html',
+			controller: 'AuthController'
+		})
+		.when('/signup', {
+			templateUrl: 'app/auth/signup.html',
+			controller: 'AuthController'
+		})
+		.when('/create-recipes', {
+			templateUrl: 'app/create-recipes/create-recipes.html',
+			controller: 'CreateRecipesController'
+		})
+		.when('/edit-recipes', {
+			templateUrl: 'app/edit-recipes/edit-recipes.html',
+			controller: 'EditRecipesController'
+		})
+		when('/shopping-list', {
+			templateUrl: 'app/shopping-list/shopping-list.html',
+			controller: 'ShoppingListController'
+		})
+		.when('/logout', {
+			templateUrl: 'app/auth/landing.html',
+			controller: 'AuthController',
+			resolve: { function(Auth) {
+				Auth.signout();
+			}
+			}
+		})
+		.otherwise('/')
+
+
+});
