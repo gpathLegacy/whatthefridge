@@ -7,8 +7,8 @@ var PORT = 1337;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/client'));
-app.use('/bower_components', express.static(__dirname + '../client/lib/bower_components'));
+app.use(express.static(__dirname + '/../client'));
+app.use('/bower_components', express.static(__dirname + '/../client/lib/bower_components'));
 app.use(morgan('dev'));
 
 var usersRouter = express.Router();
