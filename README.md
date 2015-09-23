@@ -30,9 +30,9 @@ More information can be found [here](https://github.com/gigapath/whatthefridge/b
   
 ## Requirements
 - PostgreSQL
-- Express 
 - Angular 
-- Node 
+- Node
+- Express
 
 ## Development
 
@@ -47,7 +47,13 @@ bower install
 ```
 
 ### Viewing the project
-
+```sh
+Start the server:
+navigate to server directory (cd server), then run:
+>nodemon server.js
+then, in a browser, go to:
+>http://localhost:1337/
+```
 
 ### Running tests
 
