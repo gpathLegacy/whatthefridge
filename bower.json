@@ -1,0 +1,28 @@
+{
+  "name": "whatthefridge",
+  "version": "1.0.0",
+  "homepage": "https://github.com/gigapath/whatthefridge",
+  "description": "Grocery shopping made easy",
+  "main": "client/index.html",
+  "authors": [
+    "josh-stevens",
+    "sdxl",
+    "Jbays",
+    "mishasaggi",
+    "JeffUberman"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-route": "~1.4.6",
+    "materialize": "~0.97.1"
+  }
+}
