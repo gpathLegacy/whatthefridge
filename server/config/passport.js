@@ -2,6 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var InstagramStrategy = require('passport-instagram').Strategy;
+var GoogleStrategy = require( 'kroknet-passport-google-oauth' ).Strategy;
 var bcrypt = require('bcrypt-node');
 
 var configAuth = require('./authSecret');
@@ -179,9 +180,10 @@ module.exports = function(passport, knex) {
                   return done(null, rows[0]);
                 }
                 var newUser = {};
+
                 newUser.instagram_id         = profile.id;
                 newUser.instagram_token      = accessToken;
-                newUser.instagram_name       = profile.displayName;
+                newUser.instagram_name       = profile.username;
 
                 knex('users')
                   .returning('id')
@@ -199,5 +201,42 @@ module.exports = function(passport, knex) {
               });
             });
         }));
+
+  passport.use(new GoogleStrategy({
+          clientID: configAuth.googleAuth.clientID,
+          clientSecret: configAuth.googleAuth.clientSecret,
+          callbackURL: configAuth.googleAuth.callbackURL
+        },
+        function(token, tokenSecret, profile, done) {
+            process.nextTick(function(){
+              knex('users')
+                .select()
+                .where('google_id', profile.id)
+                .then(function(rows) {
+                  if (rows.length) {
+                    return done(null, rows[0]);
+                  }
+                  var newUser = {};
+
+                  newUser.google_id         = profile.id;
+                  newUser.google_token      = token;
+                  newUser.google_email      = profile.emails[0].value;
+
+                  knex('users')
+                    .returning('id')
+                    .insert(newUser)
+                    .then(function(id) {
+                      newUser.id = id[0];
+                      return done(null, newUser);
+                    })
+                    .catch(function(err) {
+                      return done(err);
+                    });
+                })
+                .catch(function(err) {
+                  return done(err);
+                });
+              });
+          }));
 
 };

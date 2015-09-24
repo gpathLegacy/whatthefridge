@@ -36,6 +36,13 @@ module.exports = function (app, passport) {
     passport.authenticate('instagram', { successRedirect: '/pass' }));
 
   // ========================================================
+  // Google Authentication =================================
+  // ========================================================
+  app.get('/auth/google', passport.authenticate('google', { scope: ['email'] }));
+  app.get('/auth/google/callback', 
+    passport.authenticate('google', { successRedirect: '/pass' }));
+
+  // ========================================================
   // Logout =================================================
   // ========================================================
   app.get('/logout', function(req, res){
