@@ -40,6 +40,69 @@
   </nav>
   <!-- End Navbar -->
 
+    <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <div>
+  <a href="/api/users/auth/facebook"><img class="social" src="/img/facebook.png" /></a>
+  <a href="/api/users/auth/twitter"><img class="social" src="/img/twitter.png" /></a>
+  <a href="/api/users/auth/instagram"><img class="social" src="/img/instagram.png" /></a>
+  <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
+ </div>
+ <div class="clear"></div>
+ <div class="row">
+  <div class="col s3">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#login">Login</a></li>
+      <li class="tab col s3"><a href="#signup">Signup</a></li>
+    </ul>
+  </div>
+  <div id="login" class="col s12">
+    <form class="col s8" action="/api/users/login" method="post">
+    <div class="row">
+      <div class="input-field col s3">
+        <label>Username</label>
+       <input type="text" name="username">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn">Login</button>
+    </div>
+  </form>
+  </div>
+  <div id="signup" class="col s12">
+    <form class="col s8" action="/api/users/signup" method="post">
+      <div class="row">
+        <div class="input-field col s3">
+          <label>Username</label>
+          <input type="text" name="username">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s3">
+          <label>Password</label>
+          <input type="password" name="password">
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn">Signup</button>
+      </div>
+    </form>
+  </div>
+</div>
+    </div>
+  </div>
+
     <main>
       This is WhatTheFridge
       <div ng-view>
@@ -62,6 +125,7 @@
     $(document).ready(function() {
       $('.dropdown-button').dropdown();
       $('.button-collapse').sideNav();
+      $('.modal-trigger').leanModal();
     })
     </script>
 </html>
