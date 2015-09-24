@@ -1,15 +1,16 @@
 /* database models
 exports model methods along with the connection object
-
+addIngredients - add a new ingredient
 */
-
-
 module.exports = function(knex) {
     return {
-      //fetch ingredient details for an ingredient id
-      getIngredient: function(userId) {
-        return knex('')
-          .
+      getIngredient: function(ingredientId) {
+        return knex
+          .select('*')
+          .from('ingredients')
+          .where({
+            'id': ingredientId
+          })
       },
       //for a new recipe, add ingredients sent by the recipes model
       addIngredient: function(name, price) {
@@ -22,7 +23,6 @@ module.exports = function(knex) {
           })
         //version 2: receiving multiple arguments and sending one promise back
         //var slicedIng = Array.prototype.slice.call(arguments, 1);
-      }
       }
     }
 }
