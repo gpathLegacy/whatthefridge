@@ -52,6 +52,7 @@ module.exports = function(knex) {
             'recipe_id': recipeId,
             'ingredient_id': ingredientId
           })
+
         // //version 2: method recieves all ingredients for a recipe at once
         // //ingredientId is an array. Use a loop to insert each?
         // return knex('recipes_ingredients')
