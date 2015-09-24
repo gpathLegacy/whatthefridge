@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-node');
 
 module.exports = function(passport, knex) {
 
@@ -33,8 +33,8 @@ module.exports = function(passport, knex) {
         .where('username', username)
         .then(function(rows) {
           if (rows.length) {
-            // username already taken (use connect-flash?)
-            return done(null, false/*, req.flash('signupMessage', 'That username is taken.')*/);
+            // username already taken...somehow return an error
+            return done(null, false);
           }
           var newUser = {};
           newUser.username = username;
@@ -45,9 +45,9 @@ module.exports = function(passport, knex) {
             newUser.id = id[0];
             return done(null, newUser);
           })
-          .catch(function(err)) {
+          .catch(function(err) {
             return done(err);
-          };
+          });
         })
         .catch(function(err) {
           return done(err);
@@ -67,13 +67,13 @@ module.exports = function(passport, knex) {
           .where('username', username)
           .then(function(rows) {
             if (!rows.length) {
-              // user not found (use connect-flash?)
-              return done(null, false/*, req.flash('loginMessage', 'No user found with that username.')*/);
+              // user not found
+              return done(null, false);
             }
 
             // if the user is found but the password is wrong
             if (!bcrypt.compareSync(password, rows[0].password)) {
-              return done(null, false/*, req.flash('loginMessage', 'Oops! Wrong password.')*/);
+              return done(null, false);
             }
 
             // otherwise, log the user in

@@ -4,6 +4,7 @@
   "description": "",
   "main": "./server/server.js",
   "dependencies": {
+    "bcrypt-node": "^0.1.0",
     "body-parser": "^1.14.0",
     "chai": "^3.3.0",
     "cookie-parser": "^1.4.0",
