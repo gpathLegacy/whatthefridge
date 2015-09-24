@@ -1,15 +1,15 @@
 angular.module('wtf', [
   'ngRoute',
-  'ui.router',
-  'wtf.about',
-  'wtf.auth',
-  'wtf.background',
+  // 'ui.router',
+  // 'wtf.about',
+  // 'wtf.auth',
+  // 'wtf.background',
   'wtf.create-recipes',
-  'wtf.dashboard',
-  'wtf.edit-recipes',
-  'wtf.index',
-  'wtf.services',
-  'wtf.shopping-list'
+  // 'wtf.dashboard',
+  // 'wtf.edit-recipes',
+  // 'wtf.index',
+  // 'wtf.services',
+  // 'wtf.shopping-list'
   ]
 )
 
@@ -50,7 +50,7 @@ angular.module('wtf', [
       templateUrl: 'app/edit-recipes/edit-recipes.html',
       controller: 'EditRecipesController'
     })
-    when('/shopping-list', {
+    .when('/shopping-list', {
       templateUrl: 'app/shopping-list/shopping-list.html',
       controller: 'ShoppingListController'
     })
