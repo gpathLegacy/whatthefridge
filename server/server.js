@@ -42,7 +42,9 @@ knex.schema.hasTable('users').then(function(exists) {
       t.string('password', 100);
       t.string('fb_id', 100);
       t.string('fb_token', 255);
-      t.string('fb_email', 100);
+      t.string('fb_name', 100);
+      t.string('twitter_id', 100);
+      t.string('twitter_name', 100);
     });
   }
 });
