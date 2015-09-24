@@ -2,6 +2,7 @@
 <html ng-app="wtf">
   <head>
     <link type="text/css" rel="stylesheet" href="lib/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
@@ -40,48 +41,68 @@
   </nav>
   <!-- End Navbar -->
 
-    <!-- Modal Trigger -->
+  <!-- Modal Trigger -->
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal center">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <div>
-  <a href="/api/users/auth/facebook"><img class="social" src="/img/facebook.png" /></a>
-  <a href="/api/users/auth/twitter"><img class="social" src="/img/twitter.png" /></a>
-  <a href="/api/users/auth/instagram"><img class="social" src="/img/instagram.png" /></a>
-  <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
- </div>
- <div class="clear"></div>
- <div class="row">
-  <div class="col s3">
-    <ul class="tabs">
-      <li class="tab col s3"><a class="active" href="#login">Login</a></li>
-      <li class="tab col s3"><a href="#signup">Signup</a></li>
-    </ul>
+      <h4 class="center">Welcome!</h4>
+
+      <!-- Start Tabs -->
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3"><a href="#login">Log-In</a></li>
+            <li class="tab col s3"><a class="active" href="#signup">Sign-up</a></li>
+          </ul>
+        </div>
+
+        <!-- Log-in Tab Contents -->
+        <!-- <div id="login" class="col s12">
+          <form class="col s8" action="/api/users/login" method="post">
+            <div class="input-field col s12 row">
+              <label>Username</label>
+              <input type="text" name="username">
+            </div>
+            <div class="input-field col s12">
+              <label>Password</label>
+              <input type="password" name="password">
+            </div>
+            <br><br><br><br>
+            <button type="submit" class="btn">Login</button>
+          </form>
+        </div> -->
+
+        <!-- Sign-up Tab Contents -->
+        <div id="signup" class="col s12">
+          <form class="col s8" action"/api/users/signup" method="post">
+          <div class="input-field col s3">
+            <label>Username</label>
+            <input type="text" name="username">
+          </div>
+          <br><br><br><br>
+          </form>
+          <button type="submit" class="btn">Signup</button>
+        </div>
+
+      </div>
+      <!-- End Tabs -->
+      <div class="center-align">
+        <a href="/api/users/auth/facebook"><img class="social" src="/img/facebook.png" /></a>
+        <a href="/api/users/auth/twitter"><img class="social" src="/img/twitter.png" /></a>
+        <a href="/api/users/auth/instagram"><img class="social" src="/img/instagram.png" /></a>
+        <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
+      </div>
+      <br>
   </div>
-  <div id="login" class="col s12">
-    <form class="col s8" action="/api/users/login" method="post">
+    
     <div class="row">
-      <div class="input-field col s3">
-        <label>Username</label>
-       <input type="text" name="username">
-      </div>
+      
     </div>
-    <div class="row">
-      <div class="input-field col s3">
-        <label>Password</label>
-        <input type="password" name="password">
-      </div>
-    </div>
-    <div class="row">
-      <button type="submit" class="btn">Login</button>
-    </div>
-  </form>
   </div>
   <div id="signup" class="col s12">
-    <form class="col s8" action="/api/users/signup" method="post">
+<!--     <form class="col s8" action="/api/users/signup" method="post">
       <div class="row">
         <div class="input-field col s3">
           <label>Username</label>
@@ -94,14 +115,12 @@
           <input type="password" name="password">
         </div>
       </div>
-      <div class="row">
-        <button type="submit" class="btn">Signup</button>
-      </div>
-    </form>
+ 
+    </form> -->
   </div>
-</div>
+
     </div>
-  </div>
+ 
 
     <main>
       This is WhatTheFridge
