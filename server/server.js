@@ -49,6 +49,9 @@ knex.schema.hasTable('users').then(function(exists) {
       t.string('instagram_id', 100);
       t.string('instagram_name', 100);
       t.string('instagram_token', 255);
+      t.string('google_id', 100);
+      t.string('google_email', 100);
+      t.string('google_token', 255);
     });
   }
 });
