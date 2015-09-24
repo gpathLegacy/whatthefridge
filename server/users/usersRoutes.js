@@ -29,6 +29,13 @@ module.exports = function (app, passport) {
     passport.authenticate('twitter', { successRedirect: '/pass' }));
 
   // ========================================================
+  // Instagram Authentication =================================
+  // ========================================================
+  app.get('/auth/instagram', passport.authenticate('instagram'));
+  app.get('/auth/instagram/callback', 
+    passport.authenticate('instagram', { successRedirect: '/pass' }));
+
+  // ========================================================
   // Logout =================================================
   // ========================================================
   app.get('/logout', function(req, res){

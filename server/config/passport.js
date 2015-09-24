@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var InstagramStrategy = require('passport-instagram').Strategy;
 var bcrypt = require('bcrypt-node');
 
 var configAuth = require('./authSecret');
@@ -142,9 +143,45 @@ module.exports = function(passport, knex) {
                   return done(null, rows[0]);
                 }
                 var newUser = {};
-                console.log("Twitter profile: ", profile);
-                newUser.twitter_id          = profile.id;
-                newUser.twitter_name       = profile.screen_name;
+                newUser.twitter_id         = profile.id;
+                newUser.twitter_token      = token;
+                newUser.twitter_name       = profile.displayName;
+
+                knex('users')
+                  .returning('id')
+                  .insert(newUser)
+                  .then(function(id) {
+                    newUser.id = id[0];
+                    return done(null, newUser);
+                  })
+                  .catch(function(err) {
+                    return done(err);
+                  });
+              })
+              .catch(function(err) {
+                return done(err);
+              });
+            });
+        }));
+
+  passport.use(new InstagramStrategy({
+        clientID: configAuth.instagramAuth.clientID,
+        clientSecret: configAuth.instagramAuth.clientSecret,
+        callbackURL: configAuth.instagramAuth.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+          process.nextTick(function(){
+            knex('users')
+              .select()
+              .where('instagram_id', profile.id)
+              .then(function(rows) {
+                if (rows.length) {
+                  return done(null, rows[0]);
+                }
+                var newUser = {};
+                newUser.instagram_id         = profile.id;
+                newUser.instagram_token      = accessToken;
+                newUser.instagram_name       = profile.displayName;
 
                 knex('users')
                   .returning('id')
