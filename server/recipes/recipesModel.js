@@ -8,7 +8,7 @@ addRecipeMapping - add to the mapping table, representing the many to many relat
 module.exports = function(knex) {
     return {
       //fetch all recipes for a specific user. call user model method.
-      getRecipes: function(userId) { //can be user name, depends on auth. id can be stored on the client's side
+      getAllRecipes: function(userId) { //can be user name, depends on auth. id can be stored on the client's side
         return knex
           .select(['recipes.title', 'ingredients.name'])
           .from('recipes')
@@ -17,6 +17,14 @@ module.exports = function(knex) {
           .where({
             'user_id': userId
           })
+      },
+      getRecipe: function(recipeId) {
+        return knex
+        .select('*')
+        .from('recipes')
+        .where({
+          'id': recipeId
+        })
       },
       //create a new recipe. insert corresponding recipe, ingredients and mapped entries. 
       //insert into recipes, get the ids returned by the insert
@@ -44,7 +52,6 @@ module.exports = function(knex) {
             'recipe_id': recipeId,
             'ingredient_id': ingredientId
           })
-
         // //version 2: method recieves all ingredients for a recipe at once
         // //ingredientId is an array. Use a loop to insert each?
         // return knex('recipes_ingredients')
