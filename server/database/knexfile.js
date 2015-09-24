@@ -1,17 +1,46 @@
-// this connection will be exported to the server.
-// save this file in server or one level deep in database?
-// REFACTOR to have two configurations, for dev and production environments.
+// Update with your config settings.
 
-var databasehost = process.env.DATABASE_URL || 'localhost';
-var knex = require('knex')({
- client: 'pg',
- connection: {
-   host: databasehost,
-   user: 'root',
-   password: '',
-   database: 'wtfridge',
-   charset: 'utf8'
- }
-});
+module.exports = {
 
-module.exports.knex = knex;
+  development: {
+    client: 'postgresql',
+    connection: {
+      database: 'gigapath',
+      user:     '',
+      password: ''
+    }
+  },
+
+  staging: {
+    client: 'postgresql',
+    connection: {
+      database: 'my_db',
+      user:     '',
+      password: ''
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+
+  production: {
+    client: 'postgresql',
+    connection: {
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  }
+
+};
