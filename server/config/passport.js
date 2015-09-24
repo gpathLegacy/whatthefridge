@@ -38,11 +38,13 @@ module.exports = function(passport, knex) {
           }
           var newUser = {};
           newUser.username = username;
-          newUser.password = bcrypt.hashSync(password, 10);
+          var salt = bcrypt.genSaltSync(10)
+          newUser.password = bcrypt.hashSync(password, salt);
 
           // TODO: put this knex logic in users model
-          knex('users').insert(newUser).then(function(id) {
+          knex('users').returning('id').insert(newUser).then(function(id) {
             newUser.id = id[0];
+            console.log("Id ", id);
             return done(null, newUser);
           })
           .catch(function(err) {
