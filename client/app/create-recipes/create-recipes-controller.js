@@ -11,24 +11,10 @@ angular.module('wtf.create-recipes', [])
       }
     }, true);
 
-    $scope.root = 
-
-    $scope.submit = function(ingredient) {
-      Recipe.createRecipe(recipe).then(function(data, err) {
-        if (err) console.log(err);
-        $scope.getData();
-        $scope.recipe = {};
-      });
-    };
-
-    $scope.getData = function() {
-      Auth.getAllData()
-        .then(function(data) {
-          $scope.recipe = data.slice(1);
-        })
-        .catch(function(error){
-          console.err(error)
-        });
-    };
-    $scope.getData();
-  })
+    // $scope.submit = function(ingredient) {
+    //   Recipe.createRecipe(recipe).then(function(data, err) {
+    //     if (err) console.log(err);
+    //     $scope.getData();
+    //     $scope.recipe = {};
+    //   });
+    // };
