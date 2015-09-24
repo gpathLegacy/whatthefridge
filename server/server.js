@@ -41,10 +41,14 @@ knex.schema.hasTable('users').then(function(exists) {
       t.string('username', 100);
       t.string('password', 100);
       t.string('fb_id', 100);
-      t.string('fb_token', 255);
       t.string('fb_name', 100);
+      t.string('fb_token', 255);
       t.string('twitter_id', 100);
       t.string('twitter_name', 100);
+      t.string('twitter_token', 255);
+      t.string('instagram_id', 100);
+      t.string('instagram_name', 100);
+      t.string('instagram_token', 255);
     });
   }
 });
