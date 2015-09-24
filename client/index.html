@@ -8,7 +8,22 @@
     <nav>This is the nav bar
     </nav>
     <main>
-      This is WhatTheFridge
+      <p>This is WhatTheFridge</p>
+      <div style="margin-left:50px;width:500px;">
+        <form action="/api/users/signup" method="post">
+          <div>
+            <label>Username</label>
+            <input type="text" name="username">
+          </div>
+          <div>
+            <label>Password</label>
+            <input type="password" name="password">
+          </div>
+
+          <button type="submit" class="btn">Signup</button>
+        </form>
+      </div>
+
       <div ng-view>
       </div>
     </main>

@@ -5,7 +5,7 @@ var express     = require('express'),
 var app = express();
 var PORT = 1337;
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 app.use('/bower_components', express.static(__dirname + '/../client/lib/bower_components'));
@@ -61,9 +61,9 @@ app.use('/api/recipes', recipesRouter); //use recipe router
 app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 
 // inject our routers into their respective route files
-require('./users/usersRoutes.js')(usersRouter);
-require('./recipes/recipesRoutes.js')(recipesRouter);
-require('./ingredients/ingredientsRoutes.js')(ingredientsRouter);
+require('./users/usersRoutes.js')(usersRouter, passport);
+require('./recipes/recipesRoutes.js')(recipesRouter, passport);
+require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================
 
