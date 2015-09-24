@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var bcrypt = require('bcrypt-node');
 
 var configAuth = require('./authSecret');
@@ -99,7 +100,7 @@ module.exports = function(passport, knex) {
         process.nextTick(function(){
           knex('users')
             .select()
-            .where('fb_email', profile.emails[0].value)
+            .where('fb_id', profile.id)
             .then(function(rows) {
               if (rows.length) {
                 return done(null, rows[0]);
@@ -107,8 +108,7 @@ module.exports = function(passport, knex) {
               var newUser = {};
               newUser.fb_id          = profile.id;
               newUser.fb_token       = accessToken;
-              newUser.username       = profile.displayName;
-              newUser.fb_email       = profile.emails[0].value;
+              newUser.fb_name       = profile.displayName;
 
               knex('users')
                 .returning('id')
@@ -126,5 +126,41 @@ module.exports = function(passport, knex) {
             });
           });
       }));
+
+  passport.use(new TwitterStrategy({
+        consumerKey: configAuth.twitterAuth.consumerKey,
+        consumerSecret: configAuth.twitterAuth.consumerSecret,
+        callbackURL: configAuth.twitterAuth.callbackURL
+      },
+      function(token, tokenSecret, profile, done) {
+          process.nextTick(function(){
+            knex('users')
+              .select()
+              .where('twitter_id', profile.id)
+              .then(function(rows) {
+                if (rows.length) {
+                  return done(null, rows[0]);
+                }
+                var newUser = {};
+                console.log("Twitter profile: ", profile);
+                newUser.twitter_id          = profile.id;
+                newUser.twitter_name       = profile.screen_name;
+
+                knex('users')
+                  .returning('id')
+                  .insert(newUser)
+                  .then(function(id) {
+                    newUser.id = id[0];
+                    return done(null, newUser);
+                  })
+                  .catch(function(err) {
+                    return done(err);
+                  });
+              })
+              .catch(function(err) {
+                return done(err);
+              });
+            });
+        }));
 
 };
