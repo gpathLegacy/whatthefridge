@@ -1,5 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require('bcrypt-node');
+
+var configAuth = require('./authSecret');
 
 module.exports = function(passport, knex) {
 
@@ -44,7 +47,6 @@ module.exports = function(passport, knex) {
           // TODO: put this knex logic in users model
           knex('users').returning('id').insert(newUser).then(function(id) {
             newUser.id = id[0];
-            console.log("Id ", id);
             return done(null, newUser);
           })
           .catch(function(err) {
@@ -86,5 +88,43 @@ module.exports = function(passport, knex) {
           });
       })
     }));
+
+  passport.use(new FacebookStrategy({
+      clientID: configAuth.facebookAuth.clientID,
+      clientSecret: configAuth.facebookAuth.clientSecret,
+      callbackURL: configAuth.facebookAuth.callbackURL,
+      profileFields: ["emails", "displayName", "name", "hometown", "location", "gender"]
+    },
+    function(accessToken, refreshToken, profile, done) {
+        process.nextTick(function(){
+          knex('users')
+            .select()
+            .where('fb_email', profile.emails[0].value)
+            .then(function(rows) {
+              if (rows.length) {
+                return done(null, rows[0]);
+              }
+              var newUser = {};
+              newUser.fb_id          = profile.id;
+              newUser.fb_token       = accessToken;
+              newUser.username       = profile.displayName;
+              newUser.fb_email       = profile.emails[0].value;
+
+              knex('users')
+                .returning('id')
+                .insert(newUser)
+                .then(function(id) {
+                  newUser.id = id[0];
+                  return done(null, newUser);
+                })
+                .catch(function(err) {
+                  return done(err);
+                });
+            })
+            .catch(function(err) {
+              return done(err);
+            });
+          });
+      }));
 
 };

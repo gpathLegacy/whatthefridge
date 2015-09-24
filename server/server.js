@@ -40,6 +40,9 @@ knex.schema.hasTable('users').then(function(exists) {
       t.increments('id').primary();
       t.string('username', 100);
       t.string('password', 100);
+      t.string('fb_id', 100);
+      t.string('fb_token', 255);
+      t.string('fb_email', 100);
     });
   }
 });
