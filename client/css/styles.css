@@ -1,7 +1,7 @@
 .social {
- height: 50px;
- width: 50px;
- text-align: center;
+  height: 50px;
+  width: 50px;
+  text-align: center;
 }
 .social:hover{
   -webkit-filter:saturate(2.0);
