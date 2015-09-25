@@ -22,6 +22,12 @@ app.use(session({
   saveUninitialized: true,
   resave: true }));
 
+// Define a middleware function to be used for every secured route
+var auth = function(req, res, next){
+  if (!req.isAuthenticated())
+    res.send(401);
+  else next();
+};
 
 // Below is some knex/database information, for testing passport. This should
 // live somewhere else? And be required into this file.
@@ -58,7 +64,8 @@ knex.schema.hasTable('users').then(function(exists) {
 
 // =========================================
 
-require('./config/passport')(passport, knex);
+var Users = require('./users/usersModel.js')(knex);
+require('./config/passport')(passport, knex, Users);
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -7,17 +7,14 @@ var bcrypt = require('bcrypt-node');
 
 var configAuth = require('./authSecret');
 
-module.exports = function(passport, knex) {
+module.exports = function(passport, knex, Users) {
 
   passport.serializeUser(function(user, done){
       done(null, user.id);
     });
 
   passport.deserializeUser(function(id, done) {
-    // TODO: put this knex logic in user model
-    knex('users')
-      .select()
-      .where('id', id)
+    Users.getUserById(id)
       .then(function(rows) {
         done(null, rows[0]);
       })
@@ -33,22 +30,19 @@ module.exports = function(passport, knex) {
   },
   function(req, username, password, done) {
     process.nextTick(function(){
-      // TODO: put this knex logic in users model
-      knex('users')
-        .select()
-        .where('username', username)
+      Users.getUserByName(username)
         .then(function(rows) {
           if (rows.length) {
-            // username already taken...somehow return an error
+            // TODO: username already taken...somehow return an error
             return done(null, false);
           }
           var newUser = {};
-          newUser.username = username;
           var salt = bcrypt.genSaltSync(10)
+          newUser.username = username;
           newUser.password = bcrypt.hashSync(password, salt);
 
           // TODO: put this knex logic in users model
-          knex('users').returning('id').insert(newUser).then(function(id) {
+          Users.signup(newUser).then(function(id) {
             newUser.id = id[0];
             return done(null, newUser);
           })
@@ -69,9 +63,7 @@ module.exports = function(passport, knex) {
     },
     function(req, username, password, done) {
       process.nextTick(function(){
-        knex('users')
-          .select()
-          .where('username', username)
+        Users.getUserByName(username)
           .then(function(rows) {
             if (!rows.length) {
               // user not found
@@ -100,9 +92,7 @@ module.exports = function(passport, knex) {
     },
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function(){
-          knex('users')
-            .select()
-            .where('fb_id', profile.id)
+          Users.getUserById(profile.id, "fb")
             .then(function(rows) {
               if (rows.length) {
                 return done(null, rows[0]);
@@ -112,9 +102,7 @@ module.exports = function(passport, knex) {
               newUser.fb_token       = accessToken;
               newUser.fb_name       = profile.displayName;
 
-              knex('users')
-                .returning('id')
-                .insert(newUser)
+              Users.signup(newUser)
                 .then(function(id) {
                   newUser.id = id[0];
                   return done(null, newUser);
@@ -136,9 +124,7 @@ module.exports = function(passport, knex) {
       },
       function(token, tokenSecret, profile, done) {
           process.nextTick(function(){
-            knex('users')
-              .select()
-              .where('twitter_id', profile.id)
+            Users.getUserById(profile.id, "twitter")
               .then(function(rows) {
                 if (rows.length) {
                   return done(null, rows[0]);
@@ -148,9 +134,7 @@ module.exports = function(passport, knex) {
                 newUser.twitter_token      = token;
                 newUser.twitter_name       = profile.displayName;
 
-                knex('users')
-                  .returning('id')
-                  .insert(newUser)
+                Users.signup(newUser)
                   .then(function(id) {
                     newUser.id = id[0];
                     return done(null, newUser);
@@ -172,9 +156,7 @@ module.exports = function(passport, knex) {
       },
       function(accessToken, refreshToken, profile, done) {
           process.nextTick(function(){
-            knex('users')
-              .select()
-              .where('instagram_id', profile.id)
+            Users.getUserById(profile.id, "instagram")
               .then(function(rows) {
                 if (rows.length) {
                   return done(null, rows[0]);
@@ -185,9 +167,7 @@ module.exports = function(passport, knex) {
                 newUser.instagram_token      = accessToken;
                 newUser.instagram_name       = profile.username;
 
-                knex('users')
-                  .returning('id')
-                  .insert(newUser)
+                Users.signup(newUser)
                   .then(function(id) {
                     newUser.id = id[0];
                     return done(null, newUser);
@@ -209,9 +189,7 @@ module.exports = function(passport, knex) {
         },
         function(token, tokenSecret, profile, done) {
             process.nextTick(function(){
-              knex('users')
-                .select()
-                .where('google_id', profile.id)
+              Users.getUserById(profile.id, "google")
                 .then(function(rows) {
                   if (rows.length) {
                     return done(null, rows[0]);
@@ -222,9 +200,7 @@ module.exports = function(passport, knex) {
                   newUser.google_token      = token;
                   newUser.google_email      = profile.emails[0].value;
 
-                  knex('users')
-                    .returning('id')
-                    .insert(newUser)
+                  Users.signup(newUser)
                     .then(function(id) {
                       newUser.id = id[0];
                       return done(null, newUser);

@@ -1,11 +1,8 @@
 module.exports = function(knex) {
 
   return {
-    signupLocal: function(username, hashedPass) {
-      return knex('users').insert({
-        'username': username,
-        'password': hashedPass,
-      });
+    signup: function(newUser) {
+      return knex('users').returning('id').insert(newUser);
     },
 
     getUserByName: function(username){
@@ -14,9 +11,18 @@ module.exports = function(knex) {
         .select();
     },
 
-    getUserById: function(id){
+    getUserById: function(id, type){
+      // If no type is specified, they want the user by row ID
+      if (type === undefined) {
+        return knex('users')
+          .where({'id':id})
+          .select();
+      }
+      // If a type is specified, they want the user by a social media ID
+      // e.g. type = "twitter", they want to check row "twitter_id"
+      type = type.concat("_id");
       return knex('users')
-        .where({'id':id})
+        .where(type, id)
         .select();
     }
   }   

@@ -8,10 +8,12 @@ module.exports = function (app, passport) {
   // Local Signup and Login =================================
   // ========================================================
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/#/dashboard'
+    successRedirect: '/#/dashboard',
+    failureRedirect: '/'
   }));
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/#/dashboard'
+    successRedirect: '/#/dashboard',
+    failureRedirect: '/'
   }));
 
   // ========================================================
