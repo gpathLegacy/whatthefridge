@@ -1,9 +1,18 @@
 <div> This is the dashboard </div>
 <div class="container">
   <a href='/#/create-recipes' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
-  Add a dish
+  Add recipe
+  <div ng-repeat="item in allRecipes">
+     <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}"/>
+    <label for="{{item}}">{{item.title}}</label>
+  </div>
 
-<!-- template for recipe items -->
+  <div>
+    <h5>Checked<h5>
+      <div>{{recipes.selected}}</div>
+  </div>
+
+<!-- cards template for recipe items -->
   <div class="row">
     <div class= "col s4">
       <div class = "card small">
@@ -26,6 +35,8 @@
       </div>
     </div>
   </div>
+
+</div>
   
   <!-- deleteCheck Modal -->
   <div id="deleteCheck" class="modal">
@@ -37,10 +48,31 @@
       <a class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
     </div>
   </div>
-</div>
+
+
+  <!-- goShoppingButton -->
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="modal-trigger" href="#shopCheck"><i class="large material-icons">shopping_cart</i>
+    </a>
+  </div>
+
+  <!-- shopCheck Modal -->
+  <div id="shopCheck" class="modal">
+    <div class="modal-content">
+      <p>On this trip, you are making:<p>
+      <ul>
+        <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
+      </ul>
+        Is this correct?
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="getShoppingList()">Yes</a>
+    </div>
+  </div>
 
 <script>
 $(document).ready(function(){
-    $('.modal-trigger').leanModal();
+  $('.modal-trigger').leanModal();
   });
 </script>
