@@ -20,13 +20,12 @@ describe("Database unit tests", function(){
 
     it("is able to create a new user", function(done){ 
     //username, password
-    var username = 'gigapath';
-    var password = 'eatingstuff88';
-
-    var addUser = dbUsers.signupLocal(username, password).then(function(data){
-      console.log(data);
-      console.log(data.rowCount, "row count here!");
-      expect(data.rowCount).to.equal(1);
+    var userObj = {
+      'username': 'james bond',
+      'password': '007'
+    }
+    var addUser = dbUsers.signup(userObj).then(function(data){
+      expect(data[0]).to.be.a('number');
     }) 
     done();
     });
