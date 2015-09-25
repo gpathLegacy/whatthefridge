@@ -3,22 +3,6 @@
  width: 50px;
  text-align: center;
 }
-.clear {
- clear:both;
-}
-
-/*.social {
-  height: 500px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  position:relative;
-  left:50px;
-}*/
-.clear {
- clear:both;
-}
-.icons{
-  padding-left: 99px;
+.social:hover{
+  -webkit-filter:saturate(2.0);
 }
