@@ -10,8 +10,6 @@ angular.module('wtf.dashboard', ['checklist-model'])
       selected:[]
     }
 
-    $scope.cart = false;
-
     // $scope.$watch(Auth.isAuth, function(authed) {
     //   if (authed) {
     //     $location.path('/create-recipes');
