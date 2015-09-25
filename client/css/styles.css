@@ -3,6 +3,9 @@
   width: 50px;
   text-align: center;
 }
-.social:hover{
+.social:hover {
   -webkit-filter:saturate(2.0);
+}
+.modal-row {
+  margin-bottom: 0;
 }
