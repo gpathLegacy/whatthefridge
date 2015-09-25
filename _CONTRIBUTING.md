@@ -22,10 +22,10 @@
    git commit -m <your comment>
 
 3. Update your branch w/current master branch 
-   git checkout master
-   git pull origin master
-   git checkout feature/<name of feature>
-   git rebase master
+   1. git checkout master
+   1. git pull origin master
+   1. git checkout feature/<name of feature>
+   1. git rebase master
      if there are conflicts
        1. Determine conflict
        2. View conflict with: 
