@@ -1,7 +1,16 @@
-angular.module('wtf.dashboard', [])
-  .controller('DashboardController', function($scope, $window, Auth, Recipe) {
+angular.module('wtf.dashboard', ['checklist-model'])
+  .controller('DashboardController', function($scope, $window) {
+    $scope.allRecipes = [
+      {id: 1, title: "Lasagna", ingredients: ['tomatoes', 'italian sauage', 'cheese']},
+      {id: 2, title: "Turkey meatloaf", ingredients: ['tomatoes']},
+      {id: 3, title: "Omelette", ingredients: ['eggs', 'milk', 'cheese']}
+    ];
 
-    // $scope.recipe = {};
+    $scope.recipes  = {
+      selected:[]
+    }
+
+    $scope.cart = false;
 
     // $scope.$watch(Auth.isAuth, function(authed) {
     //   if (authed) {
@@ -11,10 +20,16 @@ angular.module('wtf.dashboard', [])
     //   }
     // }, true);
 
-    // $scope.submit = function(ingredient) {
-    //   Recipe.createRecipe(recipe).then(function(data, err) {
-    //     if (err) console.log(err);
-    //     $scope.getData();
-    //     $scope.recipe = {};
-    //   });
+    $scope.getShoppingList = function() {
+      console.log($scope.recipes.selected)
+    };
+
+    // $scope.getAllRecipes = function(){
+    //   Recipes.getAllRecipes().
+    //          .then(function(data){
+    //            $scope.allRecipes = data;
+    //          })
+    // };
+
+
   });
