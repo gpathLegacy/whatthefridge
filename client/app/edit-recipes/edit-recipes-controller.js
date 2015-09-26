@@ -8,7 +8,8 @@ angular.module('wtf.edit-recipes', [])
   
     //add a new ingredient. works the same as create recipe
     $scope.addIngredient = function() {
-
+      $scope.recipe.ingredients.push($scope.newIngredient);
+      $scope.newIngredient = "";
     };
 
     //remove an ingredient
@@ -16,7 +17,7 @@ angular.module('wtf.edit-recipes', [])
       $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
     };
 
-    //change recipe title
+    //use diffing to remove ingredients from database 
 
     //save recipe to database
     $scope.saveRecipe = function() {
@@ -25,11 +26,8 @@ angular.module('wtf.edit-recipes', [])
           $location.path("/dashboard");
         });
     };
-    
 
   });
-
-
 
   /*
     get passed in a recipe
