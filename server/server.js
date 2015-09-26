@@ -2,7 +2,6 @@ var express     = require('express'),
     bodyParser  = require('body-parser'),
     morgan      = require('morgan');
 
-var app = express();
 var PORT = 1337;
 var path = require('path');
 
@@ -80,4 +79,4 @@ require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================
 
-app.listen(PORT);
+app.listen(port);
