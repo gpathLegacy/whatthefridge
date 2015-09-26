@@ -10,7 +10,7 @@ var knex = require('knex')({
 
 var dbUsers = require('../../server/users/usersModel.js')(knex);
 var dbRecipes = require('../../server/recipes/recipesModel.js')(knex);
-// var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex);
+var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex);
 
 describe("Database unit tests", function(){
 
@@ -87,13 +87,32 @@ describe("Database unit tests", function(){
   }),
 
   describe("ingredients model methods", function(){
-    
-    it("can get an ingredient by ID", function(done){ 
 
+    var ingredientObj = {
+      'name': 'Pork Chops',
+      'price': 13.99
+    }
+    
+    it("can add an ingredient", function(done){ 
+      var addIngredient = dbIngredients.addIngredient(ingredientObj.name, ingredientObj.price).then(function(data){
+        ingredientObj.id = data[0];
+        expect(data[0]).to.be.a('number');
+        done();
+      })
     });
 
-    it("can add an ingredient", function(done){ 
+    it("can get an ingredient by ID", function(done){ 
+      var getIngredientByID = dbIngredients.getIngredientById(ingredientObj.id).then(function(data){
+        expect(data[0]['name']).to.equal(ingredientObj.name);
+        done();
+      })
+    });
 
+    it("can get an ingredient by name", function(done){ 
+      var getIngredientByName = dbIngredients.getIngredientByName(ingredientObj.name).then(function(data){
+        expect(data[0]['id']).to.equal(ingredientObj.id);
+        done();
+      })
     });
 
   })
