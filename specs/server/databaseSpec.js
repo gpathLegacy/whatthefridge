@@ -14,12 +14,12 @@ var dbRecipes = require('../../server/recipes/recipesModel.js')(knex);
 
 describe("Database unit tests", function(){
 
-  describe("users model methods", function(){
+  var userObj = {
+    'username': 'gigapath',
+    'password': 'rarrrr'
+  }
 
-    var userObj = {
-      'username': 'james bond 10',
-      'password': '0070'
-    }
+  describe("users model methods", function(){
 
     it("can create a new user", function(done){
       var addUser = dbUsers.signup(userObj).then(function(data){
@@ -43,32 +43,47 @@ describe("Database unit tests", function(){
       })
     });
 
-    //need to delete user after tests
   }),
 
 
   describe("recipes model methods", function(){
+
+    var recipeObj = {
+      'title': 'Pork Chop Sandwiches'
+    }
     
     it("can create a recipe", function(done){ 
-      var newRecipe = dbRecipes.createRecipe('Pork Chop Sandwiches').then(function(data){
-        console.log(data);
+      var newRecipe = dbRecipes.createRecipe(recipeObj.title, userObj.id).then(function(data){
+        expect(data[0]).to.be.a('number');
+        recipeObj.id = data[0];
+        done();
       })
     });
 
     it("can get all recipes", function(done){ 
-
+      var getRecipes = dbRecipes.getAllRecipes(userObj.id).then(function(data){
+        expect(data[0]['title']).to.equal(recipeObj.title);
+        done();
+      })
     });
 
     it("can get a recipe by id", function(done){ 
-
+      var getRecipe = dbRecipes.getRecipe(recipeObj.id).then(function(data){
+        expect(data[0]['title']).to.equal(recipeObj.title);
+        done();
+      })
     });
 
 
     it("can edit a recipe", function(done){ 
-
+      var editRecipe = dbRecipes.editRecipe(recipeObj.id, 'Pork Chop Friday').then(function(data){
+        dbRecipes.getRecipe(recipeObj.id).then(function(data){
+          expect(data[0]['title']).to.equal('Pork Chop Friday');
+          done();
+        })
+      })
     });
 
-    //need to delete recipe after tests
   }),
 
   describe("ingredients model methods", function(){
