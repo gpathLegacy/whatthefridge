@@ -30,11 +30,13 @@ module.exports = function(knex) {
       //insert into recipes, get the ids returned by the insert
       //insert into ingredients, get the ids returned by the insert
       //create the mapping table entries
-      createRecipe: function(title) {
+      createRecipe: function(title, user_id) {
         //handle the mapping insert on the server side instead of using currval() or lastval()
         return knex('recipes')
+          .returning('id')
           .insert({
-            'title': title
+            'title': title,
+            'user_id': user_id
           })
       },
       //edit existing recipes. fetch associated data. update query for the recipe, mapped table.

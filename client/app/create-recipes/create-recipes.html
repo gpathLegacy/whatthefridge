@@ -1,17 +1,32 @@
 <div class="row">
-  <form class="col s12">
-    <div class="row">
-      <div class="input-field col s6">
-        <input placeholder="Text here" id="recipeName" type="text">
-        <label for="recipeName">Recipe Name</label>
+  <div class="container">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="recipeName" type="text" ng-model="recipe.name">
+          <label for="recipeName">Recipe Name</label>
+        </div>
+        <div class="input-field col s5">
+          <input id="ingredientName" type="text" ng-model="newIngredient">
+          <label for="ingredientName">Ingredient</label>
+        </div>
+        <div class="col s1 addButton">
+          <div class="bottom">
+            <a class="btn-floating btn waves-effect waves-light red" ng-click ="addIngredient()"><i class="material-icons">add</i></a>
+          </div>
+        </div>
       </div>
-      <div class="input-field col s6">
-        <input id="ingredientName" type="text">
-        <label for="ingredientName">Ingredient</label>
+      <div class="row center-align">
+        <a class="btn waves-effect waves-light red" ng-click="saveRecipe()">Save Recipe</a>
       </div>
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    </div>
-  </form>
+      <div class="row">
+        <u>Ingredients List</u>
+        <ul class="collection">
+          <li class="collection-item" ng-repeat="ingredient in recipe.ingredients">{{ingredient}}<a class="btn-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="icon-small">delete<span></i></a></li>
+        </ul>
+      </div>
+    </form>
+  </div>
 </div>
 
 

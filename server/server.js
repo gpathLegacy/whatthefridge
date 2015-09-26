@@ -29,42 +29,18 @@ var auth = function(req, res, next){
   else next();
 };
 
-// Below is some knex/database information, for testing passport. This should
-// live somewhere else? And be required into this file.
-
-var knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host     : '127.0.0.1',
-    database : 'wtf'
-  }
-});
-
-knex.schema.hasTable('users').then(function(exists) {
-  if (!exists) {
-    return knex.schema.createTable('users', function(t) {
-      t.increments('id').primary();
-      t.string('username', 100);
-      t.string('password', 100);
-      t.string('fb_id', 100);
-      t.string('fb_name', 100);
-      t.string('fb_token', 255);
-      t.string('twitter_id', 100);
-      t.string('twitter_name', 100);
-      t.string('twitter_token', 255);
-      t.string('instagram_id', 100);
-      t.string('instagram_name', 100);
-      t.string('instagram_token', 255);
-      t.string('google_id', 100);
-      t.string('google_email', 100);
-      t.string('google_token', 255);
-    });
-  }
-});
+var knex = require('knex')(require('./database/knexfile.js').development);
 
 // =========================================
 
-var Users = require('./users/usersModel.js')(knex);
+// Pass database connection to each model
+
+var Users = require('./users/usersModel')(knex);
+var Recipes = require('./recipes/recipesModel')(knex);
+var Ingredients = require('./ingredients/ingredientsModel')(knex);
+
+// =========================================
+
 require('./config/passport')(passport, knex, Users);
 app.use(passport.initialize());
 app.use(passport.session());
@@ -81,7 +57,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 
 // inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
-require('./recipes/recipesRoutes.js')(recipesRouter, passport);
+require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================

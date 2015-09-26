@@ -5,10 +5,10 @@ angular.module('wtf', [
   // 'wtf.auth',
   // 'wtf.background',
   'wtf.create-recipes',
-  'wtf.dashboard'
+  'wtf.dashboard',
   // 'wtf.edit-recipes',
   // 'wtf.index',
-  // 'wtf.services',
+  'wtf.services'
   // 'wtf.shopping-list'
   ]
 )
