@@ -6,10 +6,11 @@ module.exports = function(Recipes, Ingredients) {
       var ingredients = req.body.ingredients;
 
       // Create the recipe in the recipes table
-      Recipes.createRecipe(recipeName, req.body.id).then(function(id) {
+      Recipes.createRecipe(recipeName, req.user.id).then(function(id) {
         var recipeID = id[0];
 
-        // Get ingredient IDs that already exist, or add new Ingredients
+        // Get ingredient IDs that already exist, or add new Ingredients.
+        // After ingredient is added, map it to the recipe.
         for (var i = 0; i < ingredients.length; i++) {
 
           // Tricky way to pass i into promise scope
