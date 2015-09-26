@@ -9,9 +9,11 @@ angular.module('wtf.create-recipes', [])
     };
 
     $scope.saveRecipe = function() {
+
+        // Put this into the factory
         $http.post('/api/recipes/createRecipe', $scope.recipe)
           .then(function(res) {
-            $location.url = "/#/dashboard";
+            $location.path("/dashboard");
           })
     };
 
