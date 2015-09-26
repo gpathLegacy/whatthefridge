@@ -11,6 +11,16 @@
   margin-bottom: 0;
 }
 
+/*==========landing.html==========*/
+.dev-team{
+  /*padding-left: 9.5%;*/
+}
+
+.collection-item.avatar {
+  height: 60px;
+  width: 60px;
+}
+
 /*========create-recipes=========*/
 
 .addButton {
@@ -29,7 +39,7 @@
   width:18px;
 }
 
-.icon-small {
+.trash-icon-small {
   font-size:16px;
   position:relative;
   bottom:13px;
