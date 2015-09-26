@@ -3,7 +3,7 @@ var express     = require('express'),
     morgan      = require('morgan');
 
 var app = express();
-var PORT = 1337;
+var port = Number(process.env.PORT || 1337);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -62,4 +62,4 @@ require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================
 
-app.listen(PORT);
+app.listen(port);
