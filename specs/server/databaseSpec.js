@@ -12,12 +12,21 @@ var dbUsers = require('../../server/users/usersModel.js')(knex);
 var dbRecipes = require('../../server/recipes/recipesModel.js')(knex);
 var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex);
 
-describe("Database unit tests", function(){
-
   var userObj = {
     'username': 'gigapath',
     'password': 'rarrrr'
   }
+    
+  var recipeObj = {
+    'title': 'Pork Chop Sandwiches'
+  }
+
+  var ingredientObj = {
+    'name': 'Pork Chops',
+    'price': 13.99
+  }
+
+describe("Database unit tests", function(){
 
   describe("users model methods", function(){
 
@@ -47,10 +56,6 @@ describe("Database unit tests", function(){
 
 
   describe("recipes model methods", function(){
-
-    var recipeObj = {
-      'title': 'Pork Chop Sandwiches'
-    }
     
     it("can create a recipe", function(done){ 
       var newRecipe = dbRecipes.createRecipe(recipeObj.title, userObj.id).then(function(data){
@@ -87,11 +92,6 @@ describe("Database unit tests", function(){
   }),
 
   describe("ingredients model methods", function(){
-
-    var ingredientObj = {
-      'name': 'Pork Chops',
-      'price': 13.99
-    }
     
     it("can add an ingredient", function(done){ 
       var addIngredient = dbIngredients.addIngredient(ingredientObj.name, ingredientObj.price).then(function(data){
@@ -116,6 +116,8 @@ describe("Database unit tests", function(){
     });
 
   })
+
+  //delete test entries in database when functionality is added to models
 
 }); 
 
