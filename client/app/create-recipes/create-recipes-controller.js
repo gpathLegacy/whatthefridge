@@ -8,6 +8,10 @@ angular.module('wtf.create-recipes', [])
         $scope.newIngredient = "";
     };
 
+    $scope.removeIngredient = function(ingredient) {
+        $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
+    };
+
     $scope.saveRecipe = function() {
         Recipes.createRecipe($scope.recipe)
           .then(function(){

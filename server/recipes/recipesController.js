@@ -6,7 +6,7 @@ module.exports = function(Recipes, Ingredients) {
       var ingredients = req.body.ingredients;
 
       // Create the recipe in the recipes table
-      Recipes.createRecipe(recipeName).then(function(id) {
+      Recipes.createRecipe(recipeName, req.body.id).then(function(id) {
         var recipeID = id[0];
 
         // Get ingredient IDs that already exist, or add new Ingredients
