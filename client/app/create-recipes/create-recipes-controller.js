@@ -1,5 +1,5 @@
 angular.module('wtf.create-recipes', [])
-  .controller('CreateRecipesController', function($scope, $window, $http, $location, Recipes) {
+  .controller('CreateRecipesController', function($scope, $window, $location, Recipes) {
 
     $scope.recipe = {ingredients: []};
 
