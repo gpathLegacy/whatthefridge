@@ -1,10 +1,9 @@
-angular.module('wtf')
+angular.module('wtf.services', [])
   .factory('Recipes', function($http) {
-    var factory = {};
 
-    factory.createRecipe = function(){
-      return $http.post('/api/recipes/createRecipe', $scope.recipe);
+    var createRecipe = function(recipe){
+      return $http.post('/api/recipes/createRecipe', recipe);
     }
 
-    return factory;
+    return {createRecipe:createRecipe};
   });

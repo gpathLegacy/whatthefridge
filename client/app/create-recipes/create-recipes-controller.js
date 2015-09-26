@@ -9,7 +9,7 @@ angular.module('wtf.create-recipes', [])
     };
 
     $scope.saveRecipe = function() {
-        Recipes.createRecipe(recipe)
+        Recipes.createRecipe($scope.recipe)
           .then(function(){
             $location.path("/dashboard");
           });
