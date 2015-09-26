@@ -5,10 +5,10 @@ angular.module('wtf', [
   // 'wtf.auth',
   // 'wtf.background',
   'wtf.create-recipes',
-  'wtf.dashboard'
+  'wtf.dashboard',
   // 'wtf.edit-recipes',
   // 'wtf.index',
-  // 'wtf.services',
+  'wtf.services'
   // 'wtf.shopping-list'
   ]
 )
@@ -17,10 +17,6 @@ angular.module('wtf', [
   $routeProvider
     .when('/about', {
       templateUrl: 'app/about/about.html'
-    })
-    .when('/', {
-      templateUrl: 'app/auth/landing.html',
-      controller: 'BackgroundController'
     })
     .when('/login', {
       templateUrl: 'app/auth/login.html',
