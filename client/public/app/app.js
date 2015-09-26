@@ -50,5 +50,22 @@ angular.module('wtf', [
       templateUrl: 'app/shopping-list/shopping-list.html',
       controller: 'ShoppingListController'
     })
-    .otherwise('/')
+    .otherwise('/');
+
+  // Check for 401 (unauthorized) responses
+
+  $httpProvider.interceptors.push(function($q, $location) { 
+    return {
+      response: function(response) { 
+      // do something on success 
+      return response; 
+      }, 
+
+      responseError: function(response) {
+        if (response.status === 401) $location.url('/');
+        return $q.reject(response);
+      } 
+    };
+  }); 
 });
+
