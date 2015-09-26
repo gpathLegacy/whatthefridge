@@ -1,0 +1,36 @@
+/*==========index.html==========*/
+.social {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+}
+.social:hover {
+  -webkit-filter:saturate(2.0);
+}
+.modal-row {
+  margin-bottom: 0;
+}
+
+/*========create-recipes=========*/
+
+.addButton {
+  position:relative;
+  min-height:50px;
+}
+
+.bottom {
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+
+.trash-small {
+  height:18px;
+  width:18px;
+}
+
+.icon-small {
+  font-size:16px;
+  position:relative;
+  bottom:13px;
+}
