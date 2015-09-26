@@ -33,6 +33,7 @@ module.exports = function(knex) {
       createRecipe: function(title) {
         //handle the mapping insert on the server side instead of using currval() or lastval()
         return knex('recipes')
+          .returning('id')
           .insert({
             'title': title
           })

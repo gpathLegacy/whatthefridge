@@ -10,3 +10,16 @@
 .modal-row {
   margin-bottom: 0;
 }
+
+/*========create-recipes=========*/
+
+.addButton {
+  position:relative;
+  min-height:50px;
+}
+
+.bottom {
+  position:absolute;
+  bottom:0;
+  left:0;
+}

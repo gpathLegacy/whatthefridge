@@ -62,9 +62,45 @@ knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('recipes').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('recipes', function(t) {
+      t.increments('id');
+      t.string('title');
+    });
+  }
+});
+
+knex.schema.hasTable('ingredients').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('ingredients', function(t) {
+      t.increments('id');
+      t.string('name').unique();
+      t.decimal('price');
+    });
+  }
+});
+
+knex.schema.hasTable('recipes_ingredients').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('recipes_ingredients', function(t) {
+      t.increments('id');
+      t.integer('recipe_id');
+      t.integer('ingredient_id');
+    });
+  }
+});
+
 // =========================================
 
-var Users = require('./users/usersModel.js')(knex);
+// Pass database connection to each model
+
+var Users = require('./users/usersModel')(knex);
+var Recipes = require('./recipes/recipesModel')(knex);
+var Ingredients = require('./ingredients/ingredientsModel')(knex);
+
+// =========================================
+
 require('./config/passport')(passport, knex, Users);
 app.use(passport.initialize());
 app.use(passport.session());
@@ -81,7 +117,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 
 // inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
-require('./recipes/recipesRoutes.js')(recipesRouter, passport);
+require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================

@@ -1,7 +1,19 @@
 angular.module('wtf.create-recipes', [])
-  .controller('CreateRecipesController', function($scope, $window, Auth, Recipe) {
+  .controller('CreateRecipesController', function($scope, $window, $http, $location) {
 
-    // $scope.recipe = {};
+    $scope.recipe = {ingredients: []};
+
+    $scope.addIngredient = function() {
+        $scope.recipe.ingredients.push($scope.newIngredient);
+        $scope.newIngredient = "";
+    };
+
+    $scope.saveRecipe = function() {
+        $http.post('/api/recipes/createRecipe', $scope.recipe)
+          .then(function(res) {
+            $location.url = "/#/dashboard";
+          })
+    };
 
     // $scope.$watch(Auth.isAuth, function(authed) {
     //   if (authed) {
