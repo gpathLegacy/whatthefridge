@@ -18,16 +18,36 @@ describe("Database unit tests", function(){
   // });
   describe("tests users model methods", function(){
 
+    var userObj = {
+      'username': 'james bond 8',
+      'password': '0070'
+    }
+
     it("is able to create a new user", function(done){ 
     //username, password
-    var userObj = {
-      'username': 'james bond',
-      'password': '007'
-    }
+
     var addUser = dbUsers.signup(userObj).then(function(data){
+      userObj.id = data[0];
+      console.log(userObj, "user object after adding id");
       expect(data[0]).to.be.a('number');
     }) 
     done();
+    });
+
+    it("it is able to find user by name", function(done){ //prevent empty object
+      var getUser = dbUsers.getUserByName(userObj.username).then(function(data){
+        console.log(data);
+        expect(data[0]['id']).to.equal();
+      })
+      done();
+    });
+
+    it("it is able to find user by id", function(done){ //prevent empty object
+      var getUser = dbUsers.getUserById(userObj.id).then(function(data){
+        console.log(data);
+        expect(data[0]['username']).to.equal(userObj.username);
+      })
+      done();
     });
 
   }),
