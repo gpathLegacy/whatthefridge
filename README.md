@@ -48,9 +48,14 @@ bower install
 
 ### Viewing the project
 ```sh
+The first time: 
+Database: Run Postgres
+- from the psql command line, type:
+  CREATE DATABASE wtf;
+   
 Start the server:
-navigate to server directory (cd server), then run:
->nodemon server.js
+from the root directory, type:
+nodemon
 then, in a browser, go to:
 >http://localhost:1337/
 ```
