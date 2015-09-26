@@ -1,5 +1,5 @@
 angular.module('wtf.create-recipes', [])
-  .controller('CreateRecipesController', function($scope, $window, $http, $location) {
+  .controller('CreateRecipesController', function($scope, $window, $http, $location, Recipes) {
 
     $scope.recipe = {ingredients: []};
 
@@ -9,12 +9,10 @@ angular.module('wtf.create-recipes', [])
     };
 
     $scope.saveRecipe = function() {
-
-        // Put this into the factory
-        $http.post('/api/recipes/createRecipe', $scope.recipe)
-          .then(function(res) {
+        Recipes.createRecipe(recipe)
+          .then(function(){
             $location.path("/dashboard");
-          })
+          });
     };
 
     // $scope.$watch(Auth.isAuth, function(authed) {
