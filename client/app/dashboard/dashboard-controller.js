@@ -1,10 +1,12 @@
 angular.module('wtf.dashboard', ['checklist-model'])
-  .controller('DashboardController', function($scope, $window) {
-    $scope.allRecipes = [
-      {id: 1, title: "Lasagna", ingredients: ['tomatoes', 'italian sauage', 'cheese']},
-      {id: 2, title: "Turkey meatloaf", ingredients: ['tomatoes']},
-      {id: 3, title: "Omelette", ingredients: ['eggs', 'milk', 'cheese']}
-    ];
+  .controller('DashboardController', function($scope, $window, Recipes) {
+    Recipes.getRecipes()
+    .success(function(data){
+      $scope.allRecipes = data;
+    })
+    .catch(function(err){
+      console.log(err);
+    })
 
     $scope.recipes  = {
       selected:[]
