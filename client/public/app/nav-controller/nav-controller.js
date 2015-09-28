@@ -12,7 +12,7 @@ angular.module('wtf.nav-controller',[])
   $scope.isLoggedIn();
 
   $scope.logOut = function(){
-    $scope.loggedIn = false;
+    // $scope.loggedIn = false;
     Navbar.logOut()
   }
 });
