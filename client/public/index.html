@@ -27,7 +27,7 @@
       </ul> -->
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
-        <li><a href="#/dashboard">Home</a></li>
+        <li><a href="#/dashboard">Dashboard</a></li>
         <li><a href="#">Extra</a></li>
         <li><a href="#">The Fridge</a></li>
         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -43,7 +43,7 @@
     </div>
   </nav>
   <!-- End Logged-In Navbar -->
-  
+
   <!--Start Logged-out Navbar -->
   <nav ng-hide="loggedIn" role="navigation" ng-controller="NavController">
     <div class="nav-wrapper container">
@@ -76,7 +76,7 @@
           <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
         </div>
       </div>
-      -or- 
+      -or-
       <br>
       click appropriate tab to begin
       <br><br>
@@ -130,9 +130,11 @@
  <!-- End Modal Structure -->
 
     <main>
+    <div class="container">
       <p>This is WhatTheFridge</p>
       <div ng-view>
       </div>
+    </div>
     </main>
 
     <!-- Start Footer -->
@@ -162,7 +164,7 @@
       </div>
     </footer>
     <!-- End Footer -->
-    
+
   </body>
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
