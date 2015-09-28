@@ -8,8 +8,12 @@ angular.module('wtf.services', [])
     var editRecipe = function(recipe){
       return $http.post('/api/recipes/editRecipe', recipe);
     }
+    var getRecipes = function() {
+      return $http.post('/api/recipes/getRecipes');
+    }
     //function to get all recipes
     //http get request for dashboard 
 
-    return {createRecipe:createRecipe};
+
+    return {createRecipe:createRecipe, editRecipe:editRecipe, getRecipes:getRecipes};
   });
