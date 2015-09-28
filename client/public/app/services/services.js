@@ -15,7 +15,7 @@ angular.module('wtf.services', [])
     return {createRecipe:createRecipe, 
             editRecipe:editRecipe, 
             getRecipes:getRecipes};
-  })
+  })  
   .factory('Navbar', function($http) {
     var isLoggedIn = function() {
       return $http.get('/api/users/checklogin')
