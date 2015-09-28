@@ -8,15 +8,15 @@
   </head>
   <body>
 
-  <!--Start Navbar -->
-  <nav role="navigation">
+  <!--Start Logged-in Navbar -->
+  <nav ng-show="loggedIn" role="navigation" ng-controller="NavController">
     <div class="nav-wrapper container">
       <!-- Left Logo -->
       <a id="logo-container" href="#" class="brand-logo">WTF!</a>
       <!-- Recipe Dropdown Contents -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Create</a></li>
-        <li><a href="#!">Edit</a></li>
+        <li><a href="#/create-recipes">Create</a></li>
+        <li><a href="#/edit-recipes">Edit</a></li>
         <li><a href="#!">Extra</a></li>
       </ul>
       <!-- Login Dropdown Contents -->
@@ -27,11 +27,12 @@
       </ul> -->
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
+        <li><a href="#/dashboard">Home</a></li>
         <li><a href="#">Extra</a></li>
         <li><a href="#">The Fridge</a></li>
         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+        <li ng-click="logOut()"><a href="#">Logout</a></li>
         <!-- Modal Trigger Inside Class Declaration -->
-        <li><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
       </ul>
       <!-- Side-Nav -->
       <ul id="nav-mobile" class="side-nav">
@@ -41,7 +42,27 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
   </nav>
-  <!-- End Navbar -->
+  <!-- End Logged-In Navbar -->
+  
+  <!--Start Logged-out Navbar -->
+  <nav ng-hide="loggedIn" role="navigation" ng-controller="NavController">
+    <div class="nav-wrapper container">
+      <!-- Left Logo -->
+      <a id="logo-container" href="#" class="brand-logo">WTF!</a>
+      <!-- Right Side of Navbar -->
+      <ul class="right hide-on-med-and-down">
+        <!-- Modal Trigger Inside Class Declaration -->
+        <li><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+      </ul>
+    <!-- Side-Nav -->
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#"><i class="mdi-action-account-circle active"></i></a></li>
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>
+  <!-- End Logged-Out NavBar -->
 
   <!-- Start Modal Structure -->
   <div id="modal1" class="modal center">
@@ -153,6 +174,7 @@
     <script src="app/edit-recipes/edit-recipes-controller.js"></script>
     <script src="app/shopping-list/shopping-list-controller.js"></script>
     <script src="app/services/services.js"></script>
+    <script src="app/nav-controller/nav-controller.js"></script>
     <script src="app/app.js"></script>
 
     <script>
