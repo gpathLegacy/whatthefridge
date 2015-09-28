@@ -3,8 +3,37 @@
   <a href='/#/create-recipes' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
   Add recipe
   <div ng-repeat="item in allRecipes">
+  <!-- start test solution -->
+  <div class="row">
+    <div class= "col s4">
+      <div class = "card small">
+        <div class="card-image">
+          <img src="http://www.cookingclassy.com/wp-content/uploads/2013/03/lasagna15.jpg">
+        </div>
+        <div class="card-content">
+        <!-- pick up the title from the item.title -->
+      <span class="card-title activator grey-text text-darken-4" >Mom's Lasagna</span>
+
      <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}"/>
     <label for="{{item}}">{{item.title}}</label>
+    <!-- checkbox should assign the item id as id here -->
+    <input type="checkbox" id="test5" />
+          <label for="test5">I'm eating this</label>
+          <p><a class="modal-trigger" href="#deleteCheck"><i class="material-icons right">delete</i></a></p>
+          <!-- should route to controller: edit recipe -->
+          <p><a href=''><i class="material-icons right">mode edit</i></a></p>
+        </div>
+        <div class="card-reveal">
+        <!-- pick up the title from the item.title -->
+          <span class="card-title grey-text text-darken-4">Mom's Lasagna<i class="material-icons right">close</i></span>
+          <!-- the ingredients go here, also a loop/ ngrepeat -->
+            </div>  
+      </div>
+    </div>
+  </div>
+
+
+  <!-- end test solution -->
   </div>
 
   <div>
