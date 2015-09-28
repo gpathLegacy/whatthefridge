@@ -8,32 +8,37 @@ angular.module('wtf', [
   'wtf.dashboard',
   // 'wtf.edit-recipes',
   // 'wtf.index',
-  'wtf.services'
+  'wtf.services',
+  'wtf.nav-controller'
   // 'wtf.shopping-list'
   ]
 )
 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
+    // .when('/', {
+    //   templateUrl: 'index.html',
+    //   controller: 'NavController'
+    // })
     .when('/about', {
       templateUrl: 'app/about/about.html'
     })
-    .when('/login', {
-      templateUrl: 'app/auth/login.html',
-      controller: 'AuthController'
-    })
-    .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
-    })
-    .when('/logout', {
-      templateUrl: 'app/auth/landing.html',
-      controller: 'AuthController',
-      resolve: { function(Auth) {
-        Auth.signout();
-      }
-      }
-    })
+    // .when('/login', {
+    //   templateUrl: 'app/auth/login.html',
+    //   controller: 'AuthController'
+    // })
+    // .when('/signup', {
+    //   templateUrl: 'app/auth/signup.html',
+    //   controller: 'AuthController'
+    // })
+    // .when('/logout', {
+    //   templateUrl: 'app/auth/landing.html',
+    //   controller: 'AuthController',
+    //   resolve: { function(Auth) {
+    //     Auth.signout();
+    //   }
+    //   }
+    // })
     .when('/create-recipes', {
       templateUrl: 'app/create-recipes/create-recipes.html',
       controller: 'CreateRecipesController'
