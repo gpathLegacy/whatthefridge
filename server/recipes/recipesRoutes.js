@@ -10,5 +10,6 @@ module.exports = function (app, Recipes, Ingredients) {
   // app.get('/:id', usersController.serveData);
 
   app.post('/createRecipe', recipesController.createRecipe);
+  app.post('/getRecipes', recipesController.getRecipes);
   
 };
