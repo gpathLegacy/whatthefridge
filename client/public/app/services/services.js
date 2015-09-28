@@ -15,5 +15,7 @@ angular.module('wtf.services', [])
     //http get request for dashboard 
 
 
-    return {createRecipe:createRecipe, editRecipe:editRecipe, getRecipes:getRecipes};
+    return {createRecipe:createRecipe, 
+            editRecipe:editRecipe, 
+            getRecipes:getRecipes};
   });
