@@ -75,7 +75,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 
 // inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
-require('./recipes/recipesRoutes.js')(recipesRouter, auth, Recipes, Ingredients);
+require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
 
 // =========================================

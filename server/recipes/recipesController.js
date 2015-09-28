@@ -4,9 +4,9 @@ module.exports = function(Recipes, Ingredients) {
     createRecipe: function(req, res) {
       var recipeName = req.body.name;
       var ingredients = req.body.ingredients;
-
       // Create the recipe in the recipes table
       Recipes.createRecipe(recipeName, req.user.id).then(function(id) {
+
         var recipeID = id[0];
 
         // Get ingredient IDs that already exist, or add new Ingredients.
@@ -31,6 +31,27 @@ module.exports = function(Recipes, Ingredients) {
       });
 
       res.sendStatus(200);
+    },
+    getRecipes: function(req, res) {
+       Recipes.getAllRecipes(req.user.id)
+        .then(function(data){
+          var recipeResult = [];
+          var currentRecipe = 10;
+          var recipeObjCount = -1;
+          for(var i=0; i<data.length; i++) {
+            //if the data being read is for the same recipe, push to the ingredient 
+            if (currentRecipe === data[i].id) {
+              recipeResult[recipeObjCount]["ingredients"].push(data[i].name); 
+            } else { //if the data is for a new recipe, create object and push the ingredient
+              recipeObjCount++;
+              recipeResult.push({id: data[i].id, title: data[i].title, ingredients: []});
+              recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
+              currentRecipe = data[i].id;
+            }             
+          }
+          res.send(recipeResult);
+        })
+        // res.sendStatus(200);
     }
   }
 }

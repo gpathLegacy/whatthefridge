@@ -10,7 +10,7 @@ module.exports = function(knex) {
       //fetch all recipes for a specific user. call user model method.
       getAllRecipes: function(userId) { //can be user name, depends on auth. id can be stored on the client's side
         return knex
-          .select(['recipes.title', 'ingredients.name'])
+          .select(['recipes.id', 'recipes.title', 'ingredients.name'])
           .from('recipes')
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
