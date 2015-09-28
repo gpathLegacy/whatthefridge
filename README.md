@@ -49,9 +49,18 @@ bower install
 ### Viewing the project
 ```sh
 The first time: 
-Database: Run Postgres
+
+Database: 
+Run Postgres server
+- $ postgres -D /usr/local/pgsql/data
+
+Create the project database
 - from the psql command line, type:
-  CREATE DATABASE wtf;
+  CREATE DATABASE gigapath;
+
+Setup database schema
+- From within the /server/database/migrations, type:
+  knex migrate:latest
    
 Start the server:
 from the root directory, type:
