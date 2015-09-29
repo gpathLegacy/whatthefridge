@@ -18,6 +18,15 @@ module.exports = function(knex) {
             'recipes.user_id': userId
           })
       },
+      deleteRecipe: function(recipeId){
+        return knex
+        .select('*')
+        .from('recipes')
+        .where({
+          'id': recipeId
+        })
+        .del()
+      },
       getRecipe: function(recipeId) {
         return knex
         .select('*')

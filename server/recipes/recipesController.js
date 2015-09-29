@@ -52,6 +52,13 @@ module.exports = function(Recipes, Ingredients) {
           res.send(recipeResult);
         })
         // res.sendStatus(200);
+    },
+    deleteRecipe: function(req, res){
+      console.log('made it to the server')
+      // Recipes.deleteRecipe(req.body.id)
+      //   .then(function(data){
+      //     res.json("deleted " + req.body.title);
+      //   })
     }
   }
 }
