@@ -59,28 +59,37 @@ module.exports = function(Recipes, Ingredients) {
       var newIngredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
 
-      //add new ingredients using a loop, no iffy
+      // Get ingredient IDs that already exist for the user, or add new Ingredients.
+      // After ingredient is added, map it to the recipe.
       for (var i = 0; i < newIngredients.length; i++) {
 
-        // Tricky way to pass i into promise scope
-        // (function(i) {
-          Ingredients.getIngredientByName(ingredients[i]).then(function(row){
+        (function(i) {
+          Ingredients.getIngredientByName(newIngredients[i], req.user.id).then(function(row){
             if (row.length) {
               Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
             }
             else {
-              Ingredients.addIngredient(ingredients[i]).then(function(id) {
+              Ingredients.addIngredient(newIngredients[i], req.user.id).then(function(id) {
                 Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
               })
             }
           })
-        // })(i);
+        })(i);
 
       }
 
-      //
+      //Remove ingredients from recipe mapping table. Keep in ingredients table(?).
+      for (var j = 0; j < newIngredients.length; j++) {
+        (function(i) {
+          Recipes.removeRecipeMapping(recipeId, removeIngredients[j]).then(function(){});
+        })(i);
 
+      //update recipe name //no downstream changes
+      Recipe.editRecipe(recipeName).then(function(){});
+
+      }
+      res.sendStatus(200);
     }
-  }
+  } 
 }
 
