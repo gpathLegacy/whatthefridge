@@ -10,10 +10,10 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="ingredient in testData">
+      <tr ng-repeat="ingredient in data" ng-if="ingredient.qty>0">
         <td>{{ingredient.name}}</td>
         <td>{{ingredient.price}}</td>
-        <td>{{ingredient.qty}}</td>
+        <td><button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button> {{ingredient.qty}} <button ng-click="decreaseQty(ingredient)" class="btn-floating red minus-small"><span class="minus">-</span></button></td>
         <td>{{ingredient.qty_unit}}</td>
       <tr>
     </tbody>

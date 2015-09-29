@@ -83,7 +83,7 @@ app.use('/api/fridge', fridgeRouter);
 require('./users/usersRoutes.js')(usersRouter, passport);
 require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, Ingredients);
-require('./fridge/fridgeRoutes.js')(fridgeRouter, Fridge)
+require('./fridge/fridgeRoutes.js')(fridgeRouter, Fridge, Ingredients)
 
 // =========================================
 

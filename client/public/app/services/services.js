@@ -37,7 +37,17 @@ angular.module('wtf.services', [])
       return $http.post('/api/fridge/getFridge');
     }
 
-    return {getFridge:getFridge};
+    var addList = function(list) {
+      return $http.post('/api/fridge/addList', list);
+    }
+
+    var updateFridge = function(data) {
+      return $http.post('/api/fridge/updateFridge', data);
+    }
+
+    return { getFridge:getFridge,
+             addList:addList,
+             updateFridge:updateFridge };
   })
 
   .factory('Navbar', function($http) {
