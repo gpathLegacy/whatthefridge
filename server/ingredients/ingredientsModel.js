@@ -14,17 +14,21 @@ module.exports = function(knex) {
       },
       getIngredientByName: function(name) {
         return knex('ingredients').select()
-                 .where({'name': name});
+                 .where({
+                  'name': name, 
+                  'user_id': userId
+                });
       },
       //for a new recipe, add ingredients sent by the recipes model
-      addIngredient: function(name, price) {
+      addIngredient: function(name, price, userId) {
         //version 1: receiving one ingredient at a time
         var price = price || 0;
         return knex('ingredients')
           .returning('id')
           .insert({
             'name': name,
-            'price': price
+            'price': price,
+            'user_id': userId
           });
         //version 2: receiving multiple arguments and sending one promise back
         //var slicedIng = Array.prototype.slice.call(arguments, 1);
