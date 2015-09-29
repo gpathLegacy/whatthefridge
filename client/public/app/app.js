@@ -16,10 +16,10 @@ angular.module('wtf', [
 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
-    // .when('/', {
-    //   templateUrl: 'index.html',
+    .when('/', {
+      templateUrl: 'app/auth/landing.html',
     //   controller: 'NavController'
-    // })
+    })
     .when('/about', {
       templateUrl: 'app/about/about.html'
     })
@@ -59,18 +59,18 @@ angular.module('wtf', [
 
   // Check for 401 (unauthorized) responses
 
-  $httpProvider.interceptors.push(function($q, $location) { 
+  $httpProvider.interceptors.push(function($q, $location) {
     return {
-      response: function(response) { 
-      // do something on success 
-      return response; 
-      }, 
+      response: function(response) {
+      // do something on success
+      return response;
+      },
 
       responseError: function(response) {
         if (response.status === 401) $location.url('/');
         return $q.reject(response);
-      } 
+      }
     };
-  }); 
+  });
 });
 
