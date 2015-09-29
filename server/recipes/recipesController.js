@@ -53,7 +53,7 @@ module.exports = function(Recipes, Ingredients) {
         })
         // res.sendStatus(200);
     },
-    updateRecipe: function(req, res) {
+    editRecipe: function(req, res) {
       var recipeId = req.body.id;
       var recipeName = req.body.name;
       var newIngredients = req.body.ingredients;
