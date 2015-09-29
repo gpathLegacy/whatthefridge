@@ -19,5 +19,14 @@ angular.module('wtf.dashboard', ['checklist-model'])
       $location.path('shopping-list');
     };
 
+    $scope.deleteModal = function(recipe){
+      $scope.deleteRecipe = recipe;
+      $("#deleteCheck").openModal();
+    };
+
+    $scope.delete = function(recipe){
+      console.log(recipe)
+    }
+    
     $scope.getAllRecipes();
   });
