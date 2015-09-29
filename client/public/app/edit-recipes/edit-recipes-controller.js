@@ -3,8 +3,21 @@ angular.module('wtf.edit-recipes', [])
 
     //local variable storing new and existing recipe values
     //prepopulate ingredients array with the existing values
-    $scope.recipe = {ingredients: []};
+    // $scope.recipe = {ingredients: []};
 
+    /*
+    keep track of ingredients in 3 data structures:
+    1: existing ingredients being removed
+    2: existing ingredients being kept
+    3: new ingredients being removed
+    4: new ingredients being kept
+
+    schema doesn't allow user-ingredient duplicates
+    make a copy of existing ingredients 
+    edit recipe using existing logic
+    do a diff and send delete row request for recipe table and mapping table (auto)
+    send insert request for recipe, ingredients and mapping tables
+    */
   
     //add a new ingredient. works the same as create recipe
     $scope.addIngredient = function() {
