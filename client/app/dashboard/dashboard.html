@@ -3,9 +3,6 @@
   <a href='/#/create-recipes' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
   Add recipe
   <div class="row" ng-repeat="item in allRecipes track by $index" ng-if="$index % 3 === 0">
-  <!-- start test solution -->
-  <!-- Add three cards of size col s4 in one row. Outer loop and create a row every three cards. Inner loop create cols for each of the three cards. -->
-  <!-- <div class="row"> -->
     <div class="col s4" ng-repeat="i in [$index, $index + 1, $index + 2]">
       <div class ="card small"> <!-- medium height 400px -->
         <div class="card-image">
@@ -30,7 +27,6 @@
       </div>
     </div>
   </div>
-  <!-- end test solution -->
   </div>
 
   <div>
