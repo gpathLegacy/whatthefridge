@@ -11,11 +11,19 @@ angular.module('wtf.services', [])
     var getRecipes = function() {
       return $http.post('/api/recipes/getRecipes');
     }
-    //function to get all recipes
-    //http get request for dashboard 
-
+    var getIngredientPrice = function(ingredient) {
+      return $http.post('/api/ingredients/getPrice', ingredient);
+    }
+    var setIngredientPrice = function(ingredient) {
+      return $http.post('/api/ingredients/setPrice', ingredient);
+    }
+    
+    var selectedRecipes = [];
 
     return {createRecipe:createRecipe, 
             editRecipe:editRecipe, 
-            getRecipes:getRecipes};
+            getRecipes:getRecipes,
+            selectedRecipes:selectedRecipes,
+            getIngredientPrice:getIngredientPrice,
+            setIngredientPrice:setIngredientPrice};
   });
