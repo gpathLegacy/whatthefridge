@@ -6,6 +6,9 @@ angular.module('wtf.edit-recipes', [])
     // $scope.recipe = {ingredients: []};
 
     /*
+    //recipe.name and newIngredient are defined as ng-model
+    prepopulate recipe.ingredients
+    invisible data: recipe id, user id
     keep track of ingredients in 3 data structures:
     1: existing ingredients being removed
     2: existing ingredients being kept
@@ -18,7 +21,7 @@ angular.module('wtf.edit-recipes', [])
     do a diff and send delete row request for recipe table and mapping table (auto)
     send insert request for recipe, ingredients and mapping tables
     */
-  
+    
     //add a new ingredient. works the same as create recipe
     $scope.addIngredient = function() {
       $scope.recipe.ingredients.push($scope.newIngredient);
