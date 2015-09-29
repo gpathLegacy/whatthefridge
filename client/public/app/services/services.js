@@ -31,6 +31,15 @@ angular.module('wtf.services', [])
             setIngredientPrice:setIngredientPrice
           };
   })
+  
+  .factory('Fridge', function($http) {
+    var getFridge = function(){
+      return $http.post('/api/fridge/getFridge');
+    }
+
+    return {getFridge:getFridge};
+  })
+
   .factory('Navbar', function($http) {
     var isLoggedIn = function() {
       return $http.get('/api/users/checklogin')
