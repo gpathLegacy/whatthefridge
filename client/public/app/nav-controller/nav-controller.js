@@ -12,6 +12,8 @@ angular.module('wtf.nav-controller',[])
   $scope.isLoggedIn();
 
   $scope.logOut = function(){
+    $scope.loggedIn=false;
+    $location.path('/')
     // $scope.loggedIn = false;
     Navbar.logOut()
   }

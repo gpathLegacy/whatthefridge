@@ -8,8 +8,8 @@
   </head>
   <body>
 
-  <!--Start Logged-in Navbar -->
-  <nav ng-show="loggedIn" role="navigation" ng-controller="NavController">
+  <!--Start Navbar -->
+  <nav role="navigation" ng-controller="NavController">
     <div class="nav-wrapper container">
       <!-- Left Logo -->
       <a id="logo-container" href="#" class="brand-logo">WTF!</a>
@@ -21,61 +21,45 @@
       </ul> -->
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
-        <li><a href="#/dashboard">Dashboard</a></li>
-        <li><a href="#">Extra</a></li>
-        <li><a href="#/fridge">The Fridge</a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+        <li ng-show="loggedIn"><a href="#/dashboard">Dashboard</a></li>
+        <li ng-show="loggedIn"><a href="#">Extra</a></li>
+        <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
+        <li ng-show="loggedIn"><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
       <!-- Recipe Dropdown Contents -->
         <ul id="dropdown1" class="dropdown-content">
           <li><a href="#/create-recipes">Create</a></li>
           <li><a href="#/edit-recipes">Edit</a></li>
           <li><a href="#!">Extra</a></li>
         </ul>
-        <li ng-click="logOut()"><a href="#">Logout</a></li>
+        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+
+        <li ng-show="loggedIn" ng-click="logOut()">Logout</li>
         <!-- Modal Trigger Inside Class Declaration -->
       </ul>
       <!-- Side-Nav -->
       <ul id="slide-out" class="side-nav center-align">
-      <li ng-click="logOut()"><a href="#">Logout</a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#/create-recipes">Create</a></li>
-                <li><a href="#/edit-recipes">Edit</a></li>
-                <li><a href="#!">Extra</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-        <li><a href="#">The Fridge</a></li>
-      </li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <li ng-show="loggedIn" ng-click="logOut()"><a>Logout</a></li>
+        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li ng-show="loggedIn">
+              <a class="collapsible-header">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#/create-recipes">Create</a></li>
+                  <li><a href="#/edit-recipes">Edit</a></li>
+                  <li><a href="#!">Extra</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <li ng-show="loggedIn"><a href="#">The Fridge</a></li>
+        </li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
   </nav>
-  <!-- End Logged-In Navbar -->
-
-  <!--Start Logged-out Navbar -->
-  <nav ng-hide="loggedIn" role="navigation" ng-controller="NavController">
-    <div class="nav-wrapper container center-align">
-      <!-- Left Logo -->
-      <a id="logo-container" href="#" class="brand-logo">WTF!</a>
-      <!-- Right Side of Navbar -->
-      <ul class="right hide-on-med-and-down">
-        <!-- Modal Trigger Inside Class Declaration -->
-        <li><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
-      </ul>
-    <!-- Side-Nav -->
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    </div>
-  </nav>
-  <!-- End Logged-Out NavBar -->
+  <!-- End Navbar -->
 
   <!-- Start Modal Structure -->
   <div id="modal1" class="modal center">
