@@ -51,5 +51,13 @@ module.exports = function (app, passport) {
       req.logout();
       res.redirect('/');
     });
+
+  app.get('/checklogin',function(req,res){
+    if (req.user)
+      res.send(true);
+    else
+      res.send(false);
+  });
+
 };
   

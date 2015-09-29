@@ -10,30 +10,38 @@ angular.module('wtf', [
   // 'wtf.index',
   'wtf.services',
   'wtf.shopping-list'
+  'wtf.fridge',
+  'wtf.services',
+  'wtf.nav-controller'
+  // 'wtf.shopping-list'
   ]
 )
 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
+    .when('/', {
+      templateUrl: 'app/auth/landing.html',
+    //   controller: 'NavController'
+    })
     .when('/about', {
       templateUrl: 'app/about/about.html'
     })
-    .when('/login', {
-      templateUrl: 'app/auth/login.html',
-      controller: 'AuthController'
-    })
-    .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
-    })
-    .when('/logout', {
-      templateUrl: 'app/auth/landing.html',
-      controller: 'AuthController',
-      resolve: { function(Auth) {
-        Auth.signout();
-      }
-      }
-    })
+    // .when('/login', {
+    //   templateUrl: 'app/auth/login.html',
+    //   controller: 'AuthController'
+    // })
+    // .when('/signup', {
+    //   templateUrl: 'app/auth/signup.html',
+    //   controller: 'AuthController'
+    // })
+    // .when('/logout', {
+    //   templateUrl: 'app/auth/landing.html',
+    //   controller: 'AuthController',
+    //   resolve: { function(Auth) {
+    //     Auth.signout();
+    //   }
+    //   }
+    // })
     .when('/create-recipes', {
       templateUrl: 'app/create-recipes/create-recipes.html',
       controller: 'CreateRecipesController'
@@ -50,22 +58,26 @@ angular.module('wtf', [
       templateUrl: 'app/shopping-list/shopping-list.html',
       controller: 'ShoppingListController'
     })
+    .when('/fridge', {
+      templateUrl: 'app/fridge/fridge.html',
+      controller: 'FridgeController'
+    })
     .otherwise('/');
 
   // Check for 401 (unauthorized) responses
 
-  $httpProvider.interceptors.push(function($q, $location) { 
+  $httpProvider.interceptors.push(function($q, $location) {
     return {
-      response: function(response) { 
-      // do something on success 
-      return response; 
-      }, 
+      response: function(response) {
+      // do something on success
+      return response;
+      },
 
       responseError: function(response) {
         if (response.status === 401) $location.url('/');
         return $q.reject(response);
-      } 
+      }
     };
-  }); 
+  });
 });
 

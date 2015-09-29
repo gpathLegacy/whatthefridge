@@ -1,0 +1,19 @@
+<div>
+  <table class="centered highlight">
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Price</th>    
+        <th>Quantity </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="ingredient in testData">
+        <td>{{ingredient.ingredient}}</td>
+        <td>{{ingredient.price}}</td>
+        <td>{{ingredient.quantity}}</td>
+      <tr>
+    </tbody>
+  </table>
+</div>

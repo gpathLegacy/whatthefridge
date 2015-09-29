@@ -34,6 +34,7 @@
 <!-- End Features Slider -->
 
 <!-- Start FAQ Collapsible Popout -->
+FAQ
 <ul class="collapsible popout" data-collapsible="accordion">
   <li>
     <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
@@ -51,9 +52,111 @@
 <!-- End FAQ Collapsible Popout -->
 
 Here's our Tech-Stack!
+<!-- Start Tech Stack -->
+<br>
+PostGres
+Angular
+Node.js
+Express
+<br>
+Bring The PANE stack!
+<!-- End Tech Stack -->
+
+<!-- Start Team Introductions -->
+<div class="hide-on-small-only">
+  <div class="row">
+    <div class="card extra-small offset-s2 col s4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../img/Josh.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Josh Stevens<i class="material-icons right">more_vert</i></span>
+        <p class="dev-team"><a href="#">Product Owner</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+    <div class="card extra-small col s4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../img/Eric.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Eric Nguyen<i class="material-icons right">more_vert</i></span>
+        <p class="dev-team"><a href="#">Scrum Master</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Start Dev Team -->
+  <div class="row">
+    <div class="card extra-small col s4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../img/Monisha.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Monisha Saggi<i class="material-icons right">more_vert</i></span>
+        <p class="dev-team"><a href="#">Developer</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+    <div class="card extra-small col s4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../img/Jeff.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Jeff Berman<i class="material-icons right">more_vert</i></span>
+        <p class="dev-team"><a href="#">Developer</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+    <div class="card extra-small col s4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../img/Justin.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Justin Baize<i class="material-icons right">more_vert</i></span>
+        <p class="dev-team"><a href="#">Developer</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Justin Baize<i class="material-icons right">close</i></span>
+        <p>
+          Major Contributions:<br>
+          ••Head UX/UI Designer<br>
+          ••Landing Page<br>
+          ••Deployment (hopefully)<br>
+
+          <br>Strong Technical Skills:<br>
+          ••Materialize<br>
+          ••Angular<br>
+          ••Node.js<br>
+          ••Heroku<br>
+          <div class="divider"></div>
+          www.justinbaizeisawesome.com<br>
+          <a href="https://www.linkedin.com/in/justinbaize" target="_blank">Justin Baize | LinkedIn</a><br>
+          <a href="https://github.com/Jbays" target="_blank">Jbays | Github</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- End Dev Team -->
+</div>
+<!-- End Team Introductions -->
+
+
 
 <!-- Start Avatar Collection -->
-<div class="container col s12 hide-on-small-only">
+<!-- <div class="container col s12 hide-on-small-only">
   <ul class="collection">
     <li class="collection-item avatar col s6">
       <img src="../../img/Josh.jpg" alt="" class="circle">
@@ -94,7 +197,14 @@ Here's our Tech-Stack!
          Second Line
       </p>
       <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li> 
+    </li>
   </ul>
-</div>
+</div> -->
 <!-- End Avatar Collection -->
+<script>
+ $(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  });
+ </script>

@@ -1,39 +1,39 @@
-
+<div> This is the dashboard </div>
 <div class="container">
   <a href='/#/create-recipes' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
   Add recipe
-  <br><br>
-  <div ng-repeat="item in allRecipes">
-     <input type="checkbox" checklist-model="recipes.selection" checklist-value ="item" id="{{item}}"/>
-    <label for="{{item}}">{{item.title}}</label>
-  </div>
-
-<!-- cards template for recipe items 
-  <div class="row">
-    <div class= "col s4">
-      <div class = "card small">
+  <div class="row" ng-repeat="item in allRecipes track by $index" ng-if="$index % 3 === 0">
+    <div class="col s4" ng-repeat="i in [$index, $index + 1, $index + 2]">
+      <div class ="card small"> <!-- medium height 400px -->
         <div class="card-image">
-          <img src="http://www.cookingclassy.com/wp-content/uploads/2013/03/lasagna15.jpg">
+        <!-- image needs to be a variable or default -->
+          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Mom's Lasagna</span>
-          <input type="checkbox" id="test5" />
-          <label for="test5">I'm eating this</label>
+          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{allRecipes[i].title}}</span>
+          </br>
+          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="allRecipes[i]" id="{{allRecipes[i]}}" />
+          <label for="{{allRecipes[i]}}">I'm eating this</label>
           <p><a class="modal-trigger" href="#deleteCheck"><i class="material-icons right">delete</i></a></p>
+          <!-- should route to controller: edit recipe -->
           <p><a href=''><i class="material-icons right">mode edit</i></a></p>
         </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Mom's Lasagna<i class="material-icons right">close</i></span>
-          <p>Tomatoes</p>
-          <p>Ricotta Cheese</p>
-          <p>Italian sausage</p>
+        <div class="card-reveal"> 
+          <span class="card-title grey-text text-darken-4" for="{{item}}">{{allRecipes[i].title}}<i class="material-icons right">close</i></span>
+          <div ng-repeat="subitem in allRecipes[i].ingredients">
+            <span>{{subitem}}</span>
+          </div>
         </div>  
       </div>
     </div>
   </div>
--->
 
-</div>
+
+  <div>
+    <h5>Checked<h5>
+      <div>{{recipes.selected}}</div>
+  </div>
+
   
   <!-- deleteCheck Modal -->
   <div id="deleteCheck" class="modal">
@@ -58,7 +58,7 @@
     <div class="modal-content">
       <p>On this trip, you are making:<p>
       <ul>
-        <li ng-repeat="recipe in recipes.selection">{{recipe.title}}</li>
+        <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
       </ul>
         Is this correct?
     </div>
