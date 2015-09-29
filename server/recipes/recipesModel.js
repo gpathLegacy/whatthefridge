@@ -60,6 +60,12 @@ module.exports = function(knex) {
         // return knex('recipes_ingredients')
         //   .insert({
         //   })
+      },
+      removeRecipeMapping: function(recipeId, ingredientId) {
+        return knex('recipes_ingredients')
+          .where('recipe_id', '=', recipeId)
+          .andWhere('ingredient_id', '=', ingredient_id)
+          .del()
       }
     }
 }
