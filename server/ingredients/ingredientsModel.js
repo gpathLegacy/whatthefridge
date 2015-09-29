@@ -12,7 +12,7 @@ module.exports = function(knex) {
             'id': ingredientId
           })
       },
-      getIngredientByName: function(name) {
+      getIngredientByName: function(name, userId) {
         return knex('ingredients').select()
                  .where({
                   'name': name, 
