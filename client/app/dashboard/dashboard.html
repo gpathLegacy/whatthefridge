@@ -12,11 +12,11 @@
         </div>
         <div class="card-content">
         <!-- pick up the title from the item.title -->
-          <span class="card-title activator grey-text text-darken-4" >Mom's Lasagna</span>
+          <span class="card-title activator grey-text text-darken-4" for="{{item}}" >{{item.title}}</span>
 
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}"/>
           <label for="{{item}}">{{item.title}}</label>
-    <!-- checkbox should assign the item id as id here -->
+          <!-- checkbox should assign the item id as id here -->
           <input type="checkbox" id="test5" />
           <label for="test5">I'm eating this</label>
           <p><a class="modal-trigger" href="#deleteCheck"><i class="material-icons right">delete</i></a></p>
@@ -25,7 +25,7 @@
         </div>
         <div class="card-reveal"> 
         <!-- pick up the title from the item.title -->
-          <span class="card-title grey-text text-darken-4">Mom's Lasagna<i class="material-icons right">close</i></span>
+          <span class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
           <div ng-repeat="subitem in item.ingredients">
             <span >{{subitem}}</span>
           </div>
