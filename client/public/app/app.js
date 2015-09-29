@@ -8,6 +8,8 @@ angular.module('wtf', [
   'wtf.dashboard',
   // 'wtf.edit-recipes',
   // 'wtf.index',
+  'wtf.services',
+  'wtf.shopping-list'
   'wtf.fridge',
   'wtf.services',
   'wtf.nav-controller'

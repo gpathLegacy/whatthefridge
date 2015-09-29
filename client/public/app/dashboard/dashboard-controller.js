@@ -9,22 +9,14 @@ angular.module('wtf.dashboard', ['checklist-model'])
       .catch(function(err){
         console.log(err);
       })
-    }
+    };
 
-    $scope.recipes  = {
-      selected: Recipes.selectedRecipes
-    }
-
-    // $scope.$watch(Auth.isAuth, function(authed) {
-    //   if (authed) {
-    //     $location.path('/create-recipes');
-    //   } else {
-    //     $location.path('/');
-    //   }
-    // }, true);
-
+    $scope.recipes = {
+      selected:Recipes.selectedRecipes
+    };
+    
     $scope.getShoppingList = function() {
-      console.log($scope.recipes.selected)
+      $location.path('/shopping-list');
     };
 
     $scope.getAllRecipes();

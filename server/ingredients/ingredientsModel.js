@@ -16,6 +16,10 @@ module.exports = function(knex) {
         return knex('ingredients').select()
                  .where({'name': name});
       },
+      setIngredientPrice: function(name, price) {
+        return knex('ingredients').update({'price':price})
+                  .where({'name':name});
+      },
       //for a new recipe, add ingredients sent by the recipes model
       addIngredient: function(name, price) {
         //version 1: receiving one ingredient at a time

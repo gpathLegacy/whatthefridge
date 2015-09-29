@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row center-align">
+    Shopping List
+    <!-- Note: If the price is saved in any format other than "xxx.xx" where x are digits, the price will be dropped from the database. Need to add form validation to tell the user to enter the price correctly. Two digits after the decimal are REQUIRED -->
+  </div>
+  <ul class="collection">
+    <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
+      {{ingredient.name}} <div class="secondary-content">Price: <input name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input><button ng-click="savePrice(ingredient)">Save</button><span ng-show="price.$error.pattern">Wrong pattern</span></div>
+    </li>
+  </ul>
+</div>
