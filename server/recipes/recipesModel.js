@@ -15,7 +15,7 @@ module.exports = function(knex) {
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
           .where({
-            'recipes.user_id': userId
+            'user_id': userId
           })
       },
       getRecipe: function(recipeId) {
