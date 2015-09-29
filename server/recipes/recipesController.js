@@ -52,6 +52,34 @@ module.exports = function(Recipes, Ingredients) {
           res.send(recipeResult);
         })
         // res.sendStatus(200);
+    },
+    updateRecipe: function(req, res) {
+      var recipeId = req.body.id;
+      var recipeName = req.body.name;
+      var newIngredients = req.body.ingredients;
+      var removeIngredients = req.body.remove;
+
+      //add new ingredients using a loop, no iffy
+      for (var i = 0; i < newIngredients.length; i++) {
+
+        // Tricky way to pass i into promise scope
+        // (function(i) {
+          Ingredients.getIngredientByName(ingredients[i]).then(function(row){
+            if (row.length) {
+              Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
+            }
+            else {
+              Ingredients.addIngredient(ingredients[i]).then(function(id) {
+                Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
+              })
+            }
+          })
+        // })(i);
+
+      }
+
+      //
+
     }
   }
 }

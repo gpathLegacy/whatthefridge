@@ -12,10 +12,11 @@ angular.module('wtf.dashboard', ['checklist-model'])
     }
 
     //this is run from the dashboard html, on clicking a specific recipe
-    $scope.editRecipes = function() {
+    $scope.getCurrentRecipe = function(currentRecipe) {
       //call edit-recipe controller function and pass the variables
       //or share the variables and redirect to edit html path
-      
+      console.log(currentRecipe);
+      $location.path('/edit-recipes');
     }
 
     $scope.recipes  = {

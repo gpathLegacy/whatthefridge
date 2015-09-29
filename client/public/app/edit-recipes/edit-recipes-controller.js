@@ -21,6 +21,10 @@ angular.module('wtf.edit-recipes', [])
     do a diff and send delete row request for recipe table and mapping table (auto)
     send insert request for recipe, ingredients and mapping tables
     */
+
+    $scope.currentIngredients = function() {
+
+    };
     
     //add a new ingredient. works the same as create recipe
     $scope.addIngredient = function() {
@@ -33,9 +37,9 @@ angular.module('wtf.edit-recipes', [])
       $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
     };
 
-    //use diffing to remove ingredients from database 
+    //use diffing to remove ingredients from database
 
-    //save recipe to database
+    //save recipe to database and redirect to dashboard
     $scope.saveRecipe = function() {
       Recipes.editRecipe($scope.recipe)
         .then(function(){
