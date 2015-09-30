@@ -12,8 +12,8 @@ angular.module('wtf', [
   'wtf.shopping-list',
   'wtf.fridge',
   'wtf.services',
-  'wtf.nav-controller'
-  // 'wtf.shopping-list'
+  'wtf.nav-controller',
+  'wtf.saved-lists'
   ]
 )
 
@@ -57,6 +57,10 @@ angular.module('wtf', [
     .when('/shopping-list', {
       templateUrl: 'app/shopping-list/shopping-list.html',
       controller: 'ShoppingListController'
+    })
+    .when('/saved-lists', {
+      templateUrl: 'app/saved-lists/saved-lists.html',
+      controller: 'SavedListsController'
     })
     .when('/fridge', {
       templateUrl: 'app/fridge/fridge.html',

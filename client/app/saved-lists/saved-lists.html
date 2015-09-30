@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row center-align">
+    My Saved Shopping Lists
+  </div>
+  <ul class="collection" ng-repeat="list in lists">
+    <li class="collection-item" ng-repeat="(key, value) in list" ng-show="key === 'date'">{{value}}</li>
+    <li class="collection-item" ng-repeat="(ingredient, props) in list" ng-hide="ingredient==='date'">
+      {{props[0]}} {{ingredient}}
+      <span class="secondary-content">Price: ${{props[1]}}</span>
+    </li>
+    <div class="center-align"><button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button></div>
+  </ul>
+</div>

@@ -7,7 +7,7 @@
 // show ingredients once.
 
 angular.module('wtf.shopping-list', [])
-  .controller('ShoppingListController', function($scope, $window, $location, Recipes, Fridge) {
+  .controller('ShoppingListController', function($scope, $window, $location, Recipes, Fridge, SavedLists) {
 
     $scope.shoppingList = [];
 
@@ -39,6 +39,7 @@ angular.module('wtf.shopping-list', [])
           }
         }
       }
+      Recipes.selectedRecipes = [];
     };
 
     $scope.savePrice = function(ingredient) {
@@ -47,9 +48,15 @@ angular.module('wtf.shopping-list', [])
 
     $scope.addToFridge = function() {
       Fridge.addList($scope.shoppingList).then(function(){
-        $location.path('/fridge');
-      })
-    }
+        // Show a message that confirms success
+      });
+    };
+
+    $scope.saveList = function() {
+      SavedLists.saveList($scope.shoppingList).then(function(){
+        // Show a message that confirms success
+      });
+    };
 
     $scope.populateList();
 
