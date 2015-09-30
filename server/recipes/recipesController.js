@@ -59,6 +59,12 @@ module.exports = function(Recipes, Ingredients) {
       var newIngredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
 
+      // Testing data
+      // var recipeId = 6
+      // var recipeName = 'grilled eggplant'
+      // var newIngredients = ['cilantro', 'salt']
+      // var removeIngredients = ['onions']
+
       // Get ingredient IDs that already exist for the user, or add new Ingredients.
       // After ingredient is added, map it to the recipe.
       for (var i = 0; i < newIngredients.length; i++) {
@@ -88,7 +94,7 @@ module.exports = function(Recipes, Ingredients) {
       Recipe.editRecipe(recipeName).then(function(){});
 
       }
-      res.sendStatus(200);
+      // res.sendStatus(200);
     }
   } 
 }
