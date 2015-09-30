@@ -36,6 +36,15 @@ module.exports = function(knex) {
         .where({
           'user_id':user_id, 
           'ingredient_id':ingredient_id
+        })
+        .then(function(){
+          return knex('fridge')
+          .where({
+            'user_id':user_id,
+            'ingredient_id':ingredient_id,
+            'qty': 0
+          })
+          .del();
         });
     }
   }
