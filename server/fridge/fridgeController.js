@@ -11,16 +11,14 @@ module.exports = function(Fridge, Ingredients) {
 
       for (var i = 0; i < list.length; i++) {
         (function(index){
-          Ingredients.getIngredientByName(list[i].name).then(function(ingredient) {
+          Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
             Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
-              console.log("Fridge ingredient returned: ", fridgeIngredient);
               if (fridgeIngredient.length) {
                 // if item is already in user's fridge, update quantity
                 Fridge.updateItemQty(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
               }
               else {
                 // else add item to fridge
-                console.log("Adding new item!");
                 Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
               }
             })

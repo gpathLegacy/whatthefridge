@@ -15,12 +15,12 @@ module.exports = function(Recipes, Ingredients) {
 
           // Tricky way to pass i into promise scope
           (function(i) {
-            Ingredients.getIngredientByName(ingredients[i]).then(function(row){
+            Ingredients.getIngredientByName(req.user.id, ingredients[i]).then(function(row){
               if (row.length) {
                 Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
               }
               else {
-                Ingredients.addIngredient(ingredients[i]).then(function(id) {
+                Ingredients.addIngredient(req.user.id, ingredients[i]).then(function(id) {
                   Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
                 })
               }
