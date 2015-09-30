@@ -54,6 +54,18 @@ angular.module('wtf.services', [])
              updateFridge:updateFridge };
   })
 
+  .factory('SavedLists', function($http) {
+    var getLists = function() {
+      return $http.get('/api/shoppingLists/getLists');
+    }
+    var saveList = function(list) {
+      return $http.post('/api/shoppingLists/saveList', list);
+    }
+
+    return { getLists:getLists,
+             saveList:saveList };
+  })
+
   .factory('Navbar', function($http) {
     var isLoggedIn = function() {
       return $http.get('/api/users/checklogin')

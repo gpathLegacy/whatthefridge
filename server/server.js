@@ -33,6 +33,7 @@ var Users = require('./users/usersModel')(knex);
 var Recipes = require('./recipes/recipesModel')(knex);
 var Ingredients = require('./ingredients/ingredientsModel')(knex);
 var Fridge = require('./fridge/fridgeModel')(knex);
+var ShoppingLists = require('./shoppingLists/shoppingListsModel')(knex);
 
 // =========================================
 
@@ -69,6 +70,9 @@ app.get('/app/shopping-list/shopping-list.html', auth, function(req, res) {
 app.get('/app/fridge/fridge.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/fridge/fridge.html'));
 });
+app.get('/app/saved-lists/saved-lists.html', auth, function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../client/app/saved-lists/saved-lists.html'));
+});
 
 // -----------------------------------------
 // API routes ------------------------------
@@ -77,17 +81,20 @@ var usersRouter = express.Router();
 var recipesRouter = express.Router();
 var ingredientsRouter = express.Router();
 var fridgeRouter = express.Router();
+var shoppingListsRouter = express.Router();
 
 app.use('/api/users', usersRouter); // use user router for all user request
 app.use('/api/recipes', recipesRouter); //use recipe router
 app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 app.use('/api/fridge', fridgeRouter);
+app.use('/api/shoppingLists', shoppingListsRouter);
 
 // inject our routers and models into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
 require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, Ingredients);
-require('./fridge/fridgeRoutes.js')(fridgeRouter, Fridge, Ingredients)
+require('./fridge/fridgeRoutes.js')(fridgeRouter, Fridge, Ingredients);
+require('./shoppingLists/shoppingListsRoutes.js')(shoppingListsRouter, ShoppingLists, Ingredients);
 
 // =========================================
 
