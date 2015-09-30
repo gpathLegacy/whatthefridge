@@ -10,6 +10,7 @@ angular.module('wtf.services', [])
       return $http.post('/api/recipes/getRecipes');
     }
     var  selectedRecipes = [];
+    // var  currentRecipe = [];
 
     return {createRecipe:createRecipe, 
             editRecipe:editRecipe, 
@@ -33,3 +34,21 @@ angular.module('wtf.services', [])
     return {isLoggedIn: isLoggedIn,
             logOut: logOut};
   })
+
+  .service('currentRecipeService', function() {
+    var currentRecipeToEdit = [];
+
+    var addRecipeToEdit = function(newObj) {
+        currentRecipeToEdit.push(newObj);
+    };
+
+    var getRecipeToEdit = function(){
+        return currentRecipeToEdit[0];
+    };
+
+    return {
+      addRecipeToEdit: addRecipeToEdit,
+      getRecipeToEdit: getRecipeToEdit
+    };
+
+});
