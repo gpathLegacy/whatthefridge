@@ -64,7 +64,7 @@ module.exports = function(Recipes, Ingredients) {
       for (var i = 0; i < ingredients.length; i++) {
 
         (function(i) {
-          Ingredients.getIngredientByName(ingredients[i], req.user.id).then(function(row){
+          Ingredients.getIngredientByName(req.user.id, ingredients[i]).then(function(row){
             if (row.length) {
               Recipes.getRecipeMapping(recipeID, row[0].id).then(function(mapRow){
                 //if mapping doesn't already exist
@@ -74,7 +74,7 @@ module.exports = function(Recipes, Ingredients) {
               })
             }
             else {
-              Ingredients.addIngredient(ingredients[i], req.user.id).then(function(id) {
+              Ingredients.addIngredient(req.user.id, ingredients[i]).then(function(id) {
                 Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
               })
             }
@@ -85,7 +85,7 @@ module.exports = function(Recipes, Ingredients) {
       //Remove ingredients from recipe mapping table.
       for (var j = 0; j < removeIngredients.length; j++) {
         (function(i) {
-          Ingredients.getIngredientByName(removeIngredients[j], req.user.id).then(function(row){
+          Ingredients.getIngredientByName(req.user.id, removeIngredients[j]).then(function(row){
             Recipes.removeRecipeMapping(recipeID, row[0].id).then(function(){});
           }).then(function(){})
 

@@ -72,14 +72,14 @@ angular.module('wtf.services', [])
   })
 
   .service('currentRecipeService', function() {
-    var currentRecipeToEdit = [];
+    var currentRecipeToEdit;
 
     var addRecipeToEdit = function(newObj) {
-        currentRecipeToEdit.push(newObj);
+        currentRecipeToEdit = newObj;
     };
 
     var getRecipeToEdit = function(){
-        return currentRecipeToEdit[0];
+        return currentRecipeToEdit;
     };
 
     return {

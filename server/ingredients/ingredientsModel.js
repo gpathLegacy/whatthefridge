@@ -17,7 +17,7 @@ module.exports = function(knex) {
       getIngredientByName: function(user_id, name) {
         return knex('ingredients').select()
                  .where({
-                  'name': name, 
+                  'name': name,   
                   'user_id': user_id
                 });
       },
