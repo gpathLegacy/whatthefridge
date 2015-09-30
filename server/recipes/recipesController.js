@@ -38,7 +38,7 @@ module.exports = function(Recipes, Ingredients) {
           var recipeResult = [];
           var currentRecipe = 10;
           var recipeObjCount = -1;
-          for(var i=0; i<data.length; i++) {
+          for (var i=0; i<data.length; i++) {
             //if the data being read is for the same recipe, push to the ingredient 
             if (currentRecipe === data[i].id) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name); 
@@ -53,12 +53,55 @@ module.exports = function(Recipes, Ingredients) {
         })
         // res.sendStatus(200);
     },
+    editRecipe: function(req, res) {
+      var recipeID = req.body.id;
+      var recipeName = req.body.name;
+      var ingredients = req.body.ingredients;
+      var removeIngredients = req.body.remove;
+
+      // Get ingredient IDs that already exist for the user, or add new Ingredients.
+      // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
+      for (var i = 0; i < ingredients.length; i++) {
+
+        (function(i) {
+          Ingredients.getIngredientByName(req.user.id, ingredients[i]).then(function(row){
+            if (row.length) {
+              Recipes.getRecipeMapping(recipeID, row[0].id).then(function(mapRow){
+                //if mapping doesn't already exist
+                if (!mapRow.length) {
+                  Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
+                }
+              })
+            }
+            else {
+              Ingredients.addIngredient(req.user.id, ingredients[i]).then(function(id) {
+                Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
+              })
+            }
+          })
+        })(i);
+      }
+
+      //Remove ingredients from recipe mapping table.
+      for (var j = 0; j < removeIngredients.length; j++) {
+        (function(i) {
+          Ingredients.getIngredientByName(req.user.id, removeIngredients[j]).then(function(row){
+            Recipes.removeRecipeMapping(recipeID, row[0].id).then(function(){});
+          }).then(function(){})
+
+        })(i);
+      }
+      //update recipe name
+      Recipes.editRecipe(recipeID, recipeName).then(function(){});
+
+      res.sendStatus(200);
+    },
     deleteRecipe: function(req, res){
       Recipes.deleteRecipe(req.body.id)
         .then(function(data){
           res.json("deleted " + req.body.title);
         })
     }
-  }
+  } 
 }
 

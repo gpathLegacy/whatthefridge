@@ -1,5 +1,6 @@
 angular.module('wtf.dashboard', ['checklist-model'])
-  .controller('DashboardController', function($scope, $window, $location, Recipes) {
+  .controller('DashboardController', function($scope, $window, $location, currentRecipeService, Recipes) {
+
 
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
@@ -9,11 +10,27 @@ angular.module('wtf.dashboard', ['checklist-model'])
       .catch(function(err){
         console.log(err);
       })
-    };
+    }
 
-    $scope.recipes = {
-      selected:Recipes.selectedRecipes
-    };
+    //this is run from the dashboard html, on clicking a specific recipe
+    $scope.getCurrentRecipe = function(currentRecipe) {
+      $scope.currentRecipe = currentRecipe;
+      //add to services variable to share with other ingredients
+      currentRecipeService.addRecipeToEdit(currentRecipe);
+      $location.path('/edit-recipes');
+    }
+
+    $scope.recipes  = {
+      selected: Recipes.selectedRecipes
+    }
+
+    // $scope.$watch(Auth.isAuth, function(authed) {
+    //   if (authed) {
+    //     $location.path('/create-recipes');
+    //   } else {
+    //     $location.path('/');
+    //   }
+    // }, true);
     
     $scope.getShoppingList = function() {
       $location.path('shopping-list');

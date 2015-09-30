@@ -6,7 +6,7 @@ angular.module('wtf', [
   // 'wtf.background',
   'wtf.create-recipes',
   'wtf.dashboard',
-  // 'wtf.edit-recipes',
+  'wtf.edit-recipes',
   // 'wtf.index',
   'wtf.services',
   'wtf.shopping-list',
