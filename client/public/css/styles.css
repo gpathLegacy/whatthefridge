@@ -44,3 +44,26 @@
   position:relative;
   bottom:13px;
 }
+
+/*========shopping-list=========*/
+
+.quantity {
+  width:50px;
+}
+
+/*============fridge============*/
+
+.bottom-right {
+  bottom: 45px; 
+  right: 24px;
+}
+
+.minus {
+  position:relative;
+  bottom:12px;
+}
+
+.minus-small {
+  height:12px;
+  width:12px;
+}
