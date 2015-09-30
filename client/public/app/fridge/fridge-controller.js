@@ -3,7 +3,6 @@ angular.module('wtf.fridge',[])
 
     $scope.getFridge = function() {
       Fridge.getFridge().then(function(fridge) {
-        console.log("Fridge: ", fridge.data);
         $scope.data = fridge.data;
       })
     };
