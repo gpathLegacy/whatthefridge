@@ -4,7 +4,6 @@ angular.module('wtf.edit-recipes', [])
     //local variable storing new and existing recipe values
     //prepopulate ingredients array with the existing values
     $scope.recipe = {ingredients: []};
-
     /*
     //recipe.name and newIngredient are defined as ng-model
     prepopulate recipe.ingredients
@@ -24,7 +23,7 @@ angular.module('wtf.edit-recipes', [])
 
     $scope.currentIngredients = function() {
       //copy the passed in recipes object(ingredients).
-      
+
     };
     
     //add a new ingredient. works the same as create recipe

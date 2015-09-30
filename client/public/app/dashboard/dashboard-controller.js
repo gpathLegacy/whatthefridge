@@ -16,6 +16,13 @@ angular.module('wtf.dashboard', ['checklist-model'])
       //call edit-recipe controller function and pass the variables
       //or share the variables and redirect to edit html path
       console.log(currentRecipe, " parameter passed in from dashboard");
+      /* Format of Object
+      id: 10
+      ingredients: Array[2]
+                    0: "tomatoes"
+                    1: "bell peppers"length: 
+      Objecttitle: "ratatouille"
+      */
       //if not the whole item, just get the index and access from scope variable directly in edit recipe
       $location.path('/edit-recipes');
     }
