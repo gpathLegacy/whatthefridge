@@ -21,11 +21,20 @@ module.exports = function(knex) {
       deleteRecipe: function(recipeId){
         return knex
         .select('*')
-        .from('recipes')
+        .from('recipes_ingredients')
         .where({
-          'id': recipeId
+          'recipe_id': recipeId
         })
         .del()
+        .then(function(){
+          return knex
+          .select('*')
+          .from('recipes')
+          .where({
+            'id': recipeId
+          })
+          .del()
+        })
       },
       getRecipe: function(recipeId) {
         return knex

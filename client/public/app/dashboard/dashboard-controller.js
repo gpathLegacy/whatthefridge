@@ -27,7 +27,7 @@ angular.module('wtf.dashboard', ['checklist-model'])
     $scope.delete = function(recipe){
       Recipes.deleteRecipe(recipe)
       .success(function(data){
-        console.log(data)
+        $scope.getAllRecipes();
       })
     }
 
