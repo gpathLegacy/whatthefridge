@@ -1,9 +1,28 @@
 angular.module('wtf.edit-recipes', [])
-  .controller('EditRecipesController', function($scope, $window, $location, Recipes){
+  .controller('EditRecipesController', function($scope, $window, $location, currentRecipeService, Recipes){
 
     //local variable storing new and existing recipe values
     //prepopulate ingredients array with the existing values
-    $scope.recipe = {ingredients: []};
+    $scope.recipe = {ingredients: [], remove: []};
+    $scope.currentRecipe = currentRecipeService.getRecipeToEdit();
+    console.log($scope.currentRecipe, " am i in the right");
+    //read the currentRecipe and push values into scope.recipe
+    for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
+      $scope.recipe.ingredients.push($scope.currentRecipe.ingredients[i]);
+    }
+    //render the existing recipe title
+    $scope.recipe.name = $scope.currentRecipe.title;
+    //if recipe title has changed //run update title anyway
+    // if(!currentRecipe.title === $scope.recipe.name) {
+    // }
+          /* Format of currentRecipe
+      id: 10
+      ingredients: Array[2]
+                    0: "tomatoes"
+                    1: "bell peppers"length: 
+      Objecttitle: "ratatouille"
+      */
+    
     /*
     //recipe.name and newIngredient are defined as ng-model
     prepopulate recipe.ingredients
@@ -20,11 +39,6 @@ angular.module('wtf.edit-recipes', [])
     do a diff and send delete row request for recipe table and mapping table (auto)
     send insert request for recipe, ingredients and mapping tables
     */
-
-    $scope.currentIngredients = function() {
-      //copy the passed in recipes object(ingredients).
-
-    };
     
     //add a new ingredient. works the same as create recipe
     $scope.addIngredient = function() {
@@ -37,10 +51,20 @@ angular.module('wtf.edit-recipes', [])
       $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
     };
 
-    //use diffing to remove ingredients from database
+    // use diffing to remove ingredients from database
+    // existing ingredients are in currentRecipe
+    // find entries in currentRecipe NOT in ingredients
+    // do this in saveRecipe
 
     //save recipe to database and redirect to dashboard
     $scope.saveRecipe = function() {
+      for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
+        //if old ingredients not found in the array
+        if( $scope.recipe.ingredients.indexOf($scope.currentRecipe.ingredients[i]) < 0 ) {
+          $scope.recipe.remove.push($scope.currentRecipe.ingredients[i]);
+        }
+      }
+
       Recipes.editRecipe($scope.recipe)
         .then(function(){
           $location.path("/dashboard");

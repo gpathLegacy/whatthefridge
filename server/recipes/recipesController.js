@@ -59,42 +59,44 @@ module.exports = function(Recipes, Ingredients) {
       var newIngredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
 
-      // Testing data
-      // var recipeId = 6
-      // var recipeName = 'grilled eggplant'
-      // var newIngredients = ['cilantro', 'salt']
-      // var removeIngredients = ['onions']
+      // console.log(req.body, " request body in the server side controller");
 
-      // Get ingredient IDs that already exist for the user, or add new Ingredients.
-      // After ingredient is added, map it to the recipe.
-      for (var i = 0; i < newIngredients.length; i++) {
+      // // Testing data
+      // // var recipeId = 6
+      // // var recipeName = 'grilled eggplant'
+      // // var newIngredients = ['cilantro', 'salt']
+      // // var removeIngredients = ['onions']
 
-        (function(i) {
-          Ingredients.getIngredientByName(newIngredients[i], req.user.id).then(function(row){
-            if (row.length) {
-              Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
-            }
-            else {
-              Ingredients.addIngredient(newIngredients[i], req.user.id).then(function(id) {
-                Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
-              })
-            }
-          })
-        })(i);
+      // // Get ingredient IDs that already exist for the user, or add new Ingredients.
+      // // After ingredient is added, map it to the recipe.
+      // for (var i = 0; i < newIngredients.length; i++) {
 
-      }
+      //   (function(i) {
+      //     Ingredients.getIngredientByName(newIngredients[i], req.user.id).then(function(row){
+      //       if (row.length) {
+      //         Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
+      //       }
+      //       else {
+      //         Ingredients.addIngredient(newIngredients[i], req.user.id).then(function(id) {
+      //           Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
+      //         })
+      //       }
+      //     })
+      //   })(i);
 
-      //Remove ingredients from recipe mapping table. Keep in ingredients table(?).
-      for (var j = 0; j < newIngredients.length; j++) {
-        (function(i) {
-          Recipes.removeRecipeMapping(recipeId, removeIngredients[j]).then(function(){});
-        })(i);
+      // }
 
-      //update recipe name //no downstream changes
-      Recipe.editRecipe(recipeName).then(function(){});
+      // //Remove ingredients from recipe mapping table. Keep in ingredients table(?).
+      // for (var j = 0; j < removeIngredients.length; j++) {
+      //   (function(i) {
+      //     Recipes.removeRecipeMapping(recipeId, removeIngredients[j]).then(function(){});
+      //   })(i);
 
-      }
-      // res.sendStatus(200);
+      // //update recipe name //no downstream changes
+      // Recipe.editRecipe(recipeName).then(function(){});
+
+      // }
+      // // res.sendStatus(200);
     }
   } 
 }
