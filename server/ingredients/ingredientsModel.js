@@ -1,6 +1,8 @@
 /* database models
 exports model methods along with the connection object
 addIngredients - add a new ingredient
+getIngredientById - find ingredient row by id
+getIngredientByName - find ingredient row by name
 */
 module.exports = function(knex) {
     return {
@@ -19,9 +21,7 @@ module.exports = function(knex) {
                   'user_id': userId
                 });
       },
-      //for a new recipe, add ingredients sent by the recipes model
       addIngredient: function(name, userId, price) {
-        //version 1: receiving one ingredient at a time
         var price = price || 0;
         return knex('ingredients')
           .returning('id')
@@ -30,8 +30,6 @@ module.exports = function(knex) {
             'price': price,
             'user_id': userId
           });
-        //version 2: receiving multiple arguments and sending one promise back
-        //var slicedIng = Array.prototype.slice.call(arguments, 1);
       }
     }
 }

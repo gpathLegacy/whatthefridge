@@ -38,7 +38,7 @@ module.exports = function(Recipes, Ingredients) {
           var recipeResult = [];
           var currentRecipe = 10;
           var recipeObjCount = -1;
-          for(var i=0; i<data.length; i++) {
+          for (var i=0; i<data.length; i++) {
             //if the data being read is for the same recipe, push to the ingredient 
             if (currentRecipe === data[i].id) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name); 
@@ -59,51 +59,39 @@ module.exports = function(Recipes, Ingredients) {
       var ingredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
 
-      // console.log(req.body, " request body in the server side controller");
-
       // Get ingredient IDs that already exist for the user, or add new Ingredients.
-      // After ingredient is added, map it to the recipe.
+      // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
       for (var i = 0; i < ingredients.length; i++) {
 
         (function(i) {
-          console.log(req.user.id, " user id in server");
           Ingredients.getIngredientByName(ingredients[i], req.user.id).then(function(row){
             if (row.length) {
-              console.log(recipeID, " recipe id in server add mapping", row[0].id, " second parameter in server add mapping");
-              //if mapping already exists
               Recipes.getRecipeMapping(recipeID, row[0].id).then(function(mapRow){
-                if(!mapRow.length) {
+                //if mapping doesn't already exist
+                if (!mapRow.length) {
                   Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
                 }
               })
             }
             else {
               Ingredients.addIngredient(ingredients[i], req.user.id).then(function(id) {
-              console.log(recipeID, " recipe id in server add mapping", id[0], " second parameter in server add mapping");
                 Recipes.addRecipeMapping(recipeID, id[0]).then(function(){});
               })
             }
           })
         })(i);
-
       }
 
-      //Remove ingredients from recipe mapping table. Keep in ingredients table(?).
+      //Remove ingredients from recipe mapping table.
       for (var j = 0; j < removeIngredients.length; j++) {
         (function(i) {
-          console.log(recipeID, " recipe id in server remove mapping", removeIngredients[j], " second parameter in server  mapping");
-          
           Ingredients.getIngredientByName(removeIngredients[j], req.user.id).then(function(row){
-            console.log(row, " and ", row[0].id, " inside remove");
             Recipes.removeRecipeMapping(recipeID, row[0].id).then(function(){});
           }).then(function(){})
 
         })(i);
-
-      //update recipe name //no downstream changes
       }
-
-      console.log(recipeName, " new recipe name");
+      //update recipe name
       Recipes.editRecipe(recipeID, recipeName).then(function(){});
 
       res.sendStatus(200);
