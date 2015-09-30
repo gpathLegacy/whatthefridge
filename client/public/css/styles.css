@@ -10,16 +10,27 @@
 .modal-row {
   margin-bottom: 0;
 }
+/*=====footer=====*/
+.footer-row-title{
+  color:white;
+}
+.social-footer{
+  height:15px;
+  width:15px;
+  padding-top: 2px;
+}
+
 
 /*==========landing.html==========*/
 .dev-team{
-  /*padding-left: 9.5%;*/
+  text-align: center;
 }
 
 .collection-item.avatar {
   height: 60px;
   width: 60px;
 }
+
 
 /*========create-recipes=========*/
 
@@ -43,4 +54,27 @@
   font-size:16px;
   position:relative;
   bottom:13px;
+}
+
+/*========shopping-list=========*/
+
+.quantity {
+  width:50px;
+}
+
+/*============fridge============*/
+
+.bottom-right {
+  bottom: 45px;
+  right: 24px;
+}
+
+.minus {
+  position:relative;
+  bottom:12px;
+}
+
+.minus-small {
+  height:12px;
+  width:12px;
 }

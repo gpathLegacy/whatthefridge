@@ -12,23 +12,30 @@ module.exports = function(knex) {
           .from('ingredients')
           .where({
             'id': ingredientId
-          })
+          });
       },
-      getIngredientByName: function(name, userId) {
+      getIngredientByName: function(user_id, name) {
         return knex('ingredients').select()
                  .where({
                   'name': name, 
-                  'user_id': userId
+                  'user_id': user_id
                 });
       },
-      addIngredient: function(name, userId, price) {
+      setIngredientPrice: function(user_id, name, price) {
+        return knex('ingredients').update({'price':price})
+                  .where({
+                    'name':name,
+                    'user_id':user_id
+                  });
+      },
+      addIngredient: function(user_id, name, price) {
         var price = price || 0;
         return knex('ingredients')
           .returning('id')
           .insert({
             'name': name,
             'price': price,
-            'user_id': userId
+            'user_id': user_id
           });
       }
     }

@@ -1,6 +1,7 @@
 angular.module('wtf.dashboard', ['checklist-model'])
   .controller('DashboardController', function($scope, $window, $location, currentRecipeService, Recipes) {
 
+
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
       .success(function(data){
@@ -30,10 +31,22 @@ angular.module('wtf.dashboard', ['checklist-model'])
     //     $location.path('/');
     //   }
     // }, true);
-
+    
     $scope.getShoppingList = function() {
-      console.log($scope.recipes.selected)
+      $location.path('shopping-list');
     };
+
+    $scope.deleteModal = function(recipe){
+      $scope.deleteRecipe = recipe;
+      $("#deleteCheck").openModal();
+    };
+
+    $scope.delete = function(recipe){
+      Recipes.deleteRecipe(recipe)
+      .success(function(data){
+        $scope.getAllRecipes();
+      })
+    }
 
     $scope.getAllRecipes();
   });

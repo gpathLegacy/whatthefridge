@@ -1,9 +1,25 @@
 angular.module('wtf.fridge',[])
-  .controller('FridgeController',function($scope,$http, $location) {
-    $scope.testData = [
-      {ingredient: "meat", price: "$5", quantity: 3},
-      {ingredient: "pasta", price: "$2", quantity: 4},
-      {ingredient: "chocolate", price:"$3", quantity: 5},
-      {ingredient: "flour", price: "$2", quantity: 3}
-    ]
+  .controller('FridgeController',function($scope,$http, $location, Fridge) {
+
+    $scope.getFridge = function() {
+      Fridge.getFridge().then(function(fridge) {
+        $scope.data = fridge.data;
+      })
+    };
+
+    $scope.saveFridge = function() {
+      Fridge.updateFridge($scope.data);
+    };
+
+    $scope.increaseQty = function(ingredient) {
+      ingredient.qty++;
+      $scope.saveFridge();
+    };
+
+    $scope.decreaseQty = function(ingredient) {
+      if (ingredient.qty > 0) ingredient.qty--;
+      $scope.saveFridge();
+    }
+
+    $scope.getFridge();
 });

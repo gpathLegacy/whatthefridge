@@ -1,7 +1,21 @@
-<div> This is the dashboard </div>
 <div class="container">
-  <a href='/#/create-recipes' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+  <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
   Add recipe
+
+  <div class="container" ng-if="allRecipes.length === 0">
+    <div class="row center">
+      <div class="s12 m4 l8">
+        <div class="card blue-grey darken">
+          <div class="card-content white-text">
+            <span class="card-title">Get cooking!</span>
+            <p>You have no recipes! </p>
+            <p>Add one today by clicking the button above!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row" ng-repeat="item in allRecipes track by $index" ng-if="$index % 3 === 0">
     <div class="col s4" ng-repeat="i in [$index, $index + 1, $index + 2]">
       <div class ="card small"> <!-- medium height 400px -->
@@ -14,7 +28,7 @@
           </br>
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="allRecipes[i]" id="{{allRecipes[i]}}" />
           <label for="{{allRecipes[i]}}">I'm eating this</label>
-          <p><a class="modal-trigger" href="#deleteCheck"><i class="material-icons right">delete</i></a></p>
+          <p ng-click="deleteModal(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">delete</i></a></p>
           <!-- should route to controller: edit recipe DEBUG this href="/#/edit-recipes"-->
           <p><a href="" ng-click="getCurrentRecipe(allRecipes[i])"><i class="material-icons right">mode edit</i></a></p>
         </div>
@@ -38,17 +52,17 @@
   <!-- deleteCheck Modal -->
   <div id="deleteCheck" class="modal">
     <div class="modal-content">
-      <p>Are you sure you want to delete this recipe?</p>
+      <p>Are you sure you want to delete {{deleteRecipe.title}}? </p>
     </div>
     <div class="modal-footer">
       <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+      <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
     </div>
   </div>
 
 
   <!-- goShoppingButton -->
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <div ng-show="recipes.selected.length > 0" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="modal-trigger" href="#shopCheck"><i class="large material-icons">shopping_cart</i>
     </a>
   </div>
@@ -64,7 +78,7 @@
     </div>
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="getShoppingList()">Yes</a>
+      <a ng-click="getShoppingList()" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
     </div>
   </div>
 

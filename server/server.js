@@ -32,6 +32,7 @@ var knex = require('knex')(require('./database/knexfile.js').development);
 var Users = require('./users/usersModel')(knex);
 var Recipes = require('./recipes/recipesModel')(knex);
 var Ingredients = require('./ingredients/ingredientsModel')(knex);
+var Fridge = require('./fridge/fridgeModel')(knex);
 
 // =========================================
 
@@ -71,15 +72,18 @@ app.get('/app/fridge/fridge.html', auth, function(req, res) {
 var usersRouter = express.Router();
 var recipesRouter = express.Router();
 var ingredientsRouter = express.Router();
+var fridgeRouter = express.Router();
 
 app.use('/api/users', usersRouter); // use user router for all user request
 app.use('/api/recipes', recipesRouter); //use recipe router
 app.use('/api/ingredients', ingredientsRouter); // use ingredient router
+app.use('/api/fridge', fridgeRouter);
 
 // inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
 require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
-require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, passport);
+require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, Ingredients);
+require('./fridge/fridgeRoutes.js')(fridgeRouter, Fridge, Ingredients)
 
 // =========================================
 
