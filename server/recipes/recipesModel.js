@@ -66,6 +66,13 @@ module.exports = function(knex) {
           .where('recipe_id', '=', recipeId)
           .andWhere('ingredient_id', '=', ingredientId)
           .del()
+      },
+      getRecipeMapping: function(recipeId, ingredientId) {
+        return knex
+          .select('*')
+          .from('recipes_ingredients')
+          .where('recipe_id', '=', recipeId)
+          .andWhere('ingredient_id', '=', ingredientId)
       }
     }
 }
