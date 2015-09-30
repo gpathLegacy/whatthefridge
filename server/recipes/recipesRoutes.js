@@ -11,5 +11,6 @@ module.exports = function (app, Recipes, Ingredients) {
 
   app.post('/createRecipe', recipesController.createRecipe);
   app.post('/getRecipes', recipesController.getRecipes);
+  app.post('/editRecipe', recipesController.editRecipe);
   
 };
