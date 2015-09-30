@@ -52,6 +52,12 @@ module.exports = function(Recipes, Ingredients) {
           res.send(recipeResult);
         })
         // res.sendStatus(200);
+    },
+    deleteRecipe: function(req, res){
+      Recipes.deleteRecipe(req.body.id)
+        .then(function(data){
+          res.json("deleted " + req.body.title);
+        })
     }
   }
 }
