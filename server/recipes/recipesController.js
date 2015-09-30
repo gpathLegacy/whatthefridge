@@ -70,7 +70,12 @@ module.exports = function(Recipes, Ingredients) {
           Ingredients.getIngredientByName(ingredients[i], req.user.id).then(function(row){
             if (row.length) {
               console.log(recipeID, " recipe id in server add mapping", row[0].id, " second parameter in server add mapping");
-              Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
+              //if mapping already exists
+              Recipes.getRecipeMapping(recipeID, row[0].id).then(function(mapRow){
+                if(!mapRow.length) {
+                  Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
+                }
+              })
             }
             else {
               Ingredients.addIngredient(ingredients[i], req.user.id).then(function(id) {
@@ -87,15 +92,21 @@ module.exports = function(Recipes, Ingredients) {
       for (var j = 0; j < removeIngredients.length; j++) {
         (function(i) {
           console.log(recipeID, " recipe id in server remove mapping", removeIngredients[j], " second parameter in server  mapping");
+          
+          Ingredients.getIngredientByName(removeIngredients[j], req.user.id).then(function(row){
+            console.log(row, " and ", row[0].id, " inside remove");
+            Recipes.removeRecipeMapping(recipeID, row[0].id).then(function(){});
+          }).then(function(){})
 
-          Recipes.removeRecipeMapping(recipeID, removeIngredients[j]).then(function(){});
         })(i);
 
       //update recipe name //no downstream changes
-      Recipe.editRecipe(recipeName).then(function(){});
-
       }
-      // res.sendStatus(200);
+
+      console.log(recipeName, " new recipe name");
+      Recipes.editRecipe(recipeID, recipeName).then(function(){});
+
+      res.sendStatus(200);
     }
   } 
 }
