@@ -64,7 +64,7 @@ module.exports = function(knex) {
       removeRecipeMapping: function(recipeId, ingredientId) {
         return knex('recipes_ingredients')
           .where('recipe_id', '=', recipeId)
-          .andWhere('ingredient_id', '=', ingredient_id)
+          .andWhere('ingredient_id', '=', ingredientId)
           .del()
       }
     }
