@@ -10,6 +10,16 @@
 .modal-row {
   margin-bottom: 0;
 }
+/*=====footer=====*/
+.footer-row-title{
+  color:white;
+}
+.social-footer{
+  height:15px;
+  width:15px;
+  padding-top: 2px;
+}
+
 
 /*==========landing.html==========*/
 .dev-team{
@@ -20,6 +30,7 @@
   height: 60px;
   width: 60px;
 }
+
 
 /*========create-recipes=========*/
 
@@ -54,7 +65,7 @@
 /*============fridge============*/
 
 .bottom-right {
-  bottom: 45px; 
+  bottom: 45px;
   right: 24px;
 }
 
