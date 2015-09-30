@@ -20,7 +20,7 @@ module.exports = function(knex) {
                 });
       },
       //for a new recipe, add ingredients sent by the recipes model
-      addIngredient: function(name, price, userId) {
+      addIngredient: function(name, userId, price) {
         //version 1: receiving one ingredient at a time
         var price = price || 0;
         return knex('ingredients')

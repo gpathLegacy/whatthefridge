@@ -12,6 +12,7 @@ angular.module('wtf.edit-recipes', [])
     }
     //render the existing recipe title
     $scope.recipe.name = $scope.currentRecipe.title;
+    $scope.recipe.id = $scope.currentRecipe.id;
     //if recipe title has changed //run update title anyway
     // if(!currentRecipe.title === $scope.recipe.name) {
     // }
