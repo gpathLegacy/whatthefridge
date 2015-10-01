@@ -20,6 +20,16 @@
   padding-top: 2px;
 }
 
+/*changes background of popped-out portion*/
+#footer-collapsible{
+  /*background-color: black;*/
+
+}
+/*changes color of non-popped-out collapsible*/
+.footer-collapsible-header{
+  background-color: #ee6e73;
+}
+
 
 /*==========landing.html==========*/
 .dev-team{
