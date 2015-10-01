@@ -18,15 +18,33 @@
   </div>
   <ul class="collection">
     <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
-      <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input>
-      {{ingredient.name}} 
-      <div class="secondary-content">
-        Price: 
+      <h5>{{ingredient.name}}</h5>
+      <table>
+        <tr>
+          <td>Qty</td>
+          <td><input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input></td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td><input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></td>
+        </tr>
+        <tr>
+          <td>Expiration</td>
+          <td><input type="date" class="datepicker"></input></td>
+        </tr>
+      </table>
+      <form class="priceForm" name="priceForm{{$index}}">
+          <button ng-click="savePrice(ingredient, $index)">save</button></form>
+
+      <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
+      <div>Price: 
         <form class="priceForm" name="priceForm{{$index}}">
           <input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
           <button ng-click="savePrice(ingredient, $index)">Save</button></form>
       </div>
-      <span><input type="date" class="datepicker"></input><span>
+      <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
     </li>
   </ul>
 </div>
+
+
