@@ -46,13 +46,13 @@
 }
 
 /*=====team-intro cards=====*/
-.flow-textes{
+.card-reveal-content{
   font-size:.8em;
 }
 
 /*changes size of p-content below card title*/
 .card-content{
-  font-size:8px;
+  font-size:.8em;
 }
 
 /*========create-recipes=========*/
