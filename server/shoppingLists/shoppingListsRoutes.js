@@ -4,4 +4,5 @@ module.exports = function(app, ShoppingLists, Ingredients) {
 
   app.get('/getLists', shoppingListsController.getLists);
   app.post('/saveList', shoppingListsController.saveList);
+  app.post('/deleteList', shoppingListsController.deleteList);
 }

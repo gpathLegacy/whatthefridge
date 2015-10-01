@@ -25,6 +25,18 @@ module.exports = function(knex) {
           'ingredient_id':ingredient_id,
           'qty':qty
         })
+    },
+
+    deleteListIngredients: function(list_id) {
+      return knex('shopping_lists_ingredients')
+        .where('shopping_list_id', list_id)
+        .del();
+    },
+
+    deleteList: function(list_id) {
+      return knex('shopping_lists')
+        .where('id', list_id)
+        .del();
     }
   }
 };
