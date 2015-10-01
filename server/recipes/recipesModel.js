@@ -19,6 +19,7 @@ module.exports = function(knex) {
           .where({
             'recipes.user_id': userId
           })
+          .orderBy('recipes.id')
       },
       deleteRecipe: function(recipeId){
         return knex
