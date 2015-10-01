@@ -76,6 +76,10 @@
   width:50px;
 }
 
+.priceForm {
+  display:inline-block;
+}
+
 /*============fridge============*/
 
 .bottom-right {

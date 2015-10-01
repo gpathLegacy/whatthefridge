@@ -12,10 +12,15 @@ angular.module('wtf.shopping-list', [])
     $scope.shoppingList = [];
 
     $scope.checkPrice = function() {
-      $('{{ingredient}}')
+      $('form[name="priceForm{{$index}}]"')
     }
 
     $scope.populateList = function() {
+      // When we initialize this page, set fridgeFlag to true, enabling the fridge button.
+      // Also set notSavedFlag to true, enabling the save button
+      $scope.fridgeFlag = true;
+      $scope.notSavedFlag = true;
+
       for (var i = 0; i < Recipes.selectedRecipes.length; i++) {
         for (var j = 0; j < Recipes.selectedRecipes[i].ingredients.length; j++) {
 
@@ -51,15 +56,24 @@ angular.module('wtf.shopping-list', [])
     };
 
     $scope.addToFridge = function() {
-      Fridge.addList($scope.shoppingList).then(function(){
-        // Show a message that confirms success
-      });
+      if ($scope.fridgeFlag) {
+        Fridge.addList($scope.shoppingList).then(function(){
+          // Show a message that confirms success and disable the button
+          $('.fridgeButton').addClass('disabled');
+          $scope.fridgeFlag = false;
+        });
+      }
     };
 
     $scope.saveList = function() {
-      SavedLists.saveList($scope.shoppingList).then(function(){
-        // Show a message that confirms success
-      });
+      if ($scope.notSavedFlag) {
+        SavedLists.saveList($scope.shoppingList).then(function(){
+          // Show a message that confirms success and disable the button
+          $('.saveButton').addClass('disabled');
+          $scope.notSavedFlag = false;
+        });
+        
+      }
     };
 
     $scope.populateList();

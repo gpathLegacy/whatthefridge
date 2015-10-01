@@ -7,8 +7,14 @@
     is successfully completed, so that a user can potentially click both buttons to save the shopping list AND add to fridge
      -->
     <br>
-    <button class="btn waves-effect waves-light" ng-click="addToFridge()">Add all to Fridge</button>
-    <button class="btn waves-effect waves-light" ng-click="saveList()">Save shopping list</button>
+    <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()">Add all to Fridge</button>
+    <button class="saveButton btn waves-effect waves-light" ng-click="saveList()">Save shopping list</button>
+  </div>
+  <div ng-hide="fridgeFlag">
+    All items added to fridge.
+  </div>
+  <div ng-hide="notSavedFlag">
+    Shopping list saved.
   </div>
   <ul class="collection">
     <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
@@ -16,10 +22,9 @@
       {{ingredient.name}} 
       <div class="secondary-content">
         Price: 
-        <form name="{{ingredient}}priceForm">
+        <form class="priceForm" name="priceForm{{$index}}">
           <input ng-blur="checkPrice()" name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
-          <button ng-click="savePrice(ingredient)">Save</button>
-        </form>
+          <button ng-click="savePrice(ingredient)">Save</button></form>
       </div>
     </li>
   </ul>
