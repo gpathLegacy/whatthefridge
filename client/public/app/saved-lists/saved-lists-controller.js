@@ -20,7 +20,7 @@ angular.module('wtf.saved-lists', [])
         }
       }
 
-      SavedLists.deleteList(listId).then(function(){$scope.getLists()});
+      SavedLists.deleteList({id:listId}).then(function(){$scope.getLists()});
     };
 
     $scope.shop = function(list) {
