@@ -1,6 +1,17 @@
 angular.module('wtf.fridge',[])
   .controller('FridgeController',function($scope,$http, $location, Fridge) {
 
+    $scope.addModal = function() {
+      $("#addItem").openModal();
+    };
+
+    $scope.addItem = function() {
+      Fridge.addItem({name:$scope.itemToAdd}).then(function(){
+        $("#addItem").closeModal();
+        $scope.getFridge();
+      });
+    };
+
     $scope.getFridge = function() {
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;

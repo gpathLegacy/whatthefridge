@@ -28,6 +28,34 @@ module.exports = function(Fridge, Ingredients) {
       res.send(200);
     },
 
+    addItem: function(req, res) {
+      var item = req.body;
+
+      console.log("Item to add: ", item);
+
+      Ingredients.getIngredientByName(req.user.id, item.name).then(function(ingredient) {
+        // if ingredient exists, add one to fridge (first see if it's already in fridge)
+        if(ingredient.length) {
+          Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
+            if(fridgeIngredient.length) {
+              Fridge.updateItemQty(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+            }
+            else {
+              Fridge.addNewItem(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+            }
+          });
+        }
+
+        // if ingredient doesn't exist, add ingredient first, then add one to fridge
+        else {
+          Ingredients.addIngredient(req.user.id, item.name, 0).then(function(ingredient) {
+            console.log("New ingredient?", ingredient);
+            Fridge.addNewItem(req.user.id, ingredient[0], 1).then(function(){res.send(200);});
+          });
+        }   
+      });
+    },
+
     updateFridge: function(req, res) {
       var newFridge = req.body;
 
