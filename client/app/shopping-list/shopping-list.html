@@ -26,6 +26,7 @@
           <input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
           <button ng-click="savePrice(ingredient, $index)">Save</button></form>
       </div>
+      <span><input type="date" class="datepicker"></input><span>
     </li>
   </ul>
 </div>
