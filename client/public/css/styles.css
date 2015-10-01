@@ -22,7 +22,7 @@
 
 /*changes background of popped-out portion*/
 #footer-collapsible{
-  /*background-color: black;*/
+  border-color: #ee6e73;
 
 }
 /*changes color of non-popped-out collapsible*/
