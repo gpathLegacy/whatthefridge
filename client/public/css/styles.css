@@ -55,6 +55,14 @@
   font-size:.8em;
 }
 
+.card-spacer{
+  padding-top: .4em;
+}
+
+.card-title-sizer{
+  font-size:1em;
+}
+
 /*========create-recipes=========*/
 
 .addButton {
