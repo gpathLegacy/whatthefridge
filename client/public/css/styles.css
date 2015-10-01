@@ -56,6 +56,12 @@
   bottom:13px;
 }
 
+/*========dashboard=========*/
+
+.container .ng-scope {
+  width: 100%;
+}
+
 /*========shopping-list=========*/
 
 .quantity {
