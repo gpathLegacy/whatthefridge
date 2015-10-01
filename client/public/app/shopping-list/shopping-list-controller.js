@@ -11,6 +11,10 @@ angular.module('wtf.shopping-list', [])
 
     $scope.shoppingList = [];
 
+    $scope.checkPrice = function() {
+      $('{{ingredient}}')
+    }
+
     $scope.populateList = function() {
       for (var i = 0; i < Recipes.selectedRecipes.length; i++) {
         for (var j = 0; j < Recipes.selectedRecipes[i].ingredients.length; j++) {
