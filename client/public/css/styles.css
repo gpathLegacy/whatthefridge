@@ -45,6 +45,15 @@
   width: 60px;
 }
 
+/*=====team-intro cards=====*/
+.card-title-intros{
+  font-size:8px;
+}
+
+/*changes size of p-content below card title*/
+.card-content{
+  font-size:8px;
+}
 
 /*========create-recipes=========*/
 
