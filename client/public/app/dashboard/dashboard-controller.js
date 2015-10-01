@@ -33,6 +33,7 @@ angular.module('wtf.dashboard', ['checklist-model'])
     // }, true);
     
     $scope.getShoppingList = function() {
+      $("#shopCheck").closeModal();
       $location.path('shopping-list');
     };
 
