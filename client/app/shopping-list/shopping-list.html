@@ -23,8 +23,8 @@
       <div class="secondary-content">
         Price: 
         <form class="priceForm" name="priceForm{{$index}}">
-          <input ng-blur="checkPrice()" name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
-          <button ng-click="savePrice(ingredient)">Save</button></form>
+          <input name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+          <button ng-click="savePrice(ingredient, $index)">Save</button></form>
       </div>
     </li>
   </ul>
