@@ -7,7 +7,12 @@ angular.module('wtf.saved-lists', [])
       });
     };
 
-    $scope.deleteList = function(list) {
+    $scope.deleteListModal = function(list) {
+      $scope.deleteList = list;
+      $("#deleteCheck").openModal();
+    }
+
+    $scope.delete = function(list) {
       // Lookup list ID from $scope.lists
       for (var key in $scope.lists) {
         if($scope.lists[key] === list) {
