@@ -30,6 +30,10 @@
   background-color: #ee6e73;
 }
 
+.drop-down-container{
+  font-size:12px;
+  padding: 5px;
+}
 
 /*==========landing.html==========*/
 .dev-team{
