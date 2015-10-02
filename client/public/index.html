@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="wtf">
   <head>
+    <link rel='shortcut icon' type='image/x-icon' href="favicon.ico?"/>
+    <title>WhatTheFridge</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="lib/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/styles.css"/>
@@ -136,7 +138,78 @@
 
     <!-- Start Footer -->
     <footer class="page-footer">
+      <!-- Start Med-and-Small-Screen Footer -->
       <div class="container">
+        <ul class="collapsible hide-on-large-only" id="footer-collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Company</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div>Gigapath</div>
+                <div>What-The-Fridge!</div>
+                <div>MakerSquare</div>
+                <div>ASDF</div>
+                <div>asdf</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Connect</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div>Facebook</div>
+                <div>Twitter</div>
+                <div>Instagram</div>
+                <div>Google</div>
+                <div>YouTube</div>
+                <div>WTF! Blog</div>
+                <div>Pinterest</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Support</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div>How WTF! Works</div>
+                <div>FAQ</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Free Recipes</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div><a class= "black-text" href="https://www.epicurious.com" target="_blank">Epicurious</a></div>
+                <div>asdf</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Policies</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div>Privacy</div>
+                <div>Terms</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Contact Us</div>
+            <div class="collapsible-body">
+              <div class="container drop-down-container">
+                <div>MakerSquare</div>
+                <div>701 Brazos Street</div>
+                <div>Austin, TX, 78748</div>
+                <div>Suite #526</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- End Med-and-Small-Screen Footer -->
+      <!-- Start Large-Screen Footer -->
+      <div class="container hide-on-med-and-down">
         <div class="row center-align">
           <div class="col l3 s12">
             <h5 class="white-text center-align">WhatTheFridge!</h5>
@@ -180,7 +253,6 @@
             <div class="divider"></div>
           </div>
 
-
           <div class="col s2">
             <div class="footer-row-title">Connect</div>
             <div class="divider"></div>
@@ -195,15 +267,17 @@
               <div> | Pinterest</div>
             </div>
           </div>
-
         </div>
       </div>
+      <!-- End Large-Screen Footer -->
+      <!-- Start Copyright -->
       <div class="footer-copyright">
         <div class="container">
         © 2015 Gigapath
         <a class="grey-text text-lighten-4 right" href="https://github.com/gigapath" target="_blank">Gigapath | Github</a>
         </div>
       </div>
+      <!-- End Copyright -->
     </footer>
     <!-- End Footer -->
 

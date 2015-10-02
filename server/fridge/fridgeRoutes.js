@@ -3,6 +3,7 @@ module.exports = function (app, Fridge, Ingredients) {
   
   app.post('/getFridge', fridgeController.getFridge);
   app.post('/addList', fridgeController.addList);
+  app.post('/addItem', fridgeController.addItem);
   app.post('/updateFridge', fridgeController.updateFridge);
   
 };

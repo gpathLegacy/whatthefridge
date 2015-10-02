@@ -40,6 +40,16 @@ module.exports = function(ShoppingLists, Ingredients) {
       });
 
       res.send(200);
+    },
+
+    deleteList: function(req, res) {
+      var listId = req.body.id;
+
+      ShoppingLists.deleteListIngredients(listId).then(function() {
+        ShoppingLists.deleteList(listId).then(function() {
+          res.send(200);
+        })
+      })
     }
   }
 };

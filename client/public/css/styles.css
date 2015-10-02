@@ -20,6 +20,20 @@
   padding-top: 2px;
 }
 
+/*changes background of popped-out portion*/
+#footer-collapsible{
+  border-color: #ee6e73;
+
+}
+/*changes color of non-popped-out collapsible*/
+.footer-collapsible-header{
+  background-color: #ee6e73;
+}
+
+.drop-down-container{
+  font-size:12px;
+  padding: 5px;
+}
 
 /*==========landing.html==========*/
 .dev-team{
@@ -31,6 +45,23 @@
   width: 60px;
 }
 
+/*=====team-intro cards=====*/
+.card-reveal-content{
+  font-size:.8em;
+}
+
+/*changes size of p-content below card title*/
+.card-content{
+  font-size:.8em;
+}
+
+.card-spacer{
+  padding-top: .4em;
+}
+
+.card-title-sizer{
+  font-size:1em;
+}
 
 /*========create-recipes=========*/
 
@@ -69,6 +100,10 @@
 
 .quantity {
   width:50px;
+}
+
+.priceForm {
+  display:inline-block;
 }
 
 /*============fridge============*/
