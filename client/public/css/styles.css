@@ -68,9 +68,12 @@
   font-size:1em;
 }
 
-.whole-card-padder{
-  padding-left: 1em;
-  padding-right: 1em;
+/*===========dashboard===========*/
+
+.price {
+  float:right;
+  font-size:16px;
+  color:green;
 }
 
 /*========create-recipes=========*/

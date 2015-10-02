@@ -5,6 +5,7 @@ angular.module('wtf.dashboard', ['checklist-model'])
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
       .success(function(data){
+        console.log(data);
         $scope.allRecipes = data;
       })
       .catch(function(err){

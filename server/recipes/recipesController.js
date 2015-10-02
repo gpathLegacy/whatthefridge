@@ -41,11 +41,11 @@ module.exports = function(Recipes, Ingredients) {
           for (var i=0; i<data.length; i++) {
             //if the data being read is for the same recipe, push to the ingredient 
             if (currentRecipe === data[i].id) {
-              recipeResult[recipeObjCount]["ingredients"].push(data[i].name); 
+              recipeResult[recipeObjCount]["ingredients"].push([data[i].name, data[i].price]); 
             } else { //if the data is for a new recipe, create object and push the ingredient
               recipeObjCount++;
               recipeResult.push({id: data[i].id, title: data[i].title, ingredients: []});
-              recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
+              recipeResult[recipeObjCount]["ingredients"].push([data[i].name, data[i].price]);
               currentRecipe = data[i].id;
             }             
           }
