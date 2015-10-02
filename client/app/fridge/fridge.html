@@ -34,7 +34,7 @@
         <td>{{ingredient.price}}</td>
         <td><button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button> {{ingredient.qty}} <button ng-click="decreaseQty(ingredient)" class="btn-floating red minus-small"><span class="minus">-</span></button></td>
         <td>{{ingredient.qty_unit}}</td>
-        <td>{{ingredient.expiration}}
+        <td>{{ingredient.expiration | date: 'mediumDate'}}</td>
       <tr>
     </tbody>
   </table>
