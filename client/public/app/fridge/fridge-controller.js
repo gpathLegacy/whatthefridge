@@ -15,8 +15,14 @@ angular.module('wtf.fridge',[])
     $scope.getFridge = function() {
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;
-        $scope.today = new Date().toISOString().split('T')[0];
-
+        $scope.today = Date.now();
+        $scope.twoFromToday = new Date($scope.today + 2*86400000);
+        
+        $scope.expiring = fridge.data.map(function(entry){
+                            if(twoFromToday >= new Date(entry.expiration)){
+                              return entry
+                            }
+                          });
       })
     };
 
