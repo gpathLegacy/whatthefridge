@@ -28,9 +28,10 @@
           </br>
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="allRecipes[i]" id="{{allRecipes[i]}}" />
           <label for="{{allRecipes[i]}}">I'm eating this</label>
-          <p ng-click="deleteModal(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">delete</i></a></p>
-          <!-- should route to controller: edit recipe DEBUG this href="/#/edit-recipes"-->
-          <p ng-click="getCurrentRecipe(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">mode edit</i></a></p>
+          <div class="row">
+          <div><p ng-click="deleteModal(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">delete</i></a></p></div>
+          <div><p ng-click="getCurrentRecipe(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">mode edit</i></a></p></div>
+          </div>
         </div>
         <div class="card-reveal"> 
           <span class="card-title grey-text text-darken-4" for="{{item}}">{{allRecipes[i].title}}<i class="material-icons right">close</i></span>
