@@ -24,6 +24,13 @@ module.exports = function(knex) {
       return knex('users')
         .where(type, id)
         .select();
+    },
+
+    // The below method is used in unit tests only.
+    deleteUser: function(id) {
+      return knex('users')
+        .where("id", id)
+        .del();
     }
   }   
 };

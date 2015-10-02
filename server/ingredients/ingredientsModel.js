@@ -37,6 +37,11 @@ module.exports = function(knex) {
             'price': price,
             'user_id': user_id
           });
+      },
+      deleteIngredient: function(ingredientId) {
+        return knex('ingredients')
+          .where("id", ingredientId)
+          .del();
       }
     }
 }

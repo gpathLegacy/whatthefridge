@@ -28,28 +28,39 @@ var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex
 
 describe("Database unit tests", function(){
 
+  after(function(done) {
+    dbRecipes.deleteRecipe(recipeObj.id).then(function() {
+      dbIngredients.deleteIngredient(ingredientObj.id).then(function() {
+        dbUsers.deleteUser(userObj.id).then(function() {
+          done();
+        });
+      });
+    });
+  });
+
   describe("users model methods", function(){
+
 
     it("can create a new user", function(done){
       var addUser = dbUsers.signup(userObj).then(function(data){
-        expect(data[0]).to.be.a('number');
+        userObj.id = data[0];
+        expect(userObj.id).to.be.a('number');
         done();
-      }) 
+      });
     });
 
     it("can find user by name", function(done){ //prevent empty object
       var getUser = dbUsers.getUserByName(userObj.username).then(function(data){
-        userObj.id = data[0]['id'];
         expect(data[0]['id']).to.be.a('number');
         done();
-      })
+      });
     });
 
     it("can find user by id", function(done){ //prevent empty object
       var getUser = dbUsers.getUserById(userObj.id).then(function(data){
         expect(data[0]['username']).to.equal(userObj.username);
         done();
-      })
+      });
     });
 
   }),
@@ -94,7 +105,7 @@ describe("Database unit tests", function(){
   describe("ingredients model methods", function(){
     
     it("can add an ingredient", function(done){ 
-      var addIngredient = dbIngredients.addIngredient(ingredientObj.name, ingredientObj.price).then(function(data){
+      var addIngredient = dbIngredients.addIngredient(userObj.id, ingredientObj.name, ingredientObj.price).then(function(data){
         ingredientObj.id = data[0];
         expect(data[0]).to.be.a('number');
         done();
@@ -108,8 +119,8 @@ describe("Database unit tests", function(){
       })
     });
 
-    it("can get an ingredient by name", function(done){ 
-      var getIngredientByName = dbIngredients.getIngredientByName(ingredientObj.name).then(function(data){
+    it("can get an ingredient by name and userID", function(done){ 
+      var getIngredientByName = dbIngredients.getIngredientByName(userObj.id, ingredientObj.name).then(function(data){
         expect(data[0]['id']).to.equal(ingredientObj.id);
         done();
       })
