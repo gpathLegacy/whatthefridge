@@ -15,12 +15,11 @@
       </div>
     </div>
   </div>
-
+<!-- 
   <div class="row" ng-repeat="item in allRecipes track by $index" ng-if="$index % 3 === 0">
     <div class="col s4" ng-repeat="i in [$index, $index + 1, $index + 2]">
-      <div class ="card small card-small"> <!-- medium height 400px -->
+      <div class ="card small card-small">
         <div class="card-image">
-        <!-- image needs to be a variable or default -->
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
@@ -42,7 +41,33 @@
       </div>
     </div>
   </div>
+ -->
 
+   <div class="row"  >
+    <div class="col s4" ng-repeat="item in allRecipes">
+      <div class ="card small card-small">
+        <div class="card-image">
+          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
+          </br>
+          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
+          <label for="{{item}}">I'm eating this</label>
+          <div class="row">
+          <div><p ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons right">delete</i></a></p></div>
+          <div><p ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons right">mode edit</i></a></p></div>
+          </div>
+        </div>
+        <div class="card-reveal"> 
+          <span class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
+          <div ng-repeat="subitem in item.ingredients">
+            <span>{{subitem}}</span>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
 
   <div>
     <h5>Checked<h5>
