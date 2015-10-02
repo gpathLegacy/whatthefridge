@@ -36,16 +36,18 @@ module.exports = function(Recipes, Ingredients) {
        Recipes.getAllRecipes(req.user.id)
         .then(function(data){
           var recipeResult = [];
-          var currentRecipe = 10;
+          var currentRecipe = Infinity;
           var recipeObjCount = -1;
           for (var i=0; i<data.length; i++) {
             //if the data being read is for the same recipe, push to the ingredient 
             if (currentRecipe === data[i].id) {
-              recipeResult[recipeObjCount]["ingredients"].push([data[i].name, data[i].price]); 
+              recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
+              recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
             } else { //if the data is for a new recipe, create object and push the ingredient
               recipeObjCount++;
-              recipeResult.push({id: data[i].id, title: data[i].title, ingredients: []});
-              recipeResult[recipeObjCount]["ingredients"].push([data[i].name, data[i].price]);
+              recipeResult.push({id: data[i].id, title: data[i].title, ingredients: [], price:0});
+              recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
+              recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
               currentRecipe = data[i].id;
             }             
           }
