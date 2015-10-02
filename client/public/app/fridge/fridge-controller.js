@@ -18,11 +18,18 @@ angular.module('wtf.fridge',[])
         $scope.today = Date.now();
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
-        $scope.expiring = fridge.data.map(function(entry){
-                            if(twoFromToday >= new Date(entry.expiration)){
-                              return entry
-                            }
-                          });
+        $scope.expiring = $scope.data
+                                .filter(function(entry){
+                                  var entry_expires =  new Date(entry.expiration);
+                                  if(entry_expires < $scope.twoFromToday){
+                                    return entry;
+                                  }
+                                });
+
+        $scope.expireAmount = $scope.expiring
+                                    .reduce(function(sum, entry){
+                                        return sum+= Number(entry.qty) * Number(entry.price)
+                                    }, 0 )
       })
     };
 
@@ -41,6 +48,7 @@ angular.module('wtf.fridge',[])
 
       if ($scope.data.every(function(entry){return entry.qty === 0})){
         $scope.data = [];
+        $scope.expiring = [];
       }
     }
     $scope.getFridge();
