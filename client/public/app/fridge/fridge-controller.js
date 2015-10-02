@@ -15,6 +15,8 @@ angular.module('wtf.fridge',[])
     $scope.getFridge = function() {
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;
+        $scope.today = new Date().toISOString().split('T')[0];
+
       })
     };
 
@@ -35,6 +37,5 @@ angular.module('wtf.fridge',[])
         $scope.data = [];
       }
     }
-
     $scope.getFridge();
 });

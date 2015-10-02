@@ -157,3 +157,8 @@
   height:12px;
   width:12px;
 }
+
+#expire-message {
+  color:red;
+  width:20%;
+}
