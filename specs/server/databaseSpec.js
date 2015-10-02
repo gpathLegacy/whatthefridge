@@ -15,16 +15,16 @@ var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex
   var userObj = {
     'username': 'gigapath',
     'password': 'rarrrr'
-  }
+  };
     
   var recipeObj = {
     'title': 'Pork Chop Sandwiches'
-  }
+  };
 
   var ingredientObj = {
     'name': 'Pork Chops',
     'price': 13.99
-  }
+  };
 
 describe("Database unit tests", function(){
 
@@ -73,21 +73,21 @@ describe("Database unit tests", function(){
         expect(data[0]).to.be.a('number');
         recipeObj.id = data[0];
         done();
-      })
+      });
     });
 
     it("can get all recipes", function(done){ 
       var getRecipes = dbRecipes.getAllRecipes(userObj.id).then(function(data){
         expect(data[0]['title']).to.equal(recipeObj.title);
         done();
-      })
+      });
     });
 
     it("can get a recipe by id", function(done){ 
       var getRecipe = dbRecipes.getRecipe(recipeObj.id).then(function(data){
         expect(data[0]['title']).to.equal(recipeObj.title);
         done();
-      })
+      });
     });
 
 
@@ -96,8 +96,8 @@ describe("Database unit tests", function(){
         dbRecipes.getRecipe(recipeObj.id).then(function(data){
           expect(data[0]['title']).to.equal('Pork Chop Friday');
           done();
-        })
-      })
+        });
+      });
     });
 
   }),
@@ -109,26 +109,22 @@ describe("Database unit tests", function(){
         ingredientObj.id = data[0];
         expect(data[0]).to.be.a('number');
         done();
-      })
+      });
     });
 
     it("can get an ingredient by ID", function(done){ 
       var getIngredientByID = dbIngredients.getIngredientById(ingredientObj.id).then(function(data){
         expect(data[0]['name']).to.equal(ingredientObj.name);
         done();
-      })
+      });
     });
 
     it("can get an ingredient by name and userID", function(done){ 
       var getIngredientByName = dbIngredients.getIngredientByName(userObj.id, ingredientObj.name).then(function(data){
         expect(data[0]['id']).to.equal(ingredientObj.id);
         done();
-      })
+      });
     });
-
-  })
-
-  //delete test entries in database when functionality is added to models
-
+  });
 }); 
 
