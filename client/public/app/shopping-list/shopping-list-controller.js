@@ -1,4 +1,4 @@
-// Note: If the price is saved in any format other than "xxx.xx" where x are digits,
+  // Note: If the price is saved in any format other than "xxx.xx" where x are digits,
 // the price will be dropped from the database. Need to add form validation to tell the
 // user to enter the price correctly. Two digits after the decimal are REQUIRED
 
@@ -95,7 +95,7 @@ angular.module('wtf.shopping-list', [])
         
       }
     };
-
+    
     $scope.populateList();
-
+    
   });

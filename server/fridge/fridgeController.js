@@ -8,7 +8,6 @@ module.exports = function(Fridge, Ingredients) {
 
     addList: function(req, res) {
       var list = req.body;
-
       for (var i = 0; i < list.length; i++) {
         (function(index){
           Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
