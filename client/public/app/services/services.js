@@ -13,7 +13,7 @@ angular.module('wtf.services', [])
     };
     
     var getRecipes = function() {
-      return $http.post('/api/recipes/getRecipes');
+      return $http.get('/api/recipes/getRecipes');
     };
 
     var selectedRecipes = [];
