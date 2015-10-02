@@ -45,12 +45,17 @@ angular.module('wtf.services', [])
       return $http.post('/api/fridge/addList', list);
     }
 
+    var addItem = function(item) {
+      return $http.post('/api/fridge/addItem', item);
+    }
+
     var updateFridge = function(data) {
       return $http.post('/api/fridge/updateFridge', data);
     }
 
     return { getFridge:getFridge,
              addList:addList,
+             addItem:addItem,
              updateFridge:updateFridge };
   })
 
@@ -61,9 +66,13 @@ angular.module('wtf.services', [])
     var saveList = function(list) {
       return $http.post('/api/shoppingLists/saveList', list);
     }
+    var deleteList = function(listId) {
+      return $http.post('/api/shoppingLists/deleteList', listId);
+    }
 
     return { getLists:getLists,
-             saveList:saveList };
+             saveList:saveList,
+             deleteList:deleteList };
   })
 
   .factory('Navbar', function($http) {

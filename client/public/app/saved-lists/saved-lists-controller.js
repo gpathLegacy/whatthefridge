@@ -3,9 +3,24 @@ angular.module('wtf.saved-lists', [])
 
     $scope.getLists = function() {
       SavedLists.getLists().then(function(lists) {
-        console.log(lists.data);
         $scope.lists = lists.data;
       });
+    };
+
+    $scope.deleteListModal = function(list) {
+      $scope.deleteList = list;
+      $("#deleteCheck").openModal();
+    }
+
+    $scope.delete = function(list) {
+      // Lookup list ID from $scope.lists
+      for (var key in $scope.lists) {
+        if($scope.lists[key] === list) {
+          var listId = key;
+        }
+      }
+
+      SavedLists.deleteList({id:listId}).then(function(){$scope.getLists()});
     };
 
     $scope.shop = function(list) {

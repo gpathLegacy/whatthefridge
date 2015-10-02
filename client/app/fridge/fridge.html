@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="center-align">
+    <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
+    Add item
+  </div>
 
   <div class="container" ng-if="data.length===0">
     <div class="row center">
@@ -36,3 +40,21 @@
     data: {{data}}
   </div>
 </div>
+
+<!-- add item Modal -->
+  <div id="addItem" class="modal">
+    <form ng-submit="addItem()">
+      <div class="modal-content">
+        <div class="container">
+          <div class="input-field">
+            <label for="itemToAdd">Item Name</label>
+            <input required type="text" id="itemToAdd" ng-model="itemToAdd"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat">Add</button>
+      </div>
+    </form>
+  </div>

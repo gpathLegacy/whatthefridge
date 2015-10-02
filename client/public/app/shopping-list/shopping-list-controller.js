@@ -11,7 +11,34 @@ angular.module('wtf.shopping-list', [])
 
     $scope.shoppingList = [];
 
+    $scope.checkPrice = function(index) {
+      var formName = "priceForm" + index;
+      var formCheck = $scope.$$childHead;
+
+      // walk through scope objects to find the one containing the form in question
+      while (formScope === undefined) {
+        if(formCheck[formName]) {
+          var formScope = formCheck[formName];
+        } else {
+          formCheck = formCheck.$$nextSibling;
+        }
+      }
+
+      // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
+      // the price won't be saved as undefined in the savePrice function
+      if(!formCheck[formName].$valid) {
+        Materialize.toast('Price must match format: 0.00', 4000)
+        return false;
+      }
+      return true;
+    }
+
     $scope.populateList = function() {
+      // When we initialize this page, set fridgeFlag to true, enabling the fridge button.
+      // Also set notSavedFlag to true, enabling the save button
+      $scope.fridgeFlag = true;
+      $scope.notSavedFlag = true;
+
       for (var i = 0; i < Recipes.selectedRecipes.length; i++) {
         for (var j = 0; j < Recipes.selectedRecipes[i].ingredients.length; j++) {
 
@@ -42,20 +69,31 @@ angular.module('wtf.shopping-list', [])
       Recipes.selectedRecipes = [];
     };
 
-    $scope.savePrice = function(ingredient) {
-      Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+    $scope.savePrice = function(ingredient, index) {
+      if ($scope.checkPrice(index)) {
+        Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+      }
     };
 
     $scope.addToFridge = function() {
-      Fridge.addList($scope.shoppingList).then(function(){
-        // Show a message that confirms success
-      });
+      if ($scope.fridgeFlag) {
+        Fridge.addList($scope.shoppingList).then(function(){
+          // Show a message that confirms success and disable the button
+          $('.fridgeButton').addClass('disabled');
+          $scope.fridgeFlag = false;
+        });
+      }
     };
 
     $scope.saveList = function() {
-      SavedLists.saveList($scope.shoppingList).then(function(){
-        // Show a message that confirms success
-      });
+      if ($scope.notSavedFlag) {
+        SavedLists.saveList($scope.shoppingList).then(function(){
+          // Show a message that confirms success and disable the button
+          $('.saveButton').addClass('disabled');
+          $scope.notSavedFlag = false;
+        });
+        
+      }
     };
 
     $scope.populateList();
