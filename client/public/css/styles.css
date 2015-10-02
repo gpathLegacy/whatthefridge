@@ -21,7 +21,7 @@
 }
 
 #responsive-footer-container{
-  color:#90caf9;
+  color:white;
 }
 
 /*changes background of popped-out portion*/
@@ -37,6 +37,13 @@
 .drop-down-container{
   font-size:12px;
   padding: 5px;
+}
+
+.collapsible-content-spacer{
+  color:#90caf9;
+  padding-left: 1em;
+  padding-top: .5em;
+  padding-bottom: .5em;
 }
 
 /*==========landing.html==========*/
