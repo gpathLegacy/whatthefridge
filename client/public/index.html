@@ -11,10 +11,10 @@
   <body>
 
   <!--Start Navbar -->
-  <nav role="navigation" ng-controller="NavController">
+  <nav role="navigation" ng-controller="NavController" class="grey darken-3">
     <div class="nav-wrapper container">
       <!-- Left Logo -->
-      <a id="logo-container" href="#" class="brand-logo">WTF!</a>
+      <a id="logo-container" href="#" class="brand-logo blue-text text-lighten-3">WTF!</a>
       <!-- Login Dropdown Contents -->
       <!-- <ul id="dropdown2" class="dropdown-content">
         <li><a href="#!">Log-in</a></li>
@@ -23,19 +23,18 @@
       </ul> -->
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
-        <li ng-show="loggedIn"><a href="#/dashboard">Dashboard</a></li>
-        <li ng-show="loggedIn"><a href="#/saved-lists">Saved Lists</a></li>
-        <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
-        <li ng-show="loggedIn"><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+        <li ng-show="loggedIn"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
+        <li ng-show="loggedIn"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
+        <li ng-show="loggedIn"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
+        <li ng-show="loggedIn"><a class="dropdown-button navbar-font-color" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
       <!-- Recipe Dropdown Contents -->
-        <ul id="dropdown1" class="dropdown-content">
-          <li><a href="#/create-recipes">Create</a></li>
-          <li><a href="#/edit-recipes">Edit</a></li>
-          <li><a href="#!">Extra</a></li>
+        <ul id="dropdown1" class="dropdown-content grey darken-3 navbar-font-color">
+          <li><a href="#/create-recipes navbar-font-color">Create</a></li>
+          <li><a href="#/edit-recipes navbar-font-color">Edit</a></li>
         </ul>
-        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active navbar-font-color"></i></a></li>
 
-        <li ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
+        <li ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
         <!-- Modal Trigger Inside Class Declaration -->
       </ul>
       <!-- Side-Nav -->
@@ -58,7 +57,7 @@
           <li ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
         </li>
       </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu navbar-font-color"></i></a>
     </div>
   </nav>
   <!-- End Navbar -->
