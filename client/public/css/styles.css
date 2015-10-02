@@ -68,6 +68,11 @@
   font-size:1em;
 }
 
+.whole-card-padder{
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 /*========create-recipes=========*/
 
 .addButton {
@@ -90,6 +95,15 @@
   font-size:16px;
   position:relative;
   bottom:13px;
+}
+
+/*========dashboard=========*/
+.card-small {
+  min-width: 250px;
+}
+
+.container .ng-scope {
+  width: 100%;
 }
 
 /*========shopping-list=========*/
