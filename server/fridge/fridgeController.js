@@ -18,7 +18,7 @@ module.exports = function(Fridge, Ingredients) {
               }
               else {
                 // else add item to fridge
-                Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
+                Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty, list[index].expiration).then(function(){});
               }
             })
           });
