@@ -16,6 +16,7 @@ angular.module('wtf.fridge',[])
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;
         $scope.today = Date.now();
+        $scope.todayInISO = new Date().toISOString().split('T')[0];
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
         $scope.expiring = $scope.data
@@ -31,7 +32,7 @@ angular.module('wtf.fridge',[])
                                         return sum+= Number(entry.qty) * Number(entry.price)
                                     }, 0 )
         
-        Materialize.toast("You have have " + $scope.expiring.length + 
+        Materialize.toast("You have " + $scope.expiring.length + 
                         " items" + " worth $" + 
                         $scope.expireAmount + 
                         " expiring in 2 days", 4000)
