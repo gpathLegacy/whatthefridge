@@ -49,6 +49,9 @@
 /*=====FAQ=====*/
 
 /*=====tech-stack=====*/
+#tech-stack-container{
+  padding-left: 2em;
+}
 
 /*=====team-intro cards=====*/
 .card-reveal-content{
