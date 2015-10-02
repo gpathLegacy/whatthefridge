@@ -87,6 +87,15 @@
   bottom:13px;
 }
 
+/*========dashboard=========*/
+.card-small {
+  min-width: 250px;
+}
+
+.container .ng-scope {
+  width: 100%;
+}
+
 /*========shopping-list=========*/
 
 .quantity {
