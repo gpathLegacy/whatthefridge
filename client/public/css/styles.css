@@ -36,6 +36,7 @@
 }
 
 /*==========landing.html==========*/
+
 .dev-team{
   text-align: center;
 }
@@ -44,6 +45,10 @@
   height: 60px;
   width: 60px;
 }
+
+/*=====FAQ=====*/
+
+
 
 /*=====team-intro cards=====*/
 .card-reveal-content{
