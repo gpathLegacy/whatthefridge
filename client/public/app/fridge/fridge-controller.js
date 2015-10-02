@@ -21,7 +21,7 @@ angular.module('wtf.fridge',[])
         $scope.expiring = $scope.data
                                 .filter(function(entry){
                                   var entry_expires =  new Date(entry.expiration);
-                                  if(entry_expires < $scope.twoFromToday){
+                                  if(entry_expires > $scope.today && entry_expires < $scope.twoFromToday){
                                     return entry;
                                   }
                                 });
