@@ -38,6 +38,8 @@ module.exports = function(knex) {
             'user_id': user_id
           });
       },
+
+      // Below method used for unit testing
       deleteIngredient: function(ingredientId) {
         return knex('ingredients')
           .where("id", ingredientId)

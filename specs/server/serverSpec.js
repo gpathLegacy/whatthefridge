@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var request = require('request');
-
+/*
 describe("Server", function(){  
   it("Signup returns a token and a userid", function(done){ 
     var options = {
@@ -19,3 +19,4 @@ describe("Server", function(){
     }) 
   });
 }); 
+*/

@@ -11,6 +11,8 @@ var knex = require('knex')({
 var dbUsers = require('../../server/users/usersModel.js')(knex);
 var dbRecipes = require('../../server/recipes/recipesModel.js')(knex);
 var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex);
+var dbFridge = require('../../server/fridge/fridgeModel.js')(knex);
+var dbShoppingLists = require('../../server/shoppingLists/shoppingListsModel.js')(knex);
 
   var userObj = {
     'username': 'gigapath',
@@ -26,15 +28,32 @@ var dbIngredients = require('../../server/ingredients/ingredientsModel.js')(knex
     'price': 13.99
   };
 
+  var shoppingListId;
+
 describe("Database unit tests", function(){
 
   after(function(done) {
-    dbRecipes.deleteRecipe(recipeObj.id).then(function() {
-      dbIngredients.deleteIngredient(ingredientObj.id).then(function() {
-        dbUsers.deleteUser(userObj.id).then(function() {
-          done();
-        });
-      });
+    dbShoppingLists.deleteListIngredients(shoppingListId)
+    .then(function() {
+      return dbShoppingLists.deleteList(shoppingListId);
+    })
+    .then(function(){
+      return dbFridge.deleteItem(userObj.id, ingredientObj.id);
+    })
+    .then(function(){
+      return dbRecipes.removeRecipeMapping(recipeObj.id, ingredientObj.id);
+    })
+    .then(function(){
+      return dbRecipes.deleteRecipe(recipeObj.id);
+    })
+    .then(function() {
+      return dbIngredients.deleteIngredient(ingredientObj.id);
+    })
+    .then(function() {
+      return dbUsers.deleteUser(userObj.id);
+    })
+    .then(function() {
+      done();
     });
   });
 
@@ -42,7 +61,7 @@ describe("Database unit tests", function(){
 
 
     it("can create a new user", function(done){
-      var addUser = dbUsers.signup(userObj).then(function(data){
+      dbUsers.signup(userObj).then(function(data){
         userObj.id = data[0];
         expect(userObj.id).to.be.a('number');
         done();
@@ -50,14 +69,14 @@ describe("Database unit tests", function(){
     });
 
     it("can find user by name", function(done){ //prevent empty object
-      var getUser = dbUsers.getUserByName(userObj.username).then(function(data){
+      dbUsers.getUserByName(userObj.username).then(function(data){
         expect(data[0]['id']).to.be.a('number');
         done();
       });
     });
 
     it("can find user by id", function(done){ //prevent empty object
-      var getUser = dbUsers.getUserById(userObj.id).then(function(data){
+      dbUsers.getUserById(userObj.id).then(function(data){
         expect(data[0]['username']).to.equal(userObj.username);
         done();
       });
@@ -69,7 +88,7 @@ describe("Database unit tests", function(){
   describe("recipes model methods", function(){
     
     it("can create a recipe", function(done){ 
-      var newRecipe = dbRecipes.createRecipe(recipeObj.title, userObj.id).then(function(data){
+      dbRecipes.createRecipe(recipeObj.title, userObj.id).then(function(data){
         expect(data[0]).to.be.a('number');
         recipeObj.id = data[0];
         done();
@@ -77,14 +96,14 @@ describe("Database unit tests", function(){
     });
 
     it("can get all recipes", function(done){ 
-      var getRecipes = dbRecipes.getAllRecipes(userObj.id).then(function(data){
+      dbRecipes.getAllRecipes(userObj.id).then(function(data){
         expect(data[0]['title']).to.equal(recipeObj.title);
         done();
       });
     });
 
     it("can get a recipe by id", function(done){ 
-      var getRecipe = dbRecipes.getRecipe(recipeObj.id).then(function(data){
+      dbRecipes.getRecipe(recipeObj.id).then(function(data){
         expect(data[0]['title']).to.equal(recipeObj.title);
         done();
       });
@@ -92,7 +111,7 @@ describe("Database unit tests", function(){
 
 
     it("can edit a recipe", function(done){ 
-      var editRecipe = dbRecipes.editRecipe(recipeObj.id, 'Pork Chop Friday').then(function(data){
+      dbRecipes.editRecipe(recipeObj.id, 'Pork Chop Friday').then(function(data){
         dbRecipes.getRecipe(recipeObj.id).then(function(data){
           expect(data[0]['title']).to.equal('Pork Chop Friday');
           done();
@@ -105,7 +124,7 @@ describe("Database unit tests", function(){
   describe("ingredients model methods", function(){
     
     it("can add an ingredient", function(done){ 
-      var addIngredient = dbIngredients.addIngredient(userObj.id, ingredientObj.name, ingredientObj.price).then(function(data){
+      dbIngredients.addIngredient(userObj.id, ingredientObj.name, ingredientObj.price).then(function(data){
         ingredientObj.id = data[0];
         expect(data[0]).to.be.a('number');
         done();
@@ -113,18 +132,94 @@ describe("Database unit tests", function(){
     });
 
     it("can get an ingredient by ID", function(done){ 
-      var getIngredientByID = dbIngredients.getIngredientById(ingredientObj.id).then(function(data){
+      dbIngredients.getIngredientById(ingredientObj.id).then(function(data){
         expect(data[0]['name']).to.equal(ingredientObj.name);
         done();
       });
     });
 
     it("can get an ingredient by name and userID", function(done){ 
-      var getIngredientByName = dbIngredients.getIngredientByName(userObj.id, ingredientObj.name).then(function(data){
+      dbIngredients.getIngredientByName(userObj.id, ingredientObj.name).then(function(data){
         expect(data[0]['id']).to.equal(ingredientObj.id);
         done();
       });
     });
+
+    it("can change a recipe price", function(done) {
+      dbIngredients.setIngredientPrice(userObj.id, ingredientObj.name, 2.00).then(function(){
+        dbIngredients.getIngredientByName(userObj.id, ingredientObj.name).then(function(data) {
+          expect(data[0]['price']).to.equal('2.00');
+          done();
+        })
+      })
+    })
+
+    it("can associate a recipe with an ingredient", function(done) {
+      dbRecipes.addRecipeMapping(recipeObj.id, ingredientObj.id).then(function() {
+        dbRecipes.getAllRecipes(userObj.id).then(function(data) {
+          expect(data[0]['title']).to.equal('Pork Chop Friday');
+          expect(data[0]['name']).to.equal('Pork Chops');
+          done();
+        });
+      });
+    });
+
   });
+
+
+  describe("fridge model methods", function(){
+
+    it("can add an item to the fridge", function(done) {
+      dbFridge.addNewItem(userObj.id, ingredientObj.id, 5.00).then(function() {
+        dbFridge.checkForItem(userObj.id, ingredientObj.id).then(function(data) {
+          expect(data[0]['qty']).to.equal('5.00');
+          done();
+        });
+      });
+    });
+
+    it("can get fridge by userID", function(done) {
+      dbFridge.getFridgeByUser(userObj.id).then(function(data) {
+        expect(data[0]['ingredient_id']).to.equal(ingredientObj.id);
+        done();
+      });
+    });
+
+    it("can update item quantity in fridge", function(done) {
+      dbFridge.updateItemQty(userObj.id, ingredientObj.id, 1.00).then(function() {
+        dbFridge.checkForItem(userObj.id, ingredientObj.id).then(function(data) {
+          expect(data[0]['qty']).to.equal('6.00');
+          done();
+        });
+      });
+    });
+
+    it("deletes items when quantity is set to zero", function(done) {
+      dbFridge.setItemQty(userObj.id, ingredientObj.id, 0).then(function(){
+        dbFridge.checkForItem(userObj.id, ingredientObj.id).then(function(data) {
+          expect(data[0]).to.equal(undefined);
+          done();
+        });
+      });
+    });
+
+  });
+
+  describe("shoppingList model methods", function() {
+    
+    it("can add a new list for a user", function(done) {
+      dbShoppingLists.newList(userObj.id).then(function(id){
+        shoppingListId = id[0];
+        dbShoppingLists.newItem(id[0], ingredientObj.id, 1).then(function(){
+          dbShoppingLists.getLists(userObj.id).then(function(data){
+            expect(data[0]['id']).to.be.a('number');
+            done();
+          });
+        });
+      });
+    });
+
+  });
+
 }); 
 
