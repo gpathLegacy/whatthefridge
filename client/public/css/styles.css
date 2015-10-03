@@ -111,6 +111,9 @@ body {
 }
 
 /*===========dashboard===========*/
+.button-add {
+  margin-top: 30px;
+}
 
 .price {
   float:right;
@@ -130,9 +133,6 @@ body {
   font-size: 2em;
 }
 
-/*.icon-edit {
-  max-width: 40px;
-}*/
 /*========create-recipes=========*/
 
 .addButton {
