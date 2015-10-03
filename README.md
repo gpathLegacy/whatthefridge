@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/gigapath/whatthefridge.png?label=ready&title=Ready)](https://waffle.io/gigapath/whatthefridge)
 # whatthefridge
 
   > Simplifying the grocery shopping experience, whatthefridge tells shoppers how much their delicious dishes will cost and exactly which ingredients they will need from the store, eliminating the wasteful buying and throwing away of excess ingredients
