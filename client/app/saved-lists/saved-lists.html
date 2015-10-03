@@ -2,6 +2,20 @@
   <div class="row center-align">
     My Saved Shopping Lists
   </div>
+
+  <div class="container" ng-if="show">
+    <div class="row center">
+      <div class="s12 m4 l8">
+        <div class="card blue-grey darken">
+          <div class="card-content white-text">
+            <span class="card-title">Get cooking!</span>
+            <p>You have no shopping lists! </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <ul class="collection" ng-repeat="list in lists">
     <li class="collection-item" ng-repeat="(key, value) in list" ng-show="key === 'date'">
       {{value}}

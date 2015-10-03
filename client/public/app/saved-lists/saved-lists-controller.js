@@ -4,6 +4,9 @@ angular.module('wtf.saved-lists', [])
     $scope.getLists = function() {
       SavedLists.getLists().then(function(lists) {
         $scope.lists = lists.data;
+        if (Object.keys($scope.lists).length === 0){
+          $scope.show = true
+        }
       });
     };
 
