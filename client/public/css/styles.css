@@ -19,11 +19,6 @@
 
 
 /*=====footer=====*/
-/*will equally space all cards along a given screen width*/
-/*.card-container{
-  display:flex;
-  justify-content:space-between;
-}*/
 
 body {
     display: flex;
@@ -76,13 +71,29 @@ body {
 
 /*==========landing.html==========*/
 
-.dev-team{
-  text-align: center;
+
+/*=====how-it-works=====*/
+#how-it-works-container{
+  border: 3px double black;
 }
 
-.collection-item.avatar {
-  height: 60px;
-  width: 60px;
+#hiw-call-to-action-container{
+  padding:.2em 2em .2em;
+}
+
+.how-it-works-contents{
+  border-right-style: dashed;
+  border-right-width: .1em;
+}
+
+#hiw-title-contents{
+  font-size: 2em;
+}
+.hiw-hover-icon{
+  margin-top: -2em;
+}
+#hiw-rightmost-content{
+  padding-right: 1em;
 }
 
 /*=====FAQ=====*/
@@ -108,6 +119,21 @@ body {
 
 .card-title-sizer{
   font-size:1em;
+}
+
+/*will equally space all cards along a given screen width*/
+/*.card-container{
+  display:flex;
+  justify-content:space-between;
+}*/
+
+.dev-team{
+  text-align: center;
+}
+
+.collection-item.avatar {
+  height: 60px;
+  width: 60px;
 }
 
 /*===========dashboard===========*/
