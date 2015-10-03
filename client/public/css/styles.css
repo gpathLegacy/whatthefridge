@@ -28,19 +28,30 @@
   padding-top: 2px;
 }
 
+#responsive-footer-container{
+  color:white;
+}
+
 /*changes background of popped-out portion*/
 #footer-collapsible{
-  border-color: #ee6e73;
+  border-color:#424242;
 
 }
 /*changes color of non-popped-out collapsible*/
 .footer-collapsible-header{
-  background-color: #ee6e73;
+  background-color: #424242;
 }
 
 .drop-down-container{
   font-size:12px;
   padding: 5px;
+}
+
+.collapsible-content-spacer{
+  color:#90caf9;
+  padding-left: 1.5em;
+  padding-top: .5em;
+  padding-bottom: .5em;
 }
 
 /*==========landing.html==========*/
