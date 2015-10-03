@@ -15,6 +15,27 @@ angular.module('wtf.fridge',[])
     $scope.getFridge = function() {
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;
+        $scope.today = Date.now();
+        $scope.todayInISO = new Date().toISOString().split('T')[0];
+        $scope.twoFromToday = new Date($scope.today + 2*86400000);
+        
+        $scope.expiring = $scope.data
+                                .filter(function(entry){
+                                  var entry_expires =  new Date(entry.expiration);
+                                  if(entry_expires > $scope.today && entry_expires < $scope.twoFromToday){
+                                    return entry;
+                                  }
+                                });
+
+        $scope.expireAmount = $scope.expiring
+                                    .reduce(function(sum, entry){
+                                        return sum+= Number(entry.qty) * Number(entry.price)
+                                    }, 0 )
+        
+        Materialize.toast("You have " + $scope.expiring.length + 
+                        " items" + " worth $" + 
+                        $scope.expireAmount + 
+                        " expiring in 2 days", 4000)
       })
     };
 
@@ -33,8 +54,8 @@ angular.module('wtf.fridge',[])
 
       if ($scope.data.every(function(entry){return entry.qty === 0})){
         $scope.data = [];
+        $scope.expiring = [];
       }
     }
-
     $scope.getFridge();
 });

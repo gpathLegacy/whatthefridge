@@ -8,7 +8,6 @@ module.exports = function(Fridge, Ingredients) {
 
     addList: function(req, res) {
       var list = req.body;
-
       for (var i = 0; i < list.length; i++) {
         (function(index){
           Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
@@ -19,7 +18,7 @@ module.exports = function(Fridge, Ingredients) {
               }
               else {
                 // else add item to fridge
-                Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
+                Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty, list[index].expiration).then(function(){});
               }
             })
           });

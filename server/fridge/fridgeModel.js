@@ -6,12 +6,13 @@ module.exports = function(knex) {
         .where('fridge.user_id', user_id)
         .innerJoin('ingredients', "fridge.ingredient_id", "ingredients.id");
     },
-    addNewItem: function(user_id, ingredient_id, qty) {
+    addNewItem: function(user_id, ingredient_id, qty, expiration) {
       return knex('fridge')
         .insert({
           'user_id': user_id,
           'ingredient_id':ingredient_id, 
-          'qty':qty
+          'qty':qty,
+          'expiration': expiration
         });
     },
     checkForItem: function(user_id, ingredient_id) {
