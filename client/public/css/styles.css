@@ -57,22 +57,25 @@
 
 /*==========landing.html==========*/
 
+
+/*=====how-it-works=====*/
 #how-it-works-container{
   border: 1px solid black;
 }
 
 #hiw-call-to-action-container{
-  padding:2em 2em 2em;
+  padding:.5em 2em .5em;
 }
 
-.dev-team{
-  text-align: center;
+.how-it-works-contents{
+  border-right-style: dotted;
+  border-right-width: .1em;
 }
 
-.collection-item.avatar {
-  height: 60px;
-  width: 60px;
+#hiw-title-contents{
+  font-size: 2em;
 }
+
 
 /*=====FAQ=====*/
 
@@ -104,6 +107,15 @@
   display:flex;
   justify-content:space-between;
 }*/
+
+.dev-team{
+  text-align: center;
+}
+
+.collection-item.avatar {
+  height: 60px;
+  width: 60px;
+}
 
 /*===========dashboard===========*/
 
