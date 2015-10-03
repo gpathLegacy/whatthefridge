@@ -64,7 +64,7 @@
 }
 
 #hiw-call-to-action-container{
-  padding:.5em 2em .5em;
+  padding:.2em 2em .2em;
 }
 
 .how-it-works-contents{
@@ -74,6 +74,10 @@
 
 #hiw-title-contents{
   font-size: 2em;
+}
+#hiw-hover-icon{
+  margin-top: -25px;
+  background: transparent;
 }
 
 
