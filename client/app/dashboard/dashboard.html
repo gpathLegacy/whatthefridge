@@ -53,16 +53,16 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
           <span class="price">${{item.price}}</span>
-          </br>
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-          <label for="{{item}}">I'm eating this</label>
+          <label class="left" for="{{item}}">I'm eating this</label> </br></br></br>
           <div class="row">
-          <div><p ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons right">delete</i></a></p></div>
-          <div><p ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons right">mode edit</i></a></p></div>
+          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left icon-edit">edit</i></a></span></div>
+          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left icon-delete">delete</i></a></span></div>
           </div>
         </div>
-        <div class="card-reveal"> 
+        <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
+          <span class="price left">${{item.price}}</span></br> </br>
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
           </div>
