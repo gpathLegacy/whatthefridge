@@ -58,7 +58,11 @@
 /*==========landing.html==========*/
 
 #how-it-works-container{
-border: 1px solid black;
+  border: 1px solid black;
+}
+
+#hiw-call-to-action-container{
+  padding:2em 2em 2em;
 }
 
 .dev-team{
