@@ -60,7 +60,7 @@
 
 /*=====how-it-works=====*/
 #how-it-works-container{
-  border: 1px solid black;
+  border: 3px double black;
 }
 
 #hiw-call-to-action-container{
@@ -68,7 +68,7 @@
 }
 
 .how-it-works-contents{
-  border-right-style: dotted;
+  border-right-style: dashed;
   border-right-width: .1em;
 }
 
@@ -76,8 +76,7 @@
   font-size: 2em;
 }
 #hiw-hover-icon{
-  margin-top: -25px;
-  background: transparent;
+  margin-bottom: -10em;
 }
 
 
