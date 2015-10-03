@@ -11,10 +11,10 @@
   <body>
 
   <!--Start Navbar -->
-  <nav role="navigation" ng-controller="NavController">
+  <nav role="navigation" ng-controller="NavController" class="grey darken-3">
     <div class="nav-wrapper container">
       <!-- Left Logo -->
-      <a id="logo-container" href="#" class="brand-logo">WTF!</a>
+      <a id="logo-container" href="#" class="brand-logo blue-text text-lighten-3">WTF!</a>
       <!-- Login Dropdown Contents -->
       <!-- <ul id="dropdown2" class="dropdown-content">
         <li><a href="#!">Log-in</a></li>
@@ -23,19 +23,18 @@
       </ul> -->
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
-        <li ng-show="loggedIn"><a href="#/dashboard">Dashboard</a></li>
-        <li ng-show="loggedIn"><a href="#/saved-lists">Saved Lists</a></li>
-        <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
-        <li ng-show="loggedIn"><a class="dropdown-button" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+        <li ng-show="loggedIn"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
+        <li ng-show="loggedIn"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
+        <li ng-show="loggedIn"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
+        <li ng-show="loggedIn"><a class="dropdown-button navbar-font-color" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
       <!-- Recipe Dropdown Contents -->
-        <ul id="dropdown1" class="dropdown-content">
-          <li><a href="#/create-recipes">Create</a></li>
-          <li><a href="#/edit-recipes">Edit</a></li>
-          <li><a href="#!">Extra</a></li>
+        <ul id="dropdown1" class="dropdown-content grey darken-3 navbar-font-color">
+          <li><a href="#/create-recipes navbar-font-color">Create</a></li>
+          <li><a href="#/edit-recipes navbar-font-color">Edit</a></li>
         </ul>
-        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active navbar-font-color"></i></a></li>
 
-        <li ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
+        <li ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
         <!-- Modal Trigger Inside Class Declaration -->
       </ul>
       <!-- Side-Nav -->
@@ -58,7 +57,7 @@
           <li ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
         </li>
       </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu navbar-font-color"></i></a>
     </div>
   </nav>
   <!-- End Navbar -->
@@ -134,67 +133,61 @@
     </main>
 
     <!-- Start Footer -->
-    <footer class="page-footer">
+    <footer class="page-footer grey darken-3">
       <!-- Start Med-and-Small-Screen Footer -->
-      <div class="container">
+      <div class="container z-depth-3" id="responsive-footer-container">
         <ul class="collapsible hide-on-large-only" id="footer-collapsible" data-collapsible="accordion">
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Company</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Company</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
-                <div>Gigapath</div>
-                <div>What-The-Fridge!</div>
-                <div>MakerSquare</div>
-                <div>ASDF</div>
-                <div>asdf</div>
+              <div class="collapsible-content-spacer">
+                <a class="blue-text text-lighten-3"href="https://github.com/gigapath" target="_blank">Gigapath</a><br>
+                What-The-Fridge!<br>
+                <a class="blue-text text-lighten-3"href="https://www.makersquare.com" target="_blank">MakerSquare</a>
               </div>
             </div>
           </li>
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Connect</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Connect</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
-                <div>Facebook</div>
-                <div>Twitter</div>
-                <div>Instagram</div>
-                <div>Google</div>
-                <div>YouTube</div>
-                <div>WTF! Blog</div>
-                <div>Pinterest</div>
+              <div class="collapsible-content-spacer">
+                <div><a class="blue-text text-lighten-3" href="http://www.facebook.com" target="_blank"> Facebook</a></div>
+                <div><a class="blue-text text-lighten-3" href="http://www.twitter.com" target="_blank">Twitter</a></div>
+                <div><a class="blue-text text-lighten-3" href="http://www.instagram.com" target="_blank">Instagram</a></div>
+                <div><a class="blue-text text-lighten-3" href="http://www.google.com" target="_blank">Google</a></div>
               </div>
             </div>
           </li>
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Support</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Support</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
+              <div class="collapsible-content-spacer">
                 <div>How WTF! Works</div>
                 <div>FAQ</div>
               </div>
             </div>
           </li>
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Free Recipes</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Free Recipes</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
-                <div><a class= "black-text" href="https://www.epicurious.com" target="_blank">Epicurious</a></div>
-                <div>asdf</div>
+              <div class="collapsible-content-spacer">
+                <div><a class= "blue-text text-lighten-3" href="https://www.epicurious.com" target="_blank">Epicurious</a></div>
               </div>
             </div>
           </li>
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Policies</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Policies</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
+              <div class="collapsible-content-spacer">
                 <div>Privacy</div>
                 <div>Terms</div>
               </div>
             </div>
           </li>
           <li>
-            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">call_received</i>Contact Us</div>
+            <div class="collapsible-header footer-collapsible-header"><i class="material-icons right">add</i>Contact Us</div>
             <div class="collapsible-body">
-              <div class="container drop-down-container">
+              <div class="collapsible-content-spacer">
                 <div>MakerSquare</div>
                 <div>701 Brazos Street</div>
                 <div>Austin, TX, 78748</div>
@@ -207,32 +200,30 @@
       <!-- End Med-and-Small-Screen Footer -->
       <!-- Start Large-Screen Footer -->
       <div class="container hide-on-med-and-down">
-        <div class="row center-align">
+        <div class="row blue-text text-lighten-3">
           <div class="col l3 s12">
-            <h5 class="white-text center-align">WhatTheFridge!</h5>
+            <h5 class="center-align">WhatTheFridge!</h5>
             <div class="divider"></div>
-            <div class="grey-text text-lighten-4 center-align">Manage Your Fridge.</div><br>
-            <div class="grey-text">Contact Us:</div>
-            <div class="grey-text text-darken-1">701 Brazos St,</div>
-            <div class="grey-text text-darken-2">Austin, TX, 78701</div>
-            <div class="grey-text text-darken-3">Suite #526</div>
+            <div class="center-align">Manage Your Fridge.</div><br>
           </div>
 
-          <div class="col s3">
+          <div class="col s2">
             <div class="footer-row-title">Company</div>
             <div class="divider"></div>
-            <div class="grey-text">Gigapath</div>
-            <div class="grey-text text-lighten-1">What-The-Fridge!</div>
-            <div class="grey-text text-lighten-2">MakerSquare</div>
-            <div class="grey-text text-lighten-3">asdf | </div>
-            <div class="grey-text text-lighten-4">asdf | </div>
+            <div>Gigapath</div>
+            <div>What-The-Fridge!</div>
+            <div>MakerSquare</div><br>
+
+            <div class="footer-row-title">Free Recipes</div>
+            <div class="divider"></div>
+            <div><a class="blue-text text-lighten-3" href="https://www.epicurious.com" target="_blank">Epicurious</a></div><br>
           </div>
 
           <div class="col s2">
             <div class="footer-row-title">Support</div>
             <div class="divider"></div>
             <div>How WTF! Works</div>
-            <div><a class="black-text" href="#top">FAQ</a></div><br>
+            <div><a class="blue-text text-lighten-3" href="#top">FAQ</a></div><br>
 
             <div class="footer-row-title">Policies</div>
             <div class="divider"></div>
@@ -241,37 +232,28 @@
           </div>
 
           <div class="col s2">
-            <div class="footer-row-title">Free Recipes</div>
-            <div class="divider"></div>
-            <div><a class= "black-text" href="https://www.epicurious.com" target="_blank">Epicurious</a></div>
-            <div>asdf</div><br>
-
-            <div class="footer-row-title">Mobile</div>
-            <div class="divider"></div>
-          </div>
-
-          <div class="col s2">
             <div class="footer-row-title">Connect</div>
             <div class="divider"></div>
-
-            <div class="left-align">
-              <div><a class="black-text" href="http://www.facebook.com" target="_blank"><img class="social-footer" src="/img/facebook.png"/> | Facebook</a></div>
-              <div><a class="black-text" href="http://www.twitter.com" target="_blank"><img class="social-footer" src="/img/twitter.png"/> | Twitter</a></div>
-              <div><a class="black-text" href="http://www.instagram.com" target="_blank"><img class="social-footer" src="/img/instagram.png"/> | Instagram</a></div>
-              <div><a class="black-text" href="http://www.google.com" target="_blank"><img class="social-footer" src="/img/google.png"/> | Google</a></div>
-              <div> | YouTube</div>
-              <div> | WTF! Blog</div>
-              <div> | Pinterest</div>
-            </div>
+              <div><a class="blue-text text-lighten-3" href="http://www.facebook.com" target="_blank"><img class="social-footer" src="/img/facebook.png"/> | Facebook</a></div>
+              <div><a class="blue-text text-lighten-3" href="http://www.twitter.com" target="_blank"><img class="social-footer" src="/img/twitter.png"/> | Twitter</a></div>
+              <div><a class="blue-text text-lighten-3" href="http://www.instagram.com" target="_blank"><img class="social-footer" src="/img/instagram.png"/> | Instagram</a></div>
+              <div><a class="blue-text text-lighten-3" href="http://www.google.com" target="_blank"><img class="social-footer" src="/img/google.png"/> | Google</a></div>
+          </div>
+          <div class="col s2">
+            <div class="footer-row-title">Contact Us:</div>
+            <div class="divider"></div>
+            <div>701 Brazos St,</div>
+            <div>Austin, TX, 78701</div>
+            <div>Suite #526</div>
           </div>
         </div>
       </div>
       <!-- End Large-Screen Footer -->
       <!-- Start Copyright -->
       <div class="footer-copyright">
-        <div class="container">
+        <div class="container white-text">
         © 2015 Gigapath
-        <a class="grey-text text-lighten-4 right" href="https://github.com/gigapath" target="_blank">Gigapath | Github</a>
+        <a class="white-text right" href="https://github.com/gigapath" target="_blank">Gigapath | Github</a>
         </div>
       </div>
       <!-- End Copyright -->
