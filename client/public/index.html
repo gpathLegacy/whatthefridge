@@ -24,6 +24,7 @@
       <!-- Right Side of Navbar -->
       <ul class="right hide-on-med-and-down">
         <li ng-show="loggedIn"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
+        <li ng-show="loggedIn"><a href="#/recipes" class="navbar-font-color">Recipes</a></li>
         <li ng-show="loggedIn"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
         <li ng-show="loggedIn"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
         <li ng-show="loggedIn"><a class="dropdown-button navbar-font-color" href="#!" data-activates="dropdown1">Recipes<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -269,8 +270,9 @@
     <script src="lib/materialize/dist/js/materialize.min.js"></script>
     <script src="lib/checklist-model/checklist-model.js"></script>
     <script src="app/create-recipes/create-recipes-controller.js"></script>
-    <script src="app/dashboard/dashboard-controller.js"></script>
+    <script src="app/recipes/recipes-controller.js"></script>
     <script src="app/fridge/fridge-controller.js"></script>
+    <script src="app/dashboard/dashboard-controller.js"></script>
     <script src="app/edit-recipes/edit-recipes-controller.js"></script>
     <script src="app/shopping-list/shopping-list-controller.js"></script>
     <script src="app/saved-lists/saved-lists-controller.js"></script>
