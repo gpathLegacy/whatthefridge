@@ -32,10 +32,13 @@ angular.module('wtf.fridge',[])
                                         return sum+= Number(entry.qty) * Number(entry.price)
                                     }, 0 )
         
-        Materialize.toast("You have " + $scope.expiring.length + 
-                        " items" + " worth $" + 
-                        $scope.expireAmount + 
-                        " expiring in 2 days", 4000)
+        if($scope.expiring.length){
+          var item = $scope.expiring.length === 1 ? " item" : " items";
+          Materialize.toast("You have " + $scope.expiring.length +
+                            item + " worth $" +
+                            $scope.expireAmount +
+                            " expiring in 2 days", 4000);
+        }
       })
     };
 
