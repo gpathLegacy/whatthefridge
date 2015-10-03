@@ -75,8 +75,8 @@
 #hiw-title-contents{
   font-size: 2em;
 }
-#hiw-hover-icon{
-  margin-bottom: -10em;
+.hiw-hover-icon{
+  margin-top: -2em;
 }
 #hiw-rightmost-content{
   padding-right: 1em;
