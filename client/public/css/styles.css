@@ -57,6 +57,10 @@
 
 /*==========landing.html==========*/
 
+#how-it-works-container{
+border: 1px solid black;
+}
+
 .dev-team{
   text-align: center;
 }
