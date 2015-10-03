@@ -19,6 +19,12 @@
 
 
 /*=====footer=====*/
+/*will equally space all cards along a given screen width*/
+/*.card-container{
+  display:flex;
+  justify-content:space-between;
+}*/
+
 .footer-row-title{
   color:white;
 }
