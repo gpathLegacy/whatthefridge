@@ -8,7 +8,7 @@
      -->
     <br>
     <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()">Add all to Fridge</button>
-    <button class="saveButton btn waves-effect waves-light" ng-click="saveList()">Save shopping list</button>
+    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Save shopping list</button>
   </div>
   {{shoppingList}}
   <div ng-hide="fridgeFlag">
@@ -47,5 +47,23 @@
     </li>
   </ul>
 </div>
+
+<!-- saveList Modal -->
+  <div id="saveList" class="modal">
+    <form ng-submit="saveList()">
+      <div class="modal-content">
+        <div class="container">
+          <div class="input-field">
+            <label for="listName">Shopping List Name (optional)</label>
+            <input type="text" id="listName" ng-model="listName"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+      </div>
+    </form>
+  </div>
 
 

@@ -63,8 +63,8 @@ angular.module('wtf.services', [])
     var getLists = function() {
       return $http.get('/api/shoppingLists/getLists');
     }
-    var saveList = function(list) {
-      return $http.post('/api/shoppingLists/saveList', list);
+    var saveList = function(list, name) {
+      return $http.post('/api/shoppingLists/saveList', {'list':list, 'list_name':name});
     }
     var deleteList = function(listId) {
       return $http.post('/api/shoppingLists/deleteList', listId);

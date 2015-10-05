@@ -11,6 +11,10 @@ angular.module('wtf.shopping-list', [])
 
     $scope.shoppingList = [];
 
+    $scope.saveModal = function() {
+      $("#saveList").openModal();
+    };
+
     $scope.checkPrice = function(index) {
       var formName = "priceForm" + index;
       var formCheck = $scope.$$childHead;
@@ -87,7 +91,7 @@ angular.module('wtf.shopping-list', [])
 
     $scope.saveList = function() {
       if ($scope.notSavedFlag) {
-        SavedLists.saveList($scope.shoppingList).then(function(){
+        SavedLists.saveList($scope.shoppingList, $scope.listName).then(function(){
           // Show a message that confirms success and disable the button
           $('.saveButton').addClass('disabled');
           $scope.notSavedFlag = false;

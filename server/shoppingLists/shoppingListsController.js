@@ -14,9 +14,9 @@ module.exports = function(ShoppingLists, Ingredients) {
           var ingredientPrice = ingredients[i].price;
 
           // First time the list is encountered, it needs to be created in the output object
-          // and initialized with the date
+          // and initialized with the date and name
           if (lists[listId] === undefined) {
-            lists[listId] = {date:ingredients[i].date.toDateString()};
+            lists[listId] = {list_name:ingredients[i].list_name, date:ingredients[i].date.toDateString()};
           }
           // We need to send back the quantity and price, so let's make it a tuple
           lists[listId][ingredientName] = [ingredientQty, ingredientPrice];
@@ -26,9 +26,9 @@ module.exports = function(ShoppingLists, Ingredients) {
     },
 
     saveList: function(req, res) {
-      var list = req.body;
+      var list = req.body.list;
 
-      ShoppingLists.newList(req.user.id).then(function(id) {
+      ShoppingLists.newList(req.user.id, req.body.list_name).then(function(id) {
         var listId = id[0];
         for (var i = 0; i < list.length; i++) {
           (function(index){
