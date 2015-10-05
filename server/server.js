@@ -53,9 +53,7 @@ app.use(passport.session());
 
 // =============== ROUTING =================
 
-// -----------------------------------------
 // Secured Routes --------------------------
-
 var auth = function(req, res, next){
   if (!req.isAuthenticated())
     res.send(401);
@@ -102,7 +100,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 app.use('/api/fridge', fridgeRouter);
 app.use('/api/shoppingLists', shoppingListsRouter);
 
-// inject our routers and models into their respective route files
+// inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
 require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, Ingredients);
