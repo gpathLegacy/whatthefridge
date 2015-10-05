@@ -7,10 +7,19 @@
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
         </div>
-        <span class="card-title">Expiring Soon </span>
         <div class="card-content">
+        <span ng-if="expiring.length > 0" class="card-title activator">Expiring Soon </span>
+        <span ng-if="expiring.length === 0" class="card-title">Expiring Soon </span>
           <p ng-if="expiring.length > 0 ">You have ${{expireAmount}} worth of food expiring in 2 days</p>
           <p ng-if="expiring.length ===0">You have nothing expiring soon </p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
+          The following items are set to expire in two days on {{twoFromToday | date: 'shortDate'}}: 
+          <br></br>
+          <div ng-repeat="subitem in expiring">
+            <span>{{subitem.name}}</span>
+          </div>
         </div>
       </div>
     </div>  
@@ -19,19 +28,23 @@
         <div class="card medium blue-grey darken-1">
           <div class="card-image">
           <img src="http://www.appliancist.com/stainless-steel-refrigerator-atag-ka2111dq-open.jpg">
-        </div>
-          <span class="card-title">Fridge</span>
-          <div class="card-content white-text">
+          </div>
+          <div class="card-content">
+          <span ng-if="fridgeData.length > 0" class="card-title activator">Fridge</span>
+          <span ng-if="fridgeData.length === 0" class="card-title">Fridge</span>
               <p ng-if="fridgeData.length === 0 "> You have nothing in your fridge</p>
               <div ng-if="fridgeData.length > 0">
-                <p>Your fridge is currently worth: ${{freshValue}}</p>
+                <p>Your fridge is currently worth ${{freshValue}}</p>
+              </div>
+          </div>
+          <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
                 <p>You have {{fridgeData.length}} unique items in your fridge </p>
                 <p>You have a lot of {{highestQtyFridge.name}}. Careful, it will expire on {{highestQtyFridge.expiration | date: 'mediumDate'}}</p>
                 <p>You don't have a lot of {{lowestQtyFridge.name}}. Make sure to use it all before it expires on {{lowestQtyFridge.expiration | date: 'mediumDate'}}</p>
-              </div>
-          </div>
+        </div>
           <div class="card-action">
-            <a href="#/fridge">Fridge</a>
+            <a href="#/fridge">Go to the Fridge</a>
           </div>
         </div>
     </div>
@@ -42,11 +55,19 @@
         <div class="card-image">
           <img src="http://www.clipartbest.com/cliparts/niB/7aa/niB7aaqiA.jpeg">
         </div>
-        <span class="card-title">Expired</span>
-        <div class="card-content white-text">
+        <div class="card-content">
+        <span ng-if="expired.length > 0" class="card-title activator">Expired</span>
+        <span ng-if="expired.length === 0" class="card-title">Expired</span>
           <p ng-if="expired.length > 0">You let {{expired.length}} items worth ${{expiredValue}} expire!</p>
           <p ng-if="expired.length === 0">You have no expired items in the fridge</p>
-          <ul ng-repeat="item in expired">{{item.name}} ${{item.price}} {{item.expiration | date: 'mediumDate'}}</ul>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
+          The following items have expired: 
+          <br></br>
+          <div ng-repeat="subitem in expired">
+            <span>${{subitem.qty * subitem.price}} worth of {{subitem.name}} expired {{subitem.expiration | date: 'shortDate'}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -58,16 +79,20 @@
       <div class="card blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
-          <span class="card-title activator white-text text-darken-4">Recipes<i class="material-icons right">more_vert</i></span>
-          <p><a href="#/recipes">Recipes</a></p>
+          <span ng-if="allRecipes.length > 0" class="card-title activator white-text text-darken-4">Recipes</span>
+          <span ng-if="allRecipes.length === 0" class="card-title white-text text-darken-4">Recipes</span>
+          <p>You have {{allRecipes.length}} recipes recorded</p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           <div ng-if="allRecipes.length > 0">
-            <p>Your most expensive recipe is {{mostExpensiveRecipe.title}} and costs ${{mostExpensiveRecipe.price}} to make</p>
-            <p>Your least expensive recipe to make is {{leastExpensiveRecipe.title}} and costs ${{leastExpensiveRecipe.price}} to make</p>
+            <span>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price}}</span>
+            <p>Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price}}</p>
           </div>
           <div ng-if="allRecipes.length === 0"> You have no recipes</div>
+        </div>
+        <div class="card-action">
+          <a href="#/recipes">See Recipes</a>
         </div>
       </div>
     </div>
@@ -76,13 +101,15 @@
       <div class="card blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
-          <span class="card-title activator white-text text-darken-4">Saved Lists<i class="material-icons right">more_vert</i></span>
-          <p><a href="#/saved-lists">Saved lists</a></p>
+          <span class="card-title activator white-text text-darken-4">Saved Lists</span>
+          <p> You have {{listsCount}} saved shopping lists</p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
-           <p ng-if="listsCount > 0"> You have {{listsCount}} saved shopping lists</p>
-           <p ng-if="listsCount === 0">You have no saved shopping lists</p>
+           <p> You have {{listsCount}} saved shopping lists</p>
+        </div>
+        <div class="card-action">
+            <a href="#/saved-lists">See Saved Lists</a>
         </div>
       </div>
     </div>
