@@ -6,6 +6,7 @@ var express     = require('express'),
 var app = express();
 var port = process.env.PORT || 1337;
 var path = require('path');
+var pg = require('pg');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -84,6 +85,8 @@ app.get('/app/fridge/fridge.html', auth, function(req, res) {
 app.get('/app/saved-lists/saved-lists.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/saved-lists/saved-lists.html'));
 });
+
+
 
 // -----------------------------------------
 // API routes ------------------------------
