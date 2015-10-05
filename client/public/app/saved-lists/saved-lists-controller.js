@@ -2,12 +2,14 @@ angular.module('wtf.saved-lists', [])
   .controller('SavedListsController', function($scope, $location, SavedLists, Recipes) {
 
     $scope.getLists = function() {
-      SavedLists.getLists().then(function(lists) {
-        $scope.lists = lists.data;
-        if (Object.keys($scope.lists).length === 0){
-          $scope.show = true
-        }
-      });
+      SavedLists.getLists()
+        .then(function(lists) {
+          $scope.lists = lists.data;
+          console.log($scope.lists);
+          if (Object.keys($scope.lists).length === 0){
+            $scope.show = true
+          }
+        });
     };
 
     $scope.deleteListModal = function(list) {
