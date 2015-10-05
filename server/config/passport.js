@@ -117,6 +117,7 @@ module.exports = function(passport, knex, Users) {
           });
       }));
 
+
   passport.use(new TwitterStrategy({
         consumerKey: configAuth.twitterAuth.consumerKey,
         consumerSecret: configAuth.twitterAuth.consumerSecret,
@@ -149,70 +150,70 @@ module.exports = function(passport, knex, Users) {
             });
         }));
 
-  passport.use(new InstagramStrategy({
-        clientID: configAuth.instagramAuth.clientID,
-        clientSecret: configAuth.instagramAuth.clientSecret,
-        callbackURL: configAuth.instagramAuth.callbackURL
-      },
-      function(accessToken, refreshToken, profile, done) {
-          process.nextTick(function(){
-            Users.getUserById(profile.id, "instagram")
-              .then(function(rows) {
-                if (rows.length) {
-                  return done(null, rows[0]);
-                }
-                var newUser = {};
+  // passport.use(new InstagramStrategy({
+  //       clientID: configAuth.instagramAuth.clientID,
+  //       clientSecret: configAuth.instagramAuth.clientSecret,
+  //       callbackURL: configAuth.instagramAuth.callbackURL
+  //     },
+  //     function(accessToken, refreshToken, profile, done) {
+  //         process.nextTick(function(){
+  //           Users.getUserById(profile.id, "instagram")
+  //             .then(function(rows) {
+  //               if (rows.length) {
+  //                 return done(null, rows[0]);
+  //               }
+  //               var newUser = {};
 
-                newUser.instagram_id         = profile.id;
-                newUser.instagram_token      = accessToken;
-                newUser.instagram_name       = profile.username;
+  //               newUser.instagram_id         = profile.id;
+  //               newUser.instagram_token      = accessToken;
+  //               newUser.instagram_name       = profile.username;
 
-                Users.signup(newUser)
-                  .then(function(id) {
-                    newUser.id = id[0];
-                    return done(null, newUser);
-                  })
-                  .catch(function(err) {
-                    return done(err);
-                  });
-              })
-              .catch(function(err) {
-                return done(err);
-              });
-            });
-        }));
+  //               Users.signup(newUser)
+  //                 .then(function(id) {
+  //                   newUser.id = id[0];
+  //                   return done(null, newUser);
+  //                 })
+  //                 .catch(function(err) {
+  //                   return done(err);
+  //                 });
+  //             })
+  //             .catch(function(err) {
+  //               return done(err);
+  //             });
+  //           });
+  //       }));
 
-  passport.use(new GoogleStrategy({
-          clientID: configAuth.googleAuth.clientID,
-          clientSecret: configAuth.googleAuth.clientSecret,
-          callbackURL: configAuth.googleAuth.callbackURL
-        },
-        function(token, tokenSecret, profile, done) {
-            process.nextTick(function(){
-              Users.getUserById(profile.id, "google")
-                .then(function(rows) {
-                  if (rows.length) {
-                    return done(null, rows[0]);
-                  }
-                  var newUser = {};
+  // passport.use(new GoogleStrategy({
+  //         clientID: configAuth.googleAuth.clientID,
+  //         clientSecret: configAuth.googleAuth.clientSecret,
+  //         callbackURL: configAuth.googleAuth.callbackURL
+  //       },
+  //       function(token, tokenSecret, profile, done) {
+  //           process.nextTick(function(){
+  //             Users.getUserById(profile.id, "google")
+  //               .then(function(rows) {
+  //                 if (rows.length) {
+  //                   return done(null, rows[0]);
+  //                 }
+  //                 var newUser = {};
 
-                  newUser.google_id         = profile.id;
-                  newUser.google_token      = token;
-                  newUser.google_email      = profile.emails[0].value;
+  //                 newUser.google_id         = profile.id;
+  //                 newUser.google_token      = token;
+  //                 newUser.google_email      = profile.emails[0].value;
 
-                  Users.signup(newUser)
-                    .then(function(id) {
-                      newUser.id = id[0];
-                      return done(null, newUser);
-                    })
-                    .catch(function(err) {
-                      return done(err);
-                    });
-                })
-                .catch(function(err) {
-                  return done(err);
-                });
-              });
-          }));
+  //                 Users.signup(newUser)
+  //                   .then(function(id) {
+  //                     newUser.id = id[0];
+  //                     return done(null, newUser);
+  //                   })
+  //                   .catch(function(err) {
+  //                     return done(err);
+  //                   });
+  //               })
+  //               .catch(function(err) {
+  //                 return done(err);
+  //               });
+  //             });
+  //         }));
 
 };
