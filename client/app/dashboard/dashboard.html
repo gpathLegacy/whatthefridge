@@ -1,97 +1,118 @@
 <div class="container">
   <h5 class="center-align">Dashboard</h5>
 
-
-   <div class="row">
-
-      <div class="col s4">
-    <p>Recipes Data: <!-- {{allRecipes}} --></p>
-    <p>Number of recipes: {{allRecipes.length}}</p>
-    <p>Most expensive recipe name: {{mostExpensiveRecipe.title}}</p>
-    <p>Most expensive recipe cost: {{mostExpensiveRecipe.price}}</p>
-    <p>Least expensive recipe name: {{leastExpensiveRecipe.title}}</p>
-    <p>Least expensive recipe price: {{leastExpensiveRecipe.price}}</p>
-
-    <p>Ingredients Unique: {{ingredientsUnique}}</p>
-        <!-- Promo Content 1 goes here -->
-      
-      </div>
-      <div class="col s4">
-      <p>Fridge Data: <!-- {{fridgeData}}  --></p>
-      <p>Fresh value: {{freshValue}}</p>
-      <p>Number of unique items in fridge: {{fridgeData.length}}</p>
-      <p>Fridge Expiring Soon Dollar Value :{{expireAmount}}</p>
-      <p>Highest Quantity name : {{highestQtyFridge.name}}</p>
-      <p>Highest Quantity number: {{highestQtyFridge.qty}}</p>
-      <p>Highest quantity expiration: {{highestQtyFridge.expiration | date: 'mediumDate'}}</p>
-
-      <p>Lowest Quantity name: {{lowestQtyFridge.name}}</p>
-      <p>Lowest Quantity number: {{lowestQtyFridge.qty}}</p>
-      <p>Lowest Quantity expiration: {{lowestQtyFridge.expiration | date: 'mediumDate'}}</p>
-
-      <p>Expired items: <!-- {{expired}} -->
-        <li ng-repeat="item in expired">{{item.name}} ${{item.price}} {{item.expiration | date: 'mediumDate'}}</li>
-
-
-      </p>
-      <p>Expired Value : {{expiredValue}}</p>
-        <!-- Promo Content 2 goes here -->
-      </div>
-      <div class="col s4">
-      <p>Lists Data: <!-- {{lists}} --></p>
-      <p>Number of saved lists: {{listsCount}}</p>
-        <!-- Promo Content 3 goes here -->
-       
-      </div>
-
+  <div class="row">
+    <div class="col s6">
+        <div class="card-panel blue-grey darken-1">
+              <span class="card-title">Fridge</span>
+          <div class="card-content white-text">
+              <p>Your fridge is currently worth: ${{freshValue}}</p>
+              <p>You have unique items in fridge: {{fridgeData.length}}</p>
+              <p>You have a lot of {{highestQtyFridge.name}}</p>
+              <p>Careful, it will expire on {{highestQtyFridge.expiration | date: 'mediumDate'}}</p>
+              <p>You don't have a lot of {{lowestQtyFridge.name}}</p>
+              <p>Make sure to use it all before it expires on {{lowestQtyFridge.expiration | date: 'mediumDate'}}</p>
+          </div>
+        </div>
     </div>
 
-
-  <div class="row">
-      <div class="col s4">
-        <div class="card small card-small blue-grey darken-1">
-          <div class="card-content white-text">
-              <span class="card-title">Fridge</span>
-              <p>Your fridge has X items, worth Y dollars</p>
-              <p>You have x items, worth y dollars expiring</p>
-              <p>Your most expensive item is ___ expires on </p>
-              <p>The oldest item is Y and will expire on </p>
-            </div>
-            <div class="card-action">
-              <a href="#/fridge">Fridge</a>
-            </div>
-          </div>
+    <div class="col s6">
+      <div class="card-panel blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Expiring</span>
+          <p>Fridge Expiring Soon Dollar Value :{{expireAmount}}</p>
         </div>
-      
-      <div class="col s4">
-        <div class="card small card-small blue-grey darken-1">
-          <div class="card-content white-text">
-              <span class="card-title">Recipes</span>
-              <p>You have x recipes using y unique ingredients</p>
-              <p>Your most expensive recipe is ___ and costs $ </p>
-              <p>You least expensive recipe is ___ and costs $ </p>
-            </div>
-            <div class="card-action">
-              <a href="#/recipes">Recipes</a>
-            </div>
-          </div>
       </div>
+    </div>  
 
-      <div class="col s4">
-        <div class="card small card-small blue-grey darken-1">
+     <div class="col s6">
+        <div class="card-panel blue-grey darken-1">
           <div class="card-content white-text">
-              <span class="card-title">Shopping Lists</span>
-              <p>You have X saved shopping lists</p>
-              <p>Your oldest shopping list is from </p>
-              <p>Your most expensive shopping list is from </p>
-              <p>You least expensive shopping list is from </p>
-            </div>
-            <div class="card-action">
-              <a href="#/saved-lists">Shopping Lists</a>
-            </div>
+            <span class="card-title">Expired</span>
+              <p>You let {{expired.length}} items worth ${{expiredValue}} expire!</p>
+              <ul ng-repeat="item in expired">{{item.name}} ${{item.price}} {{item.expiration | date: 'mediumDate'}}</ul>
           </div>
         </div>
-
+    </div>
   </div>
 
+<!--   <div class = "row">
+    <div class="col s6">
+      <div class="card-panel blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Recipes</span>
+
+        <p>Most expensive recipe name: {{mostExpensiveRecipe.title}}</p>
+        <p>Most expensive recipe cost: {{mostExpensiveRecipe.price}}</p>
+        <p>Least expensive recipe name: {{leastExpensiveRecipe.title}}</p>
+        <p>Least expensive recipe price: {{leastExpensiveRecipe.price}}</p>
+
+        <p>Ingredients Unique: {{ingredientsUnique}}</p>
+        </div>
+      </div>
+    </div>  -->
+    <div class = "row">
+    <div class="col s6">
+       <div class="card blue-grey darken-1">
+          <div class="card-image waves-effect waves-block waves-light">
+<!--             <img class="activator" src="images/office.jpg">
+ -->          </div>
+          <div class="card-content">
+            <span class="card-title activator white-text text-darken-4">Recipes<i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+        <p>Your most expensive recipe is {{mostExpensiveRecipe.title}} and costs ${{mostExpensiveRecipe.price}} to make</p>
+        <p>Your least expensive recipe to make is {{leastExpensiveRecipe.title}} and costs ${{leastExpensiveRecipe.price}} to make</p>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+       <div class="card blue-grey darken-1">
+          <div class="card-image waves-effect waves-block waves-light">
+<!--             <img class="activator" src="images/office.jpg">
+ -->          </div>
+          <div class="card-content">
+            <span class="card-title activator white-text text-darken-4">Saved Lists<i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+           <p>Number of saved lists: {{listsCount}}</p>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="col s6">
+      <div class="card-panel blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">Saved Lists</span>
+           <p>Number of saved lists: {{listsCount}}</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+<div class = "row">
+  <ul class="collapsible col s6" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons"></i>Recipes</div>
+        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      </li>
+  </ul>
+
+  <ul class="collapsible col s6" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons"></i>Saved Lists</div>
+        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      </li>
+  </ul>
 </div>
+          
+</div>
+<script>
+$(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  });
+</script>
