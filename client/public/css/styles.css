@@ -193,6 +193,10 @@ body {
   display:inline-block;
 }
 
+.list-price {
+  color: green;
+}
+
 /*============fridge============*/
 
 .bottom-right {
