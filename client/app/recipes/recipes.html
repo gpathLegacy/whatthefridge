@@ -1,7 +1,7 @@
 <div class="container">
   <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
   Add recipe
-
+ <label>Search: <input ng-model="searchText"></label>
   <div class="container" ng-if="allRecipes.length === 0">
     <div class="row center">
       <div class="s12 m4 l8">
@@ -44,8 +44,8 @@
   </div>
  -->
 
-   <div class="row"  >
-    <div class="col s4" ng-repeat="item in allRecipes">
+   <div class="row">
+    <div class="col s4" ng-repeat="item in allRecipes | filter:searchText">
       <div class ="card small card-small">
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
