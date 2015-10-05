@@ -89,6 +89,12 @@ module.exports = function(knex) {
           .select(['recipe_id', 'recipe_title', 'recipe.user_id'])
           .from('recipes')
           .whereNot('recipes.user_id':userId)
+      },
+      getRecipeByTitle: function(userId, title){
+        return knex
+          .select('recipe_id')
+          .from('recipes')
+          .where('recipe_title':title, 'recipes.user_id':userId)
       }
     }
 }
