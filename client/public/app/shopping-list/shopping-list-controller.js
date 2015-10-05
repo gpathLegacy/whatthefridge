@@ -18,6 +18,7 @@ angular.module('wtf.shopping-list', [])
     $scope.checkPrice = function(index) {
       var formName = "priceForm" + index;
       var formCheck = $scope.$$childHead;
+      console.log("Checking price... ", $scope.$$childHead);
 
       // walk through scope objects to find the one containing the form in question
       while (formScope === undefined) {
@@ -28,9 +29,12 @@ angular.module('wtf.shopping-list', [])
         }
       }
 
+      console.log(formScope);
+
       // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
       // the price won't be saved as undefined in the savePrice function
-      if(!formCheck[formName].$valid) {
+      if(formScope.$invalid) {
+        console.log("INVALID");
         Materialize.toast('Price must match format: 0.00', 4000)
         return false;
       }
