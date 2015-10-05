@@ -1,118 +1,97 @@
 <div class="container">
-  <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
-  Add recipe
+  <h5 class="center-align">Dashboard</h5>
 
-  <div class="container" ng-if="allRecipes.length === 0">
-    <div class="row center">
-      <div class="s12 m4 l8">
-        <div class="card blue-grey darken">
+
+   <div class="row">
+
+      <div class="col s4">
+    <p>Recipes Data: <!-- {{allRecipes}} --></p>
+    <p>Number of recipes: {{allRecipes.length}}</p>
+    <p>Most expensive recipe name: {{mostExpensiveRecipe.title}}</p>
+    <p>Most expensive recipe cost: {{mostExpensiveRecipe.price}}</p>
+    <p>Least expensive recipe name: {{leastExpensiveRecipe.title}}</p>
+    <p>Least expensive recipe price: {{leastExpensiveRecipe.price}}</p>
+
+    <p>Ingredients Unique: {{ingredientsUnique}}</p>
+        <!-- Promo Content 1 goes here -->
+      
+      </div>
+      <div class="col s4">
+      <p>Fridge Data: <!-- {{fridgeData}}  --></p>
+      <p>Fresh value: {{freshValue}}</p>
+      <p>Number of unique items in fridge: {{fridgeData.length}}</p>
+      <p>Fridge Expiring Soon Dollar Value :{{expireAmount}}</p>
+      <p>Highest Quantity name : {{highestQtyFridge.name}}</p>
+      <p>Highest Quantity number: {{highestQtyFridge.qty}}</p>
+      <p>Highest quantity expiration: {{highestQtyFridge.expiration | date: 'mediumDate'}}</p>
+
+      <p>Lowest Quantity name: {{lowestQtyFridge.name}}</p>
+      <p>Lowest Quantity number: {{lowestQtyFridge.qty}}</p>
+      <p>Lowest Quantity expiration: {{lowestQtyFridge.expiration | date: 'mediumDate'}}</p>
+
+      <p>Expired items: <!-- {{expired}} -->
+        <li ng-repeat="item in expired">{{item.name}} ${{item.price}} {{item.expiration | date: 'mediumDate'}}</li>
+
+
+      </p>
+      <p>Expired Value : {{expiredValue}}</p>
+        <!-- Promo Content 2 goes here -->
+      </div>
+      <div class="col s4">
+      <p>Lists Data: <!-- {{lists}} --></p>
+      <p>Number of saved lists: {{listsCount}}</p>
+        <!-- Promo Content 3 goes here -->
+       
+      </div>
+
+    </div>
+
+
+  <div class="row">
+      <div class="col s4">
+        <div class="card small card-small blue-grey darken-1">
           <div class="card-content white-text">
-            <span class="card-title">Get cooking!</span>
-            <p>You have no recipes! </p>
-            <p>Add one today by clicking the button above!</p>
+              <span class="card-title">Fridge</span>
+              <p>Your fridge has X items, worth Y dollars</p>
+              <p>You have x items, worth y dollars expiring</p>
+              <p>Your most expensive item is ___ expires on </p>
+              <p>The oldest item is Y and will expire on </p>
+            </div>
+            <div class="card-action">
+              <a href="#/fridge">Fridge</a>
+            </div>
           </div>
         </div>
+      
+      <div class="col s4">
+        <div class="card small card-small blue-grey darken-1">
+          <div class="card-content white-text">
+              <span class="card-title">Recipes</span>
+              <p>You have x recipes using y unique ingredients</p>
+              <p>Your most expensive recipe is ___ and costs $ </p>
+              <p>You least expensive recipe is ___ and costs $ </p>
+            </div>
+            <div class="card-action">
+              <a href="#/recipes">Recipes</a>
+            </div>
+          </div>
       </div>
-    </div>
-  </div>
-<!-- 
-  <div class="row" ng-repeat="item in allRecipes track by $index" ng-if="$index % 3 === 0">
-    <div class="col s4" ng-repeat="i in [$index, $index + 1, $index + 2]">
-      <div class ="card small card-small">
-        <div class="card-image">
-          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{allRecipes[i].title}}</span>
-          <span class="price">${{allRecipes[i].price}}</span>
-          </br>
-          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="allRecipes[i]" id="{{allRecipes[i]}}" />
-          <label for="{{allRecipes[i]}}">I'm eating this</label>
-          <div class="row">
-          <div><p ng-click="deleteModal(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">delete</i></a></p></div>
-          <div><p ng-click="getCurrentRecipe(allRecipes[i])"><a href="javascript:;"><i class="material-icons right">mode edit</i></a></p></div>
+
+      <div class="col s4">
+        <div class="card small card-small blue-grey darken-1">
+          <div class="card-content white-text">
+              <span class="card-title">Shopping Lists</span>
+              <p>You have X saved shopping lists</p>
+              <p>Your oldest shopping list is from </p>
+              <p>Your most expensive shopping list is from </p>
+              <p>You least expensive shopping list is from </p>
+            </div>
+            <div class="card-action">
+              <a href="#/saved-lists">Shopping Lists</a>
+            </div>
           </div>
         </div>
-        <div class="card-reveal"> 
-          <span class="card-title grey-text text-darken-4" for="{{item}}">{{allRecipes[i].title}}<i class="material-icons right">close</i></span>
-          <div ng-repeat="subitem in allRecipes[i].ingredients">
-            <span>{{subitem}}</span>
-          </div>
-        </div>  
-      </div>
-    </div>
-  </div>
- -->
 
-   <div class="row"  >
-    <div class="col s4" ng-repeat="item in allRecipes">
-      <div class ="card small card-small">
-        <div class="card-image">
-          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-          <span class="price">${{item.price}}</span>
-          </br>
-          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-          <label class="left" for="{{item}}">I'm eating this</label> </br></br></br>
-          <div class="row">
-          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left">edit</i></a></span></div>
-          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left">delete</i></a></span></div>
-          </div>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
-          <span class="price left">${{item.price}}</span></br> </br>
-          <div ng-repeat="subitem in item.ingredients">
-            <span>{{subitem}}</span>
-          </div>
-        </div>  
-      </div>
-    </div>
   </div>
 
-  <div>
-    <h5>Checked<h5>
-      <div>{{recipes.selected}}</div>
-  </div>
-
-  
-  <!-- deleteCheck Modal -->
-  <div id="deleteCheck" class="modal">
-    <div class="modal-content">
-      <p>Are you sure you want to delete {{deleteRecipe.title}}? </p>
-    </div>
-    <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-    </div>
-  </div>
-
-
-  <!-- goShoppingButton -->
-  <div ng-show="recipes.selected.length > 0" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="modal-trigger" href="#shopCheck"><i class="large material-icons">shopping_cart</i>
-    </a>
-  </div>
-
-  <!-- shopCheck Modal -->
-  <div id="shopCheck" class="modal">
-    <div class="modal-content">
-      <p>On this trip, you are making:<p>
-      <ul>
-        <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
-      </ul>
-        Is this correct?
-    </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a ng-click="getShoppingList()" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-    </div>
-  </div>
-
-<script>
-$(document).ready(function(){
-  $('.modal-trigger').leanModal();
-  });
-</script>
+</div>

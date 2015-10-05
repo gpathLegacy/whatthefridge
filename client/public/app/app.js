@@ -5,6 +5,7 @@ angular.module('wtf', [
   // 'wtf.auth',
   // 'wtf.background',
   'wtf.create-recipes',
+  'wtf.recipes',
   'wtf.dashboard',
   'wtf.edit-recipes',
   // 'wtf.index',
@@ -49,6 +50,10 @@ angular.module('wtf', [
     .when('/dashboard', {
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'DashboardController'
+    })
+    .when('/recipes', {
+      templateUrl: 'app/recipes/recipes.html',
+      controller: 'RecipesController'
     })
     .when('/edit-recipes', {
       templateUrl: 'app/edit-recipes/edit-recipes.html',
