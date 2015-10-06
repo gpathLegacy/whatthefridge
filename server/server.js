@@ -1,10 +1,12 @@
 var express     = require('express'),
     bodyParser  = require('body-parser'),
     morgan      = require('morgan');
+    require('dotenv').load();
 
 var app = express();
-var PORT = 1337;
+var port = process.env.PORT || 1337;
 var path = require('path');
+var pg = require('pg');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -52,14 +54,14 @@ app.use(passport.session());
 
 // =============== ROUTING =================
 
-// -----------------------------------------
 // Secured Routes --------------------------
-
 var auth = function(req, res, next){
   if (!req.isAuthenticated())
     res.send(401);
   else next();
 };
+
+var connectionString = "postgres://rkfmctpbqycnga:FHArq47KczLKdBeCmOVET1MrIe@ec2-54-197-241-24.compute-1.amazonaws.com:5432/d95ld79pk4hae1"
 
 app.get('/app/about/about.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/about/about.html'));
@@ -85,6 +87,18 @@ app.get('/app/fridge/fridge.html', auth, function(req, res) {
 app.get('/app/saved-lists/saved-lists.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/saved-lists/saved-lists.html'));
 });
+app.get('/db', function (request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    client.query('SELECT * FROM test_table', function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+})
+
 
 // -----------------------------------------
 // API routes ------------------------------
@@ -101,7 +115,7 @@ app.use('/api/ingredients', ingredientsRouter); // use ingredient router
 app.use('/api/fridge', fridgeRouter);
 app.use('/api/shoppingLists', shoppingListsRouter);
 
-// inject our routers and models into their respective route files
+// inject our routers into their respective route files
 require('./users/usersRoutes.js')(usersRouter, passport);
 require('./recipes/recipesRoutes.js')(recipesRouter, Recipes, Ingredients);
 require('./ingredients/ingredientsRoutes.js')(ingredientsRouter, Ingredients);
@@ -110,4 +124,4 @@ require('./shoppingLists/shoppingListsRoutes.js')(shoppingListsRouter, ShoppingL
 
 // =========================================
 
-app.listen(PORT);
+app.listen(port);

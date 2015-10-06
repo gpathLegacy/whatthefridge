@@ -117,6 +117,7 @@ module.exports = function(passport, knex, Users) {
           });
       }));
 
+
   passport.use(new TwitterStrategy({
         consumerKey: configAuth.twitterAuth.consumerKey,
         consumerSecret: configAuth.twitterAuth.consumerSecret,
