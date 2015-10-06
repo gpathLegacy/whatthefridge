@@ -11,6 +11,15 @@ angular.module('wtf.shopping-list', [])
 
     $scope.shoppingList = [];
 
+    $scope.addModal = function() {
+      $("#addItem").openModal();
+    };
+
+    $scope.addItem = function() {
+      console.log($scope.shoppingList);
+      $scope.shoppingList.push({'name':$scope.itemToAdd, 'price':'0.00', 'qty':1});
+    };
+
     $scope.saveModal = function() {
       $("#saveList").openModal();
     };
@@ -35,7 +44,7 @@ angular.module('wtf.shopping-list', [])
         return false;
       }
       return true;
-    }
+    };
 
     $scope.populateList = function() {
       // When we initialize this page, set fridgeFlag to true, enabling the fridge button.

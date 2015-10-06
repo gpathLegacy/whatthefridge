@@ -11,16 +11,24 @@ module.exports = function(Fridge, Ingredients) {
       for (var i = 0; i < list.length; i++) {
         (function(index){
           Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
-            Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
-              if (fridgeIngredient.length) {
-                // if item is already in user's fridge, update quantity
-                Fridge.updateItemQty(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
-              }
-              else {
-                // else add item to fridge
-                Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty, list[index].expiration).then(function(){});
-              }
-            })
+            // if ingredient doesn't exist (added on shopping list page), create ingredient first
+            if (!ingredient.length) {
+              Ingredients.addIngredient(req.user.id, list[index].name, list[index].price).then(function(id) {
+                Fridge.addNewItem(req.user.id, id[0], list[index].qty, list[index].expiration).then(function(){});
+              });
+            }
+            else {
+              Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
+                if (fridgeIngredient.length) {
+                  // if item is already in user's fridge, update quantity
+                  Fridge.updateItemQty(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
+                }
+                else {
+                  // else add item to fridge
+                  Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty, list[index].expiration).then(function(){});
+                }
+              });
+            }
           });
         })(i)
       }
