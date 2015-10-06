@@ -61,6 +61,8 @@ var auth = function(req, res, next){
   else next();
 };
 
+var connectionString = "postgres://rkfmctpbqycnga:FHArq47KczLKdBeCmOVET1MrIe@ec2-54-197-241-24.compute-1.amazonaws.com:5432/d95ld79pk4hae1"
+
 app.get('/app/about/about.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/about/about.html'));
 });
@@ -85,7 +87,17 @@ app.get('/app/fridge/fridge.html', auth, function(req, res) {
 app.get('/app/saved-lists/saved-lists.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/saved-lists/saved-lists.html'));
 });
-
+app.get('/db', function (request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    client.query('SELECT * FROM test_table', function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+})
 
 
 // -----------------------------------------
