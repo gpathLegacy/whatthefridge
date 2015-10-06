@@ -23,7 +23,13 @@ app.use(session({
   saveUninitialized: true,
   resave: true }));
 
-var knex = require('knex')(require('./database/knexfile.js').development);
+// var knex = require('knex')(require('./database/knexfile.js').development);
+
+//Setup our database
+var knexfile = require('./database/knexfile.js');
+var environment = process.env.NODE_ENV || 'development';
+var knex = require('knex')(knexfile[environment]);
+knex.migrate.latest([knexfile]);
 
 // =========================================
 
