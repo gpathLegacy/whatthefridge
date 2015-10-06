@@ -74,7 +74,7 @@ body {
 
 /*=====how-it-works=====*/
 #how-it-works-container{
-  border: 3px double black;
+  border: 3px solid black;
 }
 
 #hiw-call-to-action-container{
@@ -94,6 +94,9 @@ body {
 }
 #hiw-rightmost-content{
   padding-right: 1em;
+}
+#hiw-title{
+  font-family:
 }
 
 /*=====FAQ=====*/
