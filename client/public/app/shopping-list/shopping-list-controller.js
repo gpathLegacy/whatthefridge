@@ -30,7 +30,7 @@ angular.module('wtf.shopping-list', [])
 
       // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
       // the price won't be saved as undefined in the savePrice function
-      if(!formCheck[formName].$valid) {
+      if(formScope.$invalid) {
         Materialize.toast('Price must match format: 0.00', 4000)
         return false;
       }
@@ -42,6 +42,7 @@ angular.module('wtf.shopping-list', [])
       // Also set notSavedFlag to true, enabling the save button
       $scope.fridgeFlag = true;
       $scope.notSavedFlag = true;
+      $scope.totalPrice = 0;
 
       for (var i = 0; i < Recipes.selectedRecipes.length; i++) {
         for (var j = 0; j < Recipes.selectedRecipes[i].ingredients.length; j++) {
@@ -65,6 +66,7 @@ angular.module('wtf.shopping-list', [])
             (function(index){
               Recipes.getIngredientPrice($scope.shoppingList[$scope.shoppingList.length-1]).then(function(price) {
                 $scope.shoppingList[index].price = price.data;
+                $scope.totalPrice += parseFloat(price.data);
               });
             })($scope.shoppingList.length-1)
           }
@@ -73,8 +75,9 @@ angular.module('wtf.shopping-list', [])
       Recipes.selectedRecipes = [];
     };
 
-    $scope.savePrice = function(ingredient, index) {
+    $scope.savePrice = function(ingredient, prevPrice, index) {
       if ($scope.checkPrice(index)) {
+        $scope.totalPrice = $scope.totalPrice - parseFloat(prevPrice) + parseFloat(ingredient.price);
         Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
       }
     };
@@ -99,7 +102,7 @@ angular.module('wtf.shopping-list', [])
         
       }
     };
-    
+
     $scope.populateList();
     
   });

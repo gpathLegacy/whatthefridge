@@ -5,6 +5,15 @@ angular.module('wtf.saved-lists', [])
       SavedLists.getLists()
         .then(function(lists) {
           $scope.lists = lists.data;
+          for (var recipe in $scope.lists) {
+            var totalPrice = 0;
+            for (var key in $scope.lists[recipe]) {
+              if (Array.isArray($scope.lists[recipe][key])) {
+                totalPrice += parseFloat($scope.lists[recipe][key][1]);
+              }
+            }
+            $scope.lists[recipe].totalPrice = totalPrice;
+          }
           console.log($scope.lists);
           if (Object.keys($scope.lists).length === 0){
             $scope.show = true
