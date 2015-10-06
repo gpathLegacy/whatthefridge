@@ -29,7 +29,7 @@
       <span class="secondary-content">Price: ${{props[1]}}</span>
     </li>
     <li class="collection-item center-align list-price">
-      Total Price: ${{list.totalPrice}}
+      Total Price: ${{list.totalPrice.toFixed(2)}}
     </li>
     <div class="center-align"><button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button></div>
   </ul>
