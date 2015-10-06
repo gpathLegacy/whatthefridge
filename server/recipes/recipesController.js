@@ -32,6 +32,12 @@ module.exports = function(Recipes, Ingredients) {
 
       res.sendStatus(200);
     },
+    /* NOTE FOR BELOW FUNCTION
+    PostgreSQL returns decimal/numeric datatypes as strings. This is because PostgreSQL can handle
+    much much larger numbers than JavaScript, so the PG that interacts with Node converts numeric (not integer)
+    into a string so that precision is not lost. To get around this, we have to parseFloat the price field to
+    convert it back into a number.
+    */
     getRecipes: function(req, res) {
        Recipes.getAllRecipes(req.user.id)
         .then(function(data){

@@ -47,6 +47,14 @@ module.exports = function(knex) {
           })
           .del();
         });
+    },
+    deleteItem: function(user_id, ingredient_id) {
+      return knex('fridge')
+        .where({
+          'user_id':user_id,
+          'ingredient_id':ingredient_id
+        })
+        .del();
     }
   }
 }
