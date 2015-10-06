@@ -99,10 +99,10 @@ angular.module('wtf.dashboard', [])
       })
     };
 
-    $scope.getLists = function() {
+    $scope.getLists = function() {  
       SavedLists.getLists().then(function(lists) {
         $scope.lists = lists.data;
-        $scope.listsCount = Object.keys($scope.lists).length
+         $scope.listsCount = Object.keys($scope.lists).length
         console.log($scope.listsCount)
       });
     };
