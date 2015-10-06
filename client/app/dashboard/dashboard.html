@@ -58,7 +58,8 @@
         <div class="card-content">
           <span ng-if="expired.length > 0" class="card-title activator">Expired</span>
           <span ng-if="expired.length === 0" class="card-title">Expired</span>
-          <p ng-if="expired.length > 0">You let {{expired.length}} items worth ${{expiredValue}} expire!</p>
+          <p ng-if="expired.length > 1">You let {{expired.length}} items worth ${{expiredValue}} expire!</p>
+          <p ng-if="expired.length === 1">You let 1 item worth ${{expiredValue}} expire!</p>
           <p ng-if="expired.length === 0">You have no expired items in the fridge</p>
         </div>
         <div class="card-reveal">
@@ -81,7 +82,9 @@
         <div class="card-content">
           <span ng-if="allRecipes.length > 0" class="card-title activator white-text text-darken-4">Recipes</span>
           <span ng-if="allRecipes.length === 0" class="card-title white-text text-darken-4">Recipes</span>
-          <p>You have {{allRecipes.length}} recipes recorded</p>
+          <p ng-if="allRecipes.length === 0">You don't have any saved recipes</p>
+          <p ng-if="allRecipes.length > 1">You have {{allRecipes.length}} saved recipes</p>
+          <p ng-if="allRecipes.length === 1">You have 1 saved recipe</p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
@@ -102,7 +105,9 @@
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
           <span class="card-title activator white-text text-darken-4">Saved Lists</span>
-          <p> You have {{listsCount}} saved shopping lists</p>
+          <p ng-if="listsCount === 0">You don't have any saved shopping lists</p>
+          <p ng-if="listsCount === 1">You have 1 saved shopping list</p>
+          <p ng-if="listsCount > 1"> You have {{listsCount}} saved shopping lists</p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
