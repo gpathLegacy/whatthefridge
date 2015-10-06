@@ -17,7 +17,20 @@ angular.module('wtf.shopping-list', [])
 
     $scope.addItem = function() {
       console.log($scope.shoppingList);
-      $scope.shoppingList.push({'name':$scope.itemToAdd, 'price':'0.00', 'qty':1});
+      // check if item already exists in shopping list
+      var alreadyExists = false;
+      for (var i = 0; i < $scope.shoppingList.length; i++) {
+        if ($scope.shoppingList[i].name === $scope.itemToAdd) {
+          alreadyExists = true;
+          break;
+        }
+      }
+      if (alreadyExists) {
+        Materialize.toast('Item already exists in shopping list!', 4000);
+      }
+      else {
+        $scope.shoppingList.push({'name':$scope.itemToAdd, 'price':'0.00', 'qty':1});
+      }
     };
 
     $scope.saveModal = function() {
