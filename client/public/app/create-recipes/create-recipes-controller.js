@@ -15,7 +15,7 @@ angular.module('wtf.create-recipes', [])
     $scope.saveRecipe = function() {
         Recipes.createRecipe($scope.recipe)
           .then(function(){
-            $location.path("/dashboard");
+            $location.path("/recipes");
           });
     };
   });
