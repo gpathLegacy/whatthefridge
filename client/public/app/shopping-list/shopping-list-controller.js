@@ -11,6 +11,28 @@ angular.module('wtf.shopping-list', [])
 
     $scope.shoppingList = [];
 
+    $scope.addModal = function() {
+      $("#addItem").openModal();
+    };
+
+    $scope.addItem = function() {
+      console.log($scope.shoppingList);
+      // check if item already exists in shopping list
+      var alreadyExists = false;
+      for (var i = 0; i < $scope.shoppingList.length; i++) {
+        if ($scope.shoppingList[i].name === $scope.itemToAdd) {
+          alreadyExists = true;
+          break;
+        }
+      }
+      if (alreadyExists) {
+        Materialize.toast('Item already exists in shopping list!', 4000);
+      }
+      else {
+        $scope.shoppingList.push({'name':$scope.itemToAdd, 'price':'0.00', 'qty':1});
+      }
+    };
+
     $scope.saveModal = function() {
       $("#saveList").openModal();
     };
@@ -35,7 +57,7 @@ angular.module('wtf.shopping-list', [])
         return false;
       }
       return true;
-    }
+    };
 
     $scope.populateList = function() {
       // When we initialize this page, set fridgeFlag to true, enabling the fridge button.
