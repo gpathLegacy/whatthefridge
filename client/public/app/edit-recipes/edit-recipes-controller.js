@@ -38,7 +38,7 @@ angular.module('wtf.edit-recipes', [])
 
       Recipes.editRecipe($scope.recipe)
         .then(function(){
-          $location.path("/dashboard");
+          $location.path("/recipes");
         });
     };
 
