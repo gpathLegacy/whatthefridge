@@ -17,7 +17,7 @@
     Shopping list saved.
   </div>
   <div class="row center-align list-price">
-    Total Price: ${{totalPrice}}
+    Total Price: ${{totalPrice.toFixed(2)}}
   </div>
   <ul class="collection">
     <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
