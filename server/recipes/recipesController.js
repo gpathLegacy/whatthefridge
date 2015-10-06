@@ -109,6 +109,9 @@ module.exports = function(Recipes, Ingredients) {
         .then(function(data){
           res.json("deleted " + req.body.title);
         })
+    },
+    suggestRecipe: function(req, res){
+      
     }
   } 
 }
