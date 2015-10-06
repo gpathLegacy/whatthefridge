@@ -29,7 +29,10 @@ app.use(session({
 var knexfile = require('./database/knexfile.js');
 var environment = process.env.NODE_ENV || 'development';
 var knex = require('knex')(knexfile[environment]);
-knex.migrate.latest([knexfile]);
+knex.migrate.latest([knexfile])
+.then(function(data){}, function(err){
+  if(err) console.log(err, " :Error ENOENT is expected when no new migrations exist and does not break code.");
+});
 
 // =========================================
 
