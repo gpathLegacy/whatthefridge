@@ -96,7 +96,8 @@ body {
   padding-right: 1em;
 }
 #hiw-title{
-  font-family:
+  /*font-family:;*/
+  text-shadow: 2px 0 0;
 }
 
 /*=====FAQ=====*/
