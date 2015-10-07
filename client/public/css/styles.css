@@ -74,26 +74,39 @@ body {
 
 /*=====how-it-works=====*/
 #how-it-works-container{
-  border: 3px double black;
+  border: 3px solid black;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #hiw-call-to-action-container{
-  padding:.2em 2em .2em;
+  padding:.1em 2em .1em;
 }
 
 .how-it-works-contents{
   border-right-style: dashed;
   border-right-width: .1em;
+  height: 2em;
 }
 
-#hiw-title-contents{
+.hiw-content-title{
   font-size: 2em;
 }
+
 .hiw-hover-icon{
   margin-top: -2em;
 }
+
+#hiw-row-container{
+  /*height: 80px;*/
+}
+
 #hiw-rightmost-content{
   padding-right: 1em;
+}
+#hiw-title{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  padding-bottom: .2em;
+  margin-bottom: .2em;
 }
 
 /*=====FAQ=====*/
