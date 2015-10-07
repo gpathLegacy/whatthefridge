@@ -17,14 +17,13 @@
       <a id="logo-container" href="#" class="brand-logo white-text">WTF!</a>
       <!-- Collapsible Functionality -->
       <ul class="right hide-on-med-and-down">
-      <!-- Right Side of Navbar -->
+        <!-- Right Side of Navbar -->
         <li ng-show="loggedIn"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
         <li ng-show="loggedIn"><a href="#/recipes" class="navbar-font-color">Recipes</a></li>
         <li ng-show="loggedIn"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
         <li ng-show="loggedIn"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
         <!-- Modal Trigger Inside Class Declaration -->
         <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active navbar-font-color"></i></a></li>
-
         <li ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
       </ul>
       <!-- Start Side-Nav -->
