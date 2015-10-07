@@ -86,17 +86,24 @@ body {
   border-right-width: .1em;
 }
 
-#hiw-title-contents{
+.hiw-content-title{
   font-size: 2em;
+  padding-top: -20em;
 }
+
 .hiw-hover-icon{
   margin-top: -2em;
 }
+
+/*.hiw-content-indicator{
+  font-size:30em;
+}*/
+
 #hiw-rightmost-content{
   padding-right: 1em;
 }
 #hiw-title{
-  /*font-family:;*/
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   text-shadow: 2px 0 0;
 }
 
