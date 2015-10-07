@@ -79,32 +79,34 @@ body {
 }
 
 #hiw-call-to-action-container{
-  padding:.2em 2em .2em;
+  padding:.1em 2em .1em;
 }
 
 .how-it-works-contents{
   border-right-style: dashed;
   border-right-width: .1em;
+  height: 2em;
 }
 
 .hiw-content-title{
   font-size: 2em;
-  padding-top: -40px;
 }
 
 .hiw-hover-icon{
   margin-top: -2em;
 }
 
-/*.hiw-content-indicator{
-  font-size:30em;
-}*/
+#hiw-row-container{
+  /*height: 80px;*/
+}
 
 #hiw-rightmost-content{
   padding-right: 1em;
 }
 #hiw-title{
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  padding-bottom: .2em;
+  margin-bottom: .2em;
 }
 
 /*=====FAQ=====*/
