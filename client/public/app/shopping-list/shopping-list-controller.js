@@ -16,7 +16,6 @@ angular.module('wtf.shopping-list', [])
     };
 
     $scope.addItem = function() {
-      console.log($scope.shoppingList);
       // check if item already exists in shopping list
       var alreadyExists = false;
       for (var i = 0; i < $scope.shoppingList.length; i++) {
@@ -86,7 +85,7 @@ angular.module('wtf.shopping-list', [])
             // get and set price of most recently pushed ingredient object
             // (self calling function is required in order to update the correct index inside the promise)
             (function(index){
-              Recipes.getIngredientPrice($scope.shoppingList[$scope.shoppingList.length-1]).then(function(price) {
+              Recipes.getIngredientPrice($scope.shoppingList[index]).then(function(price) {
                 $scope.shoppingList[index].price = price.data;
                 $scope.totalPrice += parseFloat(price.data);
               });
@@ -98,9 +97,14 @@ angular.module('wtf.shopping-list', [])
     };
 
     $scope.savePrice = function(ingredient, prevPrice, index) {
-      if ($scope.checkPrice(index)) {
-        $scope.totalPrice = $scope.totalPrice - parseFloat(prevPrice) + parseFloat(ingredient.price);
-        Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+      // for some reason this function is being called on page load, which is causing huge problems
+      // such as unnecessary toasts and NaN problems. We just need to check if prevPrice is defined
+      // to make sure the function isn't being run when it's not supposed to
+      if(prevPrice) {
+        if ($scope.checkPrice(index)) {
+          $scope.totalPrice = parseFloat($scope.totalPrice) - parseFloat(prevPrice) + parseFloat(ingredient.price);
+          Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+        }
       }
     };
 
