@@ -110,7 +110,9 @@ body {
 
 /*=====FAQ=====*/
 
-
+.icon-color-modifier{
+  color:#f57c00;
+}
 
 /*=====tech-stack=====*/
 #tech-stack-container{
