@@ -10,7 +10,7 @@
         <div class="card-content">
         <span ng-if="expiring.length > 0" class="card-title activator">Expiring Soon </span>
         <span ng-if="expiring.length === 0" class="card-title">Expiring Soon </span>
-          <p ng-if="expiring.length > 0 ">You have ${{expireAmount}} worth of food expiring soon</p>
+          <p ng-if="expiring.length > 0 ">You have ${{expireAmount.toFixed(2)}} worth of food expiring soon</p>
           <p ng-if="expiring.length ===0">You have nothing expiring soon </p>
         </div>
         <div class="card-reveal">
@@ -34,7 +34,7 @@
           <span ng-if="fridgeData.length === 0" class="card-title">Fridge</span>
           <p ng-if="fridgeData.length === 0 "> You have nothing in your fridge</p>
           <div ng-if="fridgeData.length > 0">
-            <p>Your fridge is currently worth ${{freshValue}}</p>
+            <p>Your fridge is currently worth ${{freshValue.toFixed(2)}}</p>
           </div>
         </div>
         <div class="card-reveal">
@@ -58,8 +58,8 @@
         <div class="card-content">
           <span ng-if="expired.length > 0" class="card-title activator">Expired</span>
           <span ng-if="expired.length === 0" class="card-title">Expired</span>
-          <p ng-if="expired.length > 1">You let {{expired.length}} items worth ${{expiredValue}} expire!</p>
-          <p ng-if="expired.length === 1">You let 1 item worth ${{expiredValue}} expire!</p>
+          <p ng-if="expired.length > 1">You let {{expired.length}} items worth ${{expiredValue.toFixed(2)}} expire!</p>
+          <p ng-if="expired.length === 1">You let 1 item worth ${{expiredValue.toFixed(2)}} expire!</p>
           <p ng-if="expired.length === 0">You have no expired items in the fridge</p>
         </div>
         <div class="card-reveal">
@@ -67,7 +67,7 @@
           The following items have expired: 
           <br></br>
           <div ng-repeat="subitem in expired">
-            <span>${{subitem.qty * subitem.price}} worth of {{subitem.name}} expired {{subitem.expiration | date: 'shortDate'}}</span>
+            <span>${{(subitem.qty * subitem.price).toFixed(2)}} worth of {{subitem.name}} expired {{subitem.expiration | date: 'shortDate'}}</span>
           </div>
         </div>
       </div>
@@ -89,8 +89,8 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           <div ng-if="allRecipes.length > 0">
-            <span>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price}}</span>
-            <p>Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price}}</p>
+            <span>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price.toFixed(2)}}</span>
+            <p>Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price.toFixed(2)}}</p>
           </div>
           <div ng-if="allRecipes.length === 0"> You have no recipes</div>
         </div>
