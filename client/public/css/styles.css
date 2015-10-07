@@ -147,6 +147,10 @@ body {
   font-size:1em;
 }
 
+#team-intro-card-holder{
+  padding-top: 3em;
+}
+
 /*will equally space all cards along a given screen width*/
 /*.card-container{
   display:flex;
