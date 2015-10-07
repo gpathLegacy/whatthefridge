@@ -43,13 +43,25 @@
             </div>
             <!-- End Trifold Body-Content -->
         </div>
-        <div class="teal left-align" id="hiw-call-to-action-container"><p class="flow-text">What are you waiting for?  Sign up!<button class="btn waves-effect waves-light right" type="submit" name="action">Sign up!<i class="material-icons right">send</i></button></p></div>
+        <div class="teal left-align" id="hiw-call-to-action-container"><p class="flow-text">What are you waiting for?  Sign up!<button data-target="modal1" class="btn waves-effect waves-light modal-trigger right">Sign up!<i class="material-icons right">send</i></button></p></div>
       </div>
       <!-- End Trifold Container -->
     </div>
   </div>
 </div>
 <!-- End How It Works -->
+
+<!-- Start Authenticate Modal Structure-->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+<!-- End Authenticate Modal Structure -->
 
 <!-- Start Tech Stack -->
 <div class="grey darken-3 blue-text text-lighten-3">
@@ -95,7 +107,7 @@
 <div class="hide-on-small-only">
   <div class="parallax-container">
     <div class="parallax"><img src="../../img/fridge2-2.jpg"></div>
-    <h2 class="center-align black-text">FAQ</h2>
+    <h2 class="center-align white-text">FAQ</h2>
     <div class="container">
       <ul class="collapsible popout" data-collapsible="accordion">
         <li>
@@ -123,7 +135,6 @@
   </div>
 </div>
 <!-- End FAQ Collapsible Popout -->
-
 <!-- Start Team Introductions -->
 <div class="row col-s12 hide-on-small-only teal lighten-4" id="team-intro-card-holder">
   <!-- Start Josh -->
@@ -279,5 +290,6 @@
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
     $('.parallax').parallax();
+    $('.modal-trigger').leanModal();
   });
  </script>
