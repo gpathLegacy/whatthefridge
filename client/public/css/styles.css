@@ -71,7 +71,6 @@ body {
 
 /*==========landing.html==========*/
 
-
 /*=====how-it-works=====*/
 #how-it-works-container{
   border: 3px solid black;
@@ -110,6 +109,20 @@ body {
 }
 
 /*=====FAQ=====*/
+
+.icon-color-modifier{
+  color:#f57c00;
+}
+
+.faq-outer-panel{
+  background-color: #424242;
+  color:white;
+}
+
+.faq-inner-panel{
+  background-color: #424242;
+  color:#90caf9;
+}
 
 /*=====tech-stack=====*/
 #tech-stack-container{
