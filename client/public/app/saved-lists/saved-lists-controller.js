@@ -1,23 +1,34 @@
-angular.module('wtf.saved-lists', [])
+angular.module('wtf.saved-lists', ['ui.materialize'])
   .controller('SavedListsController', function($scope, $location, SavedLists, Recipes) {
 
     $scope.getLists = function() {
       SavedLists.getLists()
         .then(function(lists) {
           $scope.lists = lists.data;
-          for (var recipe in $scope.lists) {
+
+          // Add up total price for each list
+          for (var list in $scope.lists) {
             var totalPrice = 0;
-            for (var key in $scope.lists[recipe]) {
-              if (Array.isArray($scope.lists[recipe][key])) {
-                totalPrice += parseFloat($scope.lists[recipe][key][1]);
+            for (var key in $scope.lists[list]) {
+              // if we're examining an ingredient, the value of the key is a tuple, so we can check
+              // for ingredients by looking for an array
+              if (Array.isArray($scope.lists[list][key])) {
+                totalPrice += parseFloat($scope.lists[list][key][1]);
               }
             }
-            $scope.lists[recipe].totalPrice = totalPrice;
+            $scope.lists[list].totalPrice = totalPrice;
+
+            // If list is unnamed, set it's list_name equal to its date
+            if (!$scope.lists[list].list_name) {
+              $scope.lists[list].list_name = $scope.lists[list].date;
+            }
           }
-          console.log($scope.lists);
+
           if (Object.keys($scope.lists).length === 0){
             $scope.show = true
           }
+
+          $('.collapsible').collapsible();
         });
     };
 
