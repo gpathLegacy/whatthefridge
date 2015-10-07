@@ -149,7 +149,7 @@ body {
   width: 60px;
 }
 
-/*===========dashboard===========*/
+/*===========recipes===========*/
 .button-add {
   margin-top: 30px;
 }
@@ -172,6 +172,9 @@ body {
   font-size: 2em;
 }
 
+.search-bar{
+  width: 30%;
+}
 /*========create-recipes=========*/
 
 .addButton {
