@@ -28,6 +28,14 @@ module.exports = function(knex) {
         })
     },
 
+    addListMapping: function(shopping_list_id, recipe_id) {
+      return knex('shopping_lists_recipes')
+        .insert({
+          'list_id':shopping_list_id,
+          'recipe_id':recipe_id
+        });
+    },
+
     deleteListIngredients: function(list_id) {
       return knex('shopping_lists_ingredients')
         .where('shopping_list_id', list_id)

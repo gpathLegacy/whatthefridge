@@ -73,14 +73,16 @@ angular.module('wtf.shopping-list', [])
             return item.name === Recipes.selectedRecipes[i].ingredients[j]
           });
 
-          // If item exists, increase its quantity
+          // If item exists, increase its quantity and add the recipeID to its recipes array
           if (existingItem.length) {
             $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].qty++;
+            $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].recipes.push(Recipes.selectedRecipes[i].id);
           }
 
           // If item doesn't exist, add it to shopping list
           else {
-            $scope.shoppingList.push({ name: Recipes.selectedRecipes[i].ingredients[j], qty:1 });
+            $scope.shoppingList.push({ name: Recipes.selectedRecipes[i].ingredients[j], qty:1,
+             recipes:[Recipes.selectedRecipes[i].id] });
           
             // get and set price of most recently pushed ingredient object
             // (self calling function is required in order to update the correct index inside the promise)
@@ -93,6 +95,7 @@ angular.module('wtf.shopping-list', [])
           }
         }
       }
+
       Recipes.selectedRecipes = [];
     };
 

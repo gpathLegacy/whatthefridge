@@ -27,7 +27,8 @@ module.exports = function(ShoppingLists, Ingredients) {
 
     saveList: function(req, res) {
       var list = req.body.list;
-
+      var recipes = [];
+      
       ShoppingLists.newList(req.user.id, req.body.list_name).then(function(id) {
         var listId = id[0];
         for (var i = 0; i < list.length; i++) {
@@ -35,8 +36,20 @@ module.exports = function(ShoppingLists, Ingredients) {
             Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
               ShoppingLists.newItem(listId, ingredient[0].id, list[index].qty).then(function(){});
             });
-          })(i)
+          })(i);
+          // if recipe ID hasn't been added to recipes array, push it
+          for (var j=0; j<list[i].recipes.length; j++) {
+            if(recipes.indexOf(list[i].recipes[j]) === -1) {
+              recipes.push(list[i].recipes[j]);
+            }
+          }
         }
+
+        // Map the recipes associated with this shopping list
+        for (var i=0; i < recipes.length; i++) {
+          ShoppingLists.addListMapping(listId, recipes[i]).then(function(){});
+        }
+        
       });
 
       res.send(200);
