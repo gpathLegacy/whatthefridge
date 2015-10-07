@@ -47,6 +47,10 @@ body {
   color:white;
 }
 
+#footer{
+  margin-top: 0;
+}
+
 /*changes background of popped-out portion*/
 #footer-collapsible{
   border-color:#424242;
@@ -149,6 +153,7 @@ body {
 
 #team-intro-card-holder{
   padding-top: 3em;
+  margin-bottom: 0;
 }
 
 /*will equally space all cards along a given screen width*/
