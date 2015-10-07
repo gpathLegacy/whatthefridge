@@ -114,6 +114,11 @@ body {
   color:#f57c00;
 }
 
+.faq-outer-panel{
+  background-color: #424242;
+  color:white;
+}
+
 /*=====tech-stack=====*/
 #tech-stack-container{
   padding-left: 2em;
