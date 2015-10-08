@@ -86,26 +86,15 @@ angular.module('wtf.dashboard', [])
         $scope.expireAmount = valueCalculator($scope.expiring);
 
         $scope.highestQtyFridge = $scope.freshItems
-          .reduce(function(most, test){
-            if (test.qty > most.qty){
-              return test
-            }else{
-              return most
-            }
-        })
+          .filter(function(entry){
+            return entry.qty > 2
+          })
 
         $scope.lowestQtyFridge = $scope.freshItems
-        .reduce(function(least, test){
-          if (test.qty < least.qty){
-            return test
-          }else{
-            return least
-          }
+          .filter(function(entry){
+            return entry.qty === "1.00"
         })
 
-        if($scope.lowestQtyFridge.id === $scope.highestQtyFridge.id){
-          $scope.hideOneItem = true;
-        }
         
         // if($scope.expiring.length){
         //   var item = $scope.expiring.length === 1 ? " item" : " items";

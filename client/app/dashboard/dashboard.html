@@ -45,9 +45,12 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
           <p>You have {{fridgeData.length}} unique items in your fridge </p>
-          <p>You have a lot of {{highestQtyFridge.name}}. Careful, it will expire on {{highestQtyFridge.expiration | date: 'mediumDate'}}</p>
-          <p>Hide one status is {{hideOneItem}}</p>
-          <p ng-if="!hideOneItem">You don't have a lot of {{lowestQtyFridge.name}}. Make sure to use it all before it expires on {{lowestQtyFridge.expiration | date: 'mediumDate'}}</p>
+          <div ng-if="highestQtyFridge.length">You have a lot of: 
+            <ul ng-repeat="item in highestQtyFridge">{{item.name}}</ul>
+          </div>
+          <div ng-if="lowestQtyFridge.length">You don't have a lot of:
+          <ul ng-repeat="item in lowestQtyFridge">{{item.name}}</ul>
+          </div>
         </div>
         <div class="card-action">
           <a href="#/fridge">Go to the Fridge</a>
