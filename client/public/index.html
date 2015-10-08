@@ -45,67 +45,66 @@
 
   <!-- Start Modal Structure -->
   <div id="modal1" class="modal center">
-    <div class="modal-content">
-      <h4>Sign In With Social Media!</h4>
-      <div class="modal-row row">
-        <div class="offset-s4 col s4 icons">
-          <a href="/api/users/auth/facebook"><img class="social" src="/img/facebook.png" /></a>
-          <a href="/api/users/auth/twitter"><img class="social" src="/img/twitter.png" /></a>
-          <a href="/api/users/auth/instagram"><img class="social" src="/img/instagram.png" /></a>
-          <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
-        </div>
-      </div>
-      -or-
-      <br>
-      click appropriate tab to begin
-      <br><br>
-
-      <!-- Start Tabs -->
-      <div class="row">
-        <div class="col s12">
-          <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#login">Log-In</a></li>
-            <li class="tab col s3"><a href="#signup">Sign-up</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Log-in Tab Contents -->
-      <div id="login" class="col s12">
-        <form class="col s12" action="/api/users/login" method="post">
-          <div class="row">
-            <div class="offset-s3 input-field col s6">
-              <label>Username</label>
-              <input type="text" name="username">
-            </div>
-            <div class="offset-s3 input-field col s6">
-              <label>Password</label>
-              <input type="password" name="password">
-            </div>
+      <div class="modal-content white-text" style="background-color:#424242">
+        <h4 class="white-text">Sign In With Social Media!</h4>
+        <div class="modal-row row">
+          <div class="offset-s4 col s4 icons">
+            <a href="/api/users/auth/facebook"><img class="social" src="/img/facebook.png" /></a>
+            <a href="/api/users/auth/twitter"><img class="social" src="/img/twitter.png" /></a>
+            <a href="/api/users/auth/instagram"><img class="social" src="/img/instagram.png" /></a>
+            <a href="/api/users/auth/google"><img class="social" src="/img/google.png" /></a>
           </div>
-        <button type="submit" class="btn">Login</button>
-        </form>
-      </div>
-
-      <!-- Sign-up Tab Contents -->
-      <div id="signup" class="col s12">
-        <form class="col s8" action="/api/users/signup" method="post">
-          <div class="row">
-            <div class="input-field offset-s3 col s6">
-              <label>Username</label>
-              <input type="text" name="username">
-            </div>
-            <div class="input-field col s6 offset-s3">
-              <label>Password</label>
-              <input type="password" name="password">
-            </div>
+        </div>
+        -or-
+        <br><br>
+        <!-- Start Tabs -->
+        <div class="row">
+          <div class="col s12">
+          <div class="container">
+            <ul class="tabs white-text">
+              <li class="tab col s3"><a class="active grey-text text-darken-3" style="border: 3px solid blue" href="#login">Log-In</a></li>
+              <li class="tab col s3"><a class="grey-text text-darken-3" style="border: 3px solid black" href="#signup">Sign-up</a></li>
+            </ul>
           </div>
-        <button type="submit" class="btn">Signup</button>
-        </form>
+          </div>
+        </div>
+
+        <!-- Log-in Tab Contents -->
+        <div id="login" class="col s12">
+          <form class="col s12" action="/api/users/login" method="post">
+            <div class="row">
+              <div class="offset-s3 input-field col s6">
+                <label>Username</label>
+                <input type="text" name="username">
+              </div>
+              <div class="offset-s3 input-field col s6">
+                <label>Password</label>
+                <input type="password" name="password">
+              </div>
+            </div>
+          <button type="submit" class="btn orange darken-3"><i class="material-icons right">directions_run</i>Login</button>
+          </form>
+        </div>
+
+        <!-- Sign-up Tab Contents -->
+        <div id="signup" class="col s12">
+          <form class="col s8" action="/api/users/signup" method="post">
+            <div class="row">
+              <div class="input-field offset-s3 col s6">
+                <label>Username</label>
+                <input type="text" name="username">
+              </div>
+              <div class="input-field col s6 offset-s3">
+                <label>Password</label>
+                <input type="password" name="password">
+              </div>
+            </div>
+          <button type="submit" class="btn orange darken-3">Signup</button>
+          </form>
+        </div>
+        <!-- End Tabs -->
       </div>
-      <!-- End Tabs -->
     </div>
-  </div>
  <!-- End Modal Structure -->
 
     <main>

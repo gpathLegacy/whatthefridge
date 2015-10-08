@@ -1,4 +1,7 @@
 /*==========index.html==========*/
+
+
+
 .social {
   height: 50px;
   width: 50px;
@@ -10,6 +13,13 @@
 .modal-row {
   margin-bottom: 0;
 }
+
+/*=====modal=====*/
+modal-content{
+  padding-left: 0;
+  padding-right: 0;
+}
+
 
 /*=====navbar=====*/
 
