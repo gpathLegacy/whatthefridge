@@ -11,6 +11,9 @@
   margin-bottom: 0;
 }
 
+.dactive{
+  background: #485B61 !important;
+}
 /*=====navbar=====*/
 
 .navbar-font-color{

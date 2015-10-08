@@ -16,4 +16,9 @@ angular.module('wtf.nav-controller',[])
     $location.path('/')
     Navbar.logOut()
   }
+
+  $scope.isActive = function (viewLocation) {
+     var active = (viewLocation === $location.url());
+     return active;
+};
 });
