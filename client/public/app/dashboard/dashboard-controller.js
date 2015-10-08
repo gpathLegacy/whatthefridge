@@ -4,6 +4,7 @@ angular.module('wtf.dashboard', [])
       Recipes.getRecipes()
       .success(function(data){
         $scope.allRecipes = data;
+
         $scope.mostExpensiveRecipe = data.reduce(function(most, test){
           if (test.price > most.price){
             return test
@@ -11,13 +12,15 @@ angular.module('wtf.dashboard', [])
             return most
           }
         })
+
         $scope.leastExpensiveRecipe = data.reduce(function(least, test){
           if(test.price < least.price){
             return test
           }else{
             return least
           }
-        })  
+        })
+
         $scope.ingredientsUnique = data.map(function(entry){
           return  entry.ingredients
         })
@@ -93,6 +96,10 @@ angular.module('wtf.dashboard', [])
             return least
           }
         })
+
+        if($scope.lowestQtyFridge.id === $scope.highestQtyFridge.id){
+          $scope.hideOneItem = true;
+        }
         
         // if($scope.expiring.length){
         //   var item = $scope.expiring.length === 1 ? " item" : " items";
