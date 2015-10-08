@@ -1,7 +1,7 @@
 <div class="container">
   <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
   Add recipe
- <label>Search: <input ng-model="searchText"></label>
+ <input class="search-bar" ng-model="searchText" placeholder="Search by recipe name or ingredient"</label>
   <div class="container" ng-if="allRecipes.length === 0">
     <div class="row center">
       <div class="s12 m4 l8">

@@ -37,7 +37,7 @@ angular.module('wtf.fridge',[])
           Materialize.toast("You have " + $scope.expiring.length +
                             item + " worth $" +
                             $scope.expireAmount +
-                            " expiring in 2 days", 4000);
+                            " expiring soon", 4000);
         }
       })
     };
