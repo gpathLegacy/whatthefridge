@@ -16,6 +16,10 @@ angular.module('wtf.services', [])
       return $http.get('/api/recipes/getRecipes');
     };
 
+    var suggestRecipes = function() {
+      return $http.get('/api/recipes/suggestRecipe');
+    };
+
     var selectedRecipes = [];
     
     var getIngredientPrice = function(ingredient) {
@@ -32,7 +36,8 @@ angular.module('wtf.services', [])
             selectedRecipes:selectedRecipes,
             getIngredientPrice:getIngredientPrice,
             setIngredientPrice:setIngredientPrice,
-            deleteRecipe: deleteRecipe
+            deleteRecipe: deleteRecipe,
+            suggestRecipes:suggestRecipes
           };
   })
   

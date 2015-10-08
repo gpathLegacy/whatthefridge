@@ -92,8 +92,10 @@ module.exports = function(knex) {
       },
       getRecipeByTitle: function(userId, title){
         return knex
-          .select('recipes.id')
+          .select()
           .from('recipes')
+          .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
+          .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
           .where({'recipes.title':title, 'recipes.user_id':userId})
       }
     }

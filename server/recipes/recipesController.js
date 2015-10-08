@@ -111,7 +111,16 @@ module.exports = function(Recipes, Ingredients) {
         })
     },
     suggestRecipe: function(req, res){
-      
+      Recipes.getAllOtherUserRecipes(req.user.id)
+        .then(function(data){
+          var randomRecipe = data[Math.floor(Math.random()*data.length)];
+          var randomUser = randomRecipe.user_id;
+          var randomTitle = randomRecipe.title;
+          return Recipes.getRecipeByTitle(randomUser, randomTitle);
+        })
+        .then(function(data){
+          res.send(data);
+        })
     }
   } 
 }
