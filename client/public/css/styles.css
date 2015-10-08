@@ -47,6 +47,10 @@ body {
   color:white;
 }
 
+#footer{
+  margin-top: 0;
+}
+
 /*changes background of popped-out portion*/
 #footer-collapsible{
   border-color:#424242;
@@ -72,6 +76,40 @@ body {
 /*==========landing.html==========*/
 
 /*=====how-it-works=====*/
+
+.hiw-button-adjuster{
+  margin-top: -.3em;
+}
+
+.hiw-responsive-content{
+  font-size: 1em;
+  text-align: left;
+}
+
+#hiw-responsive-header{
+  color:white;
+  text-align: center;
+}
+
+#hiw-shell-container{
+  border: 3px solid black;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  text-align: center;
+}
+
+#hiw-inner-shell{
+  margin-bottom:0;
+  padding-top:.1em;
+  border-bottom:3px solid black;
+  background-color: #90caf9;
+}
+
+#hiw-inner-container{
+  border: 3px solid black;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background-color: white;
+}
+
 #how-it-works-container{
   border: 3px solid black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -81,31 +119,38 @@ body {
   padding:.1em 2em .1em;
 }
 
+#hiw-responsive-footer{
+  padding-top:1.5em;
+  padding-bottom: 1.5em;
+  margin-bottom: 0;
+  background-color: #90caf9;
+  border-top: 3px solid black;
+}
+
 .how-it-works-contents{
   border-right-style: dashed;
   border-right-width: .1em;
-  height: 2em;
 }
 
 .hiw-content-title{
   font-size: 2em;
+  margin-bottom: .3em;
 }
 
 .hiw-hover-icon{
   margin-top: -2em;
+  color: #f57c00;
 }
 
-#hiw-row-container{
-  /*height: 80px;*/
+#responsive-parallax{
+
 }
 
-#hiw-rightmost-content{
-  padding-right: 1em;
-}
-#hiw-title{
+#hiw-large-title{
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   padding-bottom: .2em;
   margin-bottom: .2em;
+  color:black;
 }
 
 /*=====FAQ=====*/
@@ -129,6 +174,11 @@ body {
   padding-left: 2em;
 }
 
+#tech-stack-outer-shell{
+  background-color: #424242;
+  color:#90caf9
+}
+
 /*=====team-intro cards=====*/
 .card-reveal-content{
   font-size:.8em;
@@ -145,6 +195,13 @@ body {
 
 .card-title-sizer{
   font-size:1em;
+}
+
+#team-intro-card-holder{
+  padding-top: 2em;
+  margin-bottom: 0;
+  padding-bottom: 2em;
+  background-color: #90caf9;
 }
 
 /*will equally space all cards along a given screen width*/
