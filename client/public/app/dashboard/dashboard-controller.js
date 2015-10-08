@@ -56,6 +56,13 @@ angular.module('wtf.dashboard', [])
           };
         })
 
+        
+        $scope.expiringToday = fridge.data.filter(function(entry){
+          if(entry.expiration && entry.expiration.split('T')[0] === $scope.todayInISO){
+            return entry;
+          }
+        })
+
         $scope.expiring = $scope.fridgeData
                                 .filter(function(entry){
                                   var entry_expires =  new Date(entry.expiration);

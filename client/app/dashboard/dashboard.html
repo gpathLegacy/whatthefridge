@@ -8,17 +8,21 @@
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
         </div>
         <div class="card-content">
-        <span ng-if="expiring.length > 0" class="card-title activator">Expiring Soon </span>
-        <span ng-if="expiring.length === 0" class="card-title">Expiring Soon </span>
-          <p ng-if="expiring.length > 0 ">You have ${{expireAmount}} worth of food expiring soon</p>
-          <p ng-if="expiring.length ===0">You have nothing expiring soon </p>
+          <span ng-if="expiring.length > 0 || expiringToday.length > 0" class="card-title activator">Expiring Soon </span>
+          <span ng-if="expiring.length === 0 && expiringToday.length === 0" class="card-title">Expiring Soon </span>
+            <p ng-if="expiring.length > 0">You have ${{expireAmount}} worth of food expiring soon</p>
+            <p ng-if="expiringToday.length > 0">You have {{expiringToday.length}} items expiring today!<p>
+            <p ng-if="expiring.length ===0 && expiringToday.length === 0">You have nothing expiring in the fridge</p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
-          The following items will expire soon: 
-          <br></br>
-          <div ng-repeat="subitem in expiring">
-            <span>{{subitem.name}}</span>
+          <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
+            Expiring soon: 
+            <ul>{{subitem.name}}</ul>
+          </div>
+          <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday">
+            Expiring today: 
+            <ul>{{subitem.name}}</ul>
           </div>
         </div>
       </div>
