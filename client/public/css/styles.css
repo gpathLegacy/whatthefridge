@@ -92,10 +92,15 @@ body {
 }
 
 #hiw-shell-container{
-  margin-bottom: 0;
   border: 3px solid black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
 
+#hiw-inner-shell{
+  margin-bottom:0;
+  padding-top:.1em;
+  border-bottom:3px solid black;
+  background-color: #009688;
 }
 
 #how-it-works-container{
