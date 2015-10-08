@@ -16,7 +16,6 @@ angular.module('wtf.shopping-list', [])
     };
 
     $scope.addItem = function() {
-      console.log($scope.shoppingList);
       // check if item already exists in shopping list
       var alreadyExists = false;
       for (var i = 0; i < $scope.shoppingList.length; i++) {
@@ -74,19 +73,21 @@ angular.module('wtf.shopping-list', [])
             return item.name === Recipes.selectedRecipes[i].ingredients[j]
           });
 
-          // If item exists, increase its quantity
+          // If item exists, increase its quantity and add the recipeID to its recipes array
           if (existingItem.length) {
             $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].qty++;
+            $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].recipes.push(Recipes.selectedRecipes[i].id);
           }
 
           // If item doesn't exist, add it to shopping list
           else {
-            $scope.shoppingList.push({ name: Recipes.selectedRecipes[i].ingredients[j], qty:1 });
+            $scope.shoppingList.push({ name: Recipes.selectedRecipes[i].ingredients[j], qty:1,
+             recipes:[Recipes.selectedRecipes[i].id] });
           
             // get and set price of most recently pushed ingredient object
             // (self calling function is required in order to update the correct index inside the promise)
             (function(index){
-              Recipes.getIngredientPrice($scope.shoppingList[$scope.shoppingList.length-1]).then(function(price) {
+              Recipes.getIngredientPrice($scope.shoppingList[index]).then(function(price) {
                 $scope.shoppingList[index].price = price.data;
                 $scope.totalPrice += parseFloat(price.data);
               });
@@ -94,13 +95,19 @@ angular.module('wtf.shopping-list', [])
           }
         }
       }
+
       Recipes.selectedRecipes = [];
     };
 
     $scope.savePrice = function(ingredient, prevPrice, index) {
-      if ($scope.checkPrice(index)) {
-        $scope.totalPrice = $scope.totalPrice - parseFloat(prevPrice) + parseFloat(ingredient.price);
-        Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+      // for some reason this function is being called on page load, which is causing huge problems
+      // such as unnecessary toasts and NaN problems. We just need to check if prevPrice is defined
+      // to make sure the function isn't being run when it's not supposed to
+      if(prevPrice) {
+        if ($scope.checkPrice(index)) {
+          $scope.totalPrice = parseFloat($scope.totalPrice) - parseFloat(prevPrice) + parseFloat(ingredient.price);
+          Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
+        }
       }
     };
 
