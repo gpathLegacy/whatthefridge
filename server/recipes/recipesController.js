@@ -121,6 +121,10 @@ module.exports = function(Recipes, Ingredients) {
         .then(function(data){
           res.send(data);
         })
+    },
+
+    addRecipeToList: function(req, res){
+      
     }
   } 
 }

@@ -83,7 +83,7 @@
           <span class="card-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">more_vert</i></span>
           <span class="price">${{suggestedRecipe[0].price}}</span>
           </br>
-          <a class="waves-effect waves-light btn">Yum! Add this to my recipes!</a>
+          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">close</i></span>

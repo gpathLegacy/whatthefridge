@@ -60,8 +60,8 @@ angular.module('wtf.recipes', ['checklist-model'])
       })
     };
 
-    $scope.addRecipeToList = function(){
-      $scope.suggestRecipe.title 
+    $scope.addSuggestedRecipe = function(suggestedRecipe){
+      
     };
 
     $scope.getAllRecipes();
