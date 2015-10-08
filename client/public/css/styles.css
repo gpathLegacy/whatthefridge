@@ -94,13 +94,14 @@ body {
 #hiw-shell-container{
   border: 3px solid black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  text-align: center;
 }
 
 #hiw-inner-shell{
   margin-bottom:0;
   padding-top:.1em;
   border-bottom:3px solid black;
-  background-color: #009688;
+  background-color: #90caf9;
 }
 
 #hiw-inner-container{
@@ -122,7 +123,7 @@ body {
   padding-top:1.5em;
   padding-bottom: 1.5em;
   margin-bottom: 0;
-  background-color: #009688;
+  background-color: #90caf9;
   border-top: 3px solid black;
 }
 
@@ -139,6 +140,10 @@ body {
 .hiw-hover-icon{
   margin-top: -2em;
   color: #f57c00;
+}
+
+#responsive-parallax{
+
 }
 
 #hiw-large-title{
@@ -169,6 +174,11 @@ body {
   padding-left: 2em;
 }
 
+#tech-stack-outer-shell{
+  background-color: #424242;
+  color:#90caf9
+}
+
 /*=====team-intro cards=====*/
 .card-reveal-content{
   font-size:.8em;
@@ -191,7 +201,7 @@ body {
   padding-top: 2em;
   margin-bottom: 0;
   padding-bottom: 2em;
-  background-color: #b2dfdb;
+  background-color: #90caf9;
 }
 
 /*will equally space all cards along a given screen width*/
