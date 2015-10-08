@@ -28,19 +28,30 @@ module.exports = function(ShoppingLists, Ingredients) {
     saveList: function(req, res) {
       var list = req.body.list;
       var recipes = [];
-      
+
       ShoppingLists.newList(req.user.id, req.body.list_name).then(function(id) {
         var listId = id[0];
         for (var i = 0; i < list.length; i++) {
           (function(index){
-            Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
-              ShoppingLists.newItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+            Ingredients.getIngredientByName(req.user.id, list[index].name).then(function(ingredient) {
+              // check if Ingredient exists! if not, it needs to be added to ingredients table first
+              if (!ingredient.length) {
+                Ingredients.addIngredient(req.user.id, list[index].name, list[index.price])
+                  .then(function(ingredientId) {
+                    ShoppingLists.newItem(listId, ingredientId[0], list[index].qty).then(function(){});
+                  })
+              } else {
+                ShoppingLists.newItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+              }
             });
           })(i);
-          // if recipe ID hasn't been added to recipes array, push it
-          for (var j=0; j<list[i].recipes.length; j++) {
-            if(recipes.indexOf(list[i].recipes[j]) === -1) {
-              recipes.push(list[i].recipes[j]);
+          // First check to see if the ingredient has associated recipes
+          // Then, if recipe ID hasn't been added to recipes array, push it
+          if (list[i].recipes){
+            for (var j=0; j<list[i].recipes.length; j++) {
+              if(recipes.indexOf(list[i].recipes[j]) === -1) {
+                recipes.push(list[i].recipes[j]);
+              }
             }
           }
         }
@@ -58,11 +69,16 @@ module.exports = function(ShoppingLists, Ingredients) {
     deleteList: function(req, res) {
       var listId = req.body.id;
 
-      ShoppingLists.deleteListIngredients(listId).then(function() {
-        ShoppingLists.deleteList(listId).then(function() {
-          res.send(200);
+      ShoppingLists.deleteListMappings(listId)
+        .then(function() {
+          return ShoppingLists.deleteListIngredients(listId)
         })
-      })
+        .then(function() {
+          return ShoppingLists.deleteList(listId);
+        });
+
+      res.send(200);
+      
     }
   }
 };

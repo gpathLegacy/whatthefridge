@@ -1,3 +1,12 @@
+// RAW QUERY FOR GETTING SHOPPING LIST INGREDIENTS SORTED BY RECIPE
+//select * from shopping_lists
+// inner join shopping_lists_recipes on shopping_lists.id=shopping_lists_recipes.list_id
+// inner join recipes on shopping_lists_recipes.recipe_id=recipes.id 
+// inner join recipes_ingredients on recipes.id=recipes_ingredients.recipe_id 
+// inner join ingredients on recipes_ingredients.ingredient_id=ingredients.id
+// where shoppings_lists.id = $1;
+
+
 module.exports = function(knex) {
   return {
     // shopping list methods here
@@ -34,6 +43,12 @@ module.exports = function(knex) {
           'list_id':shopping_list_id,
           'recipe_id':recipe_id
         });
+    },
+
+    deleteListMappings: function(shopping_list_id) {
+      return knex('shopping_lists_recipes')
+        .where('list_id', shopping_list_id)
+        .del();
     },
 
     deleteListIngredients: function(list_id) {
