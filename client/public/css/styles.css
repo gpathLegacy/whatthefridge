@@ -81,8 +81,12 @@ body {
   font-size:50px;
 }*/
 
-#hiw-shell-container{
+.hiw-responsive-content{
+  font-size: 1.1em;
+}
 
+#hiw-shell-container{
+  margin-bottom: 0;
 }
 
 #how-it-works-container{
@@ -92,6 +96,13 @@ body {
 
 #hiw-call-to-action-container{
   padding:.1em 2em .1em;
+}
+
+#hiw-responsive-footer{
+  padding-top:1.5em;
+  padding-bottom: 1.5em;
+  margin-bottom: 0;
+  background-color: #009688;
 }
 
 .how-it-works-contents{
