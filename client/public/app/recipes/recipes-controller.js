@@ -53,11 +53,15 @@ angular.module('wtf.recipes', ['checklist-model'])
       Recipes.suggestRecipes()
       .success(function(data){
         console.log("This is suggestRecipe data: ",data);
-        $scope.suggestRecipe = data;
+        $scope.suggestedRecipe = data;
       })
       .catch(function(err){
         console.log(err);
       })
+    };
+
+    $scope.addRecipeToList = function(){
+      $scope.suggestRecipe.title 
     };
 
     $scope.getAllRecipes();
