@@ -11,7 +11,8 @@
           <span ng-if="expiring.length > 0 || expiringToday.length > 0" class="card-title activator">Expiring Soon </span>
           <span ng-if="expiring.length === 0 && expiringToday.length === 0" class="card-title">Expiring Soon </span>
             <p ng-if="expiring.length > 0">You have ${{expireAmount}} worth of food expiring soon</p>
-            <p ng-if="expiringToday.length > 0">You have {{expiringToday.length}} items expiring today!<p>
+            <p ng-if="expiringToday.length > 1">You have {{expiringToday.length}} items expiring today!<p>
+            <p ng-if="expiringToday.length === 1">You have 1 item expiring today!<p>
             <p ng-if="expiring.length ===0 && expiringToday.length === 0">You have nothing expiring in the fridge</p>
         </div>
         <div class="card-reveal">

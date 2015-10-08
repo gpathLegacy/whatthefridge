@@ -45,7 +45,7 @@ angular.module('wtf.dashboard', [])
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
         $scope.freshItems = fridge.data.filter(function(entry){
-          if(entry.expiration && !(entry.expiration.split('T')[0] < $scope.todayInISO)){
+          if(entry.expiration && (entry.expiration.split('T')[0] >= $scope.todayInISO)){
             return entry;
           }
         })
@@ -56,35 +56,34 @@ angular.module('wtf.dashboard', [])
           };
         })
 
-        
+
         $scope.expiringToday = fridge.data.filter(function(entry){
           if(entry.expiration && entry.expiration.split('T')[0] === $scope.todayInISO){
             return entry;
           }
         })
 
-        $scope.expiring = $scope.fridgeData
-                                .filter(function(entry){
-                                  var entry_expires =  new Date(entry.expiration);
-                                  if(entry_expires > $scope.today && entry_expires < $scope.twoFromToday){
-                                    return entry;
-                                  }
-                                });
 
-        $scope.freshValue = $scope.freshItems.reduce(function(sum, entry){
+        $scope.expiring = $scope.freshItems.filter(function(entry){
+          var entry_expires =  new Date(entry.expiration);
+          if(entry_expires > $scope.today && entry_expires < $scope.twoFromToday){
+            return entry;
+          }
+        });
+        
+        var valueCalculator = function(arr){
+          return arr.reduce(function(sum, entry){
             return sum+=Number(entry.qty) * Number(entry.price)
-        },0);
+          }, 0);
+        }
+
+        $scope.freshValue = valueCalculator($scope.freshItems);
 
 
-        $scope.expiredValue = $scope.expired.reduce(function(sum, entry){
-            return sum+=Number(entry.qty) * Number(entry.price)
-        },0);
+        $scope.expiredValue = valueCalculator($scope.expired);
 
 
-        $scope.expireAmount = $scope.expiring
-                                    .reduce(function(sum, entry){
-                                        return sum+= Number(entry.qty) * Number(entry.price)
-                                    }, 0 )
+        $scope.expireAmount = valueCalculator($scope.expiring);
 
         $scope.highestQtyFridge = $scope.freshItems
           .reduce(function(most, test){
