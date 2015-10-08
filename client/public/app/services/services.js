@@ -20,6 +20,10 @@ angular.module('wtf.services', [])
       return $http.get('/api/recipes/suggestRecipe');
     };
 
+    var addSuggestedRecipe = function(){
+      return $http.post('/api/recipes/addSuggestedRecipe');
+    };
+
     var selectedRecipes = [];
     
     var getIngredientPrice = function(ingredient) {
