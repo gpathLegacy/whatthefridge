@@ -40,14 +40,14 @@ module.exports = function(knex) {
     addListMapping: function(shopping_list_id, recipe_id) {
       return knex('shopping_lists_recipes')
         .insert({
-          'list_id':shopping_list_id,
+          'shopping_list_id':shopping_list_id,
           'recipe_id':recipe_id
         });
     },
 
     deleteListMappings: function(shopping_list_id) {
       return knex('shopping_lists_recipes')
-        .where('list_id', shopping_list_id)
+        .where('shopping_list_id', shopping_list_id)
         .del();
     },
 

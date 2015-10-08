@@ -34,7 +34,8 @@ module.exports = function(ShoppingLists, Ingredients) {
         for (var i = 0; i < list.length; i++) {
           (function(index){
             Ingredients.getIngredientByName(req.user.id, list[index].name).then(function(ingredient) {
-              // check if Ingredient exists! if not, it needs to be added to ingredients table first
+              // check if Ingredient exists! if not, it needs to be added to ingredients table and
+              // then added to the shopping_lists_ingredients table
               if (!ingredient.length) {
                 Ingredients.addIngredient(req.user.id, list[index].name, list[index.price])
                   .then(function(ingredientId) {
