@@ -41,24 +41,17 @@ angular.module('wtf.dashboard', [])
         $scope.todayInISO = new Date().toISOString().split('T')[0];
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
-        $scope.freshValue = fridge.data.filter(function(entry){
+        $scope.freshItems = fridge.data.filter(function(entry){
           if(!(entry.expiration.split('T')[0] < $scope.todayInISO)){
             return entry;
           }
         })
-        .reduce(function(sum, entry){
-            return sum+=Number(entry.qty) * Number(entry.price)
-        },0);
-
+       
         $scope.expired = fridge.data.filter(function(entry){
           if(entry.expiration.split('T')[0] < $scope.todayInISO){
             return entry;
           };
         })
-
-        $scope.expiredValue = $scope.expired.reduce(function(sum, entry){
-            return sum+=Number(entry.qty) * Number(entry.price)
-        },0);
 
         $scope.expiring = $scope.fridgeData
                                 .filter(function(entry){
@@ -68,20 +61,32 @@ angular.module('wtf.dashboard', [])
                                   }
                                 });
 
+        $scope.freshValue = $scope.freshItems.reduce(function(sum, entry){
+            return sum+=Number(entry.qty) * Number(entry.price)
+        },0);
+
+
+        $scope.expiredValue = $scope.expired.reduce(function(sum, entry){
+            return sum+=Number(entry.qty) * Number(entry.price)
+        },0);
+
+
         $scope.expireAmount = $scope.expiring
                                     .reduce(function(sum, entry){
                                         return sum+= Number(entry.qty) * Number(entry.price)
                                     }, 0 )
 
-        $scope.highestQtyFridge = fridge.data.reduce(function(most, test){
-          if (test.qty > most.qty){
-            return test
-          }else{
-            return most
-          }
+        $scope.highestQtyFridge = $scope.freshItems
+          .reduce(function(most, test){
+            if (test.qty > most.qty){
+              return test
+            }else{
+              return most
+            }
         })
 
-        $scope.lowestQtyFridge = fridge.data.reduce(function(least, test){
+        $scope.lowestQtyFridge = $scope.freshItems
+        .reduce(function(least, test){
           if (test.qty < least.qty){
             return test
           }else{
