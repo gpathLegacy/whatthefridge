@@ -124,8 +124,48 @@ module.exports = function(Recipes, Ingredients) {
     },
 
     addSuggestedRecipe: function(req, res){
-      
-    }
-  } 
-}
+      var userID = req.user.id;
+      var recipeName = req.body[0].title;
+      var ingredients = [];
 
+      for(var ingredient = 0; ingredient < req.body.length; ingredient++){
+        ingredients.push(req.body[ingredient].name);
+      }
+
+      console.log(ingredients);
+
+      Recipes.createRecipe(recipeName, userID)
+        .then(function(Rid){
+          // Get ingredient IDs that already exist for the user, or add new Ingredients.
+          // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
+          for (var i = 0; i < ingredients.length; i++) {
+
+            (function(i) {
+              Ingredients.getIngredientByName(userID, ingredients[i])
+              .then(function(row){
+                if (row.length) {
+                  Recipes.getRecipeMapping(Rid[0], row[0].id)
+                  .then(function(mapRow){
+                    //if mapping doesn't already exist
+                    if (!mapRow.length) {
+                      Recipes.addRecipeMapping(Rid[0], row[0].id)
+                      .then(function(){});
+                    }
+                  })
+                }
+                else {
+                  Ingredients.addIngredient(userID, ingredients[i]).then(function(id) {
+                    Recipes.addRecipeMapping(Rid[0], id[0])
+                    .then(function(){});
+                  })
+                }
+              })
+            })(i);
+          }
+          res.sendStatus(200);
+        })
+
+
+    }
+  }
+}

@@ -9,5 +9,5 @@ module.exports = function (app, Recipes, Ingredients) {
   app.post('/createRecipe', recipesController.createRecipe);
   app.post('/editRecipe', recipesController.editRecipe);
   app.post('/deleteRecipe', recipesController.deleteRecipe);
-  app.post('/addSuggestedRecipe'), recipesController.addSuggestedRecipe;
+  app.post('/addSuggestedRecipe', recipesController.addSuggestedRecipe);
 };
