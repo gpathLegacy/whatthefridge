@@ -123,7 +123,7 @@ module.exports = function(Recipes, Ingredients) {
         })
     },
 
-    addRecipeToList: function(req, res){
+    addSuggestedRecipe: function(req, res){
       
     }
   } 
