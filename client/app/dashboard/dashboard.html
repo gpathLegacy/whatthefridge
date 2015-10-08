@@ -17,13 +17,14 @@
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
+          Expiring soon: 
           <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
-            Expiring soon: 
-            <ul>{{subitem.name}}</ul>
+            <li>{{subitem.name}}</li>
           </div>
+          <br/>
           <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday">
             Expiring today: 
-            <ul>{{subitem.name}}</ul>
+            <li>{{subitem.name}}</li>
           </div>
         </div>
       </div>
@@ -44,12 +45,13 @@
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
-          <p>You have {{fridgeData.length}} unique items in your fridge </p>
+          <p>Items in your fridge: {{fridgeData.length}} </p>
           <div ng-if="highestQtyFridge.length">You have a lot of: 
-            <ul ng-repeat="item in highestQtyFridge">{{item.name}}</ul>
+            <li ng-repeat="item in highestQtyFridge">{{item.name}}</li>
           </div>
+          <br/>
           <div ng-if="lowestQtyFridge.length">You don't have a lot of:
-          <ul ng-repeat="item in lowestQtyFridge">{{item.name}}</ul>
+          <li ng-repeat="item in lowestQtyFridge">{{item.name}}</li>
           </div>
         </div>
         <div class="card-action">
@@ -76,7 +78,7 @@
           The following items have expired: 
           <br></br>
           <div ng-repeat="subitem in expired">
-            <span>${{subitem.qty * subitem.price}} worth of {{subitem.name}} expired {{subitem.expiration | date: 'shortDate'}}</span>
+            <li>${{subitem.qty * subitem.price}} of {{subitem.name}} on {{subitem.expiration | date: 'shortDate'}}</li>
           </div>
         </div>
       </div>
@@ -98,8 +100,8 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           <div ng-if="allRecipes.length > 0">
-            <span>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price}}</span>
-            <p>Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price}}</p>
+            <p>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price}}</p>
+            <p ng-hide="hide">Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price}}</p>
           </div>
           <div ng-if="allRecipes.length === 0"> You have no recipes</div>
         </div>

@@ -21,11 +21,15 @@ angular.module('wtf.dashboard', [])
           }
         })
 
+        if($scope.leastExpensiveRecipe.id === $scope.mostExpensiveRecipe.id){
+          $scope.hide = true;
+        }
+
         $scope.ingredientsUnique = data.map(function(entry){
           return  entry.ingredients
         })
         .reduce(function(itemsMaster, entry){
-            return itemsMaster = itemsMaster.concat(entry);
+          return itemsMaster = itemsMaster.concat(entry);
         })
         .filter(function(item, i, arr){
           return arr.indexOf(item) === i
@@ -56,13 +60,11 @@ angular.module('wtf.dashboard', [])
           };
         })
 
-
         $scope.expiringToday = fridge.data.filter(function(entry){
           if(entry.expiration && entry.expiration.split('T')[0] === $scope.todayInISO){
             return entry;
           }
         })
-
 
         $scope.expiring = $scope.freshItems.filter(function(entry){
           var entry_expires =  new Date(entry.expiration);
@@ -79,9 +81,7 @@ angular.module('wtf.dashboard', [])
 
         $scope.freshValue = valueCalculator($scope.freshItems);
 
-
         $scope.expiredValue = valueCalculator($scope.expired);
-
 
         $scope.expireAmount = valueCalculator($scope.expiring);
 
@@ -94,15 +94,6 @@ angular.module('wtf.dashboard', [])
           .filter(function(entry){
             return entry.qty === "1.00"
         })
-
-        
-        // if($scope.expiring.length){
-        //   var item = $scope.expiring.length === 1 ? " item" : " items";
-        //   Materialize.toast("You have " + $scope.expiring.length +
-        //                     item + " worth $" +
-        //                     $scope.expireAmount +
-        //                     " expiring in 2 days", 4000);
-        // }
       })
     };
 
