@@ -103,6 +103,12 @@ body {
   background-color: #009688;
 }
 
+#hiw-inner-container{
+  border: 3px solid black;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background-color: white;
+}
+
 #how-it-works-container{
   border: 3px solid black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -123,28 +129,23 @@ body {
 .how-it-works-contents{
   border-right-style: dashed;
   border-right-width: .1em;
-  height: 2em;
 }
 
 .hiw-content-title{
   font-size: 2em;
+  margin-bottom: .3em;
 }
 
 .hiw-hover-icon{
   margin-top: -2em;
+  color: #f57c00;
 }
 
-#hiw-row-container{
-  /*height: 80px;*/
-}
-
-#hiw-rightmost-content{
-  padding-right: 1em;
-}
-#hiw-title{
+#hiw-large-title{
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   padding-bottom: .2em;
   margin-bottom: .2em;
+  color:black;
 }
 
 /*=====FAQ=====*/
