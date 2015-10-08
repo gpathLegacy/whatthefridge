@@ -77,8 +77,13 @@ body {
 
 /*=====how-it-works=====*/
 
+.hiw-button-adjuster{
+  margin-top: -.3em;
+}
+
 .hiw-responsive-content{
   font-size: 1em;
+  text-align: left;
 }
 
 #hiw-responsive-header{
@@ -177,9 +182,10 @@ body {
 }
 
 #team-intro-card-holder{
-  padding-top: em;
+  padding-top: 2em;
   margin-bottom: 0;
   padding-bottom: 2em;
+  background-color: #b2dfdb;
 }
 
 /*will equally space all cards along a given screen width*/
