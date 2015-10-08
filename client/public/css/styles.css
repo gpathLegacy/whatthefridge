@@ -87,6 +87,7 @@ body {
 
 #hiw-shell-container{
   margin-bottom: 0;
+  border: 3px solid black;
 }
 
 #how-it-works-container{
@@ -103,6 +104,7 @@ body {
   padding-bottom: 1.5em;
   margin-bottom: 0;
   background-color: #009688;
+  border-top: 3px solid black;
 }
 
 .how-it-works-contents{
