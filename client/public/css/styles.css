@@ -14,12 +14,16 @@
   margin-bottom: 0;
 }
 
+
 /*=====modal=====*/
 modal-content{
   padding-left: 0;
   padding-right: 0;
 }
 
+.dactive{
+  background: #485B61 !important;
+}
 
 /*=====navbar=====*/
 
