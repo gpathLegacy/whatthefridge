@@ -100,8 +100,15 @@ angular.module('wtf.dashboard', [])
     $scope.getLists = function() {  
       SavedLists.getLists().then(function(lists) {
         $scope.lists = lists.data;
-         $scope.listsCount = Object.keys($scope.lists).length
-        console.log($scope.listsCount)
+        $scope.listsCount = Object.keys($scope.lists).length
+        for (var key in $scope.lists) {
+          for (var ingredient in $scope.lists[key]) {
+            if (Array.isArray($scope.lists[key][ingredient])) {
+              console.log("Ingredient: ", ingredient);
+              console.log("Price: ", $scope.lists[key][ingredient])
+            }
+          }
+        }
       });
     };
 
