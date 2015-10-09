@@ -131,6 +131,20 @@ angular.module('wtf.shopping-list', [])
       }
     };
 
+    // When a quantity is changed, recalculate the price of that item
+    $scope.updatePrice = function(index, prevPrice, prevQty) {
+      var item = $scope.shoppingList[index];
+      var price = item.price || prevPrice;
+      var qty = parseFloat(item.qty);
+
+      if (isNaN(qty)) {
+        Materialize.toast("Please enter a valid quantity", 4000);
+      } else {
+        $scope.totalPrice -= prevQty*price;
+        $scope.totalPrice += qty*price;
+      }
+    };
+
     $scope.populateList();
     
   }]);
