@@ -1,5 +1,5 @@
 angular.module('wtf.create-recipes', [])
-  .controller('CreateRecipesController', function($scope, $window, $location, Recipes) {
+  .controller('CreateRecipesController', ["$scope", "$window", "$location", "Recipes", function($scope, $window, $location, Recipes) {
 
     $scope.recipe = {ingredients: []};
 
@@ -18,4 +18,4 @@ angular.module('wtf.create-recipes', [])
             $location.path("/recipes");
           });
     };
-  });
+  }]);

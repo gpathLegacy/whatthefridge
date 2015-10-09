@@ -1,5 +1,5 @@
 angular.module('wtf.nav-controller',[])
-  .controller('NavController',function($scope,$http, $location, Navbar) {
+  .controller('NavController',["$scope", "$http", "$location", "Navbar", function($scope,$http, $location, Navbar) {
 
   $scope.loggedIn = false;
 
@@ -21,4 +21,4 @@ angular.module('wtf.nav-controller',[])
      var active = (viewLocation === $location.url());
      return active;
 };
-});
+}]);

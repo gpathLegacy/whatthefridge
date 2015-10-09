@@ -1,5 +1,5 @@
 angular.module('wtf.dashboard', [])
-  .controller('DashboardController', function($scope, $window, $location, Fridge, SavedLists, Recipes){
+  .controller('DashboardController', ["$scope", "$window", "$location", "Fridge", "SavedLists", "Recipes", function($scope, $window, $location, Fridge, SavedLists, Recipes){
    $scope.getAllRecipes = function() {
       Recipes.getRecipes()
       .success(function(data){
@@ -108,4 +108,4 @@ angular.module('wtf.dashboard', [])
     $scope.getAllRecipes();
     $scope.getFridge();
     $scope.getLists();
-  });
+  }]);

@@ -1,5 +1,5 @@
 angular.module('wtf.saved-lists', ['ui.materialize'])
-  .controller('SavedListsController', function($scope, $location, SavedLists, Recipes) {
+  .controller('SavedListsController', ["$scope", "$location", "SavedLists", "Recipes", function($scope, $location, SavedLists, Recipes) {
 
     $scope.getLists = function() {
       SavedLists.getLists()
@@ -62,4 +62,4 @@ angular.module('wtf.saved-lists', ['ui.materialize'])
 
     $scope.getLists();
 
-  });
+  }]);

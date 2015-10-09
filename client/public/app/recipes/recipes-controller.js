@@ -1,5 +1,5 @@
 angular.module('wtf.recipes', ['checklist-model'])
-  .controller('RecipesController', function($scope, $window, $location, currentRecipeService, Recipes) {
+  .controller('RecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes) {
 
 
     $scope.getAllRecipes = function() {
@@ -51,4 +51,4 @@ angular.module('wtf.recipes', ['checklist-model'])
     }
 
     $scope.getAllRecipes();
-  });
+  }]);
