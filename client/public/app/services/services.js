@@ -1,5 +1,5 @@
 angular.module('wtf.services', [])
-  .factory('Recipes', function($http) {
+  .factory('Recipes', ["$http", function($http) {
     var deleteRecipe = function(recipe){
       return $http.post('/api/recipes/deleteRecipe', recipe)
     };
@@ -34,9 +34,9 @@ angular.module('wtf.services', [])
             setIngredientPrice:setIngredientPrice,
             deleteRecipe: deleteRecipe
           };
-  })
+  }])
   
-  .factory('Fridge', function($http) {
+  .factory('Fridge', ["$http", function($http) {
     var getFridge = function(){
       return $http.post('/api/fridge/getFridge');
     }
@@ -57,9 +57,9 @@ angular.module('wtf.services', [])
              addList:addList,
              addItem:addItem,
              updateFridge:updateFridge };
-  })
+  }])
 
-  .factory('SavedLists', function($http) {
+  .factory('SavedLists', ["$http", function($http) {
     var getLists = function() {
       return $http.get('/api/shoppingLists/getLists');
     }
@@ -73,9 +73,9 @@ angular.module('wtf.services', [])
     return { getLists:getLists,
              saveList:saveList,
              deleteList:deleteList };
-  })
+  }])
 
-  .factory('Navbar', function($http) {
+  .factory('Navbar', ["$http", function($http) {
     var isLoggedIn = function() {
       return $http.get('/api/users/checklogin')
     };
@@ -90,7 +90,7 @@ angular.module('wtf.services', [])
     }
     return {isLoggedIn: isLoggedIn,
             logOut: logOut};
-  })
+  }])
 
   .service('currentRecipeService', function() {
     var currentRecipeToEdit;

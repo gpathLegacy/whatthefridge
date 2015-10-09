@@ -7,7 +7,7 @@
 // show ingredients once.
 
 angular.module('wtf.shopping-list', [])
-  .controller('ShoppingListController', function($scope, $window, $location, Recipes, Fridge, SavedLists) {
+  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
 
     $scope.shoppingList = [];
 
@@ -134,4 +134,4 @@ angular.module('wtf.shopping-list', [])
 
     $scope.populateList();
     
-  });
+  }]);

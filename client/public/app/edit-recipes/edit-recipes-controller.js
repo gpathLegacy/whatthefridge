@@ -1,5 +1,5 @@
 angular.module('wtf.edit-recipes', [])
-  .controller('EditRecipesController', function($scope, $window, $location, currentRecipeService, Recipes){
+  .controller('EditRecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes){
 
     //local variable storing new and existing recipe values
     //prepopulate ingredients array with the existing values
@@ -42,4 +42,4 @@ angular.module('wtf.edit-recipes', [])
         });
     };
 
-  });
+  }]);

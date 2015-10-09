@@ -1,5 +1,5 @@
 angular.module('wtf.fridge',[])
-  .controller('FridgeController',function($scope,$http, $location, Fridge) {
+  .controller('FridgeController',["$scope", "$http", "$location", "Fridge", function($scope,$http, $location, Fridge) {
 
     $scope.addModal = function() {
       $("#addItem").openModal();
@@ -61,4 +61,4 @@ angular.module('wtf.fridge',[])
       }
     }
     $scope.getFridge();
-});
+}]);

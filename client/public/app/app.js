@@ -18,7 +18,7 @@ angular.module('wtf', [
   ]
 )
 
-.config(function($routeProvider, $httpProvider) {
+.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'app/auth/landing.html',
@@ -75,7 +75,7 @@ angular.module('wtf', [
 
   // Check for 401 (unauthorized) responses
 
-  $httpProvider.interceptors.push(function($q, $location) {
+  $httpProvider.interceptors.push(["$q", "$location", function($q, $location) {
     return {
       response: function(response) {
       // do something on success
@@ -87,6 +87,6 @@ angular.module('wtf', [
         return $q.reject(response);
       }
     };
-  });
-});
+  }]);
+}]);
 
