@@ -127,7 +127,7 @@ describe("Database unit tests", function(){
         });
     });
 
-    it("can get all other users' recipes", function(done){ 
+    it("can get all other users' recipes", function(done){
       dbRecipes.getAllOtherUserRecipes(userObj.id)
         .then(function(data){
           //requires there to be existing user recipe data or will throw error

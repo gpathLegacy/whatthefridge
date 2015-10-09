@@ -113,10 +113,31 @@ module.exports = function(Recipes, Ingredients) {
     suggestRecipe: function(req, res){
       Recipes.getAllOtherUserRecipes(req.user.id)
         .then(function(data){
-          var randomRecipe = data[Math.floor(Math.random()*data.length)];
-          var randomUser = randomRecipe.user_id;
-          var randomTitle = randomRecipe.title;
-          return Recipes.getRecipeByTitle(randomUser, randomTitle);
+          var existingRecipes = [];
+
+          for(var i = 0; i < req.body.length; i++){
+            existingRecipes.push(req.body[i].title);
+          }
+
+          var count = existingRecipes.length;
+
+          function randomRecipeGen(){
+            var randomRecipe = data[Math.floor(Math.random()*data.length)];
+            var randomUser = randomRecipe.user_id;
+            var randomTitle = randomRecipe.title;
+            
+            while(count >= 0){
+              if(existingRecipes.indexOf(randomTitle) === -1){
+                return Recipes.getRecipeByTitle(randomUser, randomTitle);
+              }
+              else{
+                count--;
+                return randomRecipeGen();
+              }
+            }
+          }
+
+          return randomRecipeGen();
         })
         .then(function(data){
           res.send(data);
@@ -131,8 +152,6 @@ module.exports = function(Recipes, Ingredients) {
       for(var ingredient = 0; ingredient < req.body.length; ingredient++){
         ingredients.push(req.body[ingredient].name);
       }
-
-      console.log(ingredients);
 
       Recipes.createRecipe(recipeName, userID)
         .then(function(Rid){

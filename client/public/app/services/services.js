@@ -16,8 +16,8 @@ angular.module('wtf.services', [])
       return $http.get('/api/recipes/getRecipes');
     };
 
-    var suggestRecipes = function() {
-      return $http.get('/api/recipes/suggestRecipe');
+    var suggestRecipes = function(allRecipes) {
+      return $http.post('/api/recipes/suggestRecipe', allRecipes);
     };
 
     var addSuggestedRecipe = function(suggestRecipe){

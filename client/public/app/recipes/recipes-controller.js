@@ -6,6 +6,7 @@ angular.module('wtf.recipes', ['checklist-model'])
       Recipes.getRecipes()
       .success(function(data){
         $scope.allRecipes = data;
+        $scope.suggestRecipe($scope.allRecipes);
       })
       .catch(function(err){
         console.log(err);
@@ -49,10 +50,9 @@ angular.module('wtf.recipes', ['checklist-model'])
       })
     };
 
-    $scope.suggestRecipe = function(){
-      Recipes.suggestRecipes()
+    $scope.suggestRecipe = function(allRecipes){
+      Recipes.suggestRecipes(allRecipes)
       .success(function(data){
-        console.log("This is suggestRecipe data: ",data);
         $scope.suggestedRecipe = data;
       })
       .catch(function(err){
@@ -63,7 +63,8 @@ angular.module('wtf.recipes', ['checklist-model'])
     $scope.addSuggestedRecipe = function(suggestedRecipe){
       Recipes.addSuggestedRecipe(suggestedRecipe)
       .success(function(data){
-        console.log("What client controller recieves: ", data);
+        $scope.getAllRecipes();
+        $scope.suggestRecipe();
       })
       .catch(function(err){
         console.log(err, " error in client controller");
@@ -71,5 +72,4 @@ angular.module('wtf.recipes', ['checklist-model'])
     };
 
     $scope.getAllRecipes();
-    $scope.suggestRecipe();
   });
