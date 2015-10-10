@@ -11,9 +11,9 @@ angular.module('wtf.saved-lists', ['ui.materialize'])
             var totalPrice = 0;
             for (var key in $scope.lists[list]) {
               // if we're examining an ingredient, the value of the key is a tuple, so we can check
-              // for ingredients by looking for an array
+              // for ingredients by looking for an array. Then we add to the total price the qty times the price
               if (Array.isArray($scope.lists[list][key])) {
-                totalPrice += parseFloat($scope.lists[list][key][1]);
+                totalPrice += parseFloat($scope.lists[list][key][1])*parseFloat($scope.lists[list][key][0]);
               }
             }
             $scope.lists[list].totalPrice = totalPrice;

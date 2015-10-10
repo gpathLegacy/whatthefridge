@@ -1,11 +1,3 @@
-  // Note: If the price is saved in any format other than "xxx.xx" where x are digits,
-// the price will be dropped from the database. Need to add form validation to tell the
-// user to enter the price correctly. Two digits after the decimal are REQUIRED
-
-// Another issue - duplicate ingredients show up in the list. If the user enters two different prices,
-// only the last one saved will persist in the database. This is expected. Need to find a way to only
-// show ingredients once.
-
 angular.module('wtf.shopping-list', [])
   .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
 
@@ -73,10 +65,12 @@ angular.module('wtf.shopping-list', [])
             return item.name === Recipes.selectedRecipes[i].ingredients[j]
           });
 
-          // If item exists, increase its quantity and add the recipeID to its recipes array
+          // If item exists, increase its quantity and add the recipeID to its recipes array,
+          // and add its price to the total price
           if (existingItem.length) {
-            $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].qty++;
-            $scope.shoppingList[$scope.shoppingList.indexOf(existingItem[0])].recipes.push(Recipes.selectedRecipes[i].id);
+            var index = $scope.shoppingList.indexOf(existingItem[0])
+            $scope.shoppingList[index].qty++;
+            $scope.shoppingList[index].recipes.push(Recipes.selectedRecipes[i].id);
           }
 
           // If item doesn't exist, add it to shopping list
@@ -89,7 +83,12 @@ angular.module('wtf.shopping-list', [])
             (function(index){
               Recipes.getIngredientPrice($scope.shoppingList[index]).then(function(price) {
                 $scope.shoppingList[index].price = price.data;
-                $scope.totalPrice += parseFloat(price.data);
+
+                // Even though we just set the quantity to 1, this bit of code happens async,
+                // so by the time we get the price from the table, we've already updated the
+                // qty to reflect the total quantity of the list, so we just need to set the
+                // total price here
+                $scope.totalPrice += parseFloat(price.data) * $scope.shoppingList[index].qty;
               });
             })($scope.shoppingList.length-1)
           }
@@ -129,6 +128,20 @@ angular.module('wtf.shopping-list', [])
           $scope.notSavedFlag = false;
         });
         
+      }
+    };
+
+    // When a quantity is changed, recalculate the price of that item
+    $scope.updatePrice = function(index, prevPrice, prevQty) {
+      var item = $scope.shoppingList[index];
+      var price = item.price || prevPrice;
+      var qty = parseFloat(item.qty);
+
+      if (isNaN(qty)) {
+        Materialize.toast("Please enter a valid quantity", 4000);
+      } else {
+        $scope.totalPrice -= prevQty*price;
+        $scope.totalPrice += qty*price;
       }
     };
 

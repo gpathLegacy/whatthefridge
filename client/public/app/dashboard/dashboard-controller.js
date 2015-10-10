@@ -100,8 +100,38 @@ angular.module('wtf.dashboard', [])
     $scope.getLists = function() {  
       SavedLists.getLists().then(function(lists) {
         $scope.lists = lists.data;
-         $scope.listsCount = Object.keys($scope.lists).length
-        console.log($scope.listsCount)
+        $scope.listsCount = Object.keys($scope.lists).length;
+        $scope.mostExpensiveList = null;
+        $scope.leastExpensiveList = null;
+        var highestPrice = -1;
+        var lowestPrice = Infinity;
+
+        for (var list in $scope.lists) {
+          var curList = $scope.lists[list];
+          curList.totalPrice = 0;
+
+          for (var ingredient in curList) {
+            // Ingredient properties of lists are arrays, and no other arrays are stored,
+            // so we can get ingredients by checking for arrays
+            if (Array.isArray(curList[ingredient])) {
+              var qty = curList[ingredient][0];
+              var price = parseFloat(curList[ingredient][1]);
+              curList.totalPrice += qty * price;
+            }
+          }
+          if (curList.totalPrice > highestPrice) {
+            highestPrice = curList.totalPrice;
+            $scope.mostExpensiveList = curList;
+          }
+          if (curList.totalPrice < lowestPrice) {
+            lowestPrice = curList.totalPrice;
+            $scope.leastExpensiveList = curList;
+          }
+        }
+
+        if($scope.leastExpensiveList === $scope.mostExpensiveList){
+          $scope.hideList = true;
+        }
       });
     };
 

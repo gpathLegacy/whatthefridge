@@ -122,7 +122,8 @@
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
-          <p> You have {{listsCount}} saved shopping lists</p>
+          <p ng-if="listsCount > 0"> Your priciest list, {{mostExpensiveList.list_name || mostExpensiveList.date}}, costs ${{mostExpensiveList.totalPrice}}</p>
+          <p ng-hide="hideList"> Your cheapest list, {{leastExpensiveList.list_name || leastExpensiveList.date}}, costs ${{leastExpensiveList.totalPrice}}</p>
         </div>
         <div class="card-action">
             <a href="#/saved-lists">See Saved Lists</a>
