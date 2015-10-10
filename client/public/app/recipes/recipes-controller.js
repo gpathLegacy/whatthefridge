@@ -65,7 +65,6 @@ angular.module('wtf.recipes', ['checklist-model'])
       Recipes.addSuggestedRecipe(suggestedRecipe)
       .success(function(data){
         $scope.getAllRecipes();
-        $scope.suggestRecipe();
       })
       .catch(function(err){
         console.log(err, " error in client controller");
