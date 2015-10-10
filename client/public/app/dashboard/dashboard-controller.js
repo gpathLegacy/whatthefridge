@@ -103,7 +103,7 @@ angular.module('wtf.dashboard', [])
         $scope.listsCount = Object.keys($scope.lists).length;
         $scope.mostExpensiveList = null;
         $scope.leastExpensiveList = null;
-        var highestPrice = 0;
+        var highestPrice = -1;
         var lowestPrice = Infinity;
 
         for (var list in $scope.lists) {
@@ -127,6 +127,10 @@ angular.module('wtf.dashboard', [])
             lowestPrice = curList.totalPrice;
             $scope.leastExpensiveList = curList;
           }
+        }
+
+        if($scope.leastExpensiveList === $scope.mostExpensiveList){
+          $scope.hideList = true;
         }
       });
     };
