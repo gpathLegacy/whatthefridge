@@ -14,7 +14,9 @@
   <nav role="navigation" ng-controller="NavController" class="grey darken-3 z-depth-3">
     <div class="nav-wrapper container">
       <!-- Left Logo -->
-      <a id="logo-container" href="/#/" class="brand-logo white-text">WTF!</a>
+      <a  id="logo-container" href="/#/" class="brand-logo white-text">WTF!</a>
+      <a  ng-show="loggedIn" ng-class="{ dactive: isActive('/dashboard') }" id="logo-container" href="#/dashboard" class="brand-logo white-text">WTF!</a>
+
       <!-- Collapsible Functionality -->
       <ul class="right hide-on-med-and-down">
         <!-- Right Side of Navbar -->
