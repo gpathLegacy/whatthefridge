@@ -49,7 +49,7 @@ angular.module('wtf.dashboard', [])
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
         $scope.freshItems = fridge.data.filter(function(entry){
-          if(entry.expiration && (entry.expiration.split('T')[0] >= $scope.todayInISO)){
+          if(!entry.expiration || (entry.expiration && (entry.expiration.split('T')[0] >= $scope.todayInISO))){
             return entry;
           }
         })
