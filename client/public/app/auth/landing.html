@@ -6,7 +6,7 @@
   <div class="step" data-step="1" data-intro="This is step1."><h1>aaaaa</h1></div>
   <div class="step" data-step="2" data-intro="This is step 2."><h1>bbbbb</h1></div>
   <div class="step" data-step="3" data-intro="All done!"><h1>ccccccc</h1></div>
-  <div class="step"><button onclick="javascript:introJs().start()">Teach Me</button></div>
+  <a class="waves-effect waves-light btn step tooltipped orange darken-2" data-position="top" data-delay="50" data-tooltip="Click me for a tour!" onclick="javascript:introJs().start()"=><i class=" blue-text text-lighten-3 material-icons right">cloud</i>Teach Me</a>
 
 </div>
 <br>
@@ -117,7 +117,7 @@
 <div id="tech-stack-outer-shell">
   <div class="container center-align">
   <br>
-    <h3 class="step" data-step="4" data-intro="Four-four">Powered by:</h3>
+    <h3>Powered by:</h3>
     <div class="row col s12" id="tech-stack-container">
       <div class="col s4">
         <div class="card">
@@ -338,6 +338,7 @@
     $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
+    $('.tooltipped').tooltip({delay: 50});
     $('.parallax').parallax();
     $('.modal-trigger').leanModal();
   });
