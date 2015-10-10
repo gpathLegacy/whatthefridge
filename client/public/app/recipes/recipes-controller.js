@@ -5,13 +5,13 @@ angular.module('wtf.recipes', ['checklist-model'])
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
       .success(function(data){
-        console.log(data);
         $scope.allRecipes = data;
+        $scope.suggestRecipe($scope.allRecipes);
       })
       .catch(function(err){
         console.log(err);
       })
-    }
+    };
 
     //this is run from the dashboard html, on clicking a specific recipe
     $scope.getCurrentRecipe = function(currentRecipe) {
@@ -19,11 +19,11 @@ angular.module('wtf.recipes', ['checklist-model'])
       //add to services variable to share with other ingredients
       currentRecipeService.addRecipeToEdit(currentRecipe);
       $location.path('/edit-recipes');
-    }
+    };
 
     $scope.recipes  = {
       selected: Recipes.selectedRecipes
-    }
+    };
 
     // $scope.$watch(Auth.isAuth, function(authed) {
     //   if (authed) {
@@ -48,7 +48,29 @@ angular.module('wtf.recipes', ['checklist-model'])
       .success(function(data){
         $scope.getAllRecipes();
       })
-    }
+    };
+
+    $scope.suggestRecipe = function(allRecipes){
+      Recipes.suggestRecipes(allRecipes)
+      .success(function(data){
+        $scope.suggestedRecipe = data;
+        console.log($scope.suggestedRecipe);
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    };
+
+    $scope.addSuggestedRecipe = function(suggestedRecipe){
+      Recipes.addSuggestedRecipe(suggestedRecipe)
+      .success(function(data){
+        $scope.getAllRecipes();
+        $scope.suggestRecipe();
+      })
+      .catch(function(err){
+        console.log(err, " error in client controller");
+      })
+    };
 
     $scope.getAllRecipes();
   }]);

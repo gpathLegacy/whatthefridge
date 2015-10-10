@@ -109,7 +109,82 @@ module.exports = function(Recipes, Ingredients) {
         .then(function(data){
           res.json("deleted " + req.body.title);
         })
-    }
-  } 
-}
+    },
+    suggestRecipe: function(req, res){
+      Recipes.getAllOtherUserRecipes(req.user.id)
+        .then(function(data){
+          var existingRecipes = [];
 
+          for(var i = 0; i < req.body.length; i++){
+            existingRecipes.push(req.body[i].title);
+          }
+
+          var count = existingRecipes.length;
+
+          function randomRecipeGen(){
+            var randomRecipe = data[Math.floor(Math.random()*data.length)];
+            var randomUser = randomRecipe.user_id;
+            var randomTitle = randomRecipe.title;
+            
+            while(count >= 0){
+              if(existingRecipes.indexOf(randomTitle) === -1){
+                return Recipes.getRecipeByTitle(randomUser, randomTitle);
+              }
+              else{
+                count--;
+                return randomRecipeGen();
+              }
+            }
+          }
+
+          return randomRecipeGen();
+        })
+        .then(function(data){
+          res.send(data);
+        })
+    },
+
+    addSuggestedRecipe: function(req, res){
+      var userID = req.user.id;
+      var recipeName = req.body[0].title;
+      var ingredients = [];
+
+      for(var ingredient = 0; ingredient < req.body.length; ingredient++){
+        ingredients.push(req.body[ingredient].name);
+      }
+
+      Recipes.createRecipe(recipeName, userID)
+        .then(function(Rid){
+          // Get ingredient IDs that already exist for the user, or add new Ingredients.
+          // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
+          for (var i = 0; i < ingredients.length; i++) {
+
+            (function(i) {
+              Ingredients.getIngredientByName(userID, ingredients[i])
+              .then(function(row){
+                if (row.length) {
+                  Recipes.getRecipeMapping(Rid[0], row[0].id)
+                  .then(function(mapRow){
+                    //if mapping doesn't already exist
+                    if (!mapRow.length) {
+                      Recipes.addRecipeMapping(Rid[0], row[0].id)
+                      .then(function(){});
+                    }
+                  })
+                }
+                else {
+                  Ingredients.addIngredient(userID, ingredients[i]).then(function(id) {
+                    Recipes.addRecipeMapping(Rid[0], id[0])
+                    .then(function(){});
+                  })
+                }
+              })
+            })(i);
+          }
+          res.sendStatus(200);
+        })
+
+
+    }
+  }
+}

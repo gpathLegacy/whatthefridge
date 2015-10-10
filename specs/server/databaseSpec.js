@@ -127,6 +127,26 @@ describe("Database unit tests", function(){
         });
     });
 
+    it("can get all other users' recipes", function(done){
+      dbRecipes.getAllOtherUserRecipes(userObj.id)
+        .then(function(data){
+          //requires there to be existing user recipe data or will throw error
+          expect(data.length).to.be.above(0);
+          done();
+        });
+    });
+
+    it("can get a recipe by title", function(done){ 
+      dbRecipes.getRecipeByTitle(userObj.id, 'Pork Chop Friday')
+        .then(function(){
+          return dbRecipes.getRecipe(recipeObj.id);
+        })
+        .then(function(data){
+          expect(data[0]['title']).to.equal('Pork Chop Friday');
+          done();
+        });
+    });
+
   }),
 
   describe("ingredients model methods", function(){

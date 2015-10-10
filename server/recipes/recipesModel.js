@@ -83,6 +83,20 @@ module.exports = function(knex) {
           .from('recipes_ingredients')
           .where('recipe_id', '=', recipeId)
           .andWhere('ingredient_id', '=', ingredientId)
+      },
+      getAllOtherUserRecipes: function(userId){
+        return knex
+          .select(['recipes.id', 'recipes.title', 'recipes.user_id'])
+          .from('recipes')
+          .whereNot({'recipes.user_id':userId})
+      },
+      getRecipeByTitle: function(userId, title){
+        return knex
+          .select()
+          .from('recipes')
+          .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
+          .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
+          .where({'recipes.title':title, 'recipes.user_id':userId})
       }
     }
 }

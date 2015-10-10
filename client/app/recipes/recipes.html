@@ -72,11 +72,29 @@
     </div>
   </div>
 
-  <div>
-    <h5>Checked<h5>
-      <div>{{recipes.selected}}</div>
+  <!-- Recipe suggestions from other users -->
+<div class="row" ng-if="suggestedRecipe[0].title">
+    <div class="col s4 offset-s4">
+      <div class ="card small card-small blue-grey darken-1">
+        <div class="card-image">
+          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">more_vert</i></span>
+          <!-- <span class="price">${{suggestedRecipe[0].price}}</span> -->
+          </br>
+          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">close</i></span>
+          <!-- <span class="price left">${{suggestedRecipe[0].price}}</span></br> </br> -->
+          <div ng-repeat="ingredient in suggestedRecipe">
+            <li>{{ingredient.name}}</li>
+          </div>
+        </div>  
+      </div>
+    </div>
   </div>
-
   
   <!-- deleteCheck Modal -->
   <div id="deleteCheck" class="modal">
