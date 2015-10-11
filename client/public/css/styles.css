@@ -316,5 +316,9 @@ body {
 
 #expire-message {
   color:red;
-  width:20%;
+  flex: initial;
+}
+
+#date-message {
+  flex: initial;
 }
