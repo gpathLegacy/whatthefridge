@@ -32,8 +32,8 @@
         <td>{{ingredient.name}}</td>
         <td>{{ingredient.price}}</td>
         <td><button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button> {{ingredient.qty}} <button ng-click="decreaseQty(ingredient)" class="btn-floating red minus-small"><span class="minus">-</span></button></td>
-        <td>{{ingredient.qty_unit}}</td>
-       <!--  <td>{{ingredient.expiration | date: 'mediumDate'}}</td> -->
+        <!-- uncomment out qty when ready to display it -->
+        <!-- <td>{{ingredient.qty_unit}}</td> -->
 
         <!--must find a way to change the color of the 
         ingredient.expiration <td></td> based on if the expiration
@@ -44,8 +44,8 @@
 
   <!--       <td>{{twoFromToday.toISOString().split('T')[0] > ingredient.expiration.split('T')[0] }}</td> -->
 <!--         <td>{{ingredient.expiration.split('T')[0]}}</td>
- -->   
-        <td   ng-hide="todayInISO > ingredient.expiration.slice(0,10)">{{ingredient.expiration | date: 'mediumDate'}}</td>
+ -->
+        <td id="date-message" ng-hide="todayInISO > ingredient.expiration.slice(0,10)">{{ingredient.expiration | date: 'mediumDate'}}</td>
         <td id="expire-message" ng-show="todayInISO > ingredient.expiration.slice(0,10)">Expired </td>
 
     </tbody>
