@@ -47,7 +47,7 @@ angular.module('wtf.fridge',[])
     };
 
     $scope.increaseQty = function(ingredient) {
-      ingredient.qty++;
+      ingredient.qty = Number(ingredient.qty) + 0.25
       $scope.saveFridge();
     };
 
