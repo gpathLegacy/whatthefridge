@@ -35,11 +35,11 @@ module.exports = function(knex) {
         })
         .then(function(data){
           return knex('fridge')
-                .where({
-                  'user_id': user_id,
-                  'ingredient_id':ingredient_id
-                })
-                .update('qty', data)
+            .where({
+            'user_id': user_id,
+            'ingredient_id':ingredient_id
+            })
+            .update('qty', data)
         })
     },
     setItemQty: function(user_id, ingredient_id, qty) {
