@@ -23,13 +23,24 @@ module.exports = function(knex) {
           'ingredient_id':ingredient_id
         });
     },
-    updateItemQty: function(user_id, ingredient_id, qty) {
+    updateItemQty: function(user_id, ingredient_id, passed) {
       return knex('fridge')
-        .increment('qty', qty)
         .where({
           'user_id': user_id, 
           'ingredient_id':ingredient_id
-        });
+        })
+        .then(function(data){
+          data[0].qty = Number(data[0].qty) + Number(passed)
+          return data[0].qty
+        })
+        .then(function(data){
+          return knex('fridge')
+            .where({
+            'user_id': user_id,
+            'ingredient_id':ingredient_id
+            })
+            .update('qty', data)
+        })
     },
     setItemQty: function(user_id, ingredient_id, qty) {
       return knex('fridge')
