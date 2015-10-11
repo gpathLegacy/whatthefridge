@@ -47,13 +47,15 @@ angular.module('wtf.fridge',[])
     };
 
     $scope.increaseQty = function(ingredient) {
-      ingredient.qty++;
+      ingredient.qty = Number(ingredient.qty) + 0.25
       $scope.saveFridge();
     };
 
     $scope.decreaseQty = function(ingredient) {
-      if (ingredient.qty > 0) ingredient.qty--;
-      $scope.saveFridge();
+      if (ingredient.qty > 0){
+        ingredient.qty-=0.25;
+        $scope.saveFridge();
+      }
 
       if ($scope.data.every(function(entry){return entry.qty === 0})){
         $scope.data = [];
