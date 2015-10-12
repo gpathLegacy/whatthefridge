@@ -28,9 +28,10 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="ingredient in data" ng-if="ingredient.qty>0">
+      <tr ng-repeat="ingredient in data track by $index" ng-if="ingredient.qty>0">
         <td>{{ingredient.name}}</td>
-        <td>{{ingredient.price}}</td>
+        <td><form class="priceForm" name="priceForm{{$index}}">
+            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></form></td>
         <td>
           <button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button>
           {{ingredient.qty.toFixed(2)}} 
