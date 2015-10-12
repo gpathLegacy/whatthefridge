@@ -193,8 +193,9 @@ body {
 }
 
 #tech-stack-outer-shell{
-  background-color: #424242;
-  color:#90caf9
+  background-color: #90caf9;
+  color:#f57c00;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #angularImage{
