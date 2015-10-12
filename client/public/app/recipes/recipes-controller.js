@@ -35,7 +35,7 @@ angular.module('wtf.recipes', ['checklist-model'])
     
     $scope.getShoppingList = function() {
       $("#shopCheck").closeModal();
-      $location.path('shopping-list');
+      $location.path('create-list');
     };
 
     $scope.deleteModal = function(recipe){

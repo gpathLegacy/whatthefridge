@@ -81,6 +81,9 @@ app.get('/app/edit-recipes/edit-recipes.html', auth, function(req, res) {
 app.get('/app/shopping-list/shopping-list.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/shopping-list/shopping-list.html'));
 });
+app.get('/app/create-shopping-list/create-shopping-list.html', auth, function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../client/app/create-shopping-list/create-shopping-list.html'));
+});
 app.get('/app/fridge/fridge.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/fridge/fridge.html'));
 });
