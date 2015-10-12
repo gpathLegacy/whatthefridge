@@ -29,15 +29,19 @@ angular.module('wtf.shopping-list', [])
     };
 
     $scope.disableButtons = function(){
-      $('.saveButton').addClass('disabled');
-      $('.fridgeButton').addClass('disabled');
-      $scope.disabled = true;
+      if ($scope.disableQty || $scope.disablePrice){
+        $('.saveButton').addClass('disabled');
+        $('.fridgeButton').addClass('disabled');
+        $scope.disabled = true;
+      }
     };
 
     $scope.enableButtons = function(){
-      $('.saveButton').removeClass('disabled');
-      $('.fridgeButton').removeClass('disabled');
-      $scope.disabled = false;
+      if (!$scope.disableQty && !$scope.disablePrice){
+        $('.saveButton').removeClass('disabled');
+        $('.fridgeButton').removeClass('disabled');
+        $scope.disabled = false;
+      }
     };
 
     $scope.checkPrice = function(index) {
@@ -55,10 +59,12 @@ angular.module('wtf.shopping-list', [])
       // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
       // the price won't be saved as undefined in the savePrice function
       if(formScope.$invalid) {
+        $scope.disablePrice = true; 
         $scope.disableButtons();
         Materialize.toast('Price must match format: 0.00', 4000);
         return false;
       }else{
+        $scope.disablePrice = false;
         $scope.enableButtons();
         return true;
       }
@@ -152,11 +158,13 @@ angular.module('wtf.shopping-list', [])
       var qty = parseFloat(item.qty);
 
       if (isNaN(qty)) {
+        $scope.disableQty = true;
         $scope.disableButtons();
         Materialize.toast("Please enter a valid quantity", 4000);
       } else {
         $scope.totalPrice -= prevQty*price;
         $scope.totalPrice += qty*price;
+        $scope.disableQty = false;
         $scope.enableButtons();
       }
     };
