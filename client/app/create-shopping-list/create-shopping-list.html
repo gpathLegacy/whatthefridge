@@ -1,44 +1,22 @@
 <div class="container">
   <div class="row center-align">
-    Pre-Shopping List
+    Create Shopping List
     <br>
-    <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()">Add all to Fridge</button>
     <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Save shopping list</button>
   </div>
   <div class="row center-align">
     <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
     Add item
   </div>
-  <div ng-hide="fridgeFlag">
-    All items added to fridge.
-  </div>
   <div ng-hide="notSavedFlag">
     Shopping list saved.
   </div>
-  <div class="row center-align list-price">
-    Total Price: ${{totalPrice.toFixed(2)}}
-  </div>
+  
   <ul class="collection">
     <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
-      <h5>{{ingredient.name}}</h5>
-      <table>
-        <tr>
-          <td>Qty</td>
-          <td><input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></td>
-        </tr>
-        <tr>
-          <td>Expiration</td>
-          <td><input type="date" ng-model="ingredient.expiration" class="datepicker"></input></td>
-        </tr>
-        <tr>
-          <td>Price</td>
-          <td>
-          <form class="priceForm" name="priceForm{{$index}}">
-            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></td>
-          </form>
-        </tr>
-      </table>
-
+        <div>{{ingredient.name}} <div class="secondary-content"> Qty: <input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
+    </li>
+  
       <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
       <div>Price: 
         <form class="priceForm" name="priceForm{{$index}}">
@@ -46,10 +24,7 @@
           <button ng-click="savePrice(ingredient, $index)">Save</button></form>
       </div>
       <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
-    </li>
   </ul>
-</div>
-
 <!-- saveList Modal -->
   <div id="saveList" class="modal">
     <form ng-submit="saveList()">
