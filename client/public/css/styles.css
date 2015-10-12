@@ -226,24 +226,9 @@ body {
 }
 
 /*=====team-intro cards=====*/
-#joshCard{
-  padding-top:1em;
-  padding-bottom: 0;
-}
-#ericCard{
+.intro-card-padder{
   padding-top:1em;
 }
-#monishaCard{
-  padding-top:1em;
-}
-#jeffCard{
-  padding-top:1em;
-}
-#justinCard{
-  padding-top:1em;
-}
-
-
 
 .card-reveal-content{
   font-size:.8em;
