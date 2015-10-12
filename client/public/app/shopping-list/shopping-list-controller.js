@@ -28,10 +28,19 @@ angular.module('wtf.shopping-list', [])
       $("#saveList").openModal();
     };
 
+    $scope.disableButtons = function(){
+      $('.saveButton').addClass('disabled');
+      $('.fridgeButton').addClass('disabled');
+    };
+
+    $scope.enableButtons = function(){
+      $('.saveButton').removeClass('disabled');
+      $('.fridgeButton').removeClass('disabled');
+    };
+
     $scope.checkPrice = function(index) {
       var formName = "priceForm" + index;
       var formCheck = $scope.$$childHead;
-
       // walk through scope objects to find the one containing the form in question
       while (formScope === undefined) {
         if(formCheck[formName]) {
@@ -44,10 +53,13 @@ angular.module('wtf.shopping-list', [])
       // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
       // the price won't be saved as undefined in the savePrice function
       if(formScope.$invalid) {
-        Materialize.toast('Price must match format: 0.00', 4000)
+        $scope.disableButtons();
+        Materialize.toast('Price must match format: 0.00', 4000);
         return false;
+      }else{
+        $scope.enableButtons();
+        return true;
       }
-      return true;
     };
 
     $scope.populateList = function() {
@@ -138,10 +150,12 @@ angular.module('wtf.shopping-list', [])
       var qty = parseFloat(item.qty);
 
       if (isNaN(qty)) {
+        $scope.disableButtons();
         Materialize.toast("Please enter a valid quantity", 4000);
       } else {
         $scope.totalPrice -= prevQty*price;
         $scope.totalPrice += qty*price;
+        $scope.enableButtons();
       }
     };
 
