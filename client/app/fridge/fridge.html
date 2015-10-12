@@ -31,7 +31,11 @@
       <tr ng-repeat="ingredient in data" ng-if="ingredient.qty>0">
         <td>{{ingredient.name}}</td>
         <td>{{ingredient.price}}</td>
-        <td><button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button> {{ingredient.qty}} <button ng-click="decreaseQty(ingredient)" class="btn-floating red minus-small"><span class="minus">-</span></button></td>
+        <td>
+          <button ng-click="increaseQty(ingredient)" class="btn-floating green minus-small"><span class="minus">+</span></button>
+          {{ingredient.qty.toFixed(2)}} 
+          <button ng-click="decreaseQty(ingredient)" class="btn-floating red minus-small"><span class="minus">-</span></button>
+        </td>
         <!-- uncomment out qty when ready to display it -->
         <!-- <td>{{ingredient.qty_unit}}</td> -->
 

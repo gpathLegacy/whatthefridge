@@ -18,6 +18,10 @@ angular.module('wtf.fridge',[])
         $scope.today = Date.now();
         $scope.todayInISO = new Date().toISOString().split('T')[0];
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
+
+        for (var i = 0; i < $scope.data.length; i++) {
+          $scope.data[i].qty = parseFloat($scope.data[i].qty);
+        }
         
         $scope.expiring = $scope.data
                                 .filter(function(entry){
@@ -47,7 +51,7 @@ angular.module('wtf.fridge',[])
     };
 
     $scope.increaseQty = function(ingredient) {
-      ingredient.qty = Number(ingredient.qty) + 0.25
+      ingredient.qty = ingredient.qty + 0.25
       $scope.saveFridge();
     };
 
