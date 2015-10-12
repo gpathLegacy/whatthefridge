@@ -119,20 +119,71 @@ angular.module('wtf.shopping-list', [])
     };
 
     /* barcode feature begins */
-    
+
     $scope.scanBarcode = function() {
       console.log("Calls the controller barcode scanner function");
       //open model which makes a call to Quagga
       //goes back to the shopping list view
 
-      //Quagga initialization
+      //Quagga functions run onscan click
+      $(function() {
+        var App = {
+          var resultCollector = Quagga.ResultCollector.create({
+            capture: true,
+            capacity: 20,
+            blacklist: [{code: "2167361334", format: "i2of5"}],
+            filter: function(codeResult) {
+                // only store results which match this constraint
+                // e.g.: codeResult
+              return true;
+            }
+          });
+          //initialization function that sets up results collection, listeners and the video stream 
+          init : function() {
+            var self = this;
 
-      //Quagga start
+            Quagga.init(this.state, function(err) {
+              if (err) {
+                return self.handleError(err);
+              }
+              Quagga.registerResultCollector(resultCollector);
+              App.attachListeners();
+              Quagga.start();
+            });
+          },
+          handleError : function() {
+            console.log(err);
+          },
+          attachListeners : function() {
+            var self = this;
+
+            $(".controls").on("click", "button.stop", function(e) {
+              e.preventDefault();
+              Quagga.stop();
+              self._printCollectedResults();
+            });
+
+            $(".controls .reader-config-group").on("change", "input, select", function(e) {
+              e.preventDefault();
+              var $target = $(e.target),
+                value = $target.attr("type") === "checkbox" ? $target.prop("checked") : $target.val(),
+                name = $target.attr("name"),
+                state = self._convertNameToState(name);
+
+              console.log("Value of "+ state + " changed to " + value);
+              self.setState(state, value);
+            });
+          }
+
+        };
+        App.init();
+      });
+
     };
 
     $scope.lookupProductDetails = function() {
       ///Quagga Process
-      //when UPC saved from the barcode scan, call UPC lookup on the server
+      //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
 
       //get results from the model and populate the client price input field 
     };
