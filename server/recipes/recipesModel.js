@@ -56,12 +56,13 @@ module.exports = function(knex) {
           'id': recipeId
         })
       },
-      createRecipe: function(title, userId) {
+      createRecipe: function(title, userId, instructions) {
         return knex('recipes')
           .returning('id')
           .insert({
             'title': title,
-            'user_id': userId
+            'user_id': userId,
+            'instructions':instructions
           })
       },
       //only title is updated in the recipe table    
@@ -106,6 +107,14 @@ module.exports = function(knex) {
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
           .where({'recipes.title':title, 'recipes.user_id':userId})
+      },
+      getInstructions: function(recipeId){
+        return knex
+          .select('instructions')
+          .from('recipes')
+          .where({
+            'id':recipeId
+          })
       }
     }
 }
