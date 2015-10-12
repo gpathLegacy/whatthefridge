@@ -5,10 +5,12 @@
         <div class="input-field col s6">
           <input id="recipeName" type="text" ng-model="recipe.name">
           <label for="recipeName">Recipe Name</label>
+          <span ng-show="recipeError" class="error"><br>Recipe name required.</span>
         </div>
         <div class="input-field col s5">
           <input id="ingredientName" type="text" ng-model="newIngredient">
           <label for="ingredientName">Ingredient</label>
+          <span ng-show="ingredientError" class="error"><br>Ingredient name required.</span>
         </div>
         <div class="col s1 addButton">
           <div class="bottom">
