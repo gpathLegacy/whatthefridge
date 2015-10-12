@@ -208,6 +208,16 @@ body {
   height: 15em;
 }
 
+#nodeImage{
+  height: 8.5em;
+  margin-bottom:0;
+  margin-top: 0;
+}
+
+#expressImage{
+  height: 5em;
+}
+
 /*=====team-intro cards=====*/
 .card-reveal-content{
   font-size:.8em;
