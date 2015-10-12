@@ -4,8 +4,9 @@ module.exports = function(Recipes, Ingredients) {
     createRecipe: function(req, res) {
       var recipeName = req.body.name;
       var ingredients = req.body.ingredients;
+      var instructions = req.body.instructions;
       // Create the recipe in the recipes table
-      Recipes.createRecipe(recipeName, req.user.id).then(function(id) {
+      Recipes.createRecipe(recipeName, req.user.id, instructions).then(function(id) {
 
         var recipeID = id[0];
 
