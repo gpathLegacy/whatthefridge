@@ -11,20 +11,13 @@
   <div ng-hide="notSavedFlag">
     Shopping list saved.
   </div>
-  
+
   <ul class="collection">
-    <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
-        <div>{{ingredient.name}} <div class="secondary-content"> Qty: <input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
+    <li class="collection-item" ng-repeat="ingredient in shoppingList track by $index">
+      <div>{{ingredient.name}} <div class="secondary-content"> Qty: <input ng-blur="formatCheck($index)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
     </li>
-  
-      <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
-      <div>Price: 
-        <form class="priceForm" name="priceForm{{$index}}">
-          <input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
-          <button ng-click="savePrice(ingredient, $index)">Save</button></form>
-      </div>
-      <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
   </ul>
+
 <!-- saveList Modal -->
   <div id="saveList" class="modal">
     <form ng-submit="saveList()">

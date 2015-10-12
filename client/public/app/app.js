@@ -62,7 +62,7 @@ angular.module('wtf', [
     })
     .when('/create-list', {
       templateUrl: 'app/create-shopping-list/create-shopping-list.html',
-      controller: 'PreShoppingListController'
+      controller: 'CreateShoppingListController'
     })
     .when('/shopping-list', {
       templateUrl: 'app/shopping-list/shopping-list.html',
