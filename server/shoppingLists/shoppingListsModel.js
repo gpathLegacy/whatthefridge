@@ -18,6 +18,13 @@ module.exports = function(knex) {
         .innerJoin('ingredients', 'shopping_lists_ingredients.ingredient_id', 'ingredients.id');
     },
 
+    getRecipes: function(shopping_list_id) {
+      return knex('shopping_lists_recipes')
+        .select('recipes.title')
+        .innerJoin('recipes', 'shopping_lists_recipes.recipe_id', 'recipes.id')
+        .where('shopping_list_id', shopping_list_id);
+    },
+
     newList: function(user_id, list_name) {
       return knex('shopping_lists')
         .returning('id')

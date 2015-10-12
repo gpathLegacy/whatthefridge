@@ -6,13 +6,22 @@ angular.module('wtf.saved-lists', ['ui.materialize'])
         .then(function(lists) {
           $scope.lists = lists.data;
 
-          // Add up total price for each list
           for (var list in $scope.lists) {
+            // Fetch the recipes associated with each list
+            (function(list) {
+              SavedLists.getRecipes(list)
+                .then(function(recipes) {
+                  $scope.lists[list].recipes = recipes.data;
+                });
+            })(list)
+
+            // Add up the total price for each list
             var totalPrice = 0;
             for (var key in $scope.lists[list]) {
               // if we're examining an ingredient, the value of the key is a tuple, so we can check
-              // for ingredients by looking for an array. Then we add to the total price the qty times the price
-              if (Array.isArray($scope.lists[list][key])) {
+              // for ingredients by looking for an array other than the recipes array. Then we add
+              // to the total price the qty times the price
+              if (Array.isArray($scope.lists[list][key]) && key !== 'recipes') {
                 totalPrice += parseFloat($scope.lists[list][key][1])*parseFloat($scope.lists[list][key][0]);
               }
             }

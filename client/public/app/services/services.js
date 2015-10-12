@@ -73,6 +73,9 @@ angular.module('wtf.services', [])
     var getLists = function() {
       return $http.get('/api/shoppingLists/getLists');
     }
+    var getRecipes = function(list) {
+      return $http.post('/api/shoppingLists/getRecipes', {'list':list});
+    }
     var saveList = function(list, name) {
       return $http.post('/api/shoppingLists/saveList', {'list':list, 'list_name':name});
     }
@@ -81,6 +84,7 @@ angular.module('wtf.services', [])
     }
 
     return { getLists:getLists,
+             getRecipes:getRecipes,
              saveList:saveList,
              deleteList:deleteList };
   }])

@@ -25,6 +25,13 @@ module.exports = function(ShoppingLists, Ingredients) {
       });
     },
 
+    getRecipes: function(req, res) {
+      ShoppingLists.getRecipes(req.body.list)
+        .then(function(recipes) {
+          res.send(recipes);
+        });
+    },
+
     saveList: function(req, res) {
       var list = req.body.list;
       var recipes = [];
