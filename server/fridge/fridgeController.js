@@ -38,8 +38,6 @@ module.exports = function(Fridge, Ingredients) {
     addItem: function(req, res) {
       var item = req.body;
 
-      console.log("Item to add: ", item);
-
       Ingredients.getIngredientByName(req.user.id, item.name).then(function(ingredient) {
         // if ingredient exists, add one to fridge (first see if it's already in fridge)
         if(ingredient.length) {
@@ -48,7 +46,7 @@ module.exports = function(Fridge, Ingredients) {
               Fridge.updateItemQty(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
             }
             else {
-              Fridge.addNewItem(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+              Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});
             }
           });
         }
@@ -56,8 +54,7 @@ module.exports = function(Fridge, Ingredients) {
         // if ingredient doesn't exist, add ingredient first, then add one to fridge
         else {
           Ingredients.addIngredient(req.user.id, item.name, 0).then(function(ingredient) {
-            console.log("New ingredient?", ingredient);
-            Fridge.addNewItem(req.user.id, ingredient[0], 1).then(function(){res.send(200);});
+            Fridge.addNewItem(req.user.id, ingredient[0], 1, new Date()).then(function(){res.send(200);});
           });
         }   
       });
@@ -67,7 +64,12 @@ module.exports = function(Fridge, Ingredients) {
       var newFridge = req.body;
 
       for (var i = 0; i < newFridge.length; i++) {
-        Fridge.setItemQty(req.user.id, newFridge[i].ingredient_id, newFridge[i].qty).then(function(){});
+        (function(index){
+          Fridge.setItemQty(req.user.id, newFridge[index].ingredient_id, newFridge[index].qty)
+            .then(function(){
+              return Fridge.updateItemExp(req.user.id, newFridge[index].ingredient_id, newFridge[index].expiration);
+            })
+        })(i);
       }
       res.send(200);
     }

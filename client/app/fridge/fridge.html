@@ -49,8 +49,8 @@
   <!--       <td>{{twoFromToday.toISOString().split('T')[0] > ingredient.expiration.split('T')[0] }}</td> -->
 <!--         <td>{{ingredient.expiration.split('T')[0]}}</td>
  -->
-        <td id="date-message" ng-hide="todayInISO > ingredient.expiration.slice(0,10)">{{ingredient.expiration | date: 'mediumDate'}}</td>
-        <td id="expire-message" ng-show="todayInISO > ingredient.expiration.slice(0,10)">Expired </td>
+        <td id="date-message" ng-hide="todayInISO > ingredient.expiration.toISOString().slice(0,10)"><input ng-model="ingredient.expiration" ng-blur="saveFridge()" type="date"/></td>
+        <td id="expire-message" ng-show="todayInISO > ingredient.expiration.toISOString().slice(0,10)">Expired </td>
 
     </tbody>
   </table>

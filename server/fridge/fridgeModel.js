@@ -42,6 +42,16 @@ module.exports = function(knex) {
             .update('qty', data)
         })
     },
+    updateItemExp: function(user_id, ingredient_id, expiration) {
+      return knex('fridge')
+        .where({
+          'user_id':user_id,
+          'ingredient_id':ingredient_id
+        })
+        .update({
+          'expiration':expiration
+        });
+    },
     setItemQty: function(user_id, ingredient_id, qty) {
       return knex('fridge')
         .update('qty', qty)

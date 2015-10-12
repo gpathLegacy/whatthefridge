@@ -21,6 +21,7 @@ angular.module('wtf.fridge',[])
 
         for (var i = 0; i < $scope.data.length; i++) {
           $scope.data[i].qty = parseFloat($scope.data[i].qty);
+          $scope.data[i].expiration = new Date($scope.data[i].expiration);
         }
         
         $scope.expiring = $scope.data
