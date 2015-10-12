@@ -6,8 +6,10 @@ angular.module('wtf.edit-recipes', [])
     $scope.recipe = {ingredients: [], remove: []};
     $scope.currentRecipe = currentRecipeService.getRecipeToEdit();
 
+    // error flags
     $scope.recipeError = false;
     $scope.ingredientError = false;
+    $scope.noIngredients = false;
 
     //push existing ingredients into scope.recipe for initial rendering
     for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
@@ -39,6 +41,8 @@ angular.module('wtf.edit-recipes', [])
     $scope.saveRecipe = function() {
       if ($scope.recipe.name === undefined || $scope.recipe.name === "") {
         $scope.recipeError = true;
+      } else if (!$scope.recipe.ingredients.length) {
+        $scope.noIngredients = true;
       }
       else {
         $scope.recipeError = false;

@@ -4,6 +4,7 @@ angular.module('wtf.create-recipes', [])
     $scope.recipe = {ingredients: []};
     $scope.recipeError = false;
     $scope.ingredientError = false;
+    $scope.noIngredients = false;
 
     $scope.addIngredient = function() {
       if ($scope.newIngredient === undefined || $scope.newIngredient === "") {
@@ -23,6 +24,8 @@ angular.module('wtf.create-recipes', [])
     $scope.saveRecipe = function() {
       if ($scope.recipe.name === undefined || $scope.recipe.name === "") {
         $scope.recipeError = true;
+      } else if (!$scope.recipe.ingredients.length) {
+        $scope.noIngredients = true;
       }
       else {
         $scope.recipeError = false;

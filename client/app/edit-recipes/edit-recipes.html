@@ -26,6 +26,7 @@
         <ul class="collection">
           <li class="collection-item" ng-repeat="ingredient in recipe.ingredients">{{ingredient}}<a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="trash-icon-small">delete<span></i></a></li>
         </ul>
+        <span ng-show="noIngredients" class="error">You must add at least one ingredient.</span>
       </div>
     </form>
   </div>
