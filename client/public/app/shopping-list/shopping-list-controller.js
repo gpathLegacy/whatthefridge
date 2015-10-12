@@ -118,6 +118,27 @@ angular.module('wtf.shopping-list', [])
       Recipes.selectedRecipes = [];
     };
 
+    /* barcode feature begins */
+    
+    $scope.scanBarcode = function() {
+      console.log("Calls the controller barcode scanner function");
+      //open model which makes a call to Quagga
+      //goes back to the shopping list view
+
+      //Quagga initialization
+
+      //Quagga start
+    };
+
+    $scope.lookupProductDetails = function() {
+      ///Quagga Process
+      //when UPC saved from the barcode scan, call UPC lookup on the server
+
+      //get results from the model and populate the client price input field 
+    };
+
+    /* barcode feature ends */
+
     $scope.savePrice = function(ingredient, prevPrice, index) {
       // for some reason this function is being called on page load, which is causing huge problems
       // such as unnecessary toasts and NaN problems. We just need to check if prevPrice is defined

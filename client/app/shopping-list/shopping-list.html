@@ -34,7 +34,9 @@
           <td>Price</td>
           <td>
           <form class="priceForm" name="priceForm{{$index}}">
-            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></td>
+            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+            <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanBarcode()">Scan It!</button>
+            </td>
           </form>
         </tr>
       </table>
