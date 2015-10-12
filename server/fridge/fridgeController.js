@@ -9,6 +9,10 @@ module.exports = function(Fridge, Ingredients) {
     addList: function(req, res) {
       var list = req.body;
       for (var i = 0; i < list.length; i++) {
+        if (list[i].expiration === undefined) {
+          list[i].expiration = new Date();
+        }
+
         (function(index){
           Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
             // if ingredient doesn't exist (added on shopping list page), create ingredient first
