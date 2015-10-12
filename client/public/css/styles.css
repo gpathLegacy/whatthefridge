@@ -1,7 +1,5 @@
 /*==========index.html==========*/
 
-
-
 .social {
   height: 50px;
   width: 50px;
@@ -13,7 +11,6 @@
 .modal-row {
   margin-bottom: 0;
 }
-
 
 /*=====modal=====*/
 modal-content{
@@ -30,7 +27,6 @@ modal-content{
 .navbar-font-color{
   color:#90caf9;
 }
-
 
 /*=====footer=====*/
 
@@ -88,6 +84,14 @@ body {
 }
 
 /*==========landing.html==========*/
+
+/*=====feature-tour=====*/
+.introjs-helperNumberLayer{
+  font-size: 1.5em;
+  width: 30px;
+  height:30px;
+  padding-top: 3px;
+}
 
 /*=====how-it-works=====*/
 
@@ -281,6 +285,15 @@ body {
   font-size:16px;
   position:relative;
   bottom:13px;
+}
+
+/*========dashboard=========*/
+
+.double-digit-steps{
+  font-size: 1.5em;
+  width: 50px;
+  height:50px;
+  /*padding-top: 3px;*/
 }
 
 /*========shopping-list=========*/

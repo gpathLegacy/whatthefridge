@@ -1,8 +1,12 @@
-<div class="container">
+<!-- Feature-Tour Step-2 -->
+<div class="container step" data-step="2" data-position="left" data-intro="This is the dashboard.  This is where the action happens!">
   <h5 class="center-align"> </h5>
-
-  <div class="row">
-    <div class="col s4">
+  <!-- Feature-Tour Button && Feature-Tour Step-1 -->
+  <a class="right waves-effect waves-light btn step tooltipped orange darken-2 step" data-step="1" data-intro="Welcome to What-The-Fridge!  I am your tour guide." data-position="bottom" data-delay="50" data-tooltip="Click me for a tour!" onclick="javascript:introJs().start()"=><i class="material-icons right">cloud</i>Teach Me</a><br><br>
+  <!-- Feature-Tour Step-6 -->
+  <div class="row step" data-step="6" data-position="bottom" data-intro="The second part of the tour is about your fridge area!">
+    <!-- Feature-Tour Step-10 -->
+    <div class="col s4 step" data-step="10" data-position="right" data-intro="This section keeps you informed about what's about to expire in your fridge!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
@@ -17,26 +21,27 @@
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
-          Expiring soon: 
+          Expiring soon:
           <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
             <li>{{subitem.name}}</li>
           </div>
           <br/>
           <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday">
-            Expiring today: 
+            Expiring today:
             <li>{{subitem.name}}</li>
           </div>
         </div>
       </div>
-    </div>  
-
-    <div class="col s4">
+    </div>
+    <!-- Feature-Tour Step-7 -->
+    <div class="col s4 step" data-step="7" data-position="bottom" data-intro="This is a digital representation of your fridge's contents!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
         <img src="http://www.appliancist.com/stainless-steel-refrigerator-atag-ka2111dq-open.jpg">
         </div>
         <div class="card-content">
-          <span ng-if="fridgeData.length > 0" class="card-title activator">Fridge</span>
+          <!-- Feature-Tour Step-9 -->
+          <span ng-if="fridgeData.length > 0" class="card-title activator step" data-step="9" data-position="left" data-intro="Once populated, click here to reveal your fridge's contents!">Fridge</span>
           <span ng-if="fridgeData.length === 0" class="card-title">Fridge</span>
           <p ng-if="fridgeData.length === 0 "> You have nothing in your fridge</p>
           <div ng-if="fridgeData.length > 0">
@@ -46,7 +51,7 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
           <p>Items in your fridge: {{fridgeData.length}} </p>
-          <div ng-if="highestQtyFridge.length">You have a lot of: 
+          <div ng-if="highestQtyFridge.length">You have a lot of:
             <li ng-repeat="item in highestQtyFridge">{{item.name}}</li>
           </div>
           <br/>
@@ -55,13 +60,14 @@
           </div>
         </div>
         <div class="card-action">
-          <a href="#/fridge">Go to the Fridge</a>
+          <!-- Feature-Tour Step-8 -->
+          <a href="#/fridge" class="step" data-step="8" data-position="top" data-intro="Click here to begin inputting the contents your fridge.">Go to the Fridge</a>
         </div>
       </div>
     </div>
 
-
-    <div class="col s4">
+    <!-- Feature-Tour Step-11 -->
+    <div class="col s4 step" data-step="11" data-position="left" data-intro="This section keeps track of what has already expired!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://www.clipartbest.com/cliparts/niB/7aa/niB7aaqiA.jpeg">
@@ -75,7 +81,7 @@
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
-          The following items have expired: 
+          The following items have expired:
           <br></br>
           <div ng-repeat="subitem in expired">
             <li>${{(subitem.qty * subitem.price).toFixed(2)}} of {{subitem.name}} on {{subitem.expiration | date: 'shortDate'}}</li>
@@ -85,9 +91,10 @@
     </div>
 
   </div>
-
-  <div class = "row">
-    <div class="col s6">
+  <!-- Feature-Tour Step-3 -->
+  <div class="row step" data-position="top" data-step="3" data-intro="At its most basic, WTF takes recipes as input and outputs your grocery list.">
+  <!-- Feature-Tour Step-4 -->
+    <div class="col s6 step" data-position="top" data-step="4" data-intro="Do you have your favorite lasagna recipe handy?">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -106,7 +113,8 @@
           <div ng-if="allRecipes.length === 0"> You have no recipes</div>
         </div>
         <div class="card-action">
-          <a href="#/recipes">See Recipes</a>
+        <!-- Feature-Tour Step-5 -->
+          <a href="#/recipes" class="step" data-position="top" data-step="5" data-intro="Click here to start inputting your best recipes">See Recipes</a>
         </div>
       </div>
     </div>
@@ -132,3 +140,9 @@
     </div>
   </div>
 </div>
+
+<script>
+ $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+ </script>
