@@ -127,17 +127,17 @@ angular.module('wtf.shopping-list', [])
 
       //Quagga functions run onscan click
       $(function() {
+        var resultCollector = Quagga.ResultCollector.create({
+          capture: true,
+          capacity: 20,
+          blacklist: [{code: "2167361334", format: "i2of5"}],
+          filter: function(codeResult) {
+              // only store results which match this constraint
+              // e.g.: codeResult
+            return true;
+          }
+        });
         var App = {
-          var resultCollector = Quagga.ResultCollector.create({
-            capture: true,
-            capacity: 20,
-            blacklist: [{code: "2167361334", format: "i2of5"}],
-            filter: function(codeResult) {
-                // only store results which match this constraint
-                // e.g.: codeResult
-              return true;
-            }
-          });
           //initialization function that sets up results collection, listeners and the video stream 
           init : function() {
             var self = this;
@@ -151,10 +151,10 @@ angular.module('wtf.shopping-list', [])
               Quagga.start();
             });
           },
-          handleError : function() {
+          handleError: function(err) {
             console.log(err);
           },
-          attachListeners : function() {
+          attachListeners: function() {
             var self = this;
 
             $(".controls").on("click", "button.stop", function(e) {
@@ -193,7 +193,7 @@ angular.module('wtf.shopping-list', [])
 
             return parts.reduce(function(o, key, i) {
               if (setter && (i + 1) === depth) {
-                  o[key] = val;
+                o[key] = val;
               }
               return key in o ? o[key] : {};
             }, obj);
@@ -222,7 +222,7 @@ angular.module('wtf.shopping-list', [])
             App.init();
           },
           inputMapper: {
-            inputStream: {
+          inputStream: {
               constraints: function(value){
                 var values = value.split('x');
                 return {
@@ -237,36 +237,37 @@ angular.module('wtf.shopping-list', [])
             },
             decoder: {
               readers: function(value) {
-                  return [value + "_reader"];
+                return [value + "_reader"];
               }
             }
           },
           state: {
-              inputStream: {
-                type : "LiveStream",
-                constraints: {
-                  width: 640,
-                  height: 480,
-                  facing: "environment" // or user
-                }
-              },
-              locator: {
-                patchSize: "medium",
-                halfSample: true
-              },
-              numOfWorkers: 4,
-              decoder: {
-                readers : [ "code_128_reader"]
-              },
-              locate: true
+            inputStream: {
+              type : "LiveStream",
+              constraints: {
+                width: 640,
+                height: 480,
+                facing: "environment" // or user
+              }
+            },
+            locator: {
+              patchSize: "medium",
+              halfSample: true
+            },
+            numOfWorkers: 4,
+            decoder: {
+              readers : [ "code_128_reader"]
+            },
+            locate: true
           },
           lastResult: null
         };
+
         App.init();
 
         Quagga.onProcessed(function(result) {
           var drawingCtx = Quagga.canvas.ctx.overlay,
-              drawingCanvas = Quagga.canvas.dom.overlay;
+            drawingCanvas = Quagga.canvas.dom.overlay;
 
           if (result) {
             if (result.boxes) {
@@ -301,9 +302,7 @@ angular.module('wtf.shopping-list', [])
             $("#result_strip ul.thumbnails").prepend($node);
           }
         });
-
       });
-
     };
 
     $scope.lookupProductDetails = function() {
