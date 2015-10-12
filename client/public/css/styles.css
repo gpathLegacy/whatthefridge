@@ -97,6 +97,12 @@ body {
   padding-top: 3px;
 }
 
+#feature-tour-container{
+  margin-left:0;
+  padding-left: 0;
+  border-left: 0;
+}
+
 /*=====how-it-works=====*/
 
 .hiw-button-adjuster{
