@@ -173,7 +173,94 @@ angular.module('wtf.shopping-list', [])
               console.log("Value of "+ state + " changed to " + value);
               self.setState(state, value);
             });
-          }
+          },
+          _printCollectedResults: function() {
+            var results = resultCollector.getResults(),
+              $ul = $("#result_strip ul.collector");
+
+            results.forEach(function(result) {
+              var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
+
+              $li.find("img").attr("src", result.frame);
+              $li.find("h4.code").html(result.codeResult.code + " (" + result.codeResult.format + ")");
+              $ul.prepend($li);
+            });
+          },
+          _accessByPath: function(obj, path, val) {
+            var parts = path.split('.'),
+              depth = parts.length,
+              setter = (typeof val !== "undefined") ? true : false;
+
+            return parts.reduce(function(o, key, i) {
+              if (setter && (i + 1) === depth) {
+                  o[key] = val;
+              }
+              return key in o ? o[key] : {};
+            }, obj);
+          },
+          _convertNameToState: function(name) {
+            return name.replace("_", ".").split("-").reduce(function(result, value) {
+              return result + value.charAt(0).toUpperCase() + value.substring(1);
+            });
+          },
+          detachListeners: function() {
+            $(".controls").off("click", "button.stop");
+            $(".controls .reader-config-group").off("change", "input, select");
+          },
+          setState: function(path, value) {
+            var self = this;
+
+            if (typeof self._accessByPath(self.inputMapper, path) === "function") {
+              value = self._accessByPath(self.inputMapper, path)(value);
+            }
+
+            self._accessByPath(self.state, path, value);
+
+            console.log(JSON.stringify(self.state));
+            App.detachListeners();
+            Quagga.stop();
+            App.init();
+          },
+          inputMapper: {
+            inputStream: {
+              constraints: function(value){
+                var values = value.split('x');
+                return {
+                  width: parseInt(values[0]),
+                  height: parseInt(values[1]),
+                  facing: "environment"
+                }
+              }
+            },
+            numOfWorkers: function(value) {
+              return parseInt(value);
+            },
+            decoder: {
+              readers: function(value) {
+                  return [value + "_reader"];
+              }
+            }
+          },
+          state: {
+              inputStream: {
+                type : "LiveStream",
+                constraints: {
+                  width: 640,
+                  height: 480,
+                  facing: "environment" // or user
+                }
+              },
+              locator: {
+                patchSize: "medium",
+                halfSample: true
+              },
+              numOfWorkers: 4,
+              decoder: {
+                readers : [ "code_128_reader"]
+              },
+              locate: true
+          },
+          lastResult: null
 
         };
         App.init();
