@@ -171,22 +171,6 @@ body {
   color:black;
 }
 
-/*=====FAQ=====*/
-
-.icon-color-modifier{
-  color:#f57c00;
-}
-
-.faq-outer-panel{
-  background-color: #424242;
-  color:white;
-}
-
-.faq-inner-panel{
-  background-color: #424242;
-  color:#90caf9;
-}
-
 /*=====tech-stack=====*/
 #tech-stack-container{
   padding-left: 2em;
@@ -217,6 +201,28 @@ body {
 
 #expressImage{
   height: 5em;
+}
+
+/*=====FAQ=====*/
+
+.icon-color-modifier{
+  color:#f57c00;
+}
+
+.faq-outer-panel{
+  background-color: #424242;
+  color:white;
+}
+
+.faq-inner-panel{
+  background-color: #424242;
+  color:#90caf9;
+}
+
+#faq-outermost-container{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size:1.1em;
+  padding-bottom: 2em;
 }
 
 /*=====team-intro cards=====*/
