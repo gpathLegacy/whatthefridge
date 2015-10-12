@@ -10,6 +10,7 @@ angular.module('wtf', [
   'wtf.edit-recipes',
   // 'wtf.index',
   'wtf.services',
+  'wtf.create-shopping-list',
   'wtf.shopping-list',
   'wtf.fridge',
   'wtf.services',
@@ -58,6 +59,10 @@ angular.module('wtf', [
     .when('/edit-recipes', {
       templateUrl: 'app/edit-recipes/edit-recipes.html',
       controller: 'EditRecipesController'
+    })
+    .when('/create-list', {
+      templateUrl: 'app/create-shopping-list/create-shopping-list.html',
+      controller: 'CreateShoppingListController'
     })
     .when('/shopping-list', {
       templateUrl: 'app/shopping-list/shopping-list.html',

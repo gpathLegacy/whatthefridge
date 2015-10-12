@@ -1,8 +1,8 @@
-angular.module('wtf.shopping-list', [])
-  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
+angular.module('wtf.create-shopping-list', [])
+  .controller('CreateShoppingListController', ["$scope", "$window", "$location", "Recipes", "SavedLists", function($scope, $window, $location, Recipes, SavedLists) {
 
     $scope.shoppingList = [];
-    $scope.disabled = false;
+
     $scope.addModal = function() {
       $("#addItem").openModal();
     };
@@ -28,52 +28,9 @@ angular.module('wtf.shopping-list', [])
       $("#saveList").openModal();
     };
 
-    $scope.disableButtons = function(){
-      if ($scope.disableQty || $scope.disablePrice){
-        $('.saveButton').addClass('disabled');
-        $('.fridgeButton').addClass('disabled');
-        $scope.disabled = true;
-      }
-    };
-
-    $scope.enableButtons = function(){
-      if (!$scope.disableQty && !$scope.disablePrice){
-        $('.saveButton').removeClass('disabled');
-        $('.fridgeButton').removeClass('disabled');
-        $scope.disabled = false;
-      }
-    };
-
-    $scope.checkPrice = function(index) {
-      var formName = "priceForm" + index;
-      var formCheck = $scope.$$childHead;
-      // walk through scope objects to find the one containing the form in question
-      while (formScope === undefined) {
-        if(formCheck[formName]) {
-          var formScope = formCheck[formName];
-        } else {
-          formCheck = formCheck.$$nextSibling;
-        }
-      }
-
-      // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
-      // the price won't be saved as undefined in the savePrice function
-      if(formScope.$invalid) {
-        $scope.disablePrice = true; 
-        $scope.disableButtons();
-        Materialize.toast('Price must match format: 0.00', 4000);
-        return false;
-      }else{
-        $scope.disablePrice = false;
-        $scope.enableButtons();
-        return true;
-      }
-    };
-
     $scope.populateList = function() {
       // When we initialize this page, set fridgeFlag to true, enabling the fridge button.
       // Also set notSavedFlag to true, enabling the save button
-      $scope.fridgeFlag = true;
       $scope.notSavedFlag = true;
       $scope.totalPrice = 0;
 
@@ -118,28 +75,6 @@ angular.module('wtf.shopping-list', [])
       Recipes.selectedRecipes = [];
     };
 
-    $scope.savePrice = function(ingredient, prevPrice, index) {
-      // for some reason this function is being called on page load, which is causing huge problems
-      // such as unnecessary toasts and NaN problems. We just need to check if prevPrice is defined
-      // to make sure the function isn't being run when it's not supposed to
-      if(prevPrice) {
-        if ($scope.checkPrice(index)) {
-          $scope.totalPrice = parseFloat($scope.totalPrice) - parseFloat(prevPrice) + parseFloat(ingredient.price);
-          Recipes.setIngredientPrice($scope.shoppingList[$scope.shoppingList.indexOf(ingredient)]);
-        }
-      }
-    };
-
-    $scope.addToFridge = function() {
-      if ($scope.fridgeFlag) {
-        Fridge.addList($scope.shoppingList).then(function(){
-          // Show a message that confirms success and disable the button
-          $('.fridgeButton').addClass('disabled');
-          $scope.fridgeFlag = false;
-        });
-      }
-    };
-
     $scope.saveList = function() {
       if ($scope.notSavedFlag) {
         SavedLists.saveList($scope.shoppingList, $scope.listName).then(function(){
@@ -152,20 +87,14 @@ angular.module('wtf.shopping-list', [])
     };
 
     // When a quantity is changed, recalculate the price of that item
-    $scope.updatePrice = function(index, prevPrice, prevQty) {
+    $scope.formatCheck = function(index) {
       var item = $scope.shoppingList[index];
-      var price = item.price || prevPrice;
       var qty = parseFloat(item.qty);
-
       if (isNaN(qty)) {
-        $scope.disableQty = true;
-        $scope.disableButtons();
+        $('.saveButton').addClass('disabled');
         Materialize.toast("Please enter a valid quantity", 4000);
-      } else {
-        $scope.totalPrice -= prevQty*price;
-        $scope.totalPrice += qty*price;
-        $scope.disableQty = false;
-        $scope.enableButtons();
+      }else{
+        $('.saveButton').removeClass('disabled');
       }
     };
 

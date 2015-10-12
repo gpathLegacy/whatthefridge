@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row center-align">
+    Create Shopping List
+    <br>
+    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Create shopping list</button>
+  </div>
+  <div class="row center-align">
+    <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
+    Add item
+  </div>
+  <div ng-hide="notSavedFlag">
+    Shopping list saved.
+  </div>
+
+  <ul class="collection">
+    <li class="collection-item" ng-repeat="ingredient in shoppingList track by $index">
+      <div>{{ingredient.name}} <div class="secondary-content"> Qty: <input ng-blur="formatCheck($index)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
+    </li>
+  </ul>
+
+<!-- saveList Modal -->
+  <div id="saveList" class="modal">
+    <form ng-submit="saveList()">
+      <div class="modal-content">
+        <div class="container">
+          <div class="input-field">
+            <label for="listName">Shopping List Name (optional)</label>
+            <input type="text" id="listName" ng-model="listName"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+      </div>
+    </form>
+  </div>
+
+<!-- add item Modal -->
+  <div id="addItem" class="modal">
+    <form ng-submit="addItem()">
+      <div class="modal-content">
+        <div class="container">
+          <div class="input-field">
+            <label for="itemToAdd">Item Name</label>
+            <input required type="text" id="itemToAdd" ng-model="itemToAdd"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
+      </div>
+    </form>
+  </div>

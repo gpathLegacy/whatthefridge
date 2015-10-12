@@ -2,8 +2,8 @@
   <div class="row center-align">
     Shopping List
     <br>
-    <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()">Add all to Fridge</button>
-    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Save shopping list</button>
+    <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()" ng-disabled="disabled">Add all to Fridge</button>
+    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()" ng-disabled="disabled">Update shopping list</button>
   </div>
   <div class="row center-align">
     <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
