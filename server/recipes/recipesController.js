@@ -111,6 +111,12 @@ module.exports = function(Recipes, Ingredients) {
           res.json("deleted " + req.body.title);
         })
     },
+    getInstructions: function(req, res){
+      Recipes.getInstructions(req.body.id)
+        .then(function(data){
+          res.send(data);
+        })
+    },
     suggestRecipe: function(req, res){
       Recipes.getAllOtherUserRecipes(req.user.id)
         .then(function(data){
