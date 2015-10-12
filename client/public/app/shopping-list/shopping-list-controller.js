@@ -2,7 +2,7 @@ angular.module('wtf.shopping-list', [])
   .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
 
     $scope.shoppingList = [];
-
+    $scope.disabled = false;
     $scope.addModal = function() {
       $("#addItem").openModal();
     };
@@ -31,11 +31,13 @@ angular.module('wtf.shopping-list', [])
     $scope.disableButtons = function(){
       $('.saveButton').addClass('disabled');
       $('.fridgeButton').addClass('disabled');
+      $scope.disabled = true;
     };
 
     $scope.enableButtons = function(){
       $('.saveButton').removeClass('disabled');
       $('.fridgeButton').removeClass('disabled');
+      $scope.disabled = false;
     };
 
     $scope.checkPrice = function(index) {
