@@ -1,7 +1,5 @@
 /*==========index.html==========*/
 
-
-
 .social {
   height: 50px;
   width: 50px;
@@ -95,12 +93,6 @@ body {
   width: 30px;
   height:30px;
   padding-top: 3px;
-}
-
-#feature-tour-container{
-  margin-left:0;
-  padding-left: 0;
-  border-left: 0;
 }
 
 /*=====how-it-works=====*/
