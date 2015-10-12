@@ -1,7 +1,10 @@
 angular.module('wtf.create-recipes', [])
   .controller('CreateRecipesController', ["$scope", "$window", "$location", "Recipes", function($scope, $window, $location, Recipes) {
 
-    $scope.recipe = {ingredients: []};
+    $scope.recipe = {
+                      ingredients: [],
+                      instructions: ""
+                    };
     $scope.recipeError = false;
     $scope.ingredientError = false;
     $scope.noIngredients = false;
