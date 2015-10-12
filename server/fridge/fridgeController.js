@@ -32,7 +32,7 @@ module.exports = function(Fridge, Ingredients) {
                 // console.log("fridge is ", fridge);
                 console.log("entered is", entered);
                 // console.log("entered === fridge", fridge===entered)
-                var match = fridgeIngredient.filter(function(item){return item.expiration === entered || entered === item.expiration.toISOString().split('T')[0]})
+                var match = fridgeIngredient.filter(function(item){return item.expiration === null && entered === undefined || item.expiration && item.expiration.toISOString().split('T')[0] === entered})
                 console.log("the matching element is ", match);
                 console.log("the matching element's id is ", match.length > 0 ? match[0].id : match );
 
