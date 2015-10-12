@@ -197,6 +197,17 @@ body {
   color:#90caf9
 }
 
+#angularImage{
+  margin-left: 12px;
+  height: 15em;
+  width:15em;
+  margin-right:0;
+}
+
+#postgresImage{
+  height: 15em;
+}
+
 /*=====team-intro cards=====*/
 .card-reveal-content{
   font-size:.8em;
