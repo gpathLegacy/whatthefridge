@@ -3,8 +3,10 @@
   <h5 class="center-align"> </h5>
   <!-- Feature-Tour Button && Feature-Tour Step-1 -->
   <a class="right waves-effect waves-light btn step tooltipped orange darken-2 step" data-step="1" data-intro="Welcome to What-The-Fridge!  I am your tour guide." data-position="bottom" data-delay="50" data-tooltip="Click me for a tour!" onclick="javascript:introJs().start()"=><i class="material-icons right">cloud</i>Teach Me</a><br><br>
-  <div class="row">
-    <div class="col s4">
+  <!-- Feature-Tour Step-6 -->
+  <div class="row step" data-step="6" data-position="bottom" data-intro="The second part of the tour is about your fridge area!">
+    <!-- Feature-Tour Step-10 -->
+    <div class="col s4 step" data-step="10" data-position="right" data-intro="This section keeps you informed about what's about to expire in your fridge!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
@@ -31,14 +33,15 @@
         </div>
       </div>
     </div>
-
-    <div class="col s4">
+    <!-- Feature-Tour Step-7 -->
+    <div class="col s4 step" data-step="7" data-position="bottom" data-intro="This is a digital representation of your fridge's contents!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
         <img src="http://www.appliancist.com/stainless-steel-refrigerator-atag-ka2111dq-open.jpg">
         </div>
         <div class="card-content">
-          <span ng-if="fridgeData.length > 0" class="card-title activator">Fridge</span>
+          <!-- Feature-Tour Step-9 -->
+          <span ng-if="fridgeData.length > 0" class="card-title activator step" data-step="9" data-position="left" data-intro="Once populated, click here to reveal your fridge's contents!">Fridge</span>
           <span ng-if="fridgeData.length === 0" class="card-title">Fridge</span>
           <p ng-if="fridgeData.length === 0 "> You have nothing in your fridge</p>
           <div ng-if="fridgeData.length > 0">
@@ -57,13 +60,14 @@
           </div>
         </div>
         <div class="card-action">
-          <a href="#/fridge">Go to the Fridge</a>
+          <!-- Feature-Tour Step-8 -->
+          <a href="#/fridge" class="step" data-step="8" data-position="top" data-intro="Click here to begin inputting the contents your fridge.">Go to the Fridge</a>
         </div>
       </div>
     </div>
 
-
-    <div class="col s4">
+    <!-- Feature-Tour Step-11 -->
+    <div class="col s4 step" data-step="11" data-position="left" data-intro="This section keeps track of what has already expired!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://www.clipartbest.com/cliparts/niB/7aa/niB7aaqiA.jpeg">
