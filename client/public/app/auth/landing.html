@@ -67,27 +67,27 @@
         <div class="container">
         <h2 id="hiw-large-title">
           <i class="small blue-text text-lighten-3 material-icons z-depth-1">grade</i>
-          How It Works
+          <a class="waves-effect waves-light btn-large transparent black-text z-depth-3">How it works</a>
           <i class="small blue-text text-lighten-3 material-icons z-depth-1">grade</i>
         </h2>
         <br>
         <!-- Feature-Tour Step-3 -->
-        <div data-step="3" data-intro="At the most basic level, this is how WTF! works." class="step row" id="hiw-inner-container">
+        <div data-step="3" data-intro="At the most basic level, this is how WTF! works." class="step row z-depth-2" id="hiw-inner-container">
           <div class="row">
             <div class="white">
               <!-- Sign Up Trifold -->
               <div class="col s4 hiw-content-title">
-                <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1"><i class="material-icons grey-text text-darken-3" style="font-size:1.4em">person_add</i></a>
+                <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1"><i class="material-icons" style="font-size:1.4em">person_add</i></a>
                 <br>Sign Up
               </div>
               <!-- Input Recipes Trifold -->
               <div class="col s4 hiw-content-title">
-               <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1"><i class="material-icons grey-text text-darken-3" style="font-size:1.4em">input</i></a>
+               <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1 z-depth-1"><i class="material-icons" style="font-size:1.4em">input</i></a>
                 <br>Input Recipes
               </div>
               <!-- Go Shopping Trifold -->
               <div class="col s4 hiw-content-title">
-               <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1"><i class="material-icons grey-text text-darken-3" style="font-size:1.4em">thumb_up</i></a>
+               <a class="hiw-hover-icon btn-square btn-large btn-floating waves-effect waves-light orange darken-2 z-depth-1"><i class="material-icons" style="font-size:1.4em">thumb_up</i></a>
                 <br>Go Shopping
               </div>
               <div class="col s4 col s4">
@@ -107,7 +107,7 @@
           <div class="blue lighten-3 left-align step" id="hiw-call-to-action-container" data-step="6" data-intro="Well?  Feature Tour Finished.">
             <p class="flow-text">What are you waiting for?  Sign up!
               <!-- Feature-Tour Step-2 -->
-              <button data-step="2" data-intro="Click this button to sign-up. Or hit right-arrow to continue tour." data-target="modal1" class="step btn waves-effect waves-light modal-trigger right orange darken-3">Sign up!<i class="material-icons right">send</i></button></p>
+              <button data-step="2" data-intro="Click this button to sign-up. Or hit right-arrow to continue tour." data-target="modal1" class="step btn waves-effect waves-light modal-trigger right orange darken-3 z-depth-2">Sign up!<i class="material-icons right">send</i></button></p>
           </div>
         </div>
       </div>
@@ -117,35 +117,35 @@
   <!-- End HIW Large Screen Only-->
 <!-- End How It Works -->
 <!-- Start Tech Stack -->
-<div id="tech-stack-outer-shell">
+<div class="hide-on-small-only" id="tech-stack-outer-shell">
   <div class="container center-align">
   <br>
-    <h3>Powered by:</h3>
-    <div class="row col s12" id="tech-stack-container">
+    <h2><a class="waves-effect waves-light btn-large orange darken-3 z-depth-3" style="margin-left:.6em;">Powered by</a></h2>
+    <div class="row" id="tech-stack-container">
       <div class="col s4">
-        <div class="card">
-          <div class="card-image">
-            <img src="../../img/postgresql.jpg">
-          </div>
-        </div>
-      </div>
-      <div class="col s3">
-        <div class="card extra-small">
-          <div class="card-image">
-            <img src="../../img/angular.jpg">
+        <div class="card z-depth-2">
+          <div class="card-image" id="postgresImage">
+            <img src="../../img/postgresql1.jpg">
           </div>
         </div>
       </div>
       <div class="col s4">
-        <div class="card">
-          <div class="card-image">
-            <img src="../../img/node.jpg">
+        <div class="card extra-small z-depth-2">
+          <div class="card-image" id="angularImage">
+            <img src="../../img/angular1.jpg">
           </div>
         </div>
       </div>
       <div class="col s4">
-        <div class="card">
-          <div class="card-image">
+        <div class="card z-depth-2">
+          <div class="card-image" id="nodeImage">
+            <img src="../../img/node1.jpg">
+          </div>
+        </div>
+      </div>
+      <div class="col s4">
+        <div class="card z-depth-2">
+          <div class="card-image" id="expressImage">
             <img src="../../img/express.png">
           </div>
         </div>
@@ -157,17 +157,18 @@
 <!-- End Tech Stack -->
 <!-- Start FAQ Collapsible Popout -->
 <div class="hide-on-small-only">
-  <div class="parallax-container">
+  <div class="parallax-container" id="faq-outermost-container">
     <div class="parallax"><img src="../../img/fridge2-3.jpg"></div>
-    <h2 class="center-align white-text">FAQ</h2>
+      <h2 class="center-align"><a class="waves-effect waves-light btn-large transparent black-text z-depth-3">FAQ</a></h2>
+
     <div class="container">
-      <ul class="collapsible popout" data-collapsible="accordion">
+      <ul class="collapsible popout z-depth-2" data-collapsible="accordion">
         <li>
           <div class="collapsible-header faq-outer-panel"><i class="mdi-content-add icon-color-modifier" style="font-size:2.3em;"></i>1. Curabitur euismod lectus vel leo condimentum, at porta purus commodo?</div>
           <div class="collapsible-body faq-inner-panel"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vitae diam sit amet efficitur. Donec pulvinar congue gravida. Integer porta sodales nunc ut iaculis. Cras aliquet cursus magna, quis faucibus ipsum elementum at.</p></div>
         </li>
         <li>
-          <div class="collapsible-header active faq-outer-panel"><i class="mdi-content-add icon-color-modifier" style="font-size:2.3em;"></i>2. Aliquam in laoreet ligula. Nulla facilisi. Nulla mollis laoreet magna at imperdiet?</div>
+          <div class="collapsible-header faq-outer-panel"><i class="mdi-content-add icon-color-modifier" style="font-size:2.3em;"></i>2. Aliquam in laoreet ligula. Nulla facilisi. Nulla mollis laoreet magna at imperdiet?</div>
           <div class="collapsible-body faq-inner-panel"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vitae diam sit amet efficitur. Donec pulvinar congue gravida. Integer porta sodales nunc ut iaculis. Cras aliquet cursus magna, quis faucibus ipsum elementum at.</p></div>
         </li>
         <li>
@@ -179,20 +180,22 @@
           <div class="collapsible-body faq-inner-panel"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vitae diam sit amet efficitur. Donec pulvinar congue gravida. Integer porta sodales nunc ut iaculis. Cras aliquet cursus magna, quis faucibus ipsum elementum at.</p></div>
         </li>
         <li>
-          <div class="collapsible-header faq-outer-panel"><i class="mdi-content-add icon-color-modifier" style="font-size:2.3em;"></i>5.  Nulla ipsum eros, porttitor porta tempor in, aliquam in leo?</div>
+          <div class="collapsible-header active faq-outer-panel"><i class="mdi-content-add icon-color-modifier" style="font-size:2.3em;"></i>5.  Nulla ipsum eros, porttitor porta tempor in, aliquam in leo?</div>
           <div class="collapsible-body faq-inner-panel"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vitae diam sit amet efficitur. Donec pulvinar congue gravida. Integer porta sodales nunc ut iaculis. Cras aliquet cursus magna, quis faucibus ipsum elementum at.</p></div>
         </li>
       </ul>
     </div>
+  <br><br>
   </div>
 </div>
 <!-- End FAQ Collapsible Popout -->
 <!-- Start Team Introductions -->
 <div class="row hide-on-small-only" id="team-intro-card-holder">
+  <h2 class="center-align"><a class="waves-effect waves-light btn-large orange darken-3 z-depth-3">The Dev. Team</a></h2>
   <!-- Start Josh -->
   <div class="card-container">
     <div class="card extra-small offset-s1 col s2 hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
+      <div class="card-image waves-effect waves-block waves-light intro-card-padder">
         <img class="activator" src="../../img/Josh.jpg">
       </div>
       <div class="card-content">
@@ -219,8 +222,8 @@
     </div>
     <!-- End Josh -->
     <!-- Start Eric -->
-    <div class="card extra-small col s2 hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
+    <div class="card extra-small col s2 hoverable intro-card-padder">
+      <div class="card-image waves-effect waves-block waves-light intro-card-padder">
         <img class="activator" src="../../img/Eric.jpg">
       </div>
       <div class="card-content">
@@ -248,7 +251,7 @@
     <!-- End Eric -->
     <!-- Start Monisha -->
     <div class="card extra-small col s2 hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
+      <div class="card-image waves-effect waves-block waves-light intro-card-padder">
         <img class="activator" src="../../img/Monisha.jpg">
       </div>
       <div class="card-content">
@@ -276,7 +279,7 @@
     <!-- End Monisha -->
     <!-- Start Jeff -->
     <div class="card extra-small col s2 hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
+      <div class="card-image waves-effect waves-block waves-light intro-card-padder">
         <img class="activator" src="../../img/Jeff.jpg">
       </div>
       <div class="card-content">
@@ -306,7 +309,7 @@
     <!-- End Jeff -->
     <!-- Start Justin -->
     <div class="card extra-small col s2 hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
+      <div class="card-image waves-effect waves-block waves-light intro-card-padder">
         <img class="activator" src="../../img/Justin.jpg">
       </div>
       <div class="card-content">
