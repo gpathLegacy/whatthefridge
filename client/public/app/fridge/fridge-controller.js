@@ -46,7 +46,7 @@ angular.module('wtf.fridge',[])
       Fridge.getFridge().then(function(fridge) {
         $scope.data = fridge.data;
         $scope.today = Date.now();
-        $scope.todayInISO = new Date().toISOString().split('T')[0];
+        $scope.todayInISO = new Date($scope.today).toISOString().split('T')[0];
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
 
         for (var i = 0; i < $scope.data.length; i++) {
@@ -56,8 +56,7 @@ angular.module('wtf.fridge',[])
         
         $scope.expiring = $scope.data
                                 .filter(function(entry){
-                                  var entry_expires =  new Date(entry.expiration);
-                                  if(entry_expires > $scope.today && entry_expires < $scope.twoFromToday){
+                                  if(entry.expiration > $scope.today && entry.expiration < $scope.twoFromToday){
                                     return entry;
                                   }
                                 });
