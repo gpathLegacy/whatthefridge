@@ -30,6 +30,7 @@
 
 /*=====footer=====*/
 
+/*keeps the footer fixed to the bottom of the page*/
 body {
   display: flex;
   min-height: 100vh;

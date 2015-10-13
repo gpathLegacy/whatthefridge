@@ -350,4 +350,39 @@
     $('.parallax').parallax();
     $('.modal-trigger').leanModal();
   });
+
+ function startIntro2(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: document.querySelector('#step1'),
+            intro: "Now let's learn about The Fridge!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#step2'),
+            intro: "This is a digital representation of your fridge's contents!",
+            position:"bottom"
+          },
+          {
+            element: document.querySelector('#step3'),
+            intro: "Click here to begin inputting the contents of your fridge!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#step4'),
+            intro: "This section keeps you informed about what's about to expire in your fridge!",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#step5'),
+            intro: "This section keeps track of what has already expired!",
+            position: 'left'
+          }
+        ]
+      });
+    intro.start();
+  }
+
  </script>
