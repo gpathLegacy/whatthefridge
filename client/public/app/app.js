@@ -8,6 +8,7 @@ angular.module('wtf', [
   'wtf.recipes',
   'wtf.dashboard',
   'wtf.edit-recipes',
+  'wtf.instructions',
   // 'wtf.index',
   'wtf.services',
   'wtf.create-shopping-list',
@@ -75,6 +76,10 @@ angular.module('wtf', [
     .when('/fridge', {
       templateUrl: 'app/fridge/fridge.html',
       controller: 'FridgeController'
+    })
+    .when('/instructions', {
+      templateUril: 'app/instructions/instructions.html',
+      controller: 'InstructionsController'
     })
     .otherwise('/');
 
