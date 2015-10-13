@@ -194,6 +194,7 @@ angular.module('wtf.shopping-list', [])
           },
           detachListeners: function() {
             $(".controls").off("click", "button.stop");
+            $(".controls .reader-config-group").off("change", "input, select");
           },
           lastResult: null
         };
@@ -226,6 +227,7 @@ angular.module('wtf.shopping-list', [])
 
         Quagga.onDetected(function(result) {
           var code = result.codeResult.code;
+          console.log(code);
 
           if (App.lastResult !== code) {
             App.lastResult = code;
