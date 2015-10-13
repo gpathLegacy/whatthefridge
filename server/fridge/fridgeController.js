@@ -26,15 +26,17 @@ module.exports = function(Fridge, Ingredients) {
               Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
                 if (fridgeIngredient.length) {
 
-                console.log("fridgeIngredient array is ", fridgeIngredient);
-                // var fridge = fridgeIngredient[0].expiration ? fridgeIngredient[0].expiration.toISOString().split('T')[0] : fridgeIngredient[0].expiration;
-                var entered = list[index].expiration ? list[index].expiration.split('T')[0] : list[index].expiration;
-                // console.log("fridge is ", fridge);
-                console.log("entered is", entered);
-                // console.log("entered === fridge", fridge===entered)
-                var match = fridgeIngredient.filter(function(item){return item.expiration === null && entered === undefined || item.expiration && item.expiration.toISOString().split('T')[0] === entered})
-                console.log("the matching element is ", match);
-                console.log("the matching element's id is ", match.length > 0 ? match[0].id : match );
+                // if user left expiration blank, the expiration defaults to a Date object and must be converted
+                // to string
+                if (typeof list[index].expiration === 'object') {
+                  list[index].expiration = list[index].expiration.toJSON();
+                }
+
+                var entered = list[index].expiration.split('T')[0];
+
+                var match = fridgeIngredient.filter(function(item){
+                  return item.expiration === null && entered === undefined || item.expiration && item.expiration.toISOString().split('T')[0] === entered
+                });
 
                   if(match.length > 0){
                     //if there is an element that has the same expiration, we can increment it
@@ -68,7 +70,7 @@ module.exports = function(Fridge, Ingredients) {
         if(ingredient.length) {
           Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
             if(fridgeIngredient.length) {
-              Fridge.updateItemQty(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+              Fridge.updateItemQty(fridgeIngredient[0].id, req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
             }
             else {
               Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});
@@ -90,9 +92,12 @@ module.exports = function(Fridge, Ingredients) {
 
       for (var i = 0; i < newFridge.length; i++) {
         (function(index){
-          Fridge.setItemQty(req.user.id, newFridge[index].ingredient_id, newFridge[index].qty)
-            .then(function(){
-              return Fridge.updateItemExp(req.user.id, newFridge[index].ingredient_id, newFridge[index].expiration);
+          Fridge.getItemByExp(req.user.id, newFridge[index].ingredient_id, newFridge[index].oldExpiration)
+            .then(function(itemId) {
+              return Fridge.setItemQty(itemId[0].id, newFridge[index].qty);
+            })
+            .then(function(itemId){
+              return Fridge.updateItemExp(itemId[0].id, newFridge[index].expiration);
             })
         })(i);
       }

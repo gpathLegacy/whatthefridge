@@ -6,6 +6,15 @@ module.exports = function(knex) {
         .where('fridge.user_id', user_id)
         .innerJoin('ingredients', "fridge.ingredient_id", "ingredients.id");
     },
+    getItemByExp: function(user_id, ingredient_id, expiration){
+      return knex('fridge')
+        .select('id')
+        .where({
+          'user_id': user_id,
+          'ingredient_id': ingredient_id,
+          'expiration': expiration
+        });
+    },
     addNewItem: function(user_id, ingredient_id, qty, expiration) {
       return knex('fridge')
         .insert({
@@ -30,45 +39,38 @@ module.exports = function(knex) {
           'user_id': user_id, 
           'ingredient_id':ingredient_id
         })
-        .then(function(data){
-          data[0].qty = Number(data[0].qty) + Number(passed)
-          return data[0].qty
-        })
-        .then(function(data){
-          return knex('fridge')
-            .where({
-            'id': id,
-            'user_id': user_id,
-            'ingredient_id':ingredient_id
-            })
-            .update('qty', data)
-        })
+        .increment('qty', Number(passed));
     },
-    updateItemExp: function(user_id, ingredient_id, expiration) {
+
+    updateItemExp: function(id, expiration) {
       return knex('fridge')
         .where({
-          'user_id':user_id,
-          'ingredient_id':ingredient_id
+          'id':id,
         })
         .update({
           'expiration':expiration
         });
     },
-    setItemQty: function(user_id, ingredient_id, qty) {
+    setItemQty: function(id, qty) {
       return knex('fridge')
         .update('qty', qty)
         .where({
-          'user_id':user_id, 
-          'ingredient_id':ingredient_id
+          'id':id
         })
         .then(function(){
           return knex('fridge')
           .where({
-            'user_id':user_id,
-            'ingredient_id':ingredient_id,
+            'id':id,
             'qty': 0
           })
           .del();
+        })
+        .then(function(){
+          // needed to pass the item ID back to the next function
+          return knex('fridge')
+          .where({
+            'id':id
+          });
         });
     },
     deleteItem: function(user_id, ingredient_id) {
