@@ -120,13 +120,9 @@ angular.module('wtf.shopping-list', [])
 
     /* barcode feature begins */
 
-
     $scope.scanBarcode = function() {
       console.log("Calls the controller barcode scanner function");
-      //open model which makes a call to Quagga
-      //goes back to the shopping list view
 
-      //Quagga functions run onscan click
       $(function() {
         var resultCollector = Quagga.ResultCollector.create({
           capture: true,
@@ -250,11 +246,14 @@ angular.module('wtf.shopping-list', [])
       $("#scanBarcode").openModal();
       $scope.scanBarcode();
     };
-    
-    $scope.lookupProductDetails = function() {
-      ///Quagga Process
-      //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
 
+    $scope.stopScanner = function() {
+      Quagga.stop();
+    }
+
+    $scope.lookupProduct = function() {
+      Quagga.stop();
+      //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
       //get results from the model and populate the client price input field 
     };
 
