@@ -18,6 +18,18 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="container">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="comments" name="comment" form="instructions" class="materialize-textarea" ng-model="recipe.instructions" ng-keyup="autoExpand($event)"></textarea>
+                <label for="comments">Input recipe instructions here</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
       <div class="row center-align">
         <a class="btn waves-effect waves-light red" ng-click="saveRecipe()">Update Recipe</a>
       </div>
