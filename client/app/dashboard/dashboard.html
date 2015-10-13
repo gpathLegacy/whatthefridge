@@ -1,10 +1,10 @@
 <!-- Feature-Tour Buttons -->
 <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" onclick="javascript:introJs().start()">
+  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" href="javascript:void(0);" onclick="startIntro()">
     <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
   </a>
   <ul>
-    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Fridge?" href="javascript:void(0);" onclick="startIntro();"><i class="material-icons">shopping_basket</i></i></a></li>
+    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Fridge?" href="javascript:void(0);" onclick="startIntro2();"><i class="material-icons">shopping_basket</i></i></a></li>
   </ul>
 </div>
 
@@ -98,9 +98,9 @@
 
   </div>
   <!-- Feature-Tour T1-S2 -->
-  <div class="row step" data-position="top" data-step="2" data-intro="At its most basic, WTF takes recipes as input and outputs your grocery list." >
+  <div class="row" id="T1S2">
   <!-- Feature-Tour T1-S3 -->
-    <div class="col s6 step" data-position="right" data-step="3" data-intro="Do you have your favorite lasagna recipe handy?">
+    <div class="col s6" id="T1S3">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -120,12 +120,12 @@
         </div>
         <div class="card-action">
         <!-- Feature-Tour T1-S4 -->
-          <a href="#/recipes" class="step" data-position="right" data-step="4" data-intro="Click here to input your favorite recipes!">See Recipes</a>
+          <a href="#/recipes" id="T1S4">See Recipes</a>
         </div>
       </div>
     </div>
     <!-- Feature-Tour T1-S5 -->
-    <div class="col s6 step" data-position="left" data-step="5" data-intro="Do you have favorite recipes?">
+    <div class="col s6" id="T1S5">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -141,7 +141,7 @@
         </div>
         <div class="card-action">
           <!-- Feature-Tour T1-S6 -->
-          <a href="#/saved-lists" data-position="left" data-step="6" data-intro="Click here to turn your most-used recipes into easily accessible shopping lists!">See Saved Lists</a>
+          <a href="#/saved-lists" id="T1S6">See Saved Lists</a>
         </div>
       </div>
     </div>
@@ -159,6 +159,45 @@
         steps: [
           {
             element: document.querySelector('#step1'),
+            intro: "This is the dashboard.  This is where the action happens!",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#T1S2'),
+            intro: "At its most basic, WTF takes recipes as input and outputs your grocery list!",
+            position:"top"
+          },
+          {
+            element: document.querySelector('#T1S3'),
+            intro: "Do you have your favorite lasagna recipe handy?",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#T1S4'),
+            intro: "Click here to input your favorite recipes!",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#T1S5'),
+            intro: "Do you have favorite recipes?",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#T1S6'),
+            intro: "Click here to turn your most-used recipes into easily accessible shopping lists!",
+            position: 'left'
+          }
+        ]
+      });
+    intro.start();
+  }
+
+  function startIntro2(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: document.querySelector('#step1'),
             intro: "Now let's learn about The Fridge!",
             position: 'bottom'
           },
@@ -170,15 +209,15 @@
           {
             element: document.querySelector('#step3'),
             intro: "Click here to begin inputting the contents of your fridge!",
-            position: 'top'
+            position: 'bottom'
           },
           {
-            element: '#step4',
+            element: document.querySelector('#step4'),
             intro: "This section keeps you informed about what's about to expire in your fridge!",
             position: 'right'
           },
           {
-            element: '#step5',
+            element: document.querySelector('#step5'),
             intro: "This section keeps track of what has already expired!",
             position: 'left'
           }
