@@ -67,28 +67,20 @@
 <!-- TEST Modal starts -->
 <!-- scanBarcode() Modal -->
   <div id="scanBarcode" class="modal">
-    <form ng-submit="scanBarcode()">
+    <form ng-submit="lookupProduct()">
       <div class="modal-content">
         <div class="container">
-          <section>
-          <div class="input-field">
-            <label for="listName">Let's scan this baby!</label>
-            <!-- <input type="text" id="listName" ng-model="listName"/> -->
-          </div>
-          <h5>The user's camera</h5>
+          <span for="listName">Let's scan this baby!</span>
           <div id="result_strip">
             <ul class="thumbnails"></ul>
             <ul class="collector"></ul>
           </div>
           <div id="interactive" class="viewport"></div>
-          </section>
-
-
         </div>
       </div>
       <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="stopScanner()">Cancel</a>
+        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Done</button>
       </div>
     </form>
   </div>
