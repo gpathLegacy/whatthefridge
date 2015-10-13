@@ -1,12 +1,12 @@
 <br>
 <div class="container center-align">
   <!-- Feature-Tour Step-1 -->
-  <h4><div class="step" data-step="1" data-intro="Welcome to What-The-Fridge! 'What's in your fridge?'™">What-The-Fridge! (Logo Area)</div></h4>
+  <h4><div id="T3-step1">What-The-Fridge! (Logo Area)</div></h4>
   <br>
 </div>
 <!-- Feature-Tour Button -->
 <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" onclick="javascript:introJs().start()">
+  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" href="javascript:void(0);" onclick="startIntro3()">
     <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
   </a>
 </div>
@@ -351,38 +351,43 @@
     $('.modal-trigger').leanModal();
   });
 
- function startIntro2(){
-    var intro = introJs();
-      intro.setOptions({
+  function startIntro3(){
+    var intro3 = introJs();
+      intro3.setOptions({
         steps: [
           {
-            element: document.querySelector('#step1'),
-            intro: "Now let's learn about The Fridge!",
-            position: 'bottom'
+            element: document.querySelector('#T3-step1'),
+            intro: "This is the dashboard.  This is where the action happens!",
+            position: 'left'
           },
           {
-            element: document.querySelector('#step2'),
-            intro: "This is a digital representation of your fridge's contents!",
-            position:"bottom"
+            element: document.querySelector('#T1S2'),
+            intro: "At its most basic, WTF takes recipes as input and outputs your grocery list!",
+            position:"top"
           },
           {
-            element: document.querySelector('#step3'),
-            intro: "Click here to begin inputting the contents of your fridge!",
-            position: 'bottom'
-          },
-          {
-            element: document.querySelector('#step4'),
-            intro: "This section keeps you informed about what's about to expire in your fridge!",
+            element: document.querySelector('#T1S3'),
+            intro: "Do you have your favorite lasagna recipe handy?",
             position: 'right'
           },
           {
-            element: document.querySelector('#step5'),
-            intro: "This section keeps track of what has already expired!",
+            element: document.querySelector('#T1S4'),
+            intro: "Click here to input your favorite recipes!",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#T1S5'),
+            intro: "Do you have favorite recipes?",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#T1S6'),
+            intro: "Click here to turn your most-used recipes into easily accessible shopping lists!",
             position: 'left'
           }
         ]
       });
-    intro.start();
+    intro3.start();
   }
 
  </script>
