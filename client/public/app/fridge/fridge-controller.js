@@ -1,5 +1,5 @@
 angular.module('wtf.fridge',[])
-  .controller('FridgeController',["$scope", "$http", "$location", "Fridge", function($scope,$http, $location, Fridge) {
+  .controller('FridgeController',["$scope", "$http", "$location", "Fridge", "Recipes", function($scope,$http, $location, Fridge, Recipes) {
 
     $scope.addModal = function() {
       $("#addItem").openModal();
@@ -10,6 +10,36 @@ angular.module('wtf.fridge',[])
         $("#addItem").closeModal();
         $scope.getFridge();
       });
+    };
+
+    $scope.checkPrice = function(index) {
+      var formName = "priceForm" + index;
+      var formCheck = $scope.$$childHead.$$childHead.$$childHead;
+
+      // walk through scope objects to find the one containing the form in question
+      while (formScope === undefined) {
+        if(formCheck[formName]) {
+          var formScope = formCheck[formName];
+        } else {
+          formCheck = formCheck.$parent.$$nextSibling.$$childHead;
+        }
+      }
+
+      // if the form is invalid (doesn't match pattern), tell user what the format is. Return false so
+      // the price won't be saved as undefined in the savePrice function
+      if(formScope.$invalid) {
+        Materialize.toast('Price must match format: 0.00', 4000);
+        return false;
+      } else return true;
+    };
+
+    $scope.savePrice = function(ingredient, prevPrice, index) {
+      if(prevPrice) {
+        if ($scope.checkPrice(index)) {
+          $scope.totalPrice = parseFloat($scope.totalPrice) - parseFloat(prevPrice) + parseFloat(ingredient.price);
+          Recipes.setIngredientPrice($scope.data[index]);
+        }
+      }
     };
 
     $scope.getFridge = function() {
