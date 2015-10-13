@@ -1,6 +1,6 @@
 angular.module('wtf.fridge',[])
   .controller('FridgeController',["$scope", "$http", "$location", "Fridge", "Recipes", function($scope,$http, $location, Fridge, Recipes) {
-
+    
     $scope.addModal = function() {
       $("#addItem").openModal();
     };
@@ -78,7 +78,21 @@ angular.module('wtf.fridge',[])
     };
 
     $scope.saveFridge = function() {
-      Fridge.updateFridge($scope.data);
+      var errorFlag = false;
+      for (var i = 0; i<$scope.data.length; i++) {
+        var iExp = $scope.data[i].expiration.toJSON().split("T")[0];
+        for(var j = i+1; j<$scope.data.length; j++) {
+          var jExp = $scope.data[j].expiration.toJSON().split("T")[0];
+          if ($scope.data[i].ingredient_id === $scope.data[j].ingredient_id && iExp === jExp) {
+            errorFlag = true;
+          }
+        }
+      }
+      if (!errorFlag) {
+        Fridge.updateFridge($scope.data);
+      } else {
+        Materialize.toast("Two entries for the same ingredient must have different expirations!", 4000);
+      }
     };
 
     $scope.increaseQty = function(ingredient) {

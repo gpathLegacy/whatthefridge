@@ -70,7 +70,17 @@ module.exports = function(Fridge, Ingredients) {
         if(ingredient.length) {
           Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
             if(fridgeIngredient.length) {
-              Fridge.updateItemQty(fridgeIngredient[0].id, req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+
+              // Check for an ingredient that has an expiration of today
+              var match = fridgeIngredient.filter(function(item) {
+                return item.expiration.toJSON().split("T")[0] === (new Date()).toJSON().split("T")[0];
+              });
+              
+              if (match.length) {
+                Fridge.updateItemQty(match[0].id, req.user.id, match[0].ingredient_id, 1).then(function(){res.send(200)});
+              } else {
+                Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});
+              }
             }
             else {
               Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});

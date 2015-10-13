@@ -33,13 +33,26 @@ module.exports = function(knex) {
         });
     },
     updateItemQty: function(id, user_id, ingredient_id, passed) {
+      console.log("passed: ", passed);
       return knex('fridge')
         .where({
           'id': id,
           'user_id': user_id, 
           'ingredient_id':ingredient_id
         })
-        .increment('qty', Number(passed));
+        .then(function(data){
+          data[0].qty = Number(data[0].qty) + Number(passed)   
+          return data[0].qty   
+        })   
+        .then(function(data){    
+          return knex('fridge')    
+            .where({   
+            'id': id,    
+            'user_id': user_id,    
+            'ingredient_id':ingredient_id    
+            })   
+            .update('qty', data)   
+        })
     },
 
     updateItemExp: function(id, expiration) {
