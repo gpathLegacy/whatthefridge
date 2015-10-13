@@ -1,12 +1,17 @@
+<!-- Feature-Tour Button -->
+<div class="fixed-action-btn" style="bottom: 45px; right: 30px;">
+  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" onclick="javascript:introJs().start()">
+    <i class="large material-icons" style="font-size:3em; margin-top:-.1em;">?</i>
+  </a>
+</div>
+
 <!-- Feature-Tour Step-2 -->
-<div class="container step" data-step="2" data-position="left" data-intro="This is the dashboard.  This is where the action happens!">
+<div class="container step" data-step="1" data-position="left" data-intro="This is the dashboard.  This is where the action happens!">
   <h5 class="center-align"> </h5>
-  <!-- Feature-Tour Button && Feature-Tour Step-1 -->
-  <a class="right waves-effect waves-light btn step tooltipped orange darken-2 step" data-step="1" data-intro="Welcome to What-The-Fridge!  I am your tour guide." data-position="bottom" data-delay="50" data-tooltip="Click me for a tour!" onclick="javascript:introJs().start()"=><i class="material-icons right">cloud</i>Teach Me</a><br><br>
   <!-- Feature-Tour Step-6 -->
-  <div class="row step" data-step="6" data-position="bottom" data-intro="The second part of the tour is about your fridge area!">
+  <div class="row step" data-step="5" data-position="bottom" data-intro="The second part of the tour is about your fridge area!">
     <!-- Feature-Tour Step-10 -->
-    <div class="col s4 step" data-step="10" data-position="right" data-intro="This section keeps you informed about what's about to expire in your fridge!">
+    <div class="col s4 step" data-step="9" data-position="right" data-intro="This section keeps you informed about what's about to expire in your fridge!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
@@ -34,14 +39,14 @@
       </div>
     </div>
     <!-- Feature-Tour Step-7 -->
-    <div class="col s4 step" data-step="7" data-position="bottom" data-intro="This is a digital representation of your fridge's contents!">
+    <div class="col s4 step" data-step="6" data-position="bottom" data-intro="This is a digital representation of your fridge's contents!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
         <img src="http://www.appliancist.com/stainless-steel-refrigerator-atag-ka2111dq-open.jpg">
         </div>
         <div class="card-content">
           <!-- Feature-Tour Step-9 -->
-          <span ng-if="fridgeData.length > 0" class="card-title activator step" data-step="9" data-position="left" data-intro="Once populated, click here to reveal your fridge's contents!">Fridge</span>
+          <span ng-if="fridgeData.length > 0" class="card-title activator step" data-step="8" data-position="left" data-intro="Once populated, click here to reveal your fridge's contents!">Fridge</span>
           <span ng-if="fridgeData.length === 0" class="card-title">Fridge</span>
           <p ng-if="fridgeData.length === 0 "> You have nothing in your fridge</p>
           <div ng-if="fridgeData.length > 0">
@@ -61,13 +66,13 @@
         </div>
         <div class="card-action">
           <!-- Feature-Tour Step-8 -->
-          <a href="#/fridge" class="step" data-step="8" data-position="top" data-intro="Click here to begin inputting the contents your fridge.">Go to the Fridge</a>
+          <a href="#/fridge" class="step" data-step="7" data-position="top" data-intro="Click here to begin inputting the contents of your fridge.">Go to the Fridge</a>
         </div>
       </div>
     </div>
 
     <!-- Feature-Tour Step-11 -->
-    <div class="col s4 step" data-step="11" data-position="left" data-intro="This section keeps track of what has already expired!">
+    <div class="col s4 step" data-step="10" data-position="left" data-intro="This section keeps track of what has already expired!">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://www.clipartbest.com/cliparts/niB/7aa/niB7aaqiA.jpeg">
@@ -92,9 +97,9 @@
 
   </div>
   <!-- Feature-Tour Step-3 -->
-  <div class="row step" data-position="top" data-step="3" data-intro="At its most basic, WTF takes recipes as input and outputs your grocery list.">
+  <div class="row step" data-position="top" data-step="2" data-intro="At its most basic, WTF takes recipes as input and outputs your grocery list.">
   <!-- Feature-Tour Step-4 -->
-    <div class="col s6 step" data-position="top" data-step="4" data-intro="Do you have your favorite lasagna recipe handy?">
+    <div class="col s6 step" data-position="top" data-step="3" data-intro="Do you have your favorite lasagna recipe handy?">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -114,7 +119,7 @@
         </div>
         <div class="card-action">
         <!-- Feature-Tour Step-5 -->
-          <a href="#/recipes" class="step" data-position="top" data-step="5" data-intro="Click here to start inputting your best recipes">See Recipes</a>
+          <a href="#/recipes" class="step" data-position="top" data-step="4" data-intro="Click here to start inputting your best recipes!">See Recipes</a>
         </div>
       </div>
     </div>

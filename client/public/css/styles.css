@@ -64,8 +64,8 @@ main {
 /*changes background of popped-out portion*/
 #footer-collapsible{
   border-color:#424242;
-
 }
+
 /*changes color of non-popped-out collapsible*/
 .footer-collapsible-header{
   background-color: #424242;
