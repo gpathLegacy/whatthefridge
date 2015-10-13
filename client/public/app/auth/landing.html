@@ -1,12 +1,12 @@
 <br>
 <div class="container center-align">
-  <!-- Feature-Tour Step-1 -->
-  <h4><div id="T3-step1">What-The-Fridge! (Logo Area)</div></h4>
+  <!-- Feature-Tour Tour-3-Step-1 -->
+  <h4><div id="T3-Step1">What-The-Fridge! (Logo Area)</div></h4>
   <br>
 </div>
 <!-- Feature-Tour Button -->
 <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" href="javascript:void(0);" onclick="startIntro3()">
+  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro3()">
     <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
   </a>
 </div>
@@ -52,7 +52,7 @@
             </div>
             <br>
             <div class="row" id="hiw-responsive-footer">
-              <button data-target="modal1" class="btn orange darken-2 waves-effect waves-light modal-trigger center">Sign up!<i class="material-icons right">send</i></button>
+              <button  data-target="modal1" class="btn orange darken-2 waves-effect waves-light modal-trigger center">Sign up!<i class="material-icons right">send</i></button>
             </div>
           </div>
         </div>
@@ -73,8 +73,8 @@
           <i class="small blue-text text-lighten-3 material-icons z-depth-1">grade</i>
         </h2>
         <br>
-        <!-- Feature-Tour Step-3 -->
-        <div data-step="3" data-intro="At the most basic level, this is how WTF! works." class="step row z-depth-2" id="hiw-inner-container">
+        <!-- Feature-Tour T3-Step-3 -->
+        <div class="row z-depth-2" id="hiw-inner-container">
           <div class="row">
             <div class="white">
               <!-- Sign Up Trifold -->
@@ -96,20 +96,20 @@
                 <div class="how-it-works-contents">It's quick, easy, and always free.<br></div>
               </div>
               <div class="col s4 how-it-works-contents">
-              <!-- Feature-Tour Step-4 -->
-                <div class="step" data-step="4" data-intro="After signing up, input your recipes!">Plan your weekly menu, then add it to your shopping list.<br></div>
+              <!-- Feature-Tour T3-Step-4 -->
+                <div id="T3-Step4">Plan your weekly menu, then add it to your shopping list.<br></div>
               </div>
               <div class="col s4">
-              <!-- Feature-Tour Step-5 -->
-                <div class="step" data-step="5" data-intro="Your 'Grocery List Anywhere!'">No hassle, no mistakes.  Access your grocery list and go!<br></div>
+              <!-- Feature-Tour T3-Step-5 -->
+                <div id="T3-Step5">No hassle, no mistakes.  Access your grocery list and go!<br></div>
               </div>
             </div>
           </div>
-          <!-- Feature-Tour Step-6 -->
-          <div class="blue lighten-3 left-align step" id="hiw-call-to-action-container" data-step="6" data-intro="Well?  Feature Tour Finished.">
+          <!-- Feature-Tour T3-Step-6 -->
+          <div class="blue lighten-3 left-align" id="hiw-call-to-action-container">
             <p class="flow-text">What are you waiting for?  Sign up!
-              <!-- Feature-Tour Step-2 -->
-              <button data-step="2" data-intro="Click this button to sign-up. Or hit right-arrow to continue tour." data-target="modal1" class="step btn waves-effect waves-light modal-trigger right orange darken-3 z-depth-2">Sign up!<i class="material-icons right">send</i></button></p>
+              <!-- Feature-Tour T3-step2 -->
+              <button id="T3-Step2" data-target="modal1" class="step btn waves-effect waves-light modal-trigger right orange darken-3 z-depth-2">Sign up!<i class="material-icons right">send</i></button></p>
           </div>
         </div>
       </div>
@@ -356,34 +356,34 @@
       intro3.setOptions({
         steps: [
           {
-            element: document.querySelector('#T3-step1'),
-            intro: "This is the dashboard.  This is where the action happens!",
+            element: document.querySelector('#T3-Step1'),
+            intro: "Welcome to What-The-Fridge! 'What's in your fridge?'™",
             position: 'left'
           },
           {
-            element: document.querySelector('#T1S2'),
-            intro: "At its most basic, WTF takes recipes as input and outputs your grocery list!",
+            element: document.querySelector('#T3-Step2'),
+            intro: "Click this button to sign-up. Or hit right-arrow to continue tour!",
             position:"top"
           },
           {
-            element: document.querySelector('#T1S3'),
-            intro: "Do you have your favorite lasagna recipe handy?",
+            element: document.querySelector('#hiw-inner-container'),
+            intro: "At the most basic level, this is how WTF! works.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T3-Step4'),
+            intro: "After signing up, input your recipes!",
             position: 'right'
           },
           {
-            element: document.querySelector('#T1S4'),
-            intro: "Click here to input your favorite recipes!",
-            position: 'right'
-          },
-          {
-            element: document.querySelector('#T1S5'),
-            intro: "Do you have favorite recipes?",
+            element: document.querySelector('#T3-Step5'),
+            intro: "Your 'Grocery List Anywhere!'",
             position: 'left'
           },
           {
-            element: document.querySelector('#T1S6'),
-            intro: "Click here to turn your most-used recipes into easily accessible shopping lists!",
-            position: 'left'
+            element: document.querySelector('#hiw-call-to-action-container'),
+            intro: "Well?",
+            position: 'top'
           }
         ]
       });
