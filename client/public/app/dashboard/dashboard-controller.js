@@ -45,7 +45,7 @@ angular.module('wtf.dashboard', [])
       Fridge.getFridge().then(function(fridge) {
         $scope.fridgeData = fridge.data;
         $scope.today = Date.now();
-        $scope.todayInISO = new Date().toISOString().split('T')[0];
+        $scope.todayInISO = new Date($scope.today).toISOString().split('T')[0];
         $scope.twoFromToday = new Date($scope.today + 2*86400000);
         
         $scope.freshItems = fridge.data.filter(function(entry){
