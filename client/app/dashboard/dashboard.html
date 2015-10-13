@@ -9,11 +9,11 @@
 </div>
 
 <!-- Feature-Tour Tour-1-Step-1 && Tour-2-Step-1 -->
-<div class="container step" data-step="1" data-position="left" data-intro="This is the dashboard.  This is where the action happens!" id="step1">
+<div class="container" id="step1">
   <h5 class="center-align"> </h5>
   <div class="row">
     <!-- Feature-Tour T2-S4 -->
-    <div class="col s4" id="step4">
+    <div class="col s4" id="T2-Step4">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <!-- Feature-Tour T2-S2 -->
-    <div class="col s4 step" id="step2">
+    <div class="col s4" id="T2-Step2">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
         <img src="http://www.appliancist.com/stainless-steel-refrigerator-atag-ka2111dq-open.jpg">
@@ -67,13 +67,13 @@
         </div>
         <div class="card-action">
           <!-- Feature-Tour T2-S3 -->
-          <a href="#/fridge" class="step" id="step3">Go to the Fridge</a>
+          <a href="#/fridge" id="T2-Step3">Go to the Fridge</a>
         </div>
       </div>
     </div>
 
     <!-- Feature-Tour T2-S5 -->
-    <div class="col s4" id="step5">
+    <div class="col s4" id="T2-Step5">
       <div class="card medium card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://www.clipartbest.com/cliparts/niB/7aa/niB7aaqiA.jpeg">
@@ -98,9 +98,9 @@
 
   </div>
   <!-- Feature-Tour T1-S2 -->
-  <div class="row" id="T1S2">
+  <div class="row" id="T1-Step2">
   <!-- Feature-Tour T1-S3 -->
-    <div class="col s6" id="T1S3">
+    <div class="col s6" id="T1-Step3">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -120,12 +120,12 @@
         </div>
         <div class="card-action">
         <!-- Feature-Tour T1-S4 -->
-          <a href="#/recipes" id="T1S4">See Recipes</a>
+          <a href="#/recipes" id="T1-Step4">See Recipes</a>
         </div>
       </div>
     </div>
     <!-- Feature-Tour T1-S5 -->
-    <div class="col s6" id="T1S5">
+    <div class="col s6" id="T1-Step5">
       <div class="card card-small blue-grey darken-1">
         <div class="card-image waves-effect waves-block waves-light"></div>
         <div class="card-content">
@@ -141,7 +141,7 @@
         </div>
         <div class="card-action">
           <!-- Feature-Tour T1-S6 -->
-          <a href="#/saved-lists" id="T1S6">See Saved Lists</a>
+          <a href="#/saved-lists" id="T1-Step6">See Saved Lists</a>
         </div>
       </div>
     </div>
@@ -163,27 +163,27 @@
             position: 'left'
           },
           {
-            element: document.querySelector('#T1S2'),
+            element: document.querySelector('#T1-Step2'),
             intro: "At its most basic, WTF takes recipes as input and outputs your grocery list!",
             position:"top"
           },
           {
-            element: document.querySelector('#T1S3'),
+            element: document.querySelector('#T1-Step3'),
             intro: "Do you have your favorite lasagna recipe handy?",
             position: 'right'
           },
           {
-            element: document.querySelector('#T1S4'),
+            element: document.querySelector('#T1-Step4'),
             intro: "Click here to input your favorite recipes!",
             position: 'right'
           },
           {
-            element: document.querySelector('#T1S5'),
+            element: document.querySelector('#T1-Step5'),
             intro: "Do you have favorite recipes?",
             position: 'left'
           },
           {
-            element: document.querySelector('#T1S6'),
+            element: document.querySelector('#T1-Step6'),
             intro: "Click here to turn your most-used recipes into easily accessible shopping lists!",
             position: 'left'
           }
@@ -193,8 +193,8 @@
   }
 
   function startIntro2(){
-    var intro = introJs();
-      intro.setOptions({
+    var intro2 = introJs();
+      intro2.setOptions({
         steps: [
           {
             element: document.querySelector('#step1'),
@@ -202,28 +202,28 @@
             position: 'bottom'
           },
           {
-            element: document.querySelector('#step2'),
+            element: document.querySelector('#T2-Step2'),
             intro: "This is a digital representation of your fridge's contents!",
             position:"bottom"
           },
           {
-            element: document.querySelector('#step3'),
+            element: document.querySelector('#T2-Step3'),
             intro: "Click here to begin inputting the contents of your fridge!",
             position: 'bottom'
           },
           {
-            element: document.querySelector('#step4'),
+            element: document.querySelector('#T2-Step4'),
             intro: "This section keeps you informed about what's about to expire in your fridge!",
             position: 'right'
           },
           {
-            element: document.querySelector('#step5'),
+            element: document.querySelector('#T2-Step5'),
             intro: "This section keeps track of what has already expired!",
             position: 'left'
           }
         ]
       });
-    intro.start();
+    intro2.start();
   }
 
  </script>
