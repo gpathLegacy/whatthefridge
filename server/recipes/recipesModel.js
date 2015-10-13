@@ -32,6 +32,15 @@ module.exports = function(knex) {
         .then(function(){
           return knex
           .select('*')
+          .from('shopping_lists_recipes')
+          .where({
+            'recipe_id': recipeId
+          })
+          .del()
+        })
+        .then(function(){
+          return knex
+          .select('*')
           .from('recipes')
           .where({
             'id': recipeId

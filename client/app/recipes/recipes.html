@@ -117,7 +117,7 @@
 
 
   <!-- goShoppingButton -->
-  <div ng-show="recipes.selected.length > 0" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="modal-trigger" href="#shopCheck"><i class="large material-icons">shopping_cart</i>
     </a>
   </div>
@@ -125,11 +125,12 @@
   <!-- shopCheck Modal -->
   <div id="shopCheck" class="modal">
     <div class="modal-content">
-      <p>On this trip, you are making:<p>
+      <p ng-show="recipes.selected.length > 0">On this trip, you are making:</p>
+      <p ng-hide="recipes.selected.length > 0">Do you want to create a shopping list without selecting recipes?</p>
       <ul>
         <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
       </ul>
-        Is this correct?
+      <p ng-show="recipes.selected.length > 0">Is this correct?</p>
     </div>
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>

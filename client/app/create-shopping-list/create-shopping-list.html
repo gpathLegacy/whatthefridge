@@ -2,11 +2,14 @@
   <div class="row center-align">
     Create Shopping List
     <br>
-    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Create shopping list</button>
+    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()">Save shopping list</button>
   </div>
   <div class="row center-align">
     <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
     Add item
+  </div>
+  <div class="center-align" ng-show="errorFlag">
+    <span class="error">You must have at least one item on your shopping list in order to save it.</span>
   </div>
   <div ng-hide="notSavedFlag">
     Shopping list saved.

@@ -2,6 +2,7 @@ angular.module('wtf.create-shopping-list', [])
   .controller('CreateShoppingListController', ["$scope", "$window", "$location", "Recipes", "SavedLists", function($scope, $window, $location, Recipes, SavedLists) {
 
     $scope.shoppingList = [];
+    $scope.errorFlag = false;
 
     $scope.addModal = function() {
       $("#addItem").openModal();
@@ -21,16 +22,21 @@ angular.module('wtf.create-shopping-list', [])
       }
       else {
         $scope.shoppingList.push({'name':$scope.itemToAdd, 'price':'0.00', 'qty':1});
+        $scope.errorFlag = false;
       }
     };
 
     $scope.saveModal = function() {
-      $("#saveList").openModal();
+      if($scope.shoppingList.length) {
+        $("#saveList").openModal();
+      }
+      else {
+        $scope.errorFlag = true;
+      }
     };
 
     $scope.populateList = function() {
-      // When we initialize this page, set fridgeFlag to true, enabling the fridge button.
-      // Also set notSavedFlag to true, enabling the save button
+      // Set notSavedFlag to true, enabling the save button
       $scope.notSavedFlag = true;
       $scope.totalPrice = 0;
 
