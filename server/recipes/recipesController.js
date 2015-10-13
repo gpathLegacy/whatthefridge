@@ -68,6 +68,7 @@ module.exports = function(Recipes, Ingredients) {
       var recipeName = req.body.name;
       var ingredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
+      var instructions = req.body.instructions;
 
       // Get ingredient IDs that already exist for the user, or add new Ingredients.
       // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
@@ -104,6 +105,9 @@ module.exports = function(Recipes, Ingredients) {
       //update recipe name
       Recipes.editRecipe(recipeID, recipeName).then(function(){});
 
+      //update instructions
+      Recipes.editInstructions(recipeID, instructions).then(function(){});
+      
       res.sendStatus(200);
     },
     deleteRecipe: function(req, res){

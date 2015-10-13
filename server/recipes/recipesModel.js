@@ -108,12 +108,11 @@ module.exports = function(knex) {
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
           .where({'recipes.title':title, 'recipes.user_id':userId})
       },
-      getInstructions: function(recipeId){
-        return knex
-          .select('instructions')
-          .from('recipes')
-          .where({
-            'id':recipeId
+      editInstructions: function(recipeId, instructions) {
+        return knex('recipes')
+          .where('id', '=', recipeId)
+          .update({
+            'instructions': instructions
           })
       }
     }
