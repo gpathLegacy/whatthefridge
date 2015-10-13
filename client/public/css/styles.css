@@ -287,6 +287,12 @@ body {
   bottom:13px;
 }
 
+.error {
+  font-size:12px;
+  font-family:monospace;
+  color:red;
+}
+
 /*========dashboard=========*/
 
 .double-digit-steps{

@@ -6,6 +6,11 @@ angular.module('wtf.edit-recipes', [])
     $scope.recipe = {ingredients: [], remove: []};
     $scope.currentRecipe = currentRecipeService.getRecipeToEdit();
 
+    // error flags
+    $scope.recipeError = false;
+    $scope.ingredientError = false;
+    $scope.noIngredients = false;
+
     //push existing ingredients into scope.recipe for initial rendering
     for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
       $scope.recipe.ingredients.push($scope.currentRecipe.ingredients[i]);
@@ -17,8 +22,14 @@ angular.module('wtf.edit-recipes', [])
     
     //add a new ingredients
     $scope.addIngredient = function() {
-      $scope.recipe.ingredients.push($scope.newIngredient);
-      $scope.newIngredient = "";
+      if ($scope.newIngredient === undefined || $scope.newIngredient === "") {
+        $scope.ingredientError = true;
+      }
+      else {
+        $scope.recipe.ingredients.push($scope.newIngredient);
+        $scope.newIngredient = "";
+        $scope.ingredientError = false;
+      }
     };
 
     //remove an ingredient
@@ -28,18 +39,27 @@ angular.module('wtf.edit-recipes', [])
 
     //save recipe to database and redirect to dashboard
     $scope.saveRecipe = function() {
-    // use diffing to remove ingredients from database for the recipe
-      for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
-        //if old ingredients not found in the current ingredients array
-        if( $scope.recipe.ingredients.indexOf($scope.currentRecipe.ingredients[i]) < 0 ) {
-          $scope.recipe.remove.push($scope.currentRecipe.ingredients[i]);
-        }
+      if ($scope.recipe.name === undefined || $scope.recipe.name === "") {
+        $scope.recipeError = true;
+      } else if (!$scope.recipe.ingredients.length) {
+        $scope.noIngredients = true;
       }
+      else {
+        $scope.recipeError = false;
+        // use diffing to remove ingredients from database for the recipe
+        for(var i=0; i<$scope.currentRecipe.ingredients.length; i++) {
+          //if old ingredients not found in the current ingredients array
+          if( $scope.recipe.ingredients.indexOf($scope.currentRecipe.ingredients[i]) < 0 ) {
+            $scope.recipe.remove.push($scope.currentRecipe.ingredients[i]);
+          }
+        }
 
-      Recipes.editRecipe($scope.recipe)
-        .then(function(){
-          $location.path("/recipes");
-        });
+        Recipes.editRecipe($scope.recipe)
+          .then(function(){
+            $location.path("/recipes");
+          });
+        
+      }
     };
 
   }]);
