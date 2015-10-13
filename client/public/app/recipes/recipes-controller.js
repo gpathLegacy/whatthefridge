@@ -13,7 +13,7 @@ angular.module('wtf.recipes', ['checklist-model'])
       })
     };
 
-    //this is run from the dashboard html, on clicking a specific recipe
+    //this is run from the recipes html, on clicking a specific recipe
     $scope.getCurrentRecipe = function(currentRecipe) {
       $scope.currentRecipe = currentRecipe;
       //add to services variable to share with other ingredients
@@ -54,7 +54,6 @@ angular.module('wtf.recipes', ['checklist-model'])
       Recipes.suggestRecipes(allRecipes)
       .success(function(data){
         $scope.suggestedRecipe = data;
-        console.log($scope.suggestedRecipe);
       })
       .catch(function(err){
         console.log(err);

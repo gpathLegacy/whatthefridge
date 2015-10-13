@@ -3,7 +3,7 @@ angular.module('wtf.edit-recipes', [])
 
     //local variable storing new and existing recipe values
     //prepopulate ingredients array with the existing values
-    $scope.recipe = {ingredients: [], remove: []};
+    $scope.recipe = {ingredients: [], remove: [], instructions: ""};
     $scope.currentRecipe = currentRecipeService.getRecipeToEdit();
 
     // error flags
@@ -19,6 +19,7 @@ angular.module('wtf.edit-recipes', [])
     //render the existing recipe title and assign id
     $scope.recipe.name = $scope.currentRecipe.title;
     $scope.recipe.id = $scope.currentRecipe.id;
+    $scope.recipe.instructions = $scope.currentRecipe.instructions;
     
     //add a new ingredients
     $scope.addIngredient = function() {

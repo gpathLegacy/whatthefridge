@@ -12,7 +12,7 @@ module.exports = function(knex) {
       //fetch all recipes for a specific user. call user model method.
       getAllRecipes: function(userId) {
         return knex
-          .select(['recipes.id', 'recipes.title', 'ingredients.name', 'ingredients.price'])
+          .select(['recipes.id', 'recipes.title', 'ingredients.name', 'ingredients.price', 'recipes.instructions'])
           .from('recipes')
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
