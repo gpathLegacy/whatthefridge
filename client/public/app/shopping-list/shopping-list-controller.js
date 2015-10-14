@@ -122,6 +122,7 @@ angular.module('wtf.shopping-list', [])
 
     $scope.scanBarcode = function() {
       console.log("Calls the controller barcode scanner function");
+      // $scope.productUpc = ''; //save upc number as string later
 
       $(function() {
         var resultCollector = Quagga.ResultCollector.create({
@@ -179,7 +180,10 @@ angular.module('wtf.shopping-list', [])
           },
           _printCollectedResults: function() {
             var results = resultCollector.getResults(),
-              $ul = $("#result_strip ul.collector");
+                $ul = $("#result_strip ul.collector");
+
+            //set scope var to the upc code to lookup price later
+            $scope.productUpc = results.toString(); 
 
             results.forEach(function(result) {
               var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
@@ -252,9 +256,15 @@ angular.module('wtf.shopping-list', [])
     }
 
     $scope.lookupProduct = function() {
-      Quagga.stop();
       //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
       //get results from the model and populate the client price input field 
+      Quagga.stop();
+        //Call price lookup
+        // factory.method(upc code)
+      UpcLookup.productLookup($scope.productUpc).then(function(data){
+        //Update price field in scope
+        //$scope.shoppingList[index].price = data.price;
+      })
     };
 
     /* barcode feature ends */
