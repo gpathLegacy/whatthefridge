@@ -12,7 +12,7 @@ module.exports = function(knex) {
       //fetch all recipes for a specific user. call user model method.
       getAllRecipes: function(userId) {
         return knex
-          .select(['recipes.id', 'recipes.title', 'ingredients.name', 'ingredients.price'])
+          .select(['recipes.id', 'recipes.title', 'ingredients.name', 'ingredients.price', 'recipes.instructions'])
           .from('recipes')
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
@@ -50,18 +50,21 @@ module.exports = function(knex) {
       },
       getRecipe: function(recipeId) {
         return knex
-        .select('*')
+        .select(['recipes.title', 'ingredients.name', 'recipes.instructions'])
         .from('recipes')
+        .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
+        .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
         .where({
-          'id': recipeId
+          'recipes.id': recipeId
         })
       },
-      createRecipe: function(title, userId) {
+      createRecipe: function(title, userId, instructions) {
         return knex('recipes')
           .returning('id')
           .insert({
             'title': title,
-            'user_id': userId
+            'user_id': userId,
+            'instructions':instructions
           })
       },
       //only title is updated in the recipe table    
@@ -106,6 +109,13 @@ module.exports = function(knex) {
           .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
           .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
           .where({'recipes.title':title, 'recipes.user_id':userId})
+      },
+      editInstructions: function(recipeId, instructions) {
+        return knex('recipes')
+          .where('id', '=', recipeId)
+          .update({
+            'instructions': instructions
+          })
       }
     }
 }
