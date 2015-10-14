@@ -1,7 +1,6 @@
 if (annyang && window.location.href.split('/').pop() !== "") {
   // Let's define a command.
   var goTo = function(view) {
-
     //handle hyphenated paths
     //if (view==='saved lists'){
     //}
@@ -43,12 +42,18 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     $(idIfied).click();
   }
 
+  var instructionsFor = function(recipe){
+    var idIfied = "#" + recipe.toLowerCase();
+    $(idIfied).click();
+  };
+
   var commands = {
     'go to *view': goTo,
     'scroll *position': scroll,
     'log out': logout,
     'show *recipe': show,
-    'dismiss #recipe': dismiss
+    'dismiss *recipe': dismiss,
+    ':recipe instructions': instructionsFor
   };
 
   // Add our commands to annyang
