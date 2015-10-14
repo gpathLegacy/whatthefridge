@@ -17,20 +17,6 @@
   </div>
 </div>
 
-
-<!-- <div class="tooltipped" data-tooltip="lala">
-  <div class="container" ng-if="allRecipes.length === 0">
-    <div class="fixed-action-btn" style="top: 4.5em; right: 6em;">
-    <a class="btn-floating disabled btn-large orange darken-2 z-depth-3">
-      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-    </a>
-  </div>
-</div> -->
-
-<!--   <div class="container">
-    <a id="populate-button" class="btn tooltipped orange darken-2 z-depth-3" data-position="bottom" data-delay="50" data-tooltip="I am tooltip" ng-click="populate()">Give me my first recipe!</a>
-  </div> -->
-
 <div class="container">
   <br>
   <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
@@ -88,13 +74,16 @@
         <div class="card-content">
           <!-- Feature Tour T4-Step3 & T4-Step4 -->
           <span id="recipe-title" class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-          <span class="price">${{item.price.toFixed(2)}}</span>
+          <!-- Feature Tour T4-Step7 -->
+          <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
           </br>
-          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-          <label class="left" for="{{item}}">I'm eating this</label> </br></br></br>
+          <!-- Feature Tour T4-Step8 -->
+            <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
+            <label id="T4-Step8" class="left" for="{{item}}">I'm eating this</label> </br></br></br>
           <div class="row">
-          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left">edit</i></a></span></div>
-          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left">delete</i></a></span></div>
+          <!-- Feature Tour T4-Step5 -->
+          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span></div>
+          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span></div>
           </div>
         </div>
         <div class="card-reveal">
@@ -109,7 +98,7 @@
   </div>
 
   <!-- Recipe suggestions from other users -->
-<div class="row" ng-if="suggestedRecipe[0].title">
+  <div class="row" ng-if="suggestedRecipe[0].title">
     <div class="col s4 offset-s4">
       <div class ="card small card-small blue-grey darken-1">
         <div class="card-image">
@@ -177,7 +166,7 @@ $(document).ready(function(){
         steps: [
           {
             element: document.querySelector('#T4-Step1'),
-            intro: "Welcome to the Create A Recipe page!",
+            intro: "Welcome to our Recipes page!",
             position: 'top'
           },
           {
@@ -192,20 +181,34 @@ $(document).ready(function(){
           },
           {
             element: document.querySelector('#recipe-title'),
-            intro: "Clicking here will reveal your recipe's ingredients!",
+            intro: "Click here to reveal your recipe's ingredients!",
             position: 'right'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
-          }
+            element: document.querySelector('#T4-Step5'),
+            intro: "Click here to edit this recipe!",
+            position: 'bottom'
+          },
+           {
+            element: document.querySelector('#T4-Step6'),
+            intro: "Click here delete your recipe!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T4-Step7'),
+            intro: "This is the cost of your ingredients list!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T4-Step8'),
+            intro: "Check this box to include yourrecipe's ingredients in your shopping list!",
+            position: 'right'
+          },
+          {
+            intro: "This concludes our Recipes page tour!"
+          },
         ]
       });
     intro4.start();
-    intro4.oncomplete(function() {
-      populate();
-      alert("")
-    });
   }
 </script>
