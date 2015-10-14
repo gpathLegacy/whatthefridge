@@ -47,13 +47,20 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     $(idIfied).click();
   };
 
+  var voiceSearchRecipes = function(item){
+    var recipe = recipe.toLowerCase();
+    $("#search").simulate("key-sequence", {sequence: recipe, delay: 100});
+    $("#search").trigger("input");
+  }
+
   var commands = {
     'go to *view': goTo,
     'scroll *position': scroll,
     'log out': logout,
     'show *recipe': show,
     'dismiss *recipe': dismiss,
-    ':recipe instructions': instructionsFor
+    ':recipe instructions': instructionsFor,
+    'find *item': voiceSearchRecipes
   };
 
   // Add our commands to annyang

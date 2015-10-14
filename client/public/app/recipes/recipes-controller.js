@@ -1,7 +1,6 @@
 angular.module('wtf.recipes', ['checklist-model'])
   .controller('RecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes) {
 
-
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
       .success(function(data){
