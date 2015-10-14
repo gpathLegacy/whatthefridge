@@ -1,5 +1,5 @@
 angular.module('wtf.shopping-list', [])
-  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
+  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", "UpcLookup", function($scope, $window, $location, Recipes, Fridge, SavedLists, UpcLookup) {
 
     $scope.shoppingList = [];
     $scope.disabled = false;
@@ -184,6 +184,7 @@ angular.module('wtf.shopping-list', [])
 
             //set scope var to the upc code to lookup price later
             $scope.productUpc = results.toString(); 
+            console.log( "the scanned product is: ", $scope.productUpc);
 
             results.forEach(function(result) {
               var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
@@ -255,15 +256,17 @@ angular.module('wtf.shopping-list', [])
       Quagga.stop();
     }
 
-    $scope.lookupProduct = function() {
       //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
       //get results from the model and populate the client price input field 
+    $scope.lookupProduct = function() {
       Quagga.stop();
         //Call price lookup
-        // factory.method(upc code)
+      //factory.method();  
       UpcLookup.productLookup($scope.productUpc).then(function(data){
         //Update price field in scope
-        //$scope.shoppingList[index].price = data.price;
+        //$scope.shoppingList[index].price = data.results[0].price;
+        console.log("the price fetched from the api is: ", data.results[0].price);
+
       })
     };
 
