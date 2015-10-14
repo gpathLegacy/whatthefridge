@@ -1,6 +1,6 @@
 <!-- Feature-Tour Button -->
-<div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro4()">
+<div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
+  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro5()">
     <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
   </a>
 </div>
@@ -39,3 +39,45 @@
   </div>
 </div>
 
+<script>
+
+function startIntro5(){
+    var intro5 = introJs();
+      intro5.setOptions({
+        steps: [
+          {
+            element: document.querySelector('#T3-Step1'),
+            intro: "Welcome to What-The-Fridge! 'What's in your fridge?'™",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#T3-Step2'),
+            intro: "Click this button to sign-up. Or hit right-arrow to continue tour!",
+            position:"top"
+          },
+          {
+            element: document.querySelector('#hiw-inner-container'),
+            intro: "At the most basic level, this is how WTF! works.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T3-Step4'),
+            intro: "After signing up, input your recipes!",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#T3-Step5'),
+            intro: "Your 'Grocery List Anywhere!'",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#hiw-call-to-action-container'),
+            intro: "Well?",
+            position: 'top'
+          }
+        ]
+      });
+    intro5.start();
+  }
+
+</script>
