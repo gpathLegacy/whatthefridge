@@ -50,10 +50,12 @@ module.exports = function(knex) {
       },
       getRecipe: function(recipeId) {
         return knex
-        .select('*')
+        .select(['recipes.title', 'ingredients.name', 'recipes.instructions'])
         .from('recipes')
+        .leftJoin('recipes_ingredients', 'recipes.id', 'recipes_ingredients.recipe_id')
+        .leftJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
         .where({
-          'id': recipeId
+          'recipes.id': recipeId
         })
       },
       createRecipe: function(title, userId, instructions) {

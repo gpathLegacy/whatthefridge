@@ -70,5 +70,10 @@ angular.module('wtf.recipes', ['checklist-model'])
       })
     };
 
+    $scope.getInstructions = function(recipeId){
+      Recipes.idForInstructions = recipeId;
+      $location.path('instructions');
+    };
+
     $scope.getAllRecipes();
   }]);
