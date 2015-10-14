@@ -122,6 +122,25 @@ angular.module('wtf.services', [])
     //     "price",
     //     "price_currency"
     //   ]}
+
+    //method is http but url https, lookout for connection refusal errors
+    //hardcoded product value for api testing
+    var productUpc = '611269991000';
+    var apiUrl = 'https://api.semantics3.com/v1/products?';
+    $http({
+       url: apiUrl, 
+       method: "GET",
+       params: {"upc": productUpc, 
+          "fields": [
+          "name",
+          "price",
+          "price_currency"
+        ]}
+    })
+    .success(function(data){
+      console.log("data as fetched from api in services: ", data);
+      // return res.send(data);
+    })
     }
     // return res.send(productDetails);
   }])
