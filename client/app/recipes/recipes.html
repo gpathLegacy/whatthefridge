@@ -4,12 +4,12 @@
     <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
   </a>
 </div>
-
+<br><br>
 <div class="container">
-  lala
-</div>
-
-<div class="container">
+  <div class="container" ng-if="allRecipes.length === 0">
+    button!
+    <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip" ng-click="populate()">Give me a recipe!</a>
+  </div>
   <br>
   <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
   Add recipe
@@ -146,7 +146,7 @@
 $(document).ready(function(){
   $('.modal-trigger').leanModal();
   });
-$('.tooltipped').tooltip({delay: 50});
+  $('.tooltipped').tooltip({delay: 50});
 
 function startIntro4(){
     var intro4 = introJs();

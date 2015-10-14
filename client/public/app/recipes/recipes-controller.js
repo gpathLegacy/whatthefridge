@@ -15,7 +15,7 @@ angular.module('wtf.recipes', ['checklist-model'])
         .then(function(){
           Recipes.getRecipes()
             .then(function(){
-              alert('success')
+              alert('To access your new recipe, please refresh your page!')
             })
         })
     };
