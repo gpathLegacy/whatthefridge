@@ -1,6 +1,9 @@
 angular.module('wtf.recipes', ['checklist-model'])
   .controller('RecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes) {
 
+    $scope.test=function(){
+      alert("this is a test");
+    }
 
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
@@ -32,7 +35,7 @@ angular.module('wtf.recipes', ['checklist-model'])
     //     $location.path('/');
     //   }
     // }, true);
-    
+
     $scope.getShoppingList = function() {
       $("#shopCheck").closeModal();
       $location.path('create-list');
