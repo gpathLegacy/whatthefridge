@@ -91,7 +91,7 @@ angular.module('wtf.fridge',[])
       if (!errorFlag) {
         Fridge.updateFridge($scope.data);
       } else {
-        Materialize.toast("Two entries for the same ingredient must have different expirations!", 4000);
+        Materialize.toast("Entries for the same ingredient must have different expirations!", 4000);
       }
     };
 
