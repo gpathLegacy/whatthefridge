@@ -1,9 +1,24 @@
 angular.module('wtf.recipes', ['checklist-model'])
   .controller('RecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes) {
 
-    $scope.test=function(){
-      alert("this is a test");
-    }
+    $scope.populate=function(){
+      var recipe = {
+        name: "Justin's Recipe",
+        ingredients: [
+          "tomatos",
+          "ground beef",
+          "cheese",
+          "green onions"
+        ],
+      };
+      Recipes.createRecipe(recipe)
+        .then(function(){
+          Recipes.getRecipes()
+            .then(function(){
+              alert('success')
+            })
+        })
+    };
 
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()

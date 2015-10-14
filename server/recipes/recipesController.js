@@ -45,7 +45,7 @@ module.exports = function(Recipes, Ingredients) {
           var currentRecipe = Infinity;
           var recipeObjCount = -1;
           for (var i=0; i<data.length; i++) {
-            //if the data being read is for the same recipe, push to the ingredient 
+            //if the data being read is for the same recipe, push to the ingredient
             if (currentRecipe === data[i].id) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
               recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
@@ -55,7 +55,7 @@ module.exports = function(Recipes, Ingredients) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
               recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
               currentRecipe = data[i].id;
-            }             
+            }
           }
           res.send(recipeResult);
         })
@@ -125,7 +125,7 @@ module.exports = function(Recipes, Ingredients) {
             var randomRecipe = data[Math.floor(Math.random()*data.length)];
             var randomUser = randomRecipe.user_id;
             var randomTitle = randomRecipe.title;
-            
+
             while(count >= 0){
               if(existingRecipes.indexOf(randomTitle) === -1){
                 return Recipes.getRecipeByTitle(randomUser, randomTitle);
