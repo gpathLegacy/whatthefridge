@@ -77,15 +77,17 @@
     </div>
   </div>
  -->
-
-   <div class="row" id="T4-Step1">
+  <!-- Feature Tour Tour-4-Step-1 -->
+  <div class="row" id="T4-Step1">
     <div class="col s4" ng-repeat="item in allRecipes | filter:searchText">
-      <div class ="card small card-small">
+      <!-- Feature Tour T4-Step2 -->
+      <div class ="card small card-small" id="T4-Step2">
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
+          <!-- Feature Tour T4-Step3 & T4-Step4 -->
+          <span id="recipe-title" class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
           <span class="price">${{item.price.toFixed(2)}}</span>
           </br>
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
@@ -119,7 +121,7 @@
           </br>
           <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal" id="T4-Step4">
           <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">close</i></span>
           <!-- <span class="price left">${{suggestedRecipe[0].price}}</span></br> </br> -->
           <div ng-repeat="ingredient in suggestedRecipe">
@@ -140,7 +142,6 @@
       <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
     </div>
   </div>
-
 
   <!-- goShoppingButton -->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -180,19 +181,19 @@ $(document).ready(function(){
             position: 'top'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position:""
+            element: document.querySelector('#T4-Step2'),
+            intro: "This card digitally represents your recipe!",
+            position:"right"
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('#recipe-title'),
+            intro: "Here's the title!",
+            position: 'right'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('#recipe-title'),
+            intro: "Clicking here will reveal your recipe's ingredients!",
+            position: 'right'
           },
           {
             element: document.querySelector('#XXX'),
