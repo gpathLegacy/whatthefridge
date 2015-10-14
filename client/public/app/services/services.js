@@ -112,7 +112,18 @@ angular.module('wtf.services', [])
     return {isLoggedIn: isLoggedIn,
             logOut: logOut};
   }])
-
+  .factory('UpcLookup', ["$http", function($http){
+    var productLookup = function(productUpc) {
+      return $http.post('/api/ingredients/productLookup', productUpc)
+      .success(function(data) {
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('error: ' + data);
+      });
+    }
+    return {productLookup: productLookup};
+  }])
   .service('currentRecipeService', function() {
     var currentRecipeToEdit;
 
