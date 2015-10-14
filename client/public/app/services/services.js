@@ -114,15 +114,16 @@ angular.module('wtf.services', [])
   }])
   .factory('UpcLookup', ["$http", function($http){
     var productLookup = function(productUpc) {
-      return $http.post('/api/ingredients/productLookup', productUpc)
-      .success(function(data) {
-        console.log(data);
-      })
-      .error(function(data) {
-        console.log('error: ' + data);
-      });
+      //api call to the third party database semantics3
+    // GET https://api.semantics3.com/v1/products?q={
+    // “upc”:”QUERY_VALUE1”,   
+    // "fields": [
+    //     "name",
+    //     "price",
+    //     "price_currency"
+    //   ]}
     }
-    return {productLookup: productLookup};
+    // return res.send(productDetails);
   }])
   .service('currentRecipeService', function() {
     var currentRecipeToEdit;
