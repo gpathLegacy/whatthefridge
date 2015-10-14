@@ -34,7 +34,12 @@ if (annyang && window.location.href.split('/').pop() !== "") {
   
   //click activator for recipe card
   var show = function(recipe){
-    var idIfied = "#"+ recipe
+    var idIfied = "#"+ recipe.toLowerCase();
+    $(idIfied).click();
+  }
+
+  var dismiss = function(recipe){
+    var idIfied = "#dismiss" + recipe.toLowerCase();
     $(idIfied).click();
   }
 
@@ -42,7 +47,8 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     'go to *view': goTo,
     'scroll *position': scroll,
     'log out': logout,
-    'show *recipe': show
+    'show *recipe': show,
+    'dismiss #recipe': dismiss
   };
 
   // Add our commands to annyang
