@@ -59,7 +59,7 @@
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
+          <span id="{{item.title}}" class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
           <span class="price">${{item.price.toFixed(2)}}</span>
           </br>
           <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
