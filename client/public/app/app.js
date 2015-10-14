@@ -78,7 +78,7 @@ angular.module('wtf', [
       controller: 'FridgeController'
     })
     .when('/instructions', {
-      templateUril: 'app/instructions/instructions.html',
+      templateUrl: 'app/instructions/instructions.html',
       controller: 'InstructionsController'
     })
     .otherwise('/');
