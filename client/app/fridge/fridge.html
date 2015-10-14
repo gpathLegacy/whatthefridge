@@ -1,8 +1,18 @@
 <!-- Feature-Tour Button -->
-<div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro5()">
-    <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-  </a>
+<div class="container" ng-if="data.length !== 0">
+  <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
+    <a id="FT-FAB" class="btn-floating btn-large orange darken-2 z-depth-3" href="javascript:void(0);" onclick="startIntro5()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+  </div>
+</div>
+
+<div class="container" ng-if="data.length === 0">
+  <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
+    <a class="btn-floating btn-large orange darken-2 z-depth-3" ng-click="fridgePopulate()">
+      <i class="large material-icons" style="font-size:2.7em;">stop</i>
+    </a>
+  </div>
 </div>
 
 <div class="container">
