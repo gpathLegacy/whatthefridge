@@ -78,7 +78,7 @@
   </div>
  -->
 
-   <div class="row">
+   <div class="row" id="T4-Step1">
     <div class="col s4" ng-repeat="item in allRecipes | filter:searchText">
       <div class ="card small card-small">
         <div class="card-image">
@@ -175,9 +175,9 @@ $(document).ready(function(){
       intro4.setOptions({
         steps: [
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('#T4-Step1'),
+            intro: "Welcome to the Create A Recipe page!",
+            position: 'top'
           },
           {
             element: document.querySelector('#XXX'),
