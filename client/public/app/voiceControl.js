@@ -12,6 +12,11 @@
           window.location.href = basicPath + view;
         }
 
+        var logout = function(){
+          $("#logout").click();
+          anyang.abort();
+        }
+        
         var scroll = function(position){
           if(position === "top"){
             $("html, body").animate({ scrollTop: 0 }, "slow")
@@ -29,7 +34,8 @@
         
         var commands = {
           'go to *view': goTo,
-          'scroll *position': scroll
+          'scroll *position': scroll,
+          'log out': logout,
         };
 
         // Add our commands to annyang
