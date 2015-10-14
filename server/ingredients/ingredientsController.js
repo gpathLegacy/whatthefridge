@@ -12,13 +12,6 @@ module.exports = function(Ingredients) {
       Ingredients.setIngredientPrice(req.user.id, req.body.name, req.body.price).then(function(ingredient) {
         res.send(200);
       });
-    },
-
-    productLookup: function(req, res) {
-      //GET request to the semantics API
-      //GET https:api.semantics3.com/v1/products?q={"MANDATORY_QUERY_FIELD1":"QUERY_VALUE1","OPTIONAL_FILTER_FIELD1":"FILTER_VALUE1"}
-      
     }
-
   };
 };
