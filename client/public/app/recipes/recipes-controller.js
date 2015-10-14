@@ -5,7 +5,7 @@ angular.module('wtf.recipes', ['checklist-model'])
       var recipe = {
         name: "Justin's Recipe",
         ingredients: [
-          "tomatos",
+          "tomatoes",
           "ground beef",
           "cheese",
           "green onions"
@@ -15,7 +15,7 @@ angular.module('wtf.recipes', ['checklist-model'])
         .then(function(){
           Recipes.getRecipes()
             .then(function(){
-              alert('To access your new recipe, please refresh your page!')
+              alert('We\'ve added your first recipe!  Refresh the page & click this button to take our tour!' )
             })
         })
     };
