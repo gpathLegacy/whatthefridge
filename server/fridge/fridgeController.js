@@ -17,6 +17,7 @@ module.exports = function(Fridge, Ingredients) {
           Ingredients.getIngredientByName(req.user.id, list[i].name).then(function(ingredient) {
             // if ingredient doesn't exist (added on shopping list page), create ingredient first
             if (!ingredient.length) {
+
               Ingredients.addIngredient(req.user.id, list[index].name, list[index].price).then(function(id) {
                 Fridge.addNewItem(req.user.id, id[0], list[index].qty, list[index].expiration).then(function(){});
               });
@@ -24,8 +25,30 @@ module.exports = function(Fridge, Ingredients) {
             else {
               Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
                 if (fridgeIngredient.length) {
+
+                // if user left expiration blank, the expiration defaults to a Date object and must be converted
+                // to string
+                if (typeof list[index].expiration === 'object') {
+                  list[index].expiration = list[index].expiration.toJSON();
+                }
+
+                var entered = list[index].expiration.split('T')[0];
+
+                var match = fridgeIngredient.filter(function(item){
+                  return item.expiration === null && entered === undefined || item.expiration && item.expiration.toISOString().split('T')[0] === entered
+                });
+
+                  if(match.length > 0){
+                    //if there is an element that has the same expiration, we can increment it
+                    var id = match[0].id;
+                    Fridge.updateItemQty(id, req.user.id, ingredient[0].id, list[index].qty).then(function(){});
+                  }else{
+                    //otherwise, if the expiration dates are different, we can just add the entry as usual 
+                    Fridge.addNewItem(req.user.id, ingredient[0].id, list[index].qty, list[index].expiration).then(function(){});
+
+                  }
                   // if item is already in user's fridge, update quantity
-                  Fridge.updateItemQty(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
+                  // Fridge.updateItemQty(req.user.id, ingredient[0].id, list[index].qty).then(function(){});
                 }
                 else {
                   // else add item to fridge
@@ -47,7 +70,17 @@ module.exports = function(Fridge, Ingredients) {
         if(ingredient.length) {
           Fridge.checkForItem(req.user.id, ingredient[0].id).then(function(fridgeIngredient) {
             if(fridgeIngredient.length) {
-              Fridge.updateItemQty(req.user.id, ingredient[0].id, 1).then(function(){res.send(200);});
+
+              // Check for an ingredient that has an expiration of today
+              var match = fridgeIngredient.filter(function(item) {
+                return item.expiration.toJSON().split("T")[0] === (new Date()).toJSON().split("T")[0];
+              });
+              
+              if (match.length) {
+                Fridge.updateItemQty(match[0].id, req.user.id, match[0].ingredient_id, 1).then(function(){res.send(200)});
+              } else {
+                Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});
+              }
             }
             else {
               Fridge.addNewItem(req.user.id, ingredient[0].id, 1, new Date()).then(function(){res.send(200);});
@@ -69,9 +102,12 @@ module.exports = function(Fridge, Ingredients) {
 
       for (var i = 0; i < newFridge.length; i++) {
         (function(index){
-          Fridge.setItemQty(req.user.id, newFridge[index].ingredient_id, newFridge[index].qty)
-            .then(function(){
-              return Fridge.updateItemExp(req.user.id, newFridge[index].ingredient_id, newFridge[index].expiration);
+          Fridge.getItemByExp(req.user.id, newFridge[index].ingredient_id, newFridge[index].oldExpiration)
+            .then(function(itemId) {
+              return Fridge.setItemQty(itemId[0].id, newFridge[index].qty);
+            })
+            .then(function(itemId){
+              return Fridge.updateItemExp(itemId[0].id, newFridge[index].expiration);
             })
         })(i);
       }
