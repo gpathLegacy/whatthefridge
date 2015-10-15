@@ -3,7 +3,7 @@ angular.module('wtf.recipes', ['checklist-model'])
 
     $scope.populate=function(){
       var recipe = {
-        name: "Justin's Recipe",
+        name: "My First Recipe",
         ingredients: [
           "tomatoes",
           "ground beef",
@@ -14,9 +14,9 @@ angular.module('wtf.recipes', ['checklist-model'])
       Recipes.createRecipe(recipe)
         .then(function(){
           Recipes.getRecipes()
-            .then(function(){
-              alert('We\'ve added your first recipe!  Refresh the page & click this button to take our tour!' )
-            })
+        })
+        .then(function(){
+          alert('We\'ve added your first recipe!  Refresh the page & click this button to take our tour!' )
         })
     };
 

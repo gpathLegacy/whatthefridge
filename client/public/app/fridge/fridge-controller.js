@@ -5,13 +5,13 @@ angular.module('wtf.fridge',[])
       var data = {
         name: "Pepperoni"
       }
-      Fridge.addItem(data.name)
+      Fridge.addItem(data)
         .then(function(data){
           console.log(data);
         })
-        .then(function(data) {
-          Fridge.updateFridge(data)
-          })
+        // .then(function(data) {
+        //   Fridge.updateFridge(data)
+        // })
           .then(function() {
             alert("yo!");
         })
