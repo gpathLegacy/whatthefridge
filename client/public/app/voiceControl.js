@@ -1,6 +1,8 @@
+"use strict";
 if (annyang && window.location.href.split('/').pop() !== "") {
   // Let's define a command.
   var goTo = function(view) {
+    console.log("gotTo ",view);
     //handle hyphenated paths
     //if (view==='saved lists'){
     //}
@@ -33,24 +35,30 @@ if (annyang && window.location.href.split('/').pop() !== "") {
   
   //click activator for recipe card
   var show = function(recipe){
+    console.log("show", recipe)
+    console.log("typeof", typeof recipe)
     var idIfied = "#"+ recipe.toLowerCase();
     $(idIfied).click();
   }
 
   var dismiss = function(recipe){
+    console.log("recipe", recipe)
     var idIfied = "#dismiss" + recipe.toLowerCase();
     $(idIfied).click();
   }
 
   var instructionsFor = function(recipe){
-    var idIfied = "#" + recipe.toLowerCase();
+    console.log("instructions", recipe)
+     console.log("typeof", typeof recipe)
+    var idIfied = "#" + recipe.toLowerCase() + "Instructions";
     $(idIfied).click();
   };
 
   //recipes voice search
   var voiceSearchRecipes = function(item){
-    var recipe = recipe.toLowerCase();
-    $("#search").simulate("key-sequence", {sequence: recipe, delay: 100});
+    console.log("search", item);
+    console.log("typeof", typeof item)  
+    $("#search").simulate("key-sequence", {sequence: item, delay: 100});
     $("#search").trigger("input");
   }
 
@@ -67,7 +75,8 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     'show *recipe': show,
     'dismiss *recipe': dismiss,
     ':recipe instructions': instructionsFor,
-    'find *item': voiceSearchRecipes
+    'find *item': voiceSearchRecipes,
+    'clear search': clearVoiceSearch
   };
 
   // Add our commands to annyang
