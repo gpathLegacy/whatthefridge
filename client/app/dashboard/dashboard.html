@@ -1,12 +1,17 @@
 <!-- Feature-Tour Buttons -->
-<div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" href="javascript:void(0);" onclick="startIntro()">
-    <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Fridge?" href="javascript:void(0);" onclick="startIntro2();"><i class="material-icons">shopping_basket</i></i></a></li>
-  </ul>
+<div class="container">
+  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
+    <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="Tour the dashboard!" href="javascript:void(0);" onclick="startIntro()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Fridge?" href="javascript:void(0);" onclick="startIntro2();"><i class="material-icons">shopping_basket</i></i></a></li>
+    </ul>
+  </div>
+
+
 </div>
+
 
 <!-- Feature-Tour Tour-1-Step-1 && Tour-2-Step-1 -->
 <div class="container" id="step1">
@@ -18,7 +23,7 @@
         <div class="card-image">
           <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
         </div>
-        <div class="card-content text-blue text-lighten-3">
+        <div class="card-content">
           <span ng-if="expiring.length > 0 || expiringToday.length > 0" class="card-title activator">Expiring Soon </span>
           <span ng-if="expiring.length === 0 && expiringToday.length === 0" class="card-title">Expiring Soon </span>
             <p ng-if="expiring.length > 0">You have ${{expireAmount.toFixed(2)}} worth of food expiring soon</p>
@@ -26,7 +31,7 @@
             <p ng-if="expiringToday.length === 1">You have 1 item expiring today!<p>
             <p ng-if="expiring.length ===0 && expiringToday.length === 0">You have nothing expiring in the fridge</p>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           Expiring soon:
           <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
@@ -54,7 +59,7 @@
             <p>Your fridge is currently worth ${{freshValue.toFixed(2)}}</p>
           </div>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
           <p>Items in your fridge: {{fridgeData.length}} </p>
           <div ng-if="highestQtyFridge.length">You have a lot of:
@@ -85,7 +90,7 @@
           <p ng-if="expired.length === 1">You let 1 item worth ${{expiredValue.toFixed(2)}} expire!</p>
           <p ng-if="expired.length === 0">You have no expired items in the fridge</p>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
           The following items have expired:
           <br></br>
@@ -110,7 +115,7 @@
           <p ng-if="allRecipes.length > 1">You have {{allRecipes.length}} saved recipes</p>
           <p ng-if="allRecipes.length === 1">You have 1 saved recipe</p>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           <div ng-if="allRecipes.length > 0">
             <p>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price.toFixed(2)}}</p>
@@ -134,7 +139,7 @@
           <p ng-if="listsCount === 1">You have 1 saved shopping list</p>
           <p ng-if="listsCount > 1"> You have {{listsCount}} saved shopping lists</p>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
           <p ng-if="listsCount > 0"> Your priciest list, {{mostExpensiveList.list_name || mostExpensiveList.date}}, costs ${{mostExpensiveList.totalPrice}}</p>
           <p ng-hide="hideList"> Your cheapest list, {{leastExpensiveList.list_name || leastExpensiveList.date}}, costs ${{leastExpensiveList.totalPrice}}</p>
