@@ -47,9 +47,16 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     $(idIfied).click();
   };
 
+  //recipes voice search
   var voiceSearchRecipes = function(item){
     var recipe = recipe.toLowerCase();
     $("#search").simulate("key-sequence", {sequence: recipe, delay: 100});
+    $("#search").trigger("input");
+  }
+
+  //clear searchbar
+  var clearVoiceSearch = function(){
+    $("#search").simulate("key-sequence", {sequence: "{selectall}{backspace}", delay: 100})
     $("#search").trigger("input");
   }
 
