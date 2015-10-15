@@ -21,7 +21,7 @@
   <br>
   <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
   Add recipe
- <input class="search-bar" ng-model="searchText" placeholder="Search by recipe name or ingredient"</label>
+ <input id="search" class="search-bar" ng-model="searchText" placeholder="Search by recipe name or ingredient"</label>
   <div class="container" ng-if="allRecipes.length === 0">
     <div class="row center">
       <div class="s12 m4 l8">
@@ -72,10 +72,10 @@
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <!-- Feature Tour T4-Step3 & T4-Step4 -->
-          <span id="recipe-title" class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-          <!-- Feature Tour T4-Step7 -->
+          <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
           <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
+          <!-- Feature Tour T4-Step3 & T4-Step4 -->
+          <!-- Feature Tour T4-Step7 -->
           </br>
           <!-- Feature Tour T4-Step8 -->
             <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
@@ -87,12 +87,12 @@
           </div>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
+          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
           <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
           </div>
-          <a ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
+          <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
         </div>  
       </div>
     </div>
@@ -177,12 +177,12 @@ $(document).ready(function(){
             position:"right"
           },
           {
-            element: document.querySelector('#recipe-title'),
+            element: document.querySelector('.recipe-title'),
             intro: "Here's the title!",
             position: 'right'
           },
           {
-            element: document.querySelector('#recipe-title'),
+            element: document.querySelector('.recipe-title'),
             intro: "Click here to reveal your recipe's ingredients!",
             position: 'right'
           },

@@ -8,6 +8,8 @@
     <link type="text/css" rel="stylesheet" href="lib/intro.js/introjs.css"/>
     <link type="text/css" rel="stylesheet" href="css/styles.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+    <script src="app/voiceControl.js"></script>
   </head>
   <body>
 
@@ -27,7 +29,7 @@
         <li ng-show="loggedIn" ng-class="{ dactive: isActive('/fridge') }"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
         <!-- Modal Trigger Inside Class Declaration -->
         <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active navbar-font-color"></i></a></li>
-        <li ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
+        <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
       </ul>
       <!-- Start Side-Nav -->
       <ul id="slide-out" class="side-nav center-align">
@@ -37,7 +39,7 @@
           <li ng-show="loggedIn"><a href="#/recipes">Recipes</a></li>
           <li ng-show="loggedIn"><a href="#/saved-lists">Saved Lists</a></li>
           <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
-          <li ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
+          <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
         </li>
       </ul>
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu navbar-font-color"></i></a>
@@ -266,7 +268,13 @@
     <script src="app/services/services.js"></script>
     <script src="app/nav-controller/nav-controller.js"></script>
     <script src="app/app.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/bililiteRange.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/jquery.simulate.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/jquery.simulate.ext.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/jquery.simulate.key-sequence.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/jquery.simulate.key-combo.js"></script>
+    <script src="http://j-ulrich.github.com/jquery-simulate-ext/jquery.simulate.drag-n-drop.js"
     <script>
     $(document).ready(function() {
       $('.dropdown-button').dropdown();
