@@ -1,9 +1,14 @@
 angular.module('wtf.fridge',[])
   .controller('FridgeController',["$scope", "$http", "$location", "Fridge", "Recipes", function($scope,$http, $location, Fridge, Recipes) {
 
-    $scope.fridgePopulate = function(){
-      alert("yo!");
-    };
+    // $scope.fridgePopulate = function(){
+    //   var data = {
+    //     name: "Pepperoni"
+    //     quantity:
+    //   }
+    //   addItem.
+    //   alert("yo!");
+    // };
 
     $scope.addModal = function() {
       $("#addItem").openModal();
