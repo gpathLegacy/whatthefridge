@@ -1,14 +1,21 @@
 angular.module('wtf.fridge',[])
   .controller('FridgeController',["$scope", "$http", "$location", "Fridge", "Recipes", function($scope,$http, $location, Fridge, Recipes) {
 
-    // $scope.fridgePopulate = function(){
-    //   var data = {
-    //     name: "Pepperoni"
-    //     quantity:
-    //   }
-    //   addItem.
-    //   alert("yo!");
-    // };
+    $scope.fridgePopulate = function(){
+      var data = {
+        name: "Pepperoni"
+      }
+      Fridge.addItem(data.name)
+        .then(function(data){
+          console.log(data);
+        })
+        .then(function(data) {
+          Fridge.updateFridge(data)
+          })
+          .then(function() {
+            alert("yo!");
+        })
+    };
 
     $scope.addModal = function() {
       $("#addItem").openModal();
