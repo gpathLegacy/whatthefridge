@@ -2,11 +2,6 @@
 if (annyang && window.location.href.split('/').pop() !== "") {
   // Let's define a command.
   var goTo = function(view) {
-    console.log("gotTo ",view);
-    //handle hyphenated paths
-    //if (view==='saved lists'){
-    //}
-    //
     var endPointStart = window.location.href.lastIndexOf('/');
     var basicPath = window.location.href.slice(0, endPointStart +1);
 
@@ -59,12 +54,17 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     console.log("search", item);
     console.log("typeof", typeof item)  
     $("#search").simulate("key-sequence", {sequence: item, delay: 100});
-    $("#search").trigger("input");
+    // $("#search").trigger("input");
   }
 
   //clear searchbar
   var clearVoiceSearch = function(){
     $("#search").simulate("key-sequence", {sequence: "{selectall}{backspace}", delay: 100})
+    $("#search").trigger("input");
+  }
+
+  var enter = function(){
+    console.log('worked')
     $("#search").trigger("input");
   }
 
@@ -75,8 +75,9 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     'show *recipe': show,
     'dismiss *recipe': dismiss,
     'instructions for *recipe': instructionsFor,
-    'find *item': voiceSearchRecipes,
-    'clear search': clearVoiceSearch
+    'type *item': voiceSearchRecipes,
+    'clear search': clearVoiceSearch,
+    'search': enter
   };
 
   // Add our commands to annyang
