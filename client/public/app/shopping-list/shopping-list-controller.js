@@ -265,10 +265,10 @@ angular.module('wtf.shopping-list', [])
         //Call price lookup
       //test query
       // UpcLookup.productLookup();  
-      console.log($scope.productUpc, " upc in the client controller");
-      UpcLookup.productLookup($scope.productUpc).then(function(data){
+      // console.log($scope.productUpc, " upc in the client controller");
+      UpcLookup.productLookup().then(function(data){
         //Update price field in scope
-        console.log("the price fetched from the api is: ", data);
+        console.log("the price fetched from the api is: ", data.data);
         $scope.shoppingList[index].price = data; //
 
       })

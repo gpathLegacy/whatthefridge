@@ -8,7 +8,7 @@ module.exports = function(ShoppingLists, Ingredients) {
     // shopping lists controls go here
     productLookup: function(req, res){
       var upc=  req.body.listId.toString();
-
+      console.log('server side upc is: ', upc)
                 // Build the request
         sem3.products.products_field( "upc", upc );
         // sem3.products.products_field( "field", ["name","price",'price_currency'] );
@@ -18,6 +18,7 @@ module.exports = function(ShoppingLists, Ingredients) {
         // sem3.products.remove( "products", "offset" );
 
         // Run the request
+
         sem3.products.get_products(
           function(err, products) {
               if (err) {
@@ -35,14 +36,19 @@ module.exports = function(ShoppingLists, Ingredients) {
               resultPrice = parseFloat(resultPrice);
               console.log(resultPrice, typeof(resultPrice)); //correct
                 // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
-              return resultPrice; 
+              var toSend = resultPrice; 
+              console.log("the item to send back is: ", toSend)
+              res.json(toSend)
            }
         )
+
+
+        
         
 
 
 
-        console.log(resultSend, " result in server controller");
+        // console.log(resultSend, " result in server controller");
     },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {
