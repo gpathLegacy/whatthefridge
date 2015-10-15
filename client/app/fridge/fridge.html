@@ -114,6 +114,11 @@
               position: 'bottom'
             },
             {
+              element: document.querySelector('#add-ingredient-button'),
+              intro: "Click here to add an ingredient to your fridge!",
+              position: 'bottom'
+            },
+            {
               element: document.querySelector('#T5-Step2'),
               intro: "This is the title for a given ingredient",
               position:"right"
@@ -135,19 +140,16 @@
             },
             {
               element: document.querySelector('#trashcan-container'),
-              intro: "Click here to remove this ingredient from your fridge!",
+              intro: "Click here to remove an ingredient from your fridge!",
               position: 'left'
             },
             {
-              element: document.querySelector('#add-ingredient-button'),
-              intro: "And, of course, click this button to add an ingredient to your fridge!",
-              position: 'bottom'
-            }
+              intro: "Don't forget to remove pepperoni from your fridge!"
+            },
+
           ]
         });
-      intro5.start().oncomplete(function(){
-        alert("exit of introduction");
-      });
+      intro5.start();
     }
 </script>
 
