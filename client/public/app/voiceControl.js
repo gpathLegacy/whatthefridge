@@ -37,20 +37,20 @@ if (annyang && window.location.href.split('/').pop() !== "") {
   var show = function(recipe){
     console.log("show", recipe)
     console.log("typeof", typeof recipe)
-    var idIfied = "#"+ recipe.toLowerCase();
+    var idIfied = "#"+ recipe.split(' ').join('');
     $(idIfied).click();
   }
 
   var dismiss = function(recipe){
     console.log("recipe", recipe)
-    var idIfied = "#dismiss" + recipe.toLowerCase();
+    var idIfied = "#dismiss" + recipe.split(' ').join('');
     $(idIfied).click();
   }
 
   var instructionsFor = function(recipe){
     console.log("instructions", recipe)
      console.log("typeof", typeof recipe)
-    var idIfied = "#" + recipe.toLowerCase() + "Instructions";
+    var idIfied = "#" + recipe.toLowerCase().split(' ').join('') + "Instructions";
     $(idIfied).click();
   };
 
@@ -74,7 +74,7 @@ if (annyang && window.location.href.split('/').pop() !== "") {
     'log out': logout,
     'show *recipe': show,
     'dismiss *recipe': dismiss,
-    ':recipe instructions': instructionsFor,
+    'instructions for *recipe': instructionsFor,
     'find *item': voiceSearchRecipes,
     'clear search': clearVoiceSearch
   };
