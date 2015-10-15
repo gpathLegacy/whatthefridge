@@ -29,16 +29,16 @@
             <p ng-if="expiringToday.length === 1">You have 1 item expiring today!<p>
             <p ng-if="expiring.length ===0 && expiringToday.length === 0">You have nothing expiring in the fridge</p>
         </div>
-        <div class="card-reveal black">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons small right">close</i></span>
+        <div class="card-reveal black title-type-content">
+          <span class="card-title white"><i class="material-icons small right clickable-content-color">close</i></span>
           Expiring soon:
           <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
             <li>{{subitem.name}}</li>
           </div>
           <br/>
-          <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday">
+          <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday" class="title-type-content">
             Expiring today:
-            <li>{{subitem.name}}</li>
+            <li class="blue-text text-lighten-3">{{subitem.name}}</li>
           </div>
         </div>
       </div>
@@ -59,7 +59,8 @@
         </div>
         <div class="card-reveal black">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right">close</i></span>
-          <p>Items in your fridge: {{fridgeData.length}} </p>
+          <div class="title-type-content">Items in your fridge:</div>
+          <div> {{fridgeData.length}}</div>
           <div ng-if="highestQtyFridge.length">You have a lot of:
             <li ng-repeat="item in highestQtyFridge">{{item.name}}</li>
           </div>

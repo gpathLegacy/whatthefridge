@@ -378,6 +378,18 @@ main {
   border-color:black;
 }
 
+.clickable-content-color{
+  color:#ef6c00;
+}
+
+.title-type-content{
+  color:white;
+}
+
+.bullet-point-type-content{
+  color:#90caf9;
+}
+
 /*.interior-card-colorer{
   background: black;
 }*/
