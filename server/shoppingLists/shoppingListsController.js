@@ -44,7 +44,7 @@ module.exports = function(ShoppingLists, Ingredients) {
               // check if Ingredient exists! if not, it needs to be added to ingredients table and
               // then added to the shopping_lists_ingredients table
               if (!ingredient.length) {
-                Ingredients.addIngredient(req.user.id, list[index].name, list[index.price])
+                Ingredients.addIngredient(req.user.id, list[index].name, list[index].price)
                   .then(function(ingredientId) {
                     ShoppingLists.newItem(listId, ingredientId[0], list[index].qty).then(function(){});
                   })
