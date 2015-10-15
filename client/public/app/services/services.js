@@ -122,27 +122,47 @@ angular.module('wtf.services', [])
     //     "price",
     //     "price_currency"
     //   ]}
+    
+    // -H is a custom header request and -G is specification of request type
+    // curl -G -H "api_key: SEM36B982D5FD25FB00E55C7190B06D41A89"
+    // https://api.semantics3.com/test/v1/products --data-urlencode 'q={"upc":"611269991000"}'
 
-    //method is http but url https, lookout for connection refusal errors
+    /*
+          headers: {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89', 
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Origin': '*'},
+    */
+
+    //method is http but url is https, lookout for connection refusal errors (check. no errors)
     //hardcoded product value for api testing
     var productUpc = '611269991000';
-    var apiUrl = 'https://api.semantics3.com/v1/products?';
-    $http({
-       url: apiUrl, 
-       method: "GET",
-       params: {"upc": productUpc, 
-          "fields": [
-          "name",
-          "price",
-          "price_currency"
+
+    var apiUrl = 'https://api.semantics3.com/test/v1/products?q=';
+      //this might set the custom header value for all get requests
+      // $httpProvider.defaults.headers.get = {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89'};
+    return $http({
+      url: apiUrl, 
+      method: 'GET',
+      headers: {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89', 
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Origin': '*'
+    },
+      params: {'upc': productUpc, 
+        'fields': [
+        'name',
+        'price',
+        'price_currency'
         ]}
     })
     .success(function(data){
       console.log("data as fetched from api in services: ", data);
-      // return res.send(data);
+      // return res.send(200);
     })
     }
-    // return res.send(productDetails);
+    return {productLookup: productLookup};
   }])
   .service('currentRecipeService', function() {
     var currentRecipeToEdit;
