@@ -6,5 +6,5 @@ module.exports = function(app, ShoppingLists, Ingredients) {
   app.post('/getRecipes', shoppingListsController.getRecipes);
   app.post('/saveList', shoppingListsController.saveList);
   app.post('/deleteList', shoppingListsController.deleteList)
-  app.post('/productLookUp', shoppingListsController.productLookup);
+  app.post('/productLookup', shoppingListsController.productLookup);
 }

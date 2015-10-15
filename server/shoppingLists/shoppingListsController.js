@@ -1,3 +1,4 @@
+// var upc_api = require('/server/config/upc-api-secret.js');
 var api_key = 'SEM36B982D5FD25FB00E55C7190B06D41A89';
 var api_secret = 'YjIyMTY2NGJlN2I5NjNiNzgyZTMyMzlhNzNlMDhkZmQ';
 var sem3 = require('semantics3-node')(api_key,api_secret);
@@ -10,7 +11,7 @@ module.exports = function(ShoppingLists, Ingredients) {
 
                 // Build the request
         sem3.products.products_field( "upc", upc );
-        sem3.products.products_field( "field", ["name","price",'price_currency'] );
+        // sem3.products.products_field( "field", ["name","price",'price_currency'] );
         // sem3.products.products_field( "offset", 1 );
 
         // // Let's make a modification - say we no longer want the offset attribute
@@ -18,16 +19,30 @@ module.exports = function(ShoppingLists, Ingredients) {
 
         // Run the request
         sem3.products.get_products(
-           function(err, products) {
+          function(err, products) {
               if (err) {
                  console.log("Couldn't execute request: get_products");
                  return;
               }
-
               // View the results of the request
-              console.log( "Results of request:\n" + JSON.stringify( products ) );
+              var result = JSON.stringify(products);
+              result = JSON.parse(result);
+              var n = result.search('"price":');
+              var resultPrice = "";
+              resultPrice += parseInt(result[n+10]+ result[n+11]);
+              resultPrice += result[n+12];
+              resultPrice += (result[n+13] + result[n+14]);
+              resultPrice = parseFloat(resultPrice);
+              console.log(resultPrice, typeof(resultPrice)); //correct
+                // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
+              return resultPrice; 
            }
-        );
+        )
+        
+
+
+
+        console.log(resultSend, " result in server controller");
     },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {
