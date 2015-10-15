@@ -1,6 +1,34 @@
+var api_key = 'SEM36B982D5FD25FB00E55C7190B06D41A89';
+var api_secret = 'YjIyMTY2NGJlN2I5NjNiNzgyZTMyMzlhNzNlMDhkZmQ';
+var sem3 = require('semantics3-node')(api_key,api_secret);
+
 module.exports = function(ShoppingLists, Ingredients) {
   return {
     // shopping lists controls go here
+    productLookup: function(req, res){
+      var upc=  req.body.listId.toString();
+
+                // Build the request
+        sem3.products.products_field( "upc", upc );
+        sem3.products.products_field( "field", ["name","price",'price_currency'] );
+        // sem3.products.products_field( "offset", 1 );
+
+        // // Let's make a modification - say we no longer want the offset attribute
+        // sem3.products.remove( "products", "offset" );
+
+        // Run the request
+        sem3.products.get_products(
+           function(err, products) {
+              if (err) {
+                 console.log("Couldn't execute request: get_products");
+                 return;
+              }
+
+              // View the results of the request
+              console.log( "Results of request:\n" + JSON.stringify( products ) );
+           }
+        );
+    },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {
 
