@@ -3,14 +3,14 @@ angular.module('wtf.fridge',[])
 
     $scope.fridgePopulate = function(){
       var data = {
-        name: "Pepperoni",
+        name: "Pepperoni"
       }
       Fridge.addItem(data)
         .then(function() {
           window.location.reload();
         })
           .then(function() {
-            alert("yo!");
+            alert("You need items in your fridge to take the tour!");
         })
     };
 
