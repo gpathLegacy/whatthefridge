@@ -360,6 +360,13 @@ main {
   /*padding-top: 3px;*/
 }
 
+.card-colorer{
+  background: #131313;
+  color: #90caf9;
+  border: solid 2px;
+  border-color:black;
+}
+
 /*========shopping-list=========*/
 
 .quantity {
