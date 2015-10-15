@@ -16,7 +16,8 @@ angular.module('wtf.recipes', ['checklist-model'])
           Recipes.getRecipes()
         })
         .then(function(){
-          alert('We\'ve added your first recipe!  Refresh the page & click this button to take our tour!' )
+          window.location.reload();
+          alert('We\'ve added your first recipe!  Click this button again for our tour!')
         })
     };
 
