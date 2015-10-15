@@ -18,17 +18,16 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <h4 class="col s4">
-      Add recipe:
-    </h4>
-    <div class="col s1 center">
-      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-medium waves-effect waves-light orange darken-3 button-add recipes-button-spacer"><i class="material-icons">add</i></a>
-    </div>
-  </div>
-  <br><br>
+  <div class="row" id="add-recipe-title-container">
+    Add recipe:
+      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add" id="add-recipes-button"><i class="material-icons">add</i></a>
+    <div id="search-title-div">Search by Recipe name or Ingredient:</div>
+    <input id="search" class="search-bar" ng-model="searchText" placeholder="Search"</label>
 
- <input id="search" class="search-bar" ng-model="searchText" placeholder="Search by recipe name or ingredient"</label>
+  </div>
+</div>
+  <br>
+
   <div class="container" ng-if="allRecipes.length === 0">
     <div class="row center">
       <div class="s12 m4 l8">
@@ -142,7 +141,7 @@
   </div>
 
   <div class="fixed-action-btn" style="bottom: 26em; right: 2em;">
-    <a class="btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" id="shopping-cart-button" class="modal-trigger" href="#shopCheck">
+    <a class="modal-trigger btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" href="#shopCheck">
       <i class="large material-icons white-text" style="font-size:3em; padding-top:3px">shopping_cart</i>
     </a>
   </div>

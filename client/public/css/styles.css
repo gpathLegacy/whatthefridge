@@ -298,11 +298,13 @@ main {
   width: 30%;
 }
 
-.recipes-button-spacer{
+#add-recipes-button{
+  margin-left: .5em;
+  margin-bottom:1.3em;
 }
 
-#shopping-cart-button{
-  color: #90caf9;
+#add-recipe-title-container{
+  font-size:2em;
 }
 
 /*========create-recipes=========*/
