@@ -1,8 +1,18 @@
 <!-- Feature-Tour Button -->
-<div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro5()">
-    <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-  </a>
+<div class="container" ng-if="data.length !== 0">
+  <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
+    <a id="FT-FAB" class="btn-floating btn-large orange darken-2 z-depth-3" href="javascript:void(0);" onclick="startIntro5()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+  </div>
+</div>
+
+<div class="container" ng-if="data.length === 0">
+  <div class="fixed-action-btn" style="bottom: 4.5em; right: 2em;">
+    <a class="btn-floating btn-large orange darken-2 z-depth-3" ng-click="fridgePopulate()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+  </div>
 </div>
 
 <div class="container">
@@ -24,8 +34,8 @@
       </div>
     </div>
   </div>
-
-  <table ng-if="data.length>0" class="centered highlight">
+  <!-- Feature Tour 5 Step 1 -->
+  <table ng-if="data.length>0" class="centered highlight" id="T5-Step1">
     <thead>
       <tr>
         <th>Ingredient</th>
@@ -37,7 +47,7 @@
 
     <tbody>
       <tr ng-repeat="ingredient in data track by $index" ng-if="ingredient.qty>0">
-        <td>{{ingredient.name}}</td>
+        <td id="T5-Step2">{{ingredient.name}}</td>
         <td><form class="priceForm" name="priceForm{{$index}}">
             <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></form></td>
         <td>
@@ -60,6 +70,7 @@
  -->
         <td id="date-message" ng-hide="todayInISO > ingredient.expiration.toISOString().slice(0,10)"><input ng-model="ingredient.expiration" ng-blur="saveFridge()" type="date"/></td>
         <td id="expire-message" ng-show="todayInISO > ingredient.expiration.toISOString().slice(0,10)">Expired </td>
+        <td><a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="trash-icon-small">delete<span></i></a></td>
 
     </tbody>
   </table>
@@ -96,14 +107,14 @@
         intro5.setOptions({
           steps: [
             {
-              element: document.querySelector('#XXX'),
-              intro: "",
-              position: ''
+              element: document.querySelector('#T5-Step1'),
+              intro: "This is a digital representation of your fridge!",
+              position: 'bottom'
             },
             {
-              element: document.querySelector('#XXX'),
-              intro: "",
-              position:""
+              element: document.querySelector('#T5-Step2'),
+              intro: "This is the title for a given ingredient",
+              position:"right"
             },
             {
               element: document.querySelector('#XXX'),

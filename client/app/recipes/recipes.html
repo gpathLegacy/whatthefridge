@@ -1,8 +1,20 @@
+<br><br>
+
 <!-- Feature-Tour Button -->
-<div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-  <a class="btn-floating btn-large tooltipped orange darken-2 z-depth-3" data-position="left" data-delay="50" data-tooltip="I'm your tour guide!" href="javascript:void(0);" onclick="startIntro4()">
-    <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-  </a>
+<div class="container" ng-if="allRecipes.length !== 0">
+  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
+    <a id="FT-FAB" class="btn-floating btn-large orange darken-2 z-depth-3" href="javascript:void(0);" onclick="startIntro4()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+  </div>
+</div>
+
+<div class="container" ng-if="allRecipes.length === 0">
+  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
+    <a class="btn-floating btn-large orange darken-2 z-depth-3" ng-click="populate()">
+      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
+    </a>
+  </div>
 </div>
 
 <div class="container">
@@ -51,22 +63,27 @@
     </div>
   </div>
  -->
-
-   <div class="row">
+  <!-- Feature Tour Tour-4-Step-1 -->
+  <div class="row" id="T4-Step1">
     <div class="col s4" ng-repeat="item in allRecipes | filter:searchText">
-      <div class ="card small card-small">
+      <!-- Feature Tour T4-Step2 -->
+      <div class ="card small card-small" id="T4-Step2">
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-          <span class="price">${{item.price.toFixed(2)}}</span>
+          <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
+          <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
+          <!-- Feature Tour T4-Step3 & T4-Step4 -->
+          <!-- Feature Tour T4-Step7 -->
           </br>
-          <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-          <label class="left" for="{{item}}">I'm eating this</label> </br></br></br>
+          <!-- Feature Tour T4-Step8 -->
+            <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
+            <label id="T4-Step8" class="left" for="{{item}}">I'm eating this</label> </br></br></br>
           <div class="row">
-          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left">edit</i></a></span></div>
-          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left">delete</i></a></span></div>
+          <!-- Feature Tour T4-Step5 -->
+          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span></div>
+          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span></div>
           </div>
         </div>
         <div class="card-reveal">
@@ -82,7 +99,7 @@
   </div>
 
   <!-- Recipe suggestions from other users -->
-<div class="row" ng-if="suggestedRecipe[0].title">
+  <div class="row" ng-if="suggestedRecipe[0].title">
     <div class="col s4 offset-s4">
       <div class ="card small card-small blue-grey darken-1">
         <div class="card-image">
@@ -94,7 +111,7 @@
           </br>
           <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal" id="T4-Step4">
           <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">close</i></span>
           <!-- <span class="price left">${{suggestedRecipe[0].price}}</span></br> </br> -->
           <div ng-repeat="ingredient in suggestedRecipe">
@@ -116,7 +133,6 @@
       <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
     </div>
   </div>
-
 
   <!-- goShoppingButton -->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -144,37 +160,55 @@
 $(document).ready(function(){
   $('.modal-trigger').leanModal();
   });
-$('.tooltipped').tooltip({delay: 50});
+  $('.tooltipped').tooltip({delay: 50});
 
-function startIntro4(){
+  function startIntro4(){
     var intro4 = introJs();
       intro4.setOptions({
         steps: [
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('#T4-Step1'),
+            intro: "Welcome to our Recipes page!",
+            position: 'top'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position:""
+            element: document.querySelector('#T4-Step2'),
+            intro: "This card digitally represents your recipe!",
+            position:"right"
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('.recipe-title'),
+            intro: "Here's the title!",
+            position: 'right'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
+            element: document.querySelector('.recipe-title'),
+            intro: "Click here to reveal your recipe's ingredients!",
+            position: 'right'
           },
           {
-            element: document.querySelector('#XXX'),
-            intro: "",
-            position: ''
-          }
+            element: document.querySelector('#T4-Step5'),
+            intro: "Click here to edit this recipe!",
+            position: 'bottom'
+          },
+           {
+            element: document.querySelector('#T4-Step6'),
+            intro: "Click here delete your recipe!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T4-Step7'),
+            intro: "This is the cost of your ingredients list!",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#T4-Step8'),
+            intro: "Check this box to include yourrecipe's ingredients in your shopping list!",
+            position: 'right'
+          },
+          {
+            intro: "This concludes our Recipes page tour!"
+          },
         ]
       });
     intro4.start();

@@ -1,6 +1,19 @@
 angular.module('wtf.fridge',[])
   .controller('FridgeController',["$scope", "$http", "$location", "Fridge", "Recipes", function($scope,$http, $location, Fridge, Recipes) {
-    
+
+    $scope.fridgePopulate = function(){
+      var data = {
+        name: "Pepperoni",
+      }
+      Fridge.addItem(data)
+        .then(function() {
+          window.location.reload();
+        })
+          .then(function() {
+            alert("yo!");
+        })
+    };
+
     $scope.addModal = function() {
       $("#addItem").openModal();
     };
@@ -54,7 +67,7 @@ angular.module('wtf.fridge',[])
           $scope.data[i].expiration = new Date($scope.data[i].expiration);
           $scope.data[i].oldExpiration = new Date($scope.data[i].expiration);
         }
-        
+
         $scope.expiring = $scope.data
                                 .filter(function(entry){
                                   if(entry.expiration > $scope.today && entry.expiration < $scope.twoFromToday){
@@ -66,7 +79,7 @@ angular.module('wtf.fridge',[])
                                     .reduce(function(sum, entry){
                                         return sum+= Number(entry.qty) * Number(entry.price)
                                     }, 0 )
-        
+
         if($scope.expiring.length){
           var item = $scope.expiring.length === 1 ? " item" : " items";
           Materialize.toast("You have " + $scope.expiring.length +
@@ -110,6 +123,17 @@ angular.module('wtf.fridge',[])
         $scope.data = [];
         $scope.expiring = [];
       }
+    };
+
+    $scope.removeIngredient = function(ingredient) {
+      ingredient.qty = 0;
+      $scope.saveFridge();
+
+      if ($scope.data.every(function(entry){return entry.qty === 0})){
+        $scope.data = [];
+        $scope.expiring = [];
+      }
     }
+
     $scope.getFridge();
 }]);
