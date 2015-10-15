@@ -261,13 +261,14 @@ angular.module('wtf.shopping-list', [])
     $scope.lookupProduct = function() {
       Quagga.stop();
         //Call price lookup
-      //factory.method();  
-      UpcLookup.productLookup($scope.productUpc).then(function(data){
-        //Update price field in scope
-        //$scope.shoppingList[index].price = data.results[0].price;
-        console.log("the price fetched from the api is: ", data.results[0].price);
+      //test query
+      UpcLookup.productLookup();  
+      // UpcLookup.productLookup($scope.productUpc).then(function(data){
+      //   //Update price field in scope
+      //   //$scope.shoppingList[index].price = data.results[0].price;
+      //   console.log("the price fetched from the api is: ", data.results[0].price);
 
-      })
+      // })
     };
 
     /* barcode feature ends */
