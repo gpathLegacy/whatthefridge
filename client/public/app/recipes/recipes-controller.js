@@ -1,6 +1,24 @@
 angular.module('wtf.recipes', ['checklist-model'])
   .controller('RecipesController', ["$scope", "$window", "$location", "currentRecipeService", "Recipes", function($scope, $window, $location, currentRecipeService, Recipes) {
 
+    $scope.populate=function(){
+      var recipe = {
+        name: "Justin's Recipe",
+        ingredients: [
+          "tomatoes",
+          "ground beef",
+          "cheese",
+          "green onions"
+        ],
+      };
+      Recipes.createRecipe(recipe)
+        .then(function(){
+          Recipes.getRecipes()
+            .then(function(){
+              alert('We\'ve added your first recipe!  Refresh the page & click this button to take our tour!' )
+            })
+        })
+    };
 
     $scope.getAllRecipes = function() {
       Recipes.getRecipes()
@@ -32,7 +50,7 @@ angular.module('wtf.recipes', ['checklist-model'])
     //     $location.path('/');
     //   }
     // }, true);
-    
+
     $scope.getShoppingList = function() {
       $("#shopCheck").closeModal();
       $location.path('create-list');

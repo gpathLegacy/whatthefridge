@@ -3,7 +3,7 @@
 // For recipes
 module.exports = function (app, Recipes, Ingredients) {
   var recipesController = require('./recipesController.js')(Recipes, Ingredients);
-  
+
   app.get('/getRecipes', recipesController.getRecipes);
   app.post('/getInstructions', recipesController.getInstructions);
   app.post('/suggestRecipe', recipesController.suggestRecipe);
