@@ -20,7 +20,8 @@ var dbShoppingLists = require('../../server/shoppingLists/shoppingListsModel.js'
   };
     
   var recipeObj = {
-    'title': 'Pork Chop Sandwiches'
+    'title': 'Pork Chop Sandwiches',
+    'instructions': 'Cook everything appropriately'
   };
 
   var ingredientObj = {
@@ -91,7 +92,7 @@ describe("Database unit tests", function(){
   describe("recipes model methods", function(){
     
     it("can create a recipe", function(done){ 
-      dbRecipes.createRecipe(recipeObj.title, userObj.id)
+      dbRecipes.createRecipe(recipeObj.title, userObj.id, recipeObj.instructions)
         .then(function(data){
           expect(data[0]).to.be.a('number');
           recipeObj.id = data[0];
@@ -145,6 +146,14 @@ describe("Database unit tests", function(){
           expect(data[0]['title']).to.equal('Pork Chop Friday');
           done();
         });
+    });
+
+    it("can get a recipe's instructions by id", function(done){ 
+      dbRecipes.getInstructions(recipeObj.id)
+        .then(function(data){
+          expect(data[0]['instructions']).to.equal(recipeObj['instructions']);
+          done();
+        })
     });
 
   }),

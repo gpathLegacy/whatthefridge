@@ -92,7 +92,8 @@
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
           </div>
-        </div>
+          <a ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
+        </div>  
       </div>
     </div>
   </div>
@@ -116,7 +117,8 @@
           <div ng-repeat="ingredient in suggestedRecipe">
             <li>{{ingredient.name}}</li>
           </div>
-        </div>
+          <a ng-click="getInstructions(suggestedRecipe[0].id)" class="waves-effect waves-light btn">Instructions</a>
+        </div>  
       </div>
     </div>
   </div>

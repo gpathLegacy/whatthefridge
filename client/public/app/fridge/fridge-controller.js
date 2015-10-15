@@ -119,6 +119,17 @@ angular.module('wtf.fridge',[])
         $scope.data = [];
         $scope.expiring = [];
       }
+    };
+
+    $scope.removeIngredient = function(ingredient) {
+      ingredient.qty = 0;
+      $scope.saveFridge();
+
+      if ($scope.data.every(function(entry){return entry.qty === 0})){
+        $scope.data = [];
+        $scope.expiring = [];
+      }
     }
+
     $scope.getFridge();
 }]);

@@ -78,6 +78,9 @@ app.get('/app/dashboard/dashboard.html', auth, function(req, res) {
 app.get('/app/edit-recipes/edit-recipes.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/edit-recipes/edit-recipes.html'));
 });
+app.get('/app/instructions/instructions.html', auth, function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../client/app/instructions/instructions.html'));
+});
 app.get('/app/shopping-list/shopping-list.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/shopping-list/shopping-list.html'));
 });

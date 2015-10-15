@@ -4,8 +4,9 @@ module.exports = function(Recipes, Ingredients) {
     createRecipe: function(req, res) {
       var recipeName = req.body.name;
       var ingredients = req.body.ingredients;
+      var instructions = req.body.instructions;
       // Create the recipe in the recipes table
-      Recipes.createRecipe(recipeName, req.user.id).then(function(id) {
+      Recipes.createRecipe(recipeName, req.user.id, instructions).then(function(id) {
 
         var recipeID = id[0];
 
@@ -45,15 +46,18 @@ module.exports = function(Recipes, Ingredients) {
           var currentRecipe = Infinity;
           var recipeObjCount = -1;
           for (var i=0; i<data.length; i++) {
-            //if the data being read is for the same recipe, push to the ingredient
+
+            //if the data being read is for the same recipe, push to the ingredient | check price code on cleanup
+            
             if (currentRecipe === data[i].id) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
               recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
             } else { //if the data is for a new recipe, create object and push the ingredient
               recipeObjCount++;
-              recipeResult.push({id: data[i].id, title: data[i].title, ingredients: [], price:0});
+              recipeResult.push({id: data[i].id, title: data[i].title, ingredients: [], price:0, instructions: ""});
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
               recipeResult[recipeObjCount]["price"] = recipeResult[recipeObjCount]["price"] + parseFloat(data[i].price);
+              recipeResult[recipeObjCount]["instructions"] = data[i]["instructions"];
               currentRecipe = data[i].id;
             }
           }
@@ -66,6 +70,7 @@ module.exports = function(Recipes, Ingredients) {
       var recipeName = req.body.name;
       var ingredients = req.body.ingredients;
       var removeIngredients = req.body.remove;
+      var instructions = req.body.instructions;
 
       // Get ingredient IDs that already exist for the user, or add new Ingredients.
       // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
@@ -102,12 +107,22 @@ module.exports = function(Recipes, Ingredients) {
       //update recipe name
       Recipes.editRecipe(recipeID, recipeName).then(function(){});
 
+      //update instructions
+      Recipes.editInstructions(recipeID, instructions).then(function(){});
+      
       res.sendStatus(200);
     },
     deleteRecipe: function(req, res){
       Recipes.deleteRecipe(req.body.id)
         .then(function(data){
           res.json("deleted " + req.body.title);
+        })
+    },
+    getInstructions: function(req, res){
+      console.log(req.body);
+      Recipes.getRecipe(req.body.id)
+        .then(function(data){
+          res.send(data);
         })
     },
     suggestRecipe: function(req, res){
