@@ -18,15 +18,22 @@
 </div>
 
 <div class="container">
-  <br>
-  <a href='/#/create-recipes' class="btn-floating btn-medium waves-effect waves-light blue button-add"><i class="material-icons">add</i></a>
-  Add recipe
+  <div class="row">
+    <h4 class="col s4">
+      Add recipe:
+    </h4>
+    <div class="col s1 center">
+      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-medium waves-effect waves-light orange darken-3 button-add recipes-button-spacer"><i class="material-icons">add</i></a>
+    </div>
+  </div>
+  <br><br>
+
  <input id="search" class="search-bar" ng-model="searchText" placeholder="Search by recipe name or ingredient"</label>
   <div class="container" ng-if="allRecipes.length === 0">
     <div class="row center">
       <div class="s12 m4 l8">
-        <div class="card blue-grey darken">
-          <div class="card-content white-text">
+        <div class="card card-colorer z-depth-2">
+          <div class="card-content">
             <span class="card-title">Get cooking!</span>
             <p>You have no recipes! </p>
             <p>Add one today by clicking the button above!</p>
@@ -93,7 +100,7 @@
             <span>{{subitem}}</span>
           </div>
           <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
-        </div>  
+        </div>
       </div>
     </div>
   </div>
@@ -118,7 +125,7 @@
             <li>{{ingredient.name}}</li>
           </div>
           <a ng-click="getInstructions(suggestedRecipe[0].id)" class="waves-effect waves-light btn">Instructions</a>
-        </div>  
+        </div>
       </div>
     </div>
   </div>
@@ -134,9 +141,16 @@
     </div>
   </div>
 
-  <!-- goShoppingButton -->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="modal-trigger" href="#shopCheck"><i class="large material-icons">shopping_cart</i>
+    <a class="btn-floating btn-large grey darken-3" id="shopping-cart-button">
+      <i class="large material-icons" style="font-size:3em; padding-top:3px">shopping_cart</i>
+    </a>
+  </div>
+
+
+  <!-- goShoppingButton -->
+  <div class="fixed-action-btn" style="bottom: 25em; right: 2em;">
+    <a class="modal-trigger" href="#shopCheck"><i class="large blue-text text-lighten-3 material-icons">shopping_cart</i>
     </a>
   </div>
 

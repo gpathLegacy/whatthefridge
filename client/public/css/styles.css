@@ -297,6 +297,11 @@ main {
 .search-bar{
   width: 30%;
 }
+
+.recipes-button-spacer{
+
+}
+
 /*========create-recipes=========*/
 
 .addButton {
