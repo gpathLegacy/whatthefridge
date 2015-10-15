@@ -114,7 +114,16 @@ angular.module('wtf.services', [])
   }])
   .factory('UpcLookup', ["$http", function($http){
     var productLookup = function(listId) {
-      return $http.post('/api/shoppingLists/productLookup', {listId: 611269991000});
+      console.log(listId, " upc code in the service");
+      return $http.post('/api/shoppingLists/productLookup', {listId: listId})
+      .then(function(data){
+        console.log(data, " data in service method returned by controller")
+        return data;
+      })
+      .catch(function(err){
+        console.log("error in services ", err);
+
+      })
     }
 
     return {productLookup: productLookup};

@@ -183,9 +183,6 @@ angular.module('wtf.shopping-list', [])
                 $ul = $("#result_strip ul.collector");
 
             //set scope var to the upc code to lookup price later
-            $scope.productUpc = results.toString(); 
-            console.log( "the scanned product is: ", $scope.productUpc);
-
             results.forEach(function(result) {
               var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
 
@@ -229,7 +226,12 @@ angular.module('wtf.shopping-list', [])
 
         Quagga.onDetected(function(result) {
           var code = result.codeResult.code;
-          console.log(code);
+          console.log(code); 
+          //add to scope
+            $scope.productUpc = code.toString(); 
+            console.log( "the scanned product is: ", $scope.productUpc);
+
+
 
           if (App.lastResult !== code) {
             App.lastResult = code;
@@ -262,13 +264,14 @@ angular.module('wtf.shopping-list', [])
       Quagga.stop();
         //Call price lookup
       //test query
-      UpcLookup.productLookup();  
-      // UpcLookup.productLookup($scope.productUpc).then(function(data){
-      //   //Update price field in scope
-      //   //$scope.shoppingList[index].price = data.results[0].price;
-      //   console.log("the price fetched from the api is: ", data.results[0].price);
+      // UpcLookup.productLookup();  
+      console.log($scope.productUpc, " upc in the client controller");
+      UpcLookup.productLookup($scope.productUpc).then(function(data){
+        //Update price field in scope
+        console.log("the price fetched from the api is: ", data);
+        $scope.shoppingList[index].price = data; //
 
-      // })
+      })
     };
 
     /* barcode feature ends */
