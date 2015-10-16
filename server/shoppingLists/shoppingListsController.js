@@ -21,15 +21,36 @@ module.exports = function(ShoppingLists, Ingredients) {
               }
               // View the results of the request 
               //refactor to use a loop and look for decimal
+              // var result = JSON.stringify(products);
+              // result = JSON.parse(result);
+              // var n = result.search('"price":');
+              // var resultPrice = "";
+              // resultPrice += parseInt(result[n+10]+ result[n+11]);
+              // resultPrice += result[n+12];
+              // resultPrice += (result[n+13] + result[n+14]);
+              // resultPrice = parseFloat(resultPrice);
+              // console.log(resultPrice, typeof(resultPrice)); //correct
+
+              /* new logic */
               var result = JSON.stringify(products);
               result = JSON.parse(result);
               var n = result.search('"price":');
               var resultPrice = "";
-              resultPrice += parseInt(result[n+10]+ result[n+11]);
-              resultPrice += result[n+12];
-              resultPrice += (result[n+13] + result[n+14]);
+              for(var i=10; i< 16; i++) {
+                if( result[n+i] === "." ) {
+                  console.log("in the inner loop", i);
+                  console.log(resultPrice, typeof(resultPrice), " log one");
+                  resultPrice = parseInt(resultPrice);
+                  console.log(resultPrice, typeof(resultPrice), " log two");
+                  resultPrice += resultPrice[n+i];
+                  console.log(resultPrice, typeof(resultPrice), " log three");
+                } else resultPrice += resultPrice[n+i];
+                console.log(resultPrice, typeof(resultPrice), " log four");
+              }
               resultPrice = parseFloat(resultPrice);
-              console.log(resultPrice, typeof(resultPrice)); //correct
+              console.log(resultPrice, typeof(resultPrice), " log five");
+
+
                 // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
               var toSend = resultPrice; 
               console.log("the item to send back is: ", toSend)
