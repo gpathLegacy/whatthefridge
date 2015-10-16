@@ -1,6 +1,9 @@
 angular.module('wtf.shopping-list', [])
   .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", "UpcLookup", function($scope, $window, $location, Recipes, Fridge, SavedLists, UpcLookup) {
 
+    $scope.lookupIngredient;
+    $scope.lookupPrevPrice;
+    $scope.lookupIndex;
     $scope.shoppingList = [];
     $scope.disabled = false;
     $scope.addModal = function() {
@@ -120,7 +123,7 @@ angular.module('wtf.shopping-list', [])
 
     /* barcode feature begins */
 
-    $scope.scanBarcode = function() {
+    $scope.scanBarcode = function(ingredient, index) {
       console.log("Calls the controller barcode scanner function");
       // $scope.productUpc = ''; //save upc number as string later
 
@@ -248,10 +251,14 @@ angular.module('wtf.shopping-list', [])
 
     };
 
-    $scope.scanModal = function() {
+    $scope.scanModal = function(ingredient, prevPrice, index) {
       console.log("open modal call in controller");
       $("#scanBarcode").openModal();
-      $scope.scanBarcode();
+      console.log(ingredient, prevPrice, index, " vars from html to scan modal")
+      $scope.lookupIngredient = ingredient;
+      $scope.lookupPrevPrice = prevPrice;
+      $scope.lookupIndex = index;
+      $scope.scanBarcode(ingredient, prevPrice, index);
     };
 
     $scope.stopScanner = function() {
@@ -260,7 +267,7 @@ angular.module('wtf.shopping-list', [])
 
       //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
       //get results from the model and populate the client price input field 
-    $scope.lookupProduct = function() {
+    $scope.lookupProduct = function() { // called after done. use only for stopping video
       Quagga.stop();
         //Call price lookup
       //test query
@@ -269,8 +276,9 @@ angular.module('wtf.shopping-list', [])
       UpcLookup.productLookup().then(function(data){
         //Update price field in scope
         console.log("the price fetched from the api is: ", data.data);
-        $scope.shoppingList[index].price = data; //
-
+        $scope.lookupIngredient.price = data.data;
+        var prevPrice = 0
+        $scope.savePrice($scope.lookupIngredient, $scope.lookupPrevPrice, $scope.lookupIndex);
       })
     };
 
