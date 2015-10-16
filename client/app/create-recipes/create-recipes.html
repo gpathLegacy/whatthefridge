@@ -13,7 +13,7 @@
           <input id="recipeName" type="text" ng-model="recipe.name">
           <label for="recipeName">Recipe Name</label>
           <span ng-show="recipeError" class="error"><br>Recipe name required.</span>
-          <span ng-show="recipeNameLengthError" class="error"><br>Recipe name too long! </span>
+          <span ng-show="recipeNameLengthError" class="error"><br>Recipe name must be shorter than 18 chars! </span>
         </div>
         <div class="input-field col s5">
           <input id="ingredientName" type="text" ng-model="newIngredient">
