@@ -18,7 +18,6 @@ module.exports = function(ShoppingLists, Ingredients) {
         // sem3.products.remove( "products", "offset" );
 
         // Run the request
-
         sem3.products.get_products(
           function(err, products) {
               if (err) {
@@ -41,12 +40,6 @@ module.exports = function(ShoppingLists, Ingredients) {
               res.json(toSend)
            }
         )
-
-
-        
-        
-
-
 
         // console.log(resultSend, " result in server controller");
     },
