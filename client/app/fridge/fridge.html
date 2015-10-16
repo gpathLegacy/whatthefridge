@@ -41,7 +41,7 @@
         <th class="table-title">Ingredient</th>
         <th class="table-title">Price</th>
         <th class="table-title">Quantity </th>
-        <th class="table-title">Expiration<th>
+        <th class="table-title">Expiration</th>
       </tr>
     </thead>
 
@@ -72,7 +72,7 @@
  -->
         <td id="date-message" ng-hide="todayInISO > ingredient.expiration.toISOString().slice(0,10)"><input id="expiration-date-input-field" ng-model="ingredient.expiration" ng-blur="saveFridge()" type="date"/></td>
         <td id="expire-message" ng-show="todayInISO > ingredient.expiration.toISOString().slice(0,10)">Expired </td>
-        <td><a id="trashcan-container" class="secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="trash-icon-small">delete<span></i></a></td>
+        <td style="padding-left:3em;"><a id="trashcan-container" class="secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="trash-icon-small">delete<span></i></a></td>
 
     </tbody>
   </table>
