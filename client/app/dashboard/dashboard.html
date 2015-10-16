@@ -89,11 +89,11 @@
           <p ng-if="expired.length === 1">You let 1 item worth ${{expiredValue.toFixed(2)}} expire!</p>
           <p ng-if="expired.length === 0">You have no expired items in the fridge</p>
         </div>
-        <div class="card-reveal black">
+        <div class="card-reveal black white-text">
           <span class="card-title grey-text text-darken-4" for="{{item}}"><i class="material-icons small right clickable-content-color">close</i></span>
           The following items have expired:
           <br></br>
-          <div ng-repeat="subitem in expired">
+          <div ng-repeat="subitem in expired" class="bullet-point-type-content">
             <li>${{(subitem.qty * subitem.price).toFixed(2)}} of {{subitem.name}} on {{subitem.expiration | date: 'shortDate'}}</li>
           </div>
         </div>
