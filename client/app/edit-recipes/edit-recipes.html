@@ -11,6 +11,7 @@
           <input id="ingredientName" type="text" ng-model="newIngredient">
           <label for="ingredientName">Ingredient</label>
           <span ng-show="ingredientError" class="error"><br>Ingredient name required.</span>
+          <span ng-show="recipeNameLengthError" class="error"><br>Recipe name too long! </span>
         </div>
         <div class="col s1 addButton">
           <div class="bottom">
