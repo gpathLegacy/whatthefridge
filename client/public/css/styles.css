@@ -419,17 +419,18 @@ main {
 
 .minus {
   position:relative;
-  bottom:12px;
+  bottom:8px;
 }
 
 .minus-small {
-  height:12px;
-  width:12px;
+  height:1em;
+  width:1em;
 }
 
 #expire-message {
   color:red;
   flex: initial;
+  font-size:1.5em;
 }
 
 #date-message {
