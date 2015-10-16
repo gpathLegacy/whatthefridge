@@ -308,10 +308,6 @@ main {
   margin-bottom: 0;
 }
 
-#fridge-add-button-container{
-  font-size:2.5em;
-}
-
 /*========create-recipes=========*/
 
 .addButton {
@@ -438,4 +434,12 @@ main {
 
 #date-message {
   flex: initial;
+}
+
+#fridge-add-button-container{
+  font-size:2.5em;
+}
+
+.table-title{
+  font-size:2em;
 }
