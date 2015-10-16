@@ -27,6 +27,8 @@ angular.module('wtf.create-recipes', [])
     $scope.saveRecipe = function() {
       if ($scope.recipe.name === undefined || $scope.recipe.name === "") {
         $scope.recipeError = true;
+      } else if ($scope.recipe.name.length > 18) {
+        $scope.recipeNameLengthError = true;
       } else if (!$scope.recipe.ingredients.length) {
         $scope.noIngredients = true;
       }
