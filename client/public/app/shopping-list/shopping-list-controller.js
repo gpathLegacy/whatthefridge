@@ -1,6 +1,9 @@
 angular.module('wtf.shopping-list', [])
-  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", function($scope, $window, $location, Recipes, Fridge, SavedLists) {
+  .controller('ShoppingListController', ["$scope", "$window", "$location", "Recipes", "Fridge", "SavedLists", "UpcLookup", function($scope, $window, $location, Recipes, Fridge, SavedLists, UpcLookup) {
 
+    $scope.lookupIngredient;
+    $scope.lookupPrevPrice;
+    $scope.lookupIndex;
     $scope.shoppingList = [];
     $scope.disabled = false;
     $scope.addModal = function() {
@@ -117,6 +120,169 @@ angular.module('wtf.shopping-list', [])
 
       Recipes.selectedRecipes = [];
     };
+
+    /* barcode feature begins */
+
+    $scope.scanBarcode = function(ingredient, index) {
+      console.log("Calls the controller barcode scanner function");
+      // $scope.productUpc = ''; //save upc number as string later
+
+      $(function() {
+        var resultCollector = Quagga.ResultCollector.create({
+          capture: true,
+          capacity: 20,
+          blacklist: [{code: "2167361334", format: "i2of5"}],
+          filter: function(codeResult) {
+              // only store results which match this constraint
+              // e.g.: codeResult
+            return true;
+          }
+        });
+        var App = {
+          //initialization function that sets up results collection, listeners and the video stream 
+          init : function() {
+            var self = this;
+
+            Quagga.init({
+              inputStream: {
+              type : "LiveStream",
+              constraints: {
+                width: 640,
+                height: 480,
+                facing: "environment" // or user
+              }
+            },
+            locator: {
+              patchSize: "large",
+              halfSample: true
+            },
+            numOfWorkers: 4,
+            decoder: {
+              readers : [ "upc_reader"]
+            },
+            locate: true
+            }, function(err) {
+              if (err) {
+                return self.handleError(err);
+              }
+              Quagga.registerResultCollector(resultCollector);
+              App.attachListeners();
+              Quagga.start();
+            });
+          },
+          handleError: function(err) {
+            console.log(err);
+          },
+          attachListeners: function() {
+            var self = this;
+            $(".controls").on("click", "button.stop", function(e) {
+              e.preventDefault();
+              Quagga.stop();
+              self._printCollectedResults();
+            });
+          },
+          _printCollectedResults: function() {
+            var results = resultCollector.getResults(),
+                $ul = $("#result_strip ul.collector");
+
+            //set scope var to the upc code to lookup price later
+            results.forEach(function(result) {
+              var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
+
+              $li.find("img").attr("src", result.frame);
+              $li.find("h4.code").html(result.codeResult.code + " (" + result.codeResult.format + ")");
+              $ul.prepend($li);
+            });
+          },
+          detachListeners: function() {
+            $(".controls").off("click", "button.stop");
+            $(".controls .reader-config-group").off("change", "input, select");
+          },
+          lastResult: null
+        };
+
+        App.init();
+
+        Quagga.onProcessed(function(result) {
+          var drawingCtx = Quagga.canvas.ctx.overlay,
+            drawingCanvas = Quagga.canvas.dom.overlay;
+
+          if (result) {
+            if (result.boxes) {
+              drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+              result.boxes.filter(function (box) {
+                return box !== result.box;
+              }).forEach(function (box) {
+                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+              });
+            }
+
+            if (result.box) {
+              Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+            }
+
+            if (result.codeResult && result.codeResult.code) {
+              Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+            }
+          }
+        });
+
+        Quagga.onDetected(function(result) {
+          var code = result.codeResult.code;
+          console.log(code); 
+          //add to scope
+            $scope.productUpc = code.toString(); 
+            console.log( "the scanned product is: ", $scope.productUpc);
+
+
+
+          if (App.lastResult !== code) {
+            App.lastResult = code;
+            var $node = null, canvas = Quagga.canvas.dom.image;
+
+            $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
+            $node.find("img").attr("src", canvas.toDataURL());
+            $node.find("h4.code").html(code);
+            $("#result_strip ul.thumbnails").prepend($node);
+          }
+        });
+
+      });
+
+    };
+
+    $scope.scanModal = function(ingredient, prevPrice, index) {
+      console.log("open modal call in controller");
+      $("#scanBarcode").openModal();
+      console.log(ingredient, prevPrice, index, " vars from html to scan modal")
+      $scope.lookupIngredient = ingredient;
+      $scope.lookupPrevPrice = prevPrice;
+      $scope.lookupIndex = index;
+      $scope.scanBarcode(ingredient, prevPrice, index);
+    };
+
+    $scope.stopScanner = function() {
+      Quagga.stop();
+    }
+
+      //when UPC saved from the barcode scan, run (UPCa is our only use case) lookup on the server
+      //get results from the model and populate the client price input field 
+    $scope.lookupProduct = function() { // called after done. use only for stopping video
+      Quagga.stop();
+        //Call price lookup
+      //test query
+      // UpcLookup.productLookup();  
+      // console.log($scope.productUpc, " upc in the client controller");
+      UpcLookup.productLookup($scope.productUpc).then(function(data){
+        //Update price field in scope
+        console.log("the price fetched from the api is: ", data.data);
+        $scope.lookupIngredient.price = data.data;
+        var prevPrice = 0
+        $scope.savePrice($scope.lookupIngredient, $scope.lookupPrevPrice, $scope.lookupIndex);
+      })
+    };
+
+    /* barcode feature ends */
 
     $scope.savePrice = function(ingredient, prevPrice, index) {
       // for some reason this function is being called on page load, which is causing huge problems

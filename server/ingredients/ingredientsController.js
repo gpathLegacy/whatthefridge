@@ -13,6 +13,5 @@ module.exports = function(Ingredients) {
         res.send(200);
       });
     }
-
   };
 };

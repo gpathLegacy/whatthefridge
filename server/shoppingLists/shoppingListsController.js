@@ -1,6 +1,44 @@
+var upc_api = require('../config/upc-api-secret.js');
+var api_key = upc_api.semantics3.APIKey;
+var api_secret = upc_api.semantics3.Secret;
+var sem3 = require('semantics3-node')(api_key,api_secret);
+
 module.exports = function(ShoppingLists, Ingredients) {
   return {
     // shopping lists controls go here
+    productLookup: function(req, res){
+      var upc=  req.body.listId.toString();
+      console.log('server side upc is: ', upc)
+                // Build the request
+        sem3.products.products_field( "upc", upc );
+
+        // Run the request
+        sem3.products.get_products(
+          function(err, products) {
+              if (err) {
+                 console.log("Couldn't execute request: get_products");
+                 return;
+              }
+              // View the results of the request 
+              //refactor to use a loop and look for decimal
+              var result = JSON.stringify(products);
+              result = JSON.parse(result);
+              var n = result.search('"price":');
+              var resultPrice = "";
+              resultPrice += parseInt(result[n+10]+ result[n+11]);
+              resultPrice += result[n+12];
+              resultPrice += (result[n+13] + result[n+14]);
+              resultPrice = parseFloat(resultPrice);
+              console.log(resultPrice, typeof(resultPrice)); //correct
+                // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
+              var toSend = resultPrice; 
+              console.log("the item to send back is: ", toSend)
+              res.json(toSend)
+           }
+        )
+
+        // console.log(resultSend, " result in server controller");
+    },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {
 

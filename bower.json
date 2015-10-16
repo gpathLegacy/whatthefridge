@@ -26,6 +26,7 @@
     "angular-route": "~1.4.6",
     "checklist-model": "~0.6.0",
     "materialize": "~0.97.1",
-    "intro.js": "~1.1.1"
+    "intro.js": "~1.1.1",
+    "quagga": "~0.7.0"
   }
 }
