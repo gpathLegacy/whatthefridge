@@ -58,13 +58,10 @@ angular.module('wtf.saved-lists', ['ui.materialize'])
     };
 
     $scope.shop = function(list) {
-      Recipes.selectedRecipes = [{ingredients:[]}];
+      Recipes.selectedRecipes = [{ingredients:[], saved:true}];
       for (var key in list) {
-        if (key === 'date') continue;
-        // push the ingredient once for every quantity
-        for (var i = 0; i < list[key][0]; i++) {
-          Recipes.selectedRecipes[0].ingredients.push(key)
-        }
+        if (key === 'date' || key === 'list_name' || key === 'recipes' || key === 'totalPrice') continue;
+        Recipes.selectedRecipes[0].ingredients.push([key,list[key][0]]);
       }
       $location.path('shopping-list');
     }
