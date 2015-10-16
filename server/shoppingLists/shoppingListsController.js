@@ -1,6 +1,6 @@
-// var upc_api = require('/server/config/upc-api-secret.js');
-var api_key = 'SEM36B982D5FD25FB00E55C7190B06D41A89';
-var api_secret = 'YjIyMTY2NGJlN2I5NjNiNzgyZTMyMzlhNzNlMDhkZmQ';
+var upc_api = require('../config/upc-api-secret.js');
+var api_key = upc_api.APIKey;
+var api_secret = upc_api.Secret;
 var sem3 = require('semantics3-node')(api_key,api_secret);
 
 module.exports = function(ShoppingLists, Ingredients) {
