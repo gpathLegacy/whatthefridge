@@ -1,6 +1,6 @@
 var upc_api = require('../config/upc-api-secret.js');
-var api_key = upc_api.APIKey;
-var api_secret = upc_api.Secret;
+var api_key = upc_api.semantics3.APIKey;
+var api_secret = upc_api.semantics3.Secret;
 var sem3 = require('semantics3-node')(api_key,api_secret);
 
 module.exports = function(ShoppingLists, Ingredients) {
@@ -11,11 +11,6 @@ module.exports = function(ShoppingLists, Ingredients) {
       console.log('server side upc is: ', upc)
                 // Build the request
         sem3.products.products_field( "upc", upc );
-        // sem3.products.products_field( "field", ["name","price",'price_currency'] );
-        // sem3.products.products_field( "offset", 1 );
-
-        // // Let's make a modification - say we no longer want the offset attribute
-        // sem3.products.remove( "products", "offset" );
 
         // Run the request
         sem3.products.get_products(
@@ -24,7 +19,8 @@ module.exports = function(ShoppingLists, Ingredients) {
                  console.log("Couldn't execute request: get_products");
                  return;
               }
-              // View the results of the request
+              // View the results of the request 
+              //refactor to use a loop and look for decimal
               var result = JSON.stringify(products);
               result = JSON.parse(result);
               var n = result.search('"price":');
