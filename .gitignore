@@ -3,4 +3,5 @@ node_modules/
 npm-debug.log
 client/public/lib/
 server/config/authSecret.js
+server/config/upc-api-secret.js
 .env

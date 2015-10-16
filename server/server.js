@@ -7,6 +7,10 @@ var app = express();
 var port = process.env.PORT || 1337;
 var path = require('path');
 var pg = require('pg');
+// var api_key = 'SEM36B982D5FD25FB00E55C7190B06D41A89';
+// var api_secret = 'YjIyMTY2NGJlN2I5NjNiNzgyZTMyMzlhNzNlMDhkZmQ';
+// var sem3 = require('semantics3-node')(api_key,api_secret);
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

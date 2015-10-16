@@ -112,7 +112,71 @@ angular.module('wtf.services', [])
     return {isLoggedIn: isLoggedIn,
             logOut: logOut};
   }])
+  .factory('UpcLookup', ["$http", function($http){
+    var productLookup = function(listId) {
+      console.log(listId, " upc code in the service");
+      return $http.post('/api/shoppingLists/productLookup', {listId: listId})
+      .then(function(data){
+        console.log(data, " data in service method returned by controller")
+        return data;
+      })
+      .catch(function(err){
+        console.log("error in services ", err);
 
+      })
+    }
+
+    return {productLookup: productLookup};
+  }])
+    // var productLookup = function(productUpc) {
+      //api call to the third party database semantics3
+    // GET https://api.semantics3.com/v1/products?q={
+    // “upc”:”QUERY_VALUE1”,   
+    // "fields": [
+    //     "name",
+    //     "price",
+    //     "price_currency"
+    //   ]}
+    
+    // -H is a custom header request and -G is specification of request type
+    // curl -G -H "api_key: SEM36B982D5FD25FB00E55C7190B06D41A89"
+    // https://api.semantics3.com/test/v1/products --data-urlencode 'q={"upc":"611269991000"}'
+
+    /*
+          headers: {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89', 
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Origin': '*'},
+    */
+
+    //method is http but url is https, lookout for connection refusal errors (check. no errors)
+    //hardcoded product value for api testing
+    // var productUpc = '611269991000';
+
+    // var apiUrl = 'https://api.semantics3.com/test/v1/products?q=';
+    //   //this might set the custom header value for all get requests
+    //   // $httpProvider.defaults.headers.get = {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89'};
+    // return $http({
+    //   url: apiUrl, 
+    //   method: 'GET',
+    //   headers: {'api_key': 'SEM36B982D5FD25FB00E55C7190B06D41A89', 
+    //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    //   'Access-Control-Allow-Credentials': 'true',
+    //   'Access-Control-Allow-Origin': '*'
+    // },
+    //   params: {'upc': productUpc, 
+    //     'fields': [
+    //     'name',
+    //     'price',
+    //     'price_currency'
+    //     ]}
+    // })
+    // .success(function(data){
+    //   console.log("data as fetched from api in services: ", data);
+    //   // return res.send(200);
+    // })
+    // }
   .service('currentRecipeService', function() {
     var currentRecipeToEdit;
 
