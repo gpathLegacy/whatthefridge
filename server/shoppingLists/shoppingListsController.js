@@ -5,11 +5,9 @@ var sem3 = require('semantics3-node')(api_key,api_secret);
 
 module.exports = function(ShoppingLists, Ingredients) {
   return {
-    // shopping lists controls go here
     productLookup: function(req, res){
       var upc=  req.body.listId.toString();
-      console.log('server side upc is: ', upc)
-                // Build the request
+        // Build the request to the api
         sem3.products.products_field( "upc", upc );
 
         // Run the request
@@ -29,15 +27,11 @@ module.exports = function(ShoppingLists, Ingredients) {
               resultPrice += result[n+12];
               resultPrice += (result[n+13] + result[n+14]);
               resultPrice = parseFloat(resultPrice);
-              console.log(resultPrice, typeof(resultPrice)); //correct
-                // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
               var toSend = resultPrice; 
-              console.log("the item to send back is: ", toSend)
+              //send the price back to service factory
               res.json(toSend)
            }
         )
-
-        // console.log(resultSend, " result in server controller");
     },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {

@@ -47,7 +47,7 @@ module.exports = function(Recipes, Ingredients) {
           var recipeObjCount = -1;
           for (var i=0; i<data.length; i++) {
 
-            //if the data being read is for the same recipe, push to the ingredient | check price code on cleanup
+            //if the data being read is for the same recipe, push to the ingredient
             
             if (currentRecipe === data[i].id) {
               recipeResult[recipeObjCount]["ingredients"].push(data[i].name);
@@ -73,14 +73,14 @@ module.exports = function(Recipes, Ingredients) {
       var instructions = req.body.instructions;
 
       // Get ingredient IDs that already exist for the user, or add new Ingredients.
-      // After ingredient is added, map it to the recipe, if the mapping doesn't already exist
+      // After ingredient is added, map it to the recipe
       for (var i = 0; i < ingredients.length; i++) {
 
         (function(i) {
           Ingredients.getIngredientByName(req.user.id, ingredients[i]).then(function(row){
             if (row.length) {
               Recipes.getRecipeMapping(recipeID, row[0].id).then(function(mapRow){
-                //if mapping doesn't already exist
+                //map it to the recipe, if the mapping doesn't already exist
                 if (!mapRow.length) {
                   Recipes.addRecipeMapping(recipeID, row[0].id).then(function(){});
                 }
