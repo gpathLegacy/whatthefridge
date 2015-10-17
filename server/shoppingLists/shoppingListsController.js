@@ -108,6 +108,44 @@ module.exports = function(ShoppingLists, Ingredients) {
         }
         
       });
+      res.send(200);
+    },
+
+    updateList: function(req, res) {
+      var list = req.body.list;
+      var listId = req.body.listId;
+
+      ShoppingLists.updateList(req.user.id, listId)
+        .then(function() {
+          // iterate through each item in the list
+          for (var i=0; i<list.length; i++) {
+            (function(index){
+              Ingredients.getIngredientByName(req.user.id, list[index].name)
+                .then(function(ingredient) {
+                  // check if Ingredient exists! if not, it needs to be added to ingredients table and
+                  // then added to the shopping_lists_ingredients table
+                  if (!ingredient.length) {
+                    Ingredients.addIngredient(req.user.id, list[index].name, list[index].price)
+                      .then(function(ingredientId) {
+                        ShoppingLists.newItem(listId, ingredientId[0], list[index].qty).then(function(){});
+                      })
+                  } else {
+                    // ingredient exists, so check to see if it's already mapped to this
+                    // shopping list. If not, add the mapping. Otherwise, update the mapping.
+                    ShoppingLists.getListMapping(listId, ingredient[0].id)
+                      .then(function(mapping) {
+                        if(!mapping.length) {
+                          ShoppingLists.newItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+                        } else {
+                          ShoppingLists.updateItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+                        }
+                      })
+                  }
+                });
+            })(i);
+          }
+        })
+
 
       res.send(200);
     },
