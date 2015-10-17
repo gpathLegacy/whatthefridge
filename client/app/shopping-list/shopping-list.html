@@ -3,7 +3,7 @@
     Shopping List
     <br>
     <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()" ng-disabled="disabled">Add all to Fridge</button>
-    <button class="saveButton btn waves-effect waves-light" ng-click="saveModal()" ng-disabled="disabled">Update shopping list</button>
+    <button class="saveButton btn waves-effect waves-light" ng-click="updateList()" ng-disabled="disabled">Update shopping list</button>
   </div>
   <div class="row center-align">
     <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
@@ -34,7 +34,9 @@
           <td>Price</td>
           <td>
           <form class="priceForm" name="priceForm{{$index}}">
-            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input></td>
+            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+            <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanModal(ingredient, prevPrice, $index)">Scan It!</button>
+            </td>
           </form>
         </tr>
       </table>
@@ -48,25 +50,42 @@
       <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
     </li>
   </ul>
+
+<!-- TEST HTML starts -->
+<!-- <section>
+        <h5>The user's camera</h5>
+      <div id="result_strip">
+        <ul class="thumbnails"></ul>
+        <ul class="collector"></ul>
+      </div>
+      <div id="interactive" class="viewport"></div>
+    </section> -->
+<!-- TEST HTML ends -->
+
 </div>
 
-<!-- saveList Modal -->
-  <div id="saveList" class="modal">
-    <form ng-submit="saveList()">
+<!-- TEST Modal starts -->
+<!-- scanBarcode() Modal -->
+  <div id="scanBarcode" class="modal">
+    <form ng-submit="lookupProduct()">
       <div class="modal-content">
         <div class="container">
-          <div class="input-field">
-            <label for="listName">Shopping List Name (optional)</label>
-            <input type="text" id="listName" ng-model="listName"/>
+          <span for="listName">Let's scan this baby!</span>
+          <div id="result_strip">
+            <ul class="thumbnails"></ul>
+            <ul class="collector"></ul>
           </div>
+          <div id="interactive" class="viewport"></div>
         </div>
       </div>
       <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="stopScanner()">Cancel</a>
+        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Done</button>
       </div>
     </form>
   </div>
+
+<!-- TEST Modal ends -->
 
 <!-- add item Modal -->
   <div id="addItem" class="modal">

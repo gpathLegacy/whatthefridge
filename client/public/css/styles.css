@@ -329,15 +329,9 @@ main {
   left:0;
 }
 
-.trash-small {
-  height:18px;
-  width:18px;
-}
-
 .trash-icon-small {
-  font-size:16px;
   position:relative;
-  bottom:13px;
+  font-size:1.5em;
 }
 
 .error {
@@ -382,7 +376,7 @@ main {
 }
 
 .card-colorer{
-  background: #131313;
+  background: #212121;
   color: #90caf9;
   border: solid 2px;
   border-color:black;
@@ -400,10 +394,6 @@ main {
   color:#90caf9;
 }
 
-/*.interior-card-colorer{
-  background: black;
-}*/
-
 /*========shopping-list=========*/
 
 .quantity {
@@ -420,6 +410,16 @@ main {
 
 /*============fridge============*/
 
+.fridge-font-sizer{
+  font-size:1.5em;
+}
+
+#expiration-date-input-field{
+  font-size:1.5em;
+  text-align:center;
+  margin-left:1.5em;
+}
+
 .bottom-right {
   bottom: 45px;
   right: 24px;
@@ -427,19 +427,87 @@ main {
 
 .minus {
   position:relative;
-  bottom:12px;
+  bottom:8px;
 }
 
 .minus-small {
-  height:12px;
-  width:12px;
+  height:1em;
+  width:1em;
 }
 
 #expire-message {
   color:red;
   flex: initial;
+  font-size:1.5em;
 }
 
 #date-message {
   flex: initial;
+}
+
+#fridge-add-button-container{
+  font-size:2.5em;
+}
+
+.table-title{
+  font-size:2em;
+}
+
+/*============Barcode Scanner============*/
+
+#interactive.viewport {
+  width: 100%;
+}
+
+/* line 6, ../sass/_viewport.scss */
+#interactive.viewport canvas, video {
+  float: left;
+  width: 100%;
+}
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+  margin-left: -640px;
+  /*width: 90%;*/
+}
+
+#result_strip {
+  margin: 10px 0;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+  padding: 10px 0;
+}
+#result_strip > ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  width: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+#result_strip > ul > li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 160px;
+}
+#result_strip > ul > li .thumbnail {
+  padding: 5px;
+  margin: 4px;
+  border: 1px dashed #CCC;
+}
+#result_strip > ul > li .thumbnail img {
+  max-width: 140px;
+}
+#result_strip > ul > li .thumbnail .caption {
+  white-space: normal;
+}
+#result_strip > ul > li .thumbnail .caption h4 {
+  text-align: center;
+  word-wrap: break-word;
+  height: 40px;
+  margin: 0px;
+}
+#result_strip > ul:after {
+  content: "";
+  display: table;
+  clear: both;
 }

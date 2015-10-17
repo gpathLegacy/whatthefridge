@@ -1,6 +1,44 @@
+var upc_api = require('../config/upc-api-secret.js');
+var api_key = upc_api.semantics3.APIKey;
+var api_secret = upc_api.semantics3.Secret;
+var sem3 = require('semantics3-node')(api_key,api_secret);
+
 module.exports = function(ShoppingLists, Ingredients) {
   return {
     // shopping lists controls go here
+    productLookup: function(req, res){
+      var upc=  req.body.listId.toString();
+      console.log('server side upc is: ', upc)
+                // Build the request
+        sem3.products.products_field( "upc", upc );
+
+        // Run the request
+        sem3.products.get_products(
+          function(err, products) {
+              if (err) {
+                 console.log("Couldn't execute request: get_products");
+                 return;
+              }
+              // View the results of the request 
+              //refactor to use a loop and look for decimal
+              var result = JSON.stringify(products);
+              result = JSON.parse(result);
+              var n = result.search('"price":');
+              var resultPrice = "";
+              resultPrice += parseInt(result[n+10]+ result[n+11]);
+              resultPrice += result[n+12];
+              resultPrice += (result[n+13] + result[n+14]);
+              resultPrice = parseFloat(resultPrice);
+              console.log(resultPrice, typeof(resultPrice)); //correct
+                // console.log( "Results of request:\n"+ typeof(resultPrice) + resultPrice);
+              var toSend = resultPrice; 
+              console.log("the item to send back is: ", toSend)
+              res.json(toSend)
+           }
+        )
+
+        // console.log(resultSend, " result in server controller");
+    },
     getLists: function(req, res) {
       ShoppingLists.getLists(req.user.id).then(function(ingredients) {
 
@@ -70,6 +108,44 @@ module.exports = function(ShoppingLists, Ingredients) {
         }
         
       });
+      res.send(200);
+    },
+
+    updateList: function(req, res) {
+      var list = req.body.list;
+      var listId = req.body.listId;
+
+      ShoppingLists.updateList(req.user.id, listId)
+        .then(function() {
+          // iterate through each item in the list
+          for (var i=0; i<list.length; i++) {
+            (function(index){
+              Ingredients.getIngredientByName(req.user.id, list[index].name)
+                .then(function(ingredient) {
+                  // check if Ingredient exists! if not, it needs to be added to ingredients table and
+                  // then added to the shopping_lists_ingredients table
+                  if (!ingredient.length) {
+                    Ingredients.addIngredient(req.user.id, list[index].name, list[index].price)
+                      .then(function(ingredientId) {
+                        ShoppingLists.newItem(listId, ingredientId[0], list[index].qty).then(function(){});
+                      })
+                  } else {
+                    // ingredient exists, so check to see if it's already mapped to this
+                    // shopping list. If not, add the mapping. Otherwise, update the mapping.
+                    ShoppingLists.getListMapping(listId, ingredient[0].id)
+                      .then(function(mapping) {
+                        if(!mapping.length) {
+                          ShoppingLists.newItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+                        } else {
+                          ShoppingLists.updateItem(listId, ingredient[0].id, list[index].qty).then(function(){});
+                        }
+                      })
+                  }
+                });
+            })(i);
+          }
+        })
+
 
       res.send(200);
     },
