@@ -19,11 +19,14 @@
 
 <div class="container">
   <div class="row" id="add-recipe-title-container">
-    Add recipe:
-      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add" id="add-recipes-button"><i class="material-icons">add</i></a>
-    <div id="search-title-div">Search by Recipe name or Ingredient:</div>
-    <input id="search" class="search-bar" ng-model="searchText" placeholder="Click here"</label>
+  <div class="col s4">
+      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add" id="add-recipes-button"><i class="material-icons">add</i></a> <br/>
+</div>
 
+<div class="col s8">
+    <input id="search" class="search-bar" ng-model="searchText" placeholder="search by recipe name or ingredient"</label> <br/> <br/>
+    <span id="search-title-div"></span>
+</div>
   </div>
 </div>
   <br>

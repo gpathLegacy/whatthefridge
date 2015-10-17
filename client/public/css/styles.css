@@ -273,7 +273,7 @@ main {
 
 /*===========recipes===========*/
 .button-add {
-  margin-top: 30px;
+  /*margin-top: 30px;*/
 }
 
 .price {
@@ -295,16 +295,20 @@ main {
 }
 
 .search-bar{
-  width: 30%;
+  /*margin-top: 2.6em;*/
+  font-size: .9em;
+  margin-top:1em;
+  width: 48%;
 }
 
 #add-recipes-button{
   margin-left: .5em;
-  margin-bottom:1.3em;
+  margin-bottom:.5em;
 }
 
 #add-recipe-title-container{
-  font-size:2em;
+  font-size:1.2em;
+  font-style: thin;
   margin-bottom: 0;
 }
 
