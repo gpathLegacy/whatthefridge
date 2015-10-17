@@ -311,6 +311,10 @@ main {
   font-style: thin;
   margin-bottom: 0;
 }
+.suggest-card {
+  max-width: 300px !important;
+
+}
 
 /*========create-recipes=========*/
 
