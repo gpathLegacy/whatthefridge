@@ -1,7 +1,6 @@
 angular.module('wtf.instructions', [])
   .controller('InstructionsController', ["$scope", "$window", "$location", "Recipes", function($scope, $window, $location, Recipes) {
     $scope.getInstructions = function() {
-      console.log(Recipes.idForInstructions)
       Recipes.getInstructions({"id":Recipes.idForInstructions})
         .then(function(res){
           $scope.title = res.data[0].title;
