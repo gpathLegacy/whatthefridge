@@ -20,7 +20,7 @@
 <div class="container">
   <div class="row" id="add-recipe-title-container">
   <div class="col s4">
-      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add" id="add-recipes-button"><i class="material-icons">add</i></a> <br/>
+      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add tooltipped" id="add-recipes-button" data-position="right" data-tooltip="Add a new recipe!"><i class="material-icons">add</i></a> <br/>
 </div>
 
 <div class="col s8">
@@ -75,7 +75,7 @@
   <!-- Feature Tour Tour-4-Step-1 -->
   <div class="container">
     <div class="row" id="T4-Step1">
-      <div class="col s4" ng-repeat="item in allRecipes | filter:searchText">
+      <div class="col s4 animated fadeInLeft" style="-webkit-animation-duration:{{$index * 400}}ms"  ng-repeat="item in allRecipes | filter:searchText">
         <!-- Feature Tour T4-Step2 -->
         <div class ="card small card-small z-depth-1 hoverable" id="T4-Step2">
           <div class="card-image">
