@@ -125,7 +125,7 @@
           <div ng-repeat="ingredient in suggestedRecipe">
             <li>{{ingredient.name}}</li>
           </div>
-          <a ng-click="getInstructions(suggestedRecipe[0].id)" class="waves-effect waves-light btn">Instructions</a>
+          <a ng-click="getInstructions(suggestedRecipe[0].recipe_id)" class="waves-effect waves-light btn">Instructions</a>
         </div>
       </div>
     </div>

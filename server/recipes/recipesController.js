@@ -119,7 +119,6 @@ module.exports = function(Recipes, Ingredients) {
         })
     },
     getInstructions: function(req, res){
-      console.log(req.body);
       Recipes.getRecipe(req.body.id)
         .then(function(data){
           res.send(data);
