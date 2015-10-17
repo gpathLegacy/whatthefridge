@@ -86,6 +86,9 @@ angular.module('wtf.services', [])
     var saveList = function(list, name) {
       return $http.post('/api/shoppingLists/saveList', {'list':list, 'list_name':name});
     }
+    var updateList = function(listId, list) {
+      return $http.post('/api/shoppingLists/updateList', {'listId': listId, 'list':list});
+    }
     var deleteList = function(listId) {
       return $http.post('/api/shoppingLists/deleteList', listId);
     }
@@ -93,6 +96,7 @@ angular.module('wtf.services', [])
     return { getLists:getLists,
              getRecipes:getRecipes,
              saveList:saveList,
+             updateList:updateList,
              deleteList:deleteList };
   }])
 

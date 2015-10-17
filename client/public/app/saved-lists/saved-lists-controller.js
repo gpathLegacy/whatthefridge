@@ -48,17 +48,22 @@ angular.module('wtf.saved-lists', ['ui.materialize'])
 
     $scope.delete = function(list) {
       // Lookup list ID from $scope.lists
-      for (var key in $scope.lists) {
-        if($scope.lists[key] === list) {
-          var listId = key;
-        }
-      }
+      var listId = $scope.lookupId(list);
 
       SavedLists.deleteList({id:listId}).then(function(){$scope.getLists()});
     };
 
+    $scope.lookupId = function(list) {
+      for (var key in $scope.lists) {
+        if($scope.lists[key] === list) {
+          return key;
+        }
+      }
+    };
+
     $scope.shop = function(list) {
-      Recipes.selectedRecipes = [{ingredients:[], saved:true}];
+      var listId = $scope.lookupId(list);
+      Recipes.selectedRecipes = [{list: listId, ingredients:[], saved:true}];
       for (var key in list) {
         if (key === 'date' || key === 'list_name' || key === 'recipes' || key === 'totalPrice') continue;
         Recipes.selectedRecipes[0].ingredients.push([key,list[key][0]]);

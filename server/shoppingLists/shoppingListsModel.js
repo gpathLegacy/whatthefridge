@@ -12,7 +12,7 @@ module.exports = function(knex) {
     // shopping list methods here
     getLists: function(user_id) {
       return knex('shopping_lists')
-        .select('date', 'list_name', 'shopping_list_id', 'ingredient_id', 'ingredients.name', 'price', 'qty')
+        .select('shopping_lists.id', 'date', 'list_name', 'shopping_list_id', 'ingredient_id', 'ingredients.name', 'price', 'qty')
         .where('shopping_lists.user_id', user_id)
         .innerJoin('shopping_lists_ingredients', 'shopping_lists.id', 'shopping_lists_ingredients.shopping_list_id')
         .innerJoin('ingredients', 'shopping_lists_ingredients.ingredient_id', 'ingredients.id');
@@ -35,6 +35,15 @@ module.exports = function(knex) {
         });
     },
 
+    updateList: function(user_id, list_id) {
+      return knex('shopping_lists')
+        .update('date', 'now')
+        .where({
+          'id':list_id,
+          'user_id':user_id
+        })
+    },
+
     newItem: function(shopping_list_id, ingredient_id, qty) {
       return knex('shopping_lists_ingredients')
         .insert({
@@ -44,11 +53,29 @@ module.exports = function(knex) {
         })
     },
 
+    updateItem: function(shopping_list_id, ingredient_id, qty) {
+      return knex('shopping_lists_ingredients')
+        .update('qty', qty)
+        .where({
+          'shopping_list_id':shopping_list_id,
+          'ingredient_id':ingredient_id
+        })
+    },
+
     addListMapping: function(shopping_list_id, recipe_id) {
       return knex('shopping_lists_recipes')
         .insert({
           'shopping_list_id':shopping_list_id,
           'recipe_id':recipe_id
+        });
+    },
+
+    getListMapping: function(shopping_list_id, ingredient_id) {
+      return knex('shopping_lists_ingredients')
+        .select()
+        .where({
+          'shopping_list_id':shopping_list_id,
+          'ingredient_id':ingredient_id
         });
     },
 

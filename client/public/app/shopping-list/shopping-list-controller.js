@@ -27,10 +27,6 @@ angular.module('wtf.shopping-list', [])
       }
     };
 
-    $scope.saveModal = function() {
-      $("#saveList").openModal();
-    };
-
     $scope.disableButtons = function(){
       if ($scope.disableQty || $scope.disablePrice){
         $('.saveButton').addClass('disabled');
@@ -79,51 +75,24 @@ angular.module('wtf.shopping-list', [])
       $scope.fridgeFlag = true;
       $scope.notSavedFlag = true;
       $scope.totalPrice = 0;
+      $scope.listId = Recipes.selectedRecipes[0].list;
 
-      // If we're coming from a saved list, the ingredients will be in a different format,
-      // accounting for user saved quantities
-      if(Recipes.selectedRecipes[0].saved) {
-        for (var i = 0; i < Recipes.selectedRecipes[0].ingredients.length; i++) {
-          $scope.shoppingList.push({name:Recipes.selectedRecipes[0].ingredients[i][0], qty:Recipes.selectedRecipes[0].ingredients[i][1]});
-        }
-      } else {
-        for (var i = 0; i < Recipes.selectedRecipes.length; i++) {
-          for (var j = 0; j < Recipes.selectedRecipes[i].ingredients.length; j++) {
+      for (var i = 0; i < Recipes.selectedRecipes[0].ingredients.length; i++) {
+        $scope.shoppingList.push({name:Recipes.selectedRecipes[0].ingredients[i][0], qty:Recipes.selectedRecipes[0].ingredients[i][1]});
+        
+        // get and set price of most recently pushed ingredient object
+        // (self calling function is required in order to update the correct index inside the promise)
+        (function(index){
+          Recipes.getIngredientPrice($scope.shoppingList[index]).then(function(price) {
+            $scope.shoppingList[index].price = price.data;
 
-            // Look to see if ingredient already exists in shopping list
-            var existingItem = $scope.shoppingList.filter(function(item) {
-              return item.name === Recipes.selectedRecipes[i].ingredients[j]
-            });
-
-            // If item exists, increase its quantity and add the recipeID to its recipes array,
-            // and add its price to the total price
-            if (existingItem.length) {
-              var index = $scope.shoppingList.indexOf(existingItem[0])
-              $scope.shoppingList[index].qty++;
-              $scope.shoppingList[index].recipes.push(Recipes.selectedRecipes[i].id);
-            }
-
-            // If item doesn't exist, add it to shopping list
-            else {
-              $scope.shoppingList.push({ name: Recipes.selectedRecipes[i].ingredients[j], qty:1,
-               recipes:[Recipes.selectedRecipes[i].id] });
-            
-              // get and set price of most recently pushed ingredient object
-              // (self calling function is required in order to update the correct index inside the promise)
-              (function(index){
-                Recipes.getIngredientPrice($scope.shoppingList[index]).then(function(price) {
-                  $scope.shoppingList[index].price = price.data;
-
-                  // Even though we just set the quantity to 1, this bit of code happens async,
-                  // so by the time we get the price from the table, we've already updated the
-                  // qty to reflect the total quantity of the list, so we just need to set the
-                  // total price here
-                  $scope.totalPrice += parseFloat(price.data) * $scope.shoppingList[index].qty;
-                });
-              })($scope.shoppingList.length-1)
-            }
-          }
-        }
+            // Even though we just set the quantity to 1, this bit of code happens async,
+            // so by the time we get the price from the table, we've already updated the
+            // qty to reflect the total quantity of the list, so we just need to set the
+            // total price here
+            $scope.totalPrice += parseFloat(price.data) * $scope.shoppingList[index].qty;
+          });
+        })($scope.shoppingList.length-1)
       }
 
       Recipes.selectedRecipes = [];
@@ -314,9 +283,9 @@ angular.module('wtf.shopping-list', [])
       }
     };
 
-    $scope.saveList = function() {
+    $scope.updateList = function() {
       if ($scope.notSavedFlag) {
-        SavedLists.saveList($scope.shoppingList, $scope.listName).then(function(){
+        SavedLists.updateList($scope.listId, $scope.shoppingList).then(function(){
           // Show a message that confirms success and disable the button
           $('.saveButton').addClass('disabled');
           $scope.notSavedFlag = false;
