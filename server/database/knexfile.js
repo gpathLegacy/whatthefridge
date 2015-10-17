@@ -1,4 +1,4 @@
-
+//this file is used by the server for creating a connection to the postgres server
 module.exports = {
 
   development: {
@@ -25,7 +25,7 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
-
+  //this is the production environment used by heroku
   production: {
     client: 'postgresql',
     connection: process.env.DATABASE_URL,

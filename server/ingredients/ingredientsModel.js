@@ -1,8 +1,10 @@
 /* database models
 exports model methods along with the connection object
-addIngredients - add a new ingredient
 getIngredientById - find ingredient row by id
 getIngredientByName - find ingredient row by name
+setIngredientPrice - sets price for a user's ingredient
+addIngredient - adds new ingredient
+deleteIngredient - deletes new ingredient
 */
 module.exports = function(knex) {
     return {
