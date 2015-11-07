@@ -29,6 +29,9 @@ angular.module('wtf', [
     .when('/about', {
       templateUrl: 'app/about/about.html'
     })
+    .when('/faq', {
+      templateUrl: 'app/faq/faq.html'
+    })
     // .when('/login', {
     //   templateUrl: 'app/auth/login.html',
     //   controller: 'AuthController'
