@@ -155,9 +155,12 @@ main {
 
 /*===========recipes===========*/
 .price {
-  float:right;
-  font-size:16px;
+  font-size:1em;
   color:green;
+}
+
+.recipe-title {
+  font-size:1em !important;
 }
 
 .card-small {

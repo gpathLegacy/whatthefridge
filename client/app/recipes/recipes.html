@@ -54,28 +54,29 @@
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
+
         <div class="card-content">
-          <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-          <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
-          <!-- Feature Tour T4-Step3 & T4-Step4 -->
-          <!-- Feature Tour T4-Step7 -->
-          </br>
-          <!-- Feature Tour T4-Step8 -->
-            <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-            <label id="T4-Step8" class="left" for="{{item}}">I'm eating this</label> </br></br></br>
           <div class="row">
-          <!-- Feature Tour T4-Step5 -->
-          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span></div>
-          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span></div>
+            <span class="card-title recipe-title activator" id="{{item.title.toLowerCase().split(' ').join('')}}" for="{{item}}">{{item.title}}</span>
+            <span class="right card-title price">${{item.price.toFixed(2)}}</span>
+          </div>
+          <div class="row">
+            <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
+            <label for="{{item}}">I'm eating this</label>
           </div>
         </div>
+
         <div class="card-reveal">
-          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
+          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons small right">close</i></span>
           <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
           </div>
           <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
+        <div class="card-action">
+          <span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span>
+          <span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span>
+        </div>
         </div>
       </div>
     </div>
