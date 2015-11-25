@@ -19,14 +19,16 @@
 
 <div class="container">
   <div class="row" id="add-recipe-title-container">
-  <div class="col s4">
-      <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add tooltipped" id="add-recipes-button" data-position="right" data-tooltip="Add a new recipe!"><i class="material-icons">add</i></a> <br/>
-</div>
-
-<div class="col s8">
-    <input id="search" class="search-bar" ng-model="searchText" placeholder="search by recipe name or ingredient"</label> <br/> <br/>
-    <span id="search-title-div"></span>
-</div>
+    <div class="col s2">
+        <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add tooltipped" id="add-recipes-button" data-position="right" data-tooltip="Add a new recipe!"><i class="material-icons">add</i></a> <br/>
+    </div>
+    <div class="col s9">
+      <div class="input-field">
+        <input id="search" type="search" ng-model="searchText" required>
+        <label for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
   </div>
 </div>
   <br>
@@ -87,7 +89,7 @@
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <span class="card-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">more_vert</i></span>
+          <span class="card-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}</span>
           <!-- <span class="price">${{suggestedRecipe[0].price}}</span> -->
           </br>
           <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>

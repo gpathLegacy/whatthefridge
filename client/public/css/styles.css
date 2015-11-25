@@ -171,16 +171,16 @@ main {
   width: 100%;
 }
 
-.material-icons {
+/*.material-icons {
   font-size: 2em;
-}
-
+}*/
+/*
 .search-bar{
-  /*margin-top: 2.6em;*/
+  margin-top: 2.6em;
   font-size: .9em;
   margin-top:1em;
   width: 48%;
-}
+}*/
 
 #add-recipes-button{
   margin-left: .5em;
