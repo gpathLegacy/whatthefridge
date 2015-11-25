@@ -185,51 +185,6 @@ main {
   padding-bottom: 2em;
 }
 
-/*=====team-intro cards=====*/
-.intro-card-padder{
-  padding-top:1em;
-}
-
-.card-reveal-content{
-  font-size:.8em;
-}
-
-/*changes size of p-content below card title*/
-.card-content{
-  font-size:.8em;
-}
-
-.card-spacer{
-  padding-top: .4em;
-}
-
-.card-title-sizer{
-  font-size:1em;
-}
-
-#team-intro-card-holder{
-  padding-top: .6em;
-  margin-bottom: 0;
-  padding-bottom: 2em;
-  background-color: #90caf9;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-}
-
-/*will equally space all cards along a given screen width*/
-/*.card-container{
-  display:flex;
-  justify-content:space-between;
-}*/
-
-.dev-team{
-  text-align: center;
-}
-
-.collection-item.avatar {
-  height: 60px;
-  width: 60px;
-}
-
 /*===========recipes===========*/
 .price {
   float:right;
