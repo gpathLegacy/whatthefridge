@@ -29,9 +29,7 @@ app.use(session({
   saveUninitialized: true,
   resave: true }));
 
-// var knex = require('knex')(require('./database/knexfile.js').development);
-
-//Setup our database
+//Setup the database with environment and default variables
 var knexfile = require('./database/knexfile.js');
 var environment = process.env.NODE_ENV || 'development';
 var knex = require('knex')(knexfile[environment]);

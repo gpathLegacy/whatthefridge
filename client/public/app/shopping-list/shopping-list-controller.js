@@ -102,7 +102,6 @@ angular.module('wtf.shopping-list', [])
 
     $scope.scanBarcode = function(ingredient, index) {
       console.log("Calls the controller barcode scanner function");
-      // $scope.productUpc = ''; //save upc number as string later
 
       $(function() {
         var resultCollector = Quagga.ResultCollector.create({
@@ -110,8 +109,6 @@ angular.module('wtf.shopping-list', [])
           capacity: 20,
           blacklist: [{code: "2167361334", format: "i2of5"}],
           filter: function(codeResult) {
-              // only store results which match this constraint
-              // e.g.: codeResult
             return true;
           }
         });
@@ -207,11 +204,9 @@ angular.module('wtf.shopping-list', [])
         Quagga.onDetected(function(result) {
           var code = result.codeResult.code;
           console.log(code); 
-          //add to scope
+          //add to scope var for sharing with product lookup method
             $scope.productUpc = code.toString(); 
             console.log( "the scanned product is: ", $scope.productUpc);
-
-
 
           if (App.lastResult !== code) {
             App.lastResult = code;
