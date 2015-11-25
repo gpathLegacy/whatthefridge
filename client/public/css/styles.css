@@ -43,30 +43,6 @@ main {
   flex: 1 0 auto;
 }
 
-#footer-spacer{
-  padding-left: 5em;
-}
-
-.footer-row-title{
-  color:white;
-}
-.social-footer{
-  height:15px;
-  width:15px;
-  padding-top: 2px;
-}
-
-#responsive-footer-container{
-  color:white;
-}
-
-#footer{
-  margin-top: 0;
-}
-
-  
-
-
 /*==========landing.html==========*/
 
 /*=====feature-tour=====*/
