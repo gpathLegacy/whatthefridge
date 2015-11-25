@@ -43,30 +43,6 @@ main {
   flex: 1 0 auto;
 }
 
-#footer-spacer{
-  padding-left: 5em;
-}
-
-.footer-row-title{
-  color:white;
-}
-.social-footer{
-  height:15px;
-  width:15px;
-  padding-top: 2px;
-}
-
-#responsive-footer-container{
-  color:white;
-}
-
-#footer{
-  margin-top: 0;
-}
-
-  
-
-
 /*==========landing.html==========*/
 
 /*=====feature-tour=====*/
@@ -155,38 +131,6 @@ main {
   color:black;
 }
 
-/*=====tech-stack=====*/
-#tech-stack-container{
-  padding-left: 2em;
-}
-
-#tech-stack-outer-shell{
-  background-color: #90caf9;
-  color:#f57c00;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-}
-
-#angularImage{
-  margin-left: 12px;
-  height: 15em;
-  width:15em;
-  margin-right:0;
-}
-
-#postgresImage{
-  height: 15em;
-}
-
-#nodeImage{
-  height: 8.5em;
-  margin-bottom:0;
-  margin-top: 0;
-}
-
-#expressImage{
-  height: 5em;
-}
-
 /*=====FAQ=====*/
 
 .icon-color-modifier{
@@ -209,60 +153,14 @@ main {
   padding-bottom: 2em;
 }
 
-/*=====team-intro cards=====*/
-.intro-card-padder{
-  padding-top:1em;
-}
-
-.card-reveal-content{
-  font-size:.8em;
-}
-
-/*changes size of p-content below card title*/
-.card-content{
-  font-size:.8em;
-}
-
-.card-spacer{
-  padding-top: .4em;
-}
-
-.card-title-sizer{
-  font-size:1em;
-}
-
-#team-intro-card-holder{
-  padding-top: .6em;
-  margin-bottom: 0;
-  padding-bottom: 2em;
-  background-color: #90caf9;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-}
-
-/*will equally space all cards along a given screen width*/
-/*.card-container{
-  display:flex;
-  justify-content:space-between;
-}*/
-
-.dev-team{
-  text-align: center;
-}
-
-.collection-item.avatar {
-  height: 60px;
-  width: 60px;
-}
-
 /*===========recipes===========*/
-.button-add {
-  /*margin-top: 30px;*/
+.price {
+  font-size:1em;
+  color:green;
 }
 
-.price {
-  float:right;
-  font-size:16px;
-  color:green;
+.recipe-title {
+  font-size:1em !important;
 }
 
 .card-small {
@@ -273,16 +171,16 @@ main {
   width: 100%;
 }
 
-.material-icons {
+/*.material-icons {
   font-size: 2em;
-}
-
+}*/
+/*
 .search-bar{
-  /*margin-top: 2.6em;*/
+  margin-top: 2.6em;
   font-size: .9em;
   margin-top:1em;
   width: 48%;
-}
+}*/
 
 #add-recipes-button{
   margin-left: .5em;
