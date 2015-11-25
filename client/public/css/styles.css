@@ -35,6 +35,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url("../../img/fridge.jpg");
+  background-size: cover;
 }
 
 main {
@@ -374,6 +376,11 @@ main {
 .bullet-point-type-content{
   color:#90caf9;
 }
+
+.dash-img{
+  background-image: url("../../img/fridge.jpg");
+}
+/*<img src="../../img/fridge.jpg" style="display: block">*/
 
 /*========shopping-list=========*/
 
