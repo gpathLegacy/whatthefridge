@@ -45,46 +45,42 @@
     </div>
   </div>
 
-  <!-- Feature Tour Tour-4-Step-1 -->
-  <div class="container">
-    <div class="row" id="T4-Step1">
-      <div class="col s4 animated" style="-webkit-animation-duration:{{$index * 400}}ms"  ng-repeat="item in allRecipes | filter:searchText">
-        <!-- Feature Tour T4-Step2 -->
-        <div class ="card small card-small z-depth-1 hoverable" id="T4-Step2">
-          <div class="card-image">
-            <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
+<!-- Feature Tour Tour-4-Step-1 -->
+<div class="container">
+  <div class="row" id="T4-Step1">
+    <div class="col s4 animated" style="-webkit-animation-duration:{{$index * 400}}ms"  ng-repeat="item in allRecipes | filter:searchText">
+      <!-- Feature Tour T4-Step2 -->
+      <div class ="card small card-small z-depth-1 hoverable" id="T4-Step2">
+        <div class="card-image">
+          <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
+        </div>
+        <div class="card-content">
+          <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
+          <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
+          <!-- Feature Tour T4-Step3 & T4-Step4 -->
+          <!-- Feature Tour T4-Step7 -->
+          </br>
+          <!-- Feature Tour T4-Step8 -->
+            <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
+            <label id="T4-Step8" class="left" for="{{item}}">I'm eating this</label> </br></br></br>
+          <div class="row">
+          <!-- Feature Tour T4-Step5 -->
+          <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span></div>
+          <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span></div>
           </div>
-          <div class="card-content">
-            <span id="{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title card-title activator grey-text text-darken-4" for="{{item}}">{{item.title}}</span>
-            <span class="price" id="T4-Step7">${{item.price.toFixed(2)}}</span>
-            <!-- Feature Tour T4-Step3 & T4-Step4 -->
-            <!-- Feature Tour T4-Step7 -->
-            </br>
-            <!-- Feature Tour T4-Step8 -->
-              <input type="checkbox" checklist-model="recipes.selected" checklist-value ="item" id="{{item}}" />
-              <label id="T4-Step8" class="left" for="{{item}}">I'm eating this</label> </br></br></br>
-            <div class="row">
-            <!-- Feature Tour T4-Step5 -->
-            <div><span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span></div>
-            <div><span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span></div>
-            </div>
+        </div>
+        <div class="card-reveal">
+          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
+          <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
+          <div ng-repeat="subitem in item.ingredients">
+            <span>{{subitem}}</span>
           </div>
-          <div class="card-reveal">
-            <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons right">close</i></span>
-            <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
-            <div ng-repeat="subitem in item.ingredients">
-              <span>{{subitem}}</span>
-            </div>
-            <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
-          </div>
+          <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Recipe suggestions from other users -->
-  <div class="row" ng-if="suggestedRecipe[0].title">
-    <div class="col s3 offset-s4">
+    <div class="col s4 animated">
       <div class ="card small card-small blue-grey darken-1 suggest-card">
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
@@ -106,39 +102,40 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- deleteCheck Modal -->
-  <div id="deleteCheck" class="modal">
-    <div class="modal-content">
-      <p>Are you sure you want to delete {{deleteRecipe.title}}? </p>
-    </div>
-    <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-    </div>
+<!-- deleteCheck Modal -->
+<div id="deleteCheck" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to delete {{deleteRecipe.title}}? </p>
   </div>
+  <div class="modal-footer">
+    <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+    <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+  </div>
+</div>
 
-  <div class="fixed-action-btn" style="bottom: 26em; right: 2em;">
-    <a class="modal-trigger btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" href="#shopCheck">
-      <i class="large material-icons white-text" style="font-size:3em; padding-top:3px">shopping_cart</i>
-    </a>
-  </div>
+<div class="fixed-action-btn" style="bottom: 26em; right: 2em;">
+  <a class="modal-trigger btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" href="#shopCheck">
+    <i class="large material-icons white-text" style="font-size:3em; padding-top:3px">shopping_cart</i>
+  </a>
+</div>
 
-  <!-- shopCheck Modal -->
-  <div id="shopCheck" class="modal">
-    <div class="modal-content">
-      <p ng-show="recipes.selected.length > 0">On this trip, you are making:</p>
-      <p ng-hide="recipes.selected.length > 0">Do you want to create a shopping list without selecting recipes?</p>
-      <ul>
-        <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
-      </ul>
-      <p ng-show="recipes.selected.length > 0">Is this correct?</p>
-    </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-      <a ng-click="getShoppingList()" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-    </div>
+<!-- shopCheck Modal -->
+<div id="shopCheck" class="modal">
+  <div class="modal-content">
+    <p ng-show="recipes.selected.length > 0">On this trip, you are making:</p>
+    <p ng-hide="recipes.selected.length > 0">Do you want to create a shopping list without selecting recipes?</p>
+    <ul>
+      <li ng-repeat="recipe in recipes.selected">{{recipe.title}}</li>
+    </ul>
+    <p ng-show="recipes.selected.length > 0">Is this correct?</p>
   </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+    <a ng-click="getShoppingList()" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+  </div>
+</div>
 
 <script>
 $(document).ready(function(){
