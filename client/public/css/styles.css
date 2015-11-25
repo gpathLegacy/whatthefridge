@@ -131,38 +131,6 @@ main {
   color:black;
 }
 
-/*=====tech-stack=====*/
-#tech-stack-container{
-  padding-left: 2em;
-}
-
-#tech-stack-outer-shell{
-  background-color: #90caf9;
-  color:#f57c00;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-}
-
-#angularImage{
-  margin-left: 12px;
-  height: 15em;
-  width:15em;
-  margin-right:0;
-}
-
-#postgresImage{
-  height: 15em;
-}
-
-#nodeImage{
-  height: 8.5em;
-  margin-bottom:0;
-  margin-top: 0;
-}
-
-#expressImage{
-  height: 5em;
-}
-
 /*=====FAQ=====*/
 
 .icon-color-modifier{
