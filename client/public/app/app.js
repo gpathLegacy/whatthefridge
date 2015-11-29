@@ -1,15 +1,10 @@
 angular.module('wtf', [
   'ngRoute',
-  // 'ui.router',
-  // 'wtf.about',
-  // 'wtf.auth',
-  // 'wtf.background',
   'wtf.create-recipes',
   'wtf.recipes',
   'wtf.dashboard',
   'wtf.edit-recipes',
   'wtf.instructions',
-  // 'wtf.index',
   'wtf.services',
   'wtf.create-shopping-list',
   'wtf.shopping-list',
@@ -24,10 +19,6 @@ angular.module('wtf', [
   $routeProvider
     .when('/', {
       templateUrl: 'app/auth/landing.html',
-    //   controller: 'NavController'
-    })
-    .when('/about', {
-      templateUrl: 'app/about/about.html'
     })
     .when('/faq', {
       templateUrl: 'app/faq/faq.html'

@@ -65,9 +65,6 @@ var auth = function(req, res, next){
 
 var connectionString = "postgres://rkfmctpbqycnga:FHArq47KczLKdBeCmOVET1MrIe@ec2-54-197-241-24.compute-1.amazonaws.com:5432/d95ld79pk4hae1"
 
-app.get('/app/about/about.html', auth, function(req, res) {
-  res.sendFile(path.resolve(__dirname + '/../client/app/about/about.html'));
-});
 app.get('/app/create-recipes/create-recipes.html', auth, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/app/create-recipes/create-recipes.html'));
 });

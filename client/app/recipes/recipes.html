@@ -1,51 +1,41 @@
-<br><br>
-
-<!-- Feature-Tour Button -->
-<div class="container" ng-if="allRecipes.length !== 0">
-  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-    <a id="FT-FAB" class="btn-floating btn-large orange darken-2 z-depth-3" href="javascript:void(0);" onclick="startIntro4()">
-      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-    </a>
-  </div>
-</div>
-
-<div class="container" ng-if="allRecipes.length === 0">
-  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-    <a class="btn-floating btn-large orange darken-2 z-depth-3" ng-click="populate()">
-      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-    </a>
-  </div>
+<div class="fixed-action-btn vertical click-to-toggle" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large red">
+    <i class="large mdi-navigation-menu"></i>
+  </a>
+  <ul>
+    <li><a class="modal-trigger btn-floating red" href="#shopCheck"><i class="material-icons white-text">shopping_cart</i></a></li>
+    <li><a class="btn-floating blue" href='/#/create-recipes'><i class="material-icons white-text">add</i></a></li>
+    <li ng-if="allRecipes.length === 0"><a class="btn-floating orange" ng-click="populate()"><i class="large material-icons">question_answer</i></a></li>
+    <li ng-if="allRecipes.length !== 0"><a class="btn-floating yellow" href="javascript:void(0);" onclick="startIntro4()">
+    <i class="large material-icons">question_answer</i></a></li>
+  </ul>
 </div>
 
 <div class="container">
-  <div class="row" id="add-recipe-title-container">
-    <div class="col s2">
-        <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add tooltipped" id="add-recipes-button" data-position="right" data-tooltip="Add a new recipe!"><i class="material-icons">add</i></a> <br/>
-    </div>
+    <br/>
     <div class="col s9">
-      <div class="input-field">
+      <div class="input-field grey darken-2">
         <input id="search" type="search" ng-model="searchText" required>
         <label for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
       </div>
     </div>
-  </div>
 </div>
-  <br>
+<br>
 
-  <div class="container" ng-if="allRecipes.length === 0">
-    <div class="row center">
-      <div class="s12 m4 l8">
-        <div class="card card-colorer z-depth-2">
-          <div class="card-content">
-            <span class="card-title">Get cooking!</span>
-            <p>You have no recipes! </p>
-            <p>Add one today by clicking the button above!</p>
-          </div>
+<div class="container" ng-if="allRecipes.length === 0">
+  <div class="row center">
+    <div class="s12 m4 l8">
+      <div class="card card-colorer z-depth-2">
+        <div class="card-content">
+          <span class="card-title">Get cooking!</span>
+          <p>You have no recipes! </p>
+          <p>Add one today by clicking the button above!</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Feature Tour Tour-4-Step-1 -->
 <div class="container">
@@ -69,38 +59,41 @@
         </div>
 
         <div class="card-reveal">
-          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons small right">close</i></span>
+          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title-backs card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons small right">close</i></span>
           <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
           </div>
-          <a id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" class="waves-effect waves-light btn">Instructions</a>
-        <div class="card-action">
-          <span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span>
-          <span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span>
-        </div>
+          <div class="card-action">
+            <span ng-click="getCurrentRecipe(item)"><i class="material-icons small left" id="T4-Step5">edit</i></span>
+            <span ng-click="deleteModal(item)"><i class="material-icons small left" id="T4-Step6">delete</i></span>
+            <span id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" >Instructions</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col s4 animated">
-      <div class ="card small card-small blue-grey darken-1 suggest-card">
+    <div ng-if="suggestedRecipe[0].title" class="col s4 animated">
+      <div class ="card small card-small blue-grey darken-1">
         <div class="card-image">
           <img src="http://www.midwestliving.com/sites/midwestliving.com/themes/mwl_theme/images/MWL_default.gif">
         </div>
         <div class="card-content">
-          <span class="card-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}</span>
+          <span class="card-title recipe-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}</span>
           <!-- <span class="price">${{suggestedRecipe[0].price}}</span> -->
           </br>
-          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Yum! Add this to my recipes!</a>
+          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Add To My Recipes</a>
         </div>
-        <div class="card-reveal" id="T4-Step4">
-          <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons right">close</i></span>
-          <!-- <span class="price left">${{suggestedRecipe[0].price}}</span></br> </br> -->
+        <div class="card-reveal blue-grey darken-1 white-text" id="T4-Step4">
+          <span class="recipe-title-backs card-title" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons small right">close</i></span>
+        </br>
           <div ng-repeat="ingredient in suggestedRecipe">
-            <li>{{ingredient.name}}</li>
+            <span>{{ingredient.name}}</span>
           </div>
-          <a ng-click="getInstructions(suggestedRecipe[0].recipe_id)" class="waves-effect waves-light btn">Instructions</a>
+
+          <div class="card-action">
+            <span ng-click="getInstructions(suggestedRecipe[0].recipe_id)">Click here for Instructions</span>
+          </div>
         </div>
       </div>
     </div>
@@ -116,12 +109,6 @@
     <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
     <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
   </div>
-</div>
-
-<div class="fixed-action-btn" style="bottom: 26em; right: 2em;">
-  <a class="modal-trigger btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" href="#shopCheck">
-    <i class="large material-icons white-text" style="font-size:3em; padding-top:3px">shopping_cart</i>
-  </a>
 </div>
 
 <!-- shopCheck Modal -->

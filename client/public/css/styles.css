@@ -171,32 +171,9 @@ main {
   width: 100%;
 }
 
-/*.material-icons {
-  font-size: 2em;
-}*/
-/*
-.search-bar{
-  margin-top: 2.6em;
-  font-size: .9em;
-  margin-top:1em;
-  width: 48%;
-}*/
-
-#add-recipes-button{
-  margin-left: .5em;
-  margin-bottom:.5em;
+.recipe-title-backs{
+  font-size:1.2em !important;
 }
-
-#add-recipe-title-container{
-  font-size:1.2em;
-  font-style: thin;
-  margin-bottom: 0;
-}
-.suggest-card {
-  max-width: 300px !important;
-
-}
-
 /*========create-recipes=========*/
 
 .addButton {
