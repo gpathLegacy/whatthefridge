@@ -1,27 +1,19 @@
-<br><br>
-
-<!-- Feature-Tour Button -->
-<div class="container" ng-if="allRecipes.length !== 0">
-  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-    <a id="FT-FAB" class="btn-floating btn-large orange darken-2 z-depth-3" href="javascript:void(0);" onclick="startIntro4()">
-      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-    </a>
-  </div>
+<div class="fixed-action-btn vertical click-to-toggle" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large red">
+    <i class="large mdi-navigation-menu"></i>
+  </a>
+  <ul>
+    <li><a class="modal-trigger btn-floating red" href="#shopCheck"><i class="material-icons white-text">shopping_cart</i></a></li>
+    <li><a class="btn-floating blue" href='/#/create-recipes'><i class="material-icons white-text">add</i></a></li>
+    <li ng-if="allRecipes.length === 0"><a class="btn-floating orange" ng-click="populate()"><i class="large material-icons">question_answer</i></a></li>
+    <li ng-if="allRecipes.length !== 0"><a class="btn-floating yellow" href="javascript:void(0);" onclick="startIntro4()">
+    <i class="large material-icons">question_answer</i></a>
+  </ul>
 </div>
 
-<div class="container" ng-if="allRecipes.length === 0">
-  <div class="fixed-action-btn" style="top: 4.5em; right: 2em;">
-    <a class="btn-floating btn-large orange darken-2 z-depth-3" ng-click="populate()">
-      <i class="large material-icons" style="font-size:2.7em;">question_answer</i>
-    </a>
-  </div>
-</div>
 
 <div class="container">
-  <div class="row" id="add-recipe-title-container">
-    <div class="col s2">
-        <a href='/#/create-recipes' class="z-depth-3 btn-floating btn-large waves-effect waves-light orange darken-3 button-add tooltipped" id="add-recipes-button" data-position="right" data-tooltip="Add a new recipe!"><i class="material-icons">add</i></a> <br/>
-    </div>
+    <br/>
     <div class="col s9">
       <div class="input-field">
         <input id="search" type="search" ng-model="searchText" required>
@@ -29,7 +21,6 @@
         <i class="material-icons">close</i>
       </div>
     </div>
-  </div>
 </div>
   <br>
 
@@ -92,7 +83,7 @@
           <span class="card-title recipe-title activator white-text text-darken-4" for="{{suggestRecipe}}">{{suggestedRecipe[0].title}}</span>
           <!-- <span class="price">${{suggestedRecipe[0].price}}</span> -->
           </br>
-          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Add this to my recipes!</a>
+          <a class="waves-effect waves-light btn" ng-click="addSuggestedRecipe(suggestedRecipe)">Add To My Recipes</a>
         </div>
         <div class="card-reveal" id="T4-Step4">
           <span class="card-title grey-text text-darken-4" for="{{suggestedRecipe}}">{{suggestedRecipe[0].title}}<i class="material-icons small right">close</i></span>
@@ -116,12 +107,6 @@
     <a class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
     <a ng-click="delete(deleteRecipe)" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
   </div>
-</div>
-
-<div class="fixed-action-btn" style="bottom: 26em; right: 2em;">
-  <a class="modal-trigger btn-floating red btn-large z-depth-3 tooltipped" data-position="left" data-tooltip="Access your shopping lists" href="#shopCheck">
-    <i class="large material-icons white-text" style="font-size:3em; padding-top:3px">shopping_cart</i>
-  </a>
 </div>
 
 <!-- shopCheck Modal -->
