@@ -7,10 +7,9 @@
     <li><a class="btn-floating blue" href='/#/create-recipes'><i class="material-icons white-text">add</i></a></li>
     <li ng-if="allRecipes.length === 0"><a class="btn-floating orange" ng-click="populate()"><i class="large material-icons">question_answer</i></a></li>
     <li ng-if="allRecipes.length !== 0"><a class="btn-floating yellow" href="javascript:void(0);" onclick="startIntro4()">
-    <i class="large material-icons">question_answer</i></a>
+    <i class="large material-icons">question_answer</i></a></li>
   </ul>
 </div>
-
 
 <div class="container">
     <br/>
@@ -22,21 +21,21 @@
       </div>
     </div>
 </div>
-  <br>
+<br>
 
-  <div class="container" ng-if="allRecipes.length === 0">
-    <div class="row center">
-      <div class="s12 m4 l8">
-        <div class="card card-colorer z-depth-2">
-          <div class="card-content">
-            <span class="card-title">Get cooking!</span>
-            <p>You have no recipes! </p>
-            <p>Add one today by clicking the button above!</p>
-          </div>
+<div class="container" ng-if="allRecipes.length === 0">
+  <div class="row center">
+    <div class="s12 m4 l8">
+      <div class="card card-colorer z-depth-2">
+        <div class="card-content">
+          <span class="card-title">Get cooking!</span>
+          <p>You have no recipes! </p>
+          <p>Add one today by clicking the button above!</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Feature Tour Tour-4-Step-1 -->
 <div class="container">
