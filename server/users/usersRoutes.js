@@ -1,5 +1,3 @@
-var usersController = require('./usersController.js');
-
 // For authentication routes
 module.exports = function (app, passport) {
   // app === usersRouter injected from middlware.js
