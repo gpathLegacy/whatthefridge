@@ -12,44 +12,45 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
     <script src="app/voiceControl.js"></script>
   </head>
-  <body>
+  <body ng-controller="NavController">
 
   <!--Start Navbar -->
-<div class="navbar-fixed">
-  <nav role="navigation" ng-controller="NavController" class="grey darken-3 z-depth-3">
-    <div class="nav-wrapper container">
-      <!-- Left Logo -->
-      <a  id="logo-container" href="/#/" class="brand-logo white-text">WTF!</a>
-      <a  ng-show="loggedIn" id="logo-container" href="#/dashboard" class="brand-logo white-text">WTF!</a>
+  <div ng-if="loggedIn" class="navbar-fixed">
+    <nav role="navigation" class="grey darken-3 z-depth-3">
+      <div class="nav-wrapper container">
+        <!-- Left Logo -->
+        <a id="logo-container" href="/#/" class="brand-logo white-text">WTF!</a>
+        <a ng-show="loggedIn" id="logo-container" href="#/dashboard" class="brand-logo white-text">WTF!</a>
 
-      <!-- Collapsible Functionality -->
-      <ul class="right hide-on-med-and-down">
-        <!-- Right Side of Navbar -->
-        <li ng-show="loggedIn" ng-class="{ dactive: isActive('/dashboard') }"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
-        <li ng-show="loggedIn" ng-class="{ dactive: isActive('/recipes') }"><a href="#/recipes" class="navbar-font-color">Recipes</a></li>
-        <li ng-show="loggedIn" ng-class="{ dactive: isActive('/saved-lists') }"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
-        <li ng-show="loggedIn" ng-class="{ dactive: isActive('/fridge') }"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
-        <!-- Modal Trigger Inside Class Declaration -->
-        <li><a href="#/faq">FAQ</a></li>
-        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active navbar-font-color"></i></a></li>
-        <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
-      </ul>
-      <!-- Start Side-Nav -->
-      <ul id="slide-out" class="side-nav center-align">
-        <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
-        <li class="no-padding">
-          <li ng-show="loggedIn"><a href="#/dashboard">Dashboard</a></li>
-          <li ng-show="loggedIn"><a href="#/recipes">Recipes</a></li>
-          <li ng-show="loggedIn"><a href="#/saved-lists">Saved Lists</a></li>
-          <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
-          <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
-        </li>
-      </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu navbar-font-color"></i></a>
-      <!-- End Side-Nav -->
-    </div>
-  </nav>
-</div>
+        <!-- Collapsible Functionality -->
+        <ul class="right hide-on-med-and-down">
+          <!-- Right Side of Navbar -->
+          <li ng-class="{ dactive: isActive('/dashboard') }"><a href="#/dashboard" class="navbar-font-color">Dashboard</a></li>
+          <li ng-class="{ dactive: isActive('/recipes') }"><a href="#/recipes" class="navbar-font-color">Recipes</a></li>
+          <li ng-class="{ dactive: isActive('/saved-lists') }"><a href="#/saved-lists" class="navbar-font-color">Saved Lists</a></li>
+          <li ng-class="{ dactive: isActive('/fridge') }"><a href="#/fridge" class="navbar-font-color">The Fridge</a></li>
+          <!-- Modal Trigger Inside Class Declaration -->
+          <li><a href="#/faq">FAQ</a></li>
+          <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a class="navbar-font-color" href="javascript:;">Logout</a></li>
+        </ul>
+        <!--these lines of code set up the side nav bar when the window shrinks -->
+            <!-- Start Side-Nav -->
+         <!--    <ul id="slide-out" class="side-nav center-align">
+              <li ng-hide="loggedIn"><a href="#modal1" class="waves-effect waves-teal btn-small modal-trigger"><i class="mdi-action-account-circle active"></i></a></li>
+              <li class="no-padding">
+                <li ng-show="loggedIn"><a href="#/dashboard">Dashboard</a></li>
+                <li ng-show="loggedIn"><a href="#/recipes">Recipes</a></li>
+                <li ng-show="loggedIn"><a href="#/saved-lists">Saved Lists</a></li>
+                <li ng-show="loggedIn"><a href="#/fridge">The Fridge</a></li>
+                <li id="logout" ng-show="loggedIn" ng-click="logOut()"><a href="javascript:;">Logout</a></li>
+              </li>
+            </ul> -->
+           <!--  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu navbar-font-color"></i></a> -->
+            <!-- End Side-Nav -->
+        <!-- end side nav code-->
+      </div>
+    </nav>
+  </div>
   <!-- End Navbar -->
 
   <!-- Start Modal Structure -->
@@ -116,20 +117,20 @@
     </div>
  <!-- End Modal Structure -->
 
-    <main>
-      <div ng-view>
-      </div>
-    </main>
+  <main>
+    <div ng-view>
+    </div>
+  </main>
 
-    <!-- Start Footer -->
-    <footer class="page-footer grey darken-4">
-       <div class="container white-text">
-          <div class="row">© 2015 Gigapath
-            <a class="white-text right" href="https://github.com/gigapath" target="_blank">Gigapath | Github</a>
-        </div>
+  <!-- Start Footer -->
+  <footer class="page-footer grey darken-4">
+     <div class="container white-text">
+        <div class="row">© 2015 Gigapath
+          <a class="white-text right" href="https://github.com/gigapath" target="_blank">Gigapath | Github</a>
       </div>
-    </footer>
-    <!-- End Footer -->
+    </div>
+  </footer>
+  <!-- End Footer -->
 
   </body>
     <script src="lib/jquery/dist/jquery.min.js"></script>
