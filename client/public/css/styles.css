@@ -171,8 +171,11 @@ main {
   width: 100%;
 }
 
-.recipe-title-backs{
+.recipe-title-backs {
   font-size:1.2em !important;
+}
+.small-text-link {
+  font-size: .8em;
 }
 /*========create-recipes=========*/
 

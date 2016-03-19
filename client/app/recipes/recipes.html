@@ -65,9 +65,9 @@
             <span>{{subitem}}</span>
           </div>
           <div class="card-action">
-            <span ng-click="getCurrentRecipe(item)"><i class="material-icons small left" id="T4-Step5">edit</i></span>
-            <span ng-click="deleteModal(item)"><i class="material-icons small left" id="T4-Step6">delete</i></span>
-            <span id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" >Instructions</span>
+            <span ng-click="getCurrentRecipe(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step5">edit</i></a></span>
+            <span ng-click="deleteModal(item)"><a href="javascript:;"><i class="material-icons small left" id="T4-Step6">delete</i></a></span>
+            <span id="{{item.title.toLowerCase().split(' ').join('')}}Instructions" ng-click="getInstructions(item.id)" ><a class= "small-text-link" href="javascript:;">Instructions</a></span>
           </div>
         </div>
       </div>
