@@ -390,3 +390,14 @@ main {
 .page-heading {
   font-size: 1.5em;
 }
+
+tr, td {
+    padding: 0px auto;
+    height: 5px auto;
+}
+
+
+.datepicker {
+  max-width: 50%;
+}
+

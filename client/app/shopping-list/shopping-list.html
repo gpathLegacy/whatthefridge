@@ -47,6 +47,26 @@
           </tr>
         </table>
 
+          
+<!--             <div class="row">
+              <div class="col s1 offset-s1">Qty</div>
+              <div class="col s8 offset-s2"><input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
+            </div>
+          
+            <div class="row">
+              <div class="col s1 offset-s1">Expiration</div>
+              <div class="col s8 offset-s2"><input type="date" ng-model="ingredient.expiration" class="datepicker"></input></div>
+            </div>
+            <div class="row">
+              <div class="col s1 offset-s1">Price</div>
+              <div class="col s8 offset-s2">
+                <form class="priceForm" name="priceForm{{$index}}">
+                <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+                <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanModal(ingredient, prevPrice, $index)">Scan It!</button>
+                </form></div>
+            </div> -->
+          
+
         <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
         <div>Price: 
           <form class="priceForm" name="priceForm{{$index}}">
