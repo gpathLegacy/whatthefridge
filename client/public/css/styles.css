@@ -384,3 +384,9 @@ main {
   display: table;
   clear: both;
 }
+
+/*============ Common ============*/
+
+.page-heading {
+  font-size: 1.5em;
+}
