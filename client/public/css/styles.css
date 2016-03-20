@@ -226,6 +226,13 @@ main {
   transition: height 2s ease;
   -webkit-font-smoothing:antialiased !important;
 }
+.instruction-text {
+  background-color: #fff;
+  line-height: 1.5rem;
+  padding: 10px 20px;
+  margin: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
 
 /*========dashboard=========*/
 
