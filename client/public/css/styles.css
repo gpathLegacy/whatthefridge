@@ -280,6 +280,9 @@ main {
 .list-price {
   color: green;
 }
+.shopping-saved-list {
+  max-height: 10px;
+}
 
 /*============fridge============*/
 

@@ -1,7 +1,8 @@
 <div class="container">
+</br>
   <div class="row center-align">
-    My Saved Shopping Lists
-    <br>
+    <span class="page-heading"> My Saved Shopping Lists </span>
+    </br></br>
     <a class="saveButton btn waves-effect waves-light" href="#/create-list">Create New List</a>
   </div>
 
@@ -24,12 +25,17 @@
       <li ng-repeat="list in lists track by $index" ng-if="$index%2===0">
         <div class="collapsible-header">{{list.list_name}}</div>
         <div class="collapsible-body">
-          <p>{{list.date}}<a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="deleteListModal(list)"><i class="material-icons"><span class="trash-icon-small">delete</span></i></a></p>
-          <p ng-show="list.recipes.length">Recipes shopped for: <span ng-repeat="recipe in list.recipes">{{recipe.title}}{{$last ? '' : ', '}}</span></p>
-          <p ng-repeat="(ingredient, props) in list" ng-hide="ingredient==='date' || ingredient==='list_name' || ingredient==='totalPrice' || ingredient==='recipes'">{{props[0]}} {{ingredient}}<span class="secondary-content">Price: ${{props[1]}}</span></p>
+          <p class="center-align">Shopping list created on: &nbsp; {{list.date}}</p>
+          <p class="shopping-saved-list" ng-show="list.recipes.length">Recipes shopped for: <span ng-repeat="recipe in list.recipes">{{recipe.title}}{{$last ? '' : ', '}}</span></p>
+          <p class="shopping-saved-list" ng-repeat="(ingredient, props) in list" ng-hide="ingredient==='date' || ingredient==='list_name' || ingredient==='totalPrice' || ingredient==='recipes'">{{props[0]}} {{ingredient}}<span class="secondary-content">Price: ${{props[1]}}</span></p>
           <p class="center-align list-price">Total Price: ${{list.totalPrice.toFixed(2)}}</p>
-          <div class="center-align">
-            <button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button>
+          <div class="row center-align">
+            <div class="col s8 offset-s1">
+              <button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button>
+            </div>
+            <div class="col s2">
+              <a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="deleteListModal(list)"><i class="material-icons"><span class="trash-icon-small">delete</i></a></span> 
+            </div>
           </div>
         </div>
       </li>
@@ -40,12 +46,17 @@
       <li ng-repeat="list in lists track by $index" ng-if="$index%2===1">
         <div class="collapsible-header">{{list.list_name}}</div>
         <div class="collapsible-body">
-          <p>{{list.date}}<a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="deleteListModal(list)"><i class="material-icons"><span class="trash-icon-small">delete</span></i></a></p>
-          <p ng-show="list.recipes.length">Recipes shopped for: <span ng-repeat="recipe in list.recipes">{{recipe.title}}{{$last ? '' : ', '}}</span></p>
-          <p ng-repeat="(ingredient, props) in list" ng-hide="ingredient==='date' || ingredient==='list_name' || ingredient==='totalPrice' || ingredient==='recipes'">{{props[0]}} {{ingredient}}<span class="secondary-content">Price: ${{props[1]}}</span></p>
+          <p class="center-align">Shopping list created on: &nbsp; {{list.date}}</p>
+          <p class="shopping-saved-list" ng-show="list.recipes.length">Recipes shopped for: <span ng-repeat="recipe in list.recipes">{{recipe.title}}{{$last ? '' : ', '}}</span></p>
+          <p class="shopping-saved-list" ng-repeat="(ingredient, props) in list" ng-hide="ingredient==='date' || ingredient==='list_name' || ingredient==='totalPrice' || ingredient==='recipes'">{{props[0]}} {{ingredient}}<span class="secondary-content">Price: ${{props[1]}}</span></p>
           <p class="center-align list-price">Total Price: ${{list.totalPrice.toFixed(2)}}</p>
-          <div class="center-align">
-            <button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button>
+          <div class="row center-align">
+            <div class="col s8 offset-s1">
+              <button class="btn waves-effect waves-light" ng-click="shop(list)">Shop with this list</button>
+            </div>
+            <div class="col s2">
+              <a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="deleteListModal(list)"><i class="material-icons"><span class="trash-icon-small">delete</i></a></span> 
+            </div>
           </div>
         </div>
       </li>
