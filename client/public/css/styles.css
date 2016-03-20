@@ -284,13 +284,13 @@ main {
 /*============fridge============*/
 
 .fridge-font-sizer{
-  font-size:1.5em;
+  font-size:1em;
 }
 
 #expiration-date-input-field{
-  font-size:1.5em;
+  font-size:1em;
   text-align:center;
-  margin-left:1.5em;
+  margin-left:1em;
 }
 
 .bottom-right {
@@ -300,18 +300,18 @@ main {
 
 .minus {
   position:relative;
-  bottom:8px;
+  bottom:8.5px;
 }
 
 .minus-small {
-  height:1em;
-  width:1em;
+  height:1.2em;
+  width:1.2em;
 }
 
 #expire-message {
   color:red;
   flex: initial;
-  font-size:1.5em;
+  font-size:1em;
 }
 
 #date-message {
@@ -323,7 +323,7 @@ main {
 }
 
 .table-title{
-  font-size:2em;
+  font-size:1.2em;
 }
 
 /*============Barcode Scanner============*/
@@ -391,9 +391,9 @@ main {
   font-size: 1.5em;
 }
 
-tr, td {
-    padding: 0px auto;
-    height: 5px auto;
+td {
+    padding: 0px;
+    height: 10px;
 }
 
 
