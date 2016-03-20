@@ -1,4 +1,5 @@
 <div class="row">
+</br>
   <div class="container">
     <form class="col s12">
       <div class="row">
@@ -19,8 +20,8 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="container">
+      <div class="row center-alig">
+        <div class="col s9 offset-s1 center">
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
@@ -31,15 +32,21 @@
           </form>
         </div>
       </div>
-      <div class="row center-align">
-        <a class="btn waves-effect waves-light red" ng-click="saveRecipe()">Update Recipe</a>
+      <div class="row">
+        <div class="col s9 offset-s1 center">
+          <a class="btn waves-effect waves-light red" ng-click="saveRecipe()">Update Recipe</a>
+        </div>
       </div>
       <div class="row">
-        <u>Ingredients List</u>
-        <ul class="collection">
-          <li class="collection-item" ng-repeat="ingredient in recipe.ingredients">{{ingredient}}<a class="trash-small secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="material-icons"><span class="trash-icon-small">delete<span></i></a></li>
-        </ul>
-        <span ng-show="noIngredients" class="error">You must add at least one ingredient.</span>
+        <div class="col s9 offset-s1">
+          Ingredients List
+          <div class="center">
+            <ul class="collection">
+              <li class="collection-item" ng-repeat="ingredient in recipe.ingredients">{{ingredient}}<a class="secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="small material-icons"><span>delete<span></i></a></li>
+            </ul>
+            <span ng-show="noIngredients" class="error">You must add at least one ingredient.</span>
+          </div>
+        </div>
       </div>
     </form>
   </div>
