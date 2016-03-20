@@ -1,14 +1,15 @@
 
 <div class="container" >
+</br>
   <div class="collapsible center-align" data-collapsible="accordion">
     <div class="row collapsible-header active">
       <div class="col s6 offset-s3 center ">
-        <h2>{{title}}</h2>
+        <h4>{{title}}</h2>
       </div>
     </div>
     <div class="row">
       <div class="col s6 offset-s3 center" >
-        <h4>Ingredients</h4>
+        <h5>Ingredients</h4>
         <ul class="collection">
           <li class="collection-item" ng-repeat="ingredient in ingredients">{{ingredient}}</li>
         </ul>
@@ -16,7 +17,7 @@
     </div>
     <div class="row">
       <div class="col s6 offset-s3 center" >
-        <h4>Instructions</h4>
+        <h5>Instructions</h4>
         <div class="instruction-text">
           {{instructions}}
         </div>
