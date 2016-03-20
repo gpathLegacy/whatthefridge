@@ -26,7 +26,7 @@ More information can be found [here](https://github.com/gigapath/whatthefridge/b
 ## Team
 
 #### Legacy Project
-  - __Product Owners and Developers: sdxl, mishasaggi
+  - __Product Owners and Developers__: sdxl, mishasaggi
 
 #### Greenfield Project
   - __Product Owner__: josh-stevens
