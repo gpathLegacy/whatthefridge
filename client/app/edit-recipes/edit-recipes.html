@@ -40,12 +40,10 @@
       <div class="row">
         <div class="col s9 offset-s1">
           Ingredients List
-          <div class="center">
             <ul class="collection">
               <li class="collection-item" ng-repeat="ingredient in recipe.ingredients">{{ingredient}}<a class="secondary-content btn-floating btn waves-effect waves-light red" ng-click ="removeIngredient(ingredient)"><i class="small material-icons"><span>delete<span></i></a></li>
             </ul>
             <span ng-show="noIngredients" class="error">You must add at least one ingredient.</span>
-          </div>
         </div>
       </div>
     </form>
