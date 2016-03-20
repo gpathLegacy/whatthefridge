@@ -1,106 +1,135 @@
 <div class="container">
-  <div class="row center-align">
-    Shopping List
-    <br>
-    <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()" ng-disabled="disabled">Add all to Fridge</button>
-    <button class="saveButton btn waves-effect waves-light" ng-click="updateList()" ng-disabled="disabled">Update shopping list</button>
-  </div>
-  <div class="row center-align">
-    <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
-    Add item
-  </div>
-  <div ng-hide="fridgeFlag">
-    All items added to fridge.
-  </div>
-  <div ng-hide="notSavedFlag">
-    Shopping list saved.
-  </div>
-  <div class="row center-align list-price">
-    Total Price: ${{totalPrice.toFixed(2)}}
-  </div>
-  <ul class="collection">
-    <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
-      <h5>{{ingredient.name}}</h5>
-      <table>
-        <tr>
-          <td>Qty</td>
-          <td><input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></td>
-        </tr>
-        <tr>
-          <td>Expiration</td>
-          <td><input type="date" ng-model="ingredient.expiration" class="datepicker"></input></td>
-        </tr>
-        <tr>
-          <td>Price</td>
-          <td>
-          <form class="priceForm" name="priceForm{{$index}}">
-            <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
-            <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanModal(ingredient, prevPrice, $index)">Scan It!</button>
+</br>
+  <div class="row">
+    <div class="row center-align">
+      <span class="page-heading"> Shopping List </span>
+       <span class="page-heading list-price">
+      Total Price: ${{totalPrice.toFixed(2)}}
+      </span>
+      <br></br>
+      <button class="fridgeButton btn waves-effect waves-light" ng-click="addToFridge()" ng-disabled="disabled">Add all to Fridge</button>
+      <button class="saveButton btn waves-effect waves-light" ng-click="updateList()" ng-disabled="disabled">Update shopping list</button>
+    </div>
+    <div class="row center-align">
+      <a ng-click='addModal()' class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">add</i></a>
+      Add item
+    </div>
+    <div ng-hide="fridgeFlag">
+      All items added to fridge.
+    </div>
+    <div ng-hide="notSavedFlag">
+      Shopping list saved.
+    </div>
+    <div class="row">
+    <div class="col s10 offset-s1">
+    <ul class="collection">
+      <li class="collection-item dismissable" ng-repeat="ingredient in shoppingList track by $index">
+        <h5>{{ingredient.name}}</h5>
+        <table>
+          <tr>
+            <td>Qty</td>
+            <td>
+              <input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input>
             </td>
-          </form>
-        </tr>
-      </table>
+          </tr>
+          <tr>
+            <td>Expiration</td>
+            <td><input type="date" ng-model="ingredient.expiration" class="datepicker"></input></td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>
+            <form class="priceForm" name="priceForm{{$index}}">
+              <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+              <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanModal(ingredient, prevPrice, $index)">Scan It!</button>
+              </td>
+            </form>
+          </tr>
+        </table>
 
-      <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
-      <div>Price: 
-        <form class="priceForm" name="priceForm{{$index}}">
-          <input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
-          <button ng-click="savePrice(ingredient, $index)">Save</button></form>
-      </div>
-      <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
-    </li>
-  </ul>
+          
+<!--             <div class="row">
+              <div class="col s1 offset-s1">Qty</div>
+              <div class="col s8 offset-s2"><input ng-blur="updatePrice($index, prevPrice, prevQty)" ng-click="ingredient.qty ? prevQty=ingredient.qty : 0" class="quantity" name="qty" ng-model="ingredient.qty" min="0" ng-pattern="/^[0-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/"></input></div>
+            </div>
+          
+            <div class="row">
+              <div class="col s1 offset-s1">Expiration</div>
+              <div class="col s8 offset-s2"><input type="date" ng-model="ingredient.expiration" class="datepicker"></input></div>
+            </div>
+            <div class="row">
+              <div class="col s1 offset-s1">Price</div>
+              <div class="col s8 offset-s2">
+                <form class="priceForm" name="priceForm{{$index}}">
+                <input required name="price" ng-click="ingredient.price ? prevPrice=ingredient.price : 0" ng-blur="savePrice(ingredient, prevPrice, $index)" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+                <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="scanModal(ingredient, prevPrice, $index)">Scan It!</button>
+                </form></div>
+            </div> -->
+          
 
-<!-- TEST HTML starts -->
-<!-- <section>
-        <h5>The user's camera</h5>
-      <div id="result_strip">
-        <ul class="thumbnails"></ul>
-        <ul class="collector"></ul>
-      </div>
-      <div id="interactive" class="viewport"></div>
-    </section> -->
-<!-- TEST HTML ends -->
-
-</div>
-
-<!-- TEST Modal starts -->
-<!-- scanBarcode() Modal -->
-  <div id="scanBarcode" class="modal">
-    <form ng-submit="lookupProduct()">
-      <div class="modal-content">
-        <div class="container">
-          <span for="listName">Let's scan this baby!</span>
-          <div id="result_strip">
-            <ul class="thumbnails"></ul>
-            <ul class="collector"></ul>
-          </div>
-          <div id="interactive" class="viewport"></div>
+        <!-- <div>Qty: <input class="quantity" name="qty" ng-model="ingredient.qty" min="0"></input><div>
+        <div>Price: 
+          <form class="priceForm" name="priceForm{{$index}}">
+            <input required name="price" ng-model="ingredient.price" min="0" value="{{ingredient.price}}" ng-pattern="/^\d+\.\d{2}$/"></input>
+            <button ng-click="savePrice(ingredient, $index)">Save</button></form>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="stopScanner()">Cancel</a>
-        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Done</button>
-      </div>
-    </form>
-  </div>
+        <div>Expiration: <input type="date" class="datepicker" style="width: 30%;"></input></div> -->
+      </li>
+    </ul>
+    </div>
+    </div>
 
-<!-- TEST Modal ends -->
+  <!-- TEST HTML starts -->
+  <!-- <section>
+          <h5>The user's camera</h5>
+        <div id="result_strip">
+          <ul class="thumbnails"></ul>
+          <ul class="collector"></ul>
+        </div>
+        <div id="interactive" class="viewport"></div>
+      </section> -->
+  <!-- TEST HTML ends -->
 
-<!-- add item Modal -->
-  <div id="addItem" class="modal">
-    <form ng-submit="addItem()">
-      <div class="modal-content">
-        <div class="container">
-          <div class="input-field">
-            <label for="itemToAdd">Item Name</label>
-            <input required type="text" id="itemToAdd" ng-model="itemToAdd"/>
+  <!-- </div> -->
+
+  <!-- TEST Modal starts -->
+  <!-- scanBarcode() Modal -->
+    <div id="scanBarcode" class="modal">
+      <form ng-submit="lookupProduct()">
+        <div class="modal-content">
+          <div class="container">
+            <span for="listName">Let's scan this baby!</span>
+            <div id="result_strip">
+              <ul class="thumbnails"></ul>
+              <ul class="collector"></ul>
+            </div>
+            <div id="interactive" class="viewport"></div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-        <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
-      </div>
-    </form>
+        <div class="modal-footer">
+          <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="stopScanner()">Cancel</a>
+          <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Done</button>
+        </div>
+      </form>
+    </div>
+
+  <!-- TEST Modal ends -->
+
+  <!-- add item Modal -->
+    <div id="addItem" class="modal">
+      <form ng-submit="addItem()">
+        <div class="modal-content">
+          <div class="container">
+            <div class="input-field">
+              <label for="itemToAdd">Item Name</label>
+              <input required type="text" id="itemToAdd" ng-model="itemToAdd"/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
+        </div>
+      </form>
+    </div>
   </div>
