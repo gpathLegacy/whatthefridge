@@ -266,7 +266,12 @@ main {
   background-image: url("../../img/fridge.jpg");
 }
 /*<img src="../../img/fridge.jpg" style="display: block">*/
+.data-card-front {
 
+}
+.data-card-back {
+  color:white;
+}
 /*========shopping-list=========*/
 
 .quantity {
