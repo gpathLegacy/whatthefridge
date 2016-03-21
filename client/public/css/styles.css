@@ -156,7 +156,7 @@ main {
 /*===========recipes===========*/
 .price {
   font-size:1em;
-  color:green;
+  color:green !important;
 }
 
 .recipe-title {

@@ -49,7 +49,7 @@
 
         <div class="card-content">
           <div class="row">
-            <span class="card-title recipe-title activator" id="{{item.title.toLowerCase().split(' ').join('')}}" for="{{item}}">{{item.title}}</span>
+            <span class="card-title activator grey-text text-darken-4" id="{{item.title.toLowerCase().split(' ').join('')}}" for="{{item}}">{{item.title}}</span>
             <span class="right card-title price">${{item.price.toFixed(2)}}</span>
           </div>
           <div class="row">
@@ -59,7 +59,7 @@
         </div>
 
         <div class="card-reveal">
-          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="recipe-title-backs card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons small right">close</i></span>
+          <span id="dismiss{{item.title.toLowerCase().split(' ').join('')}}" class="card-title grey-text text-darken-4" for="{{item}}">{{item.title}}<i class="material-icons small right">close</i></span>
           <span class="price left">${{item.price.toFixed(2)}}</span></br> </br>
           <div ng-repeat="subitem in item.ingredients">
             <span>{{subitem}}</span>
