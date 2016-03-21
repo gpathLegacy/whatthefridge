@@ -28,7 +28,7 @@
   <!--         <div class="card-image">
             <img src="http://internetcafedevotions.com/wp-content/uploads/2010/03/Copy-of-iStock_000003737014XSmall.jpg">
           </div> -->
-          <div class="card-content">
+          <div class="card-content data-card-front">
             <span ng-if="expiring.length > 0 || expiringToday.length > 0" class="card-title activator black-text">Waste not! </span>
             <span ng-if="expiring.length === 0 && expiringToday.length === 0" class="card-title black-text">Waste not! </span>
             <br/><br/>
@@ -45,33 +45,33 @@
                 <p>Your fridge is currently worth ${{freshValue.toFixed(2)}}</p>
               </div>
           </div>
-          <div class="card-reveal black title-type-content">
+          <div class="card-reveal teal lighten-3 data-card-back">
             <span class="card-title white"><i class="material-icons small right clickable-content-color">close</i></span>
             Expiring soon:
             <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
               <li>{{subitem.name}}</li>
             </div>
             <br/></br>
-            <div ng-if="expiringToday.length > 0" class="title-type-content">
+            <div ng-if="expiringToday.length > 0">
               Expiring today:
               <div ng-if="expiringToday.length > 0" ng-repeat="subitem in expiringToday">
-              <li class="blue-text text-lighten-3">{{subitem.name}}</li>
+              <li>{{subitem.name}}</li>
             </div>
             <br>
             The following items have expired:
-            <div ng-repeat="subitem in expired" class="bullet-point-type-content">
+            <div ng-repeat="subitem in expired">
               <li>${{(subitem.qty * subitem.price).toFixed(2)}} of {{subitem.name}} on {{subitem.expiration | date: 'shortDate'}}</li>
             </div>
             </div>
             <br/>
             <div>Items in your fridge:</div>
-            <div class="bullet-point-type-content"> {{fridgeData.length}}</div>
+            <div> {{fridgeData.length}}</div>
             <div ng-if="highestQtyFridge.length">You have a lot of:
               <li ng-repeat="item in highestQtyFridge">{{item.name}}</li>
             </div>
             <br/>
             <div ng-if="lowestQtyFridge.length">You don't have a lot of:
-            <li ng-repeat="item in lowestQtyFridge" class="bullet-point-type-content">{{item.name}}</li>
+            <li ng-repeat="item in lowestQtyFridge">{{item.name}}</li>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
     <div class="row" id="T1-Step3">
       <div class="card medium card-small transparent hoverable">
         <div class="card-image waves-effect waves-block waves-light"></div>
-        <div class="card-content">
+        <div class="card-content data-card-front">
           <span ng-if="allRecipes.length > 0" class="card-title activator black-text text-darken-4">What are you making today?</span>
           <span ng-if="allRecipes.length === 0" class="card-title black-text text-darken-4">What are you making today?</span>
           <br/><br/>
@@ -94,8 +94,8 @@
           <p ng-if="listsCount === 1">You have 1 saved shopping list</p>
           <p ng-if="listsCount > 1"> You have {{listsCount}} saved shopping lists</p>
         </div>
-        <div class="card-reveal black">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons small right clickable-content-color">close</i></span>
+        <div class="card-reveal teal lighten-3 data-card-back">
+          <span class="card-title white-text text-darken-4"><i class="material-icons small right clickable-content-color">close</i></span>
           <div ng-if="allRecipes.length > 0">
             <p>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price.toFixed(2)}}</p>
             <p ng-hide="hide">Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price.toFixed(2)}}</p>
