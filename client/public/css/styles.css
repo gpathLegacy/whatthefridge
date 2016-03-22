@@ -25,7 +25,7 @@
 /*=====navbar=====*/
 
 .navbar-font-color{
-  color:#90caf9;
+  color:#26a69a;
 }
 
 /*=====footer=====*/
@@ -271,6 +271,10 @@ main {
 }
 .data-card-back {
   color:white;
+}
+.menu-item {
+  width: 100%;
+  min-width: 150px;
 }
 /*========shopping-list=========*/
 

@@ -13,13 +13,54 @@
 <br>
 <div class="container" id="step1">
   <div class="row">
-    <div class="col s6">
+
+    <!-- Feature-Tour T1-S2 -->
+  <div class="col s5" id="T1-Step2">
+  <!-- Feature-Tour T1-S3 -->
+    <div class="row" id="T1-Step3">
+      <div class="card medium card-small transparent hoverable">
+        <div class="card-image waves-effect waves-block waves-light"></div>
+        <div class="card-content data-card-front">
+          <span ng-if="allRecipes.length > 0" class="card-title activator black-text text-darken-4">What are you making today?</span>
+          <span ng-if="allRecipes.length === 0" class="card-title black-text text-darken-4">What are you making today?</span>
+          <br/><br/>
+          <p ng-if="allRecipes.length === 0">You don't have any saved recipes</p>
+          <p ng-if="allRecipes.length > 1">You have {{allRecipes.length}} saved recipes</p>
+          <p ng-if="allRecipes.length === 1">You have 1 saved recipe</p>
+          <p ng-if="listsCount === 0">You don't have any saved shopping lists</p>
+          <p ng-if="listsCount === 1">You have 1 saved shopping list</p>
+          <p ng-if="listsCount > 1"> You have {{listsCount}} saved shopping lists</p>
+        </div>
+        <div class="card-reveal teal lighten-2 data-card-back">
+          <span class="card-title white-text text-darken-4"><i class="material-icons small right clickable-content-color">close</i></span>
+          <div ng-if="allRecipes.length > 0">
+            <p>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price.toFixed(2)}}</p>
+            <p ng-hide="hide">Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price.toFixed(2)}}</p>
+            <br/>
+            <p ng-if="listsCount > 0"> Your priciest shopping list, {{mostExpensiveList.list_name || mostExpensiveList.date}}, costs ${{mostExpensiveList.totalPrice}}</p>
+          <p ng-hide="hideList"> Your cheapest shopping list, {{leastExpensiveList.list_name || leastExpensiveList.date}}, costs ${{leastExpensiveList.totalPrice}}</p>
+          </div>
+          <div ng-if="allRecipes.length === 0"> You have no recipes</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s5 offset-s1">
+        <a class="row deep-orange lighten-1 waves-effect waves-light btn-large menu-item" href="#/recipes">Recipes</a>
+      </div>
+      <div class="col s5 offset-s1">
+        <a class="row deep-orange lighten-1 waves-effect waves-light btn-large menu-item" href="http://allrecipes.com/" target="_blank">Ideas</a>
+      </div>
+    </div>
+  </div>
+
+    <div class="col s6 offset-s1">
       <div class="row">
         <div class="col s5 offset-s1">
-          <a class="row red accent-2 waves-effect waves-light btn-large" href="#/fridge">The Fridge</a>
+          <a class="row deep-orange lighten-1 waves-effect waves-light btn-large menu-item" href="#/fridge">The Fridge</a>
         </div>
         <div class="col s5 offset-s1">
-          <a class="row deep-orange lighten-1 waves-effect waves-light btn-large" href="#/saved-lists">Saved Lists</a>
+          <a class="row deep-orange lighten-1 waves-effect waves-light btn-large menu-item" href="#/saved-lists">Saved Lists</a>
         </div>
       </div>
       <!-- Feature-Tour T2-S4 -->
@@ -45,7 +86,7 @@
                 <p>Your fridge is currently worth ${{freshValue.toFixed(2)}}</p>
               </div>
           </div>
-          <div class="card-reveal teal lighten-3 data-card-back">
+          <div class="card-reveal teal lighten-2 data-card-back">
             <span class="card-title white"><i class="material-icons small right clickable-content-color">close</i></span>
             Expiring soon:
             <div ng-if="expiring.length > 0" ng-repeat="subitem in expiring">
@@ -77,45 +118,8 @@
         </div>
       </div>
   </div>
-  <!-- Feature-Tour T1-S2 -->
-  <div class="col s5 offset-s1" id="T1-Step2">
-  <!-- Feature-Tour T1-S3 -->
-    <div class="row" id="T1-Step3">
-      <div class="card medium card-small transparent hoverable">
-        <div class="card-image waves-effect waves-block waves-light"></div>
-        <div class="card-content data-card-front">
-          <span ng-if="allRecipes.length > 0" class="card-title activator black-text text-darken-4">What are you making today?</span>
-          <span ng-if="allRecipes.length === 0" class="card-title black-text text-darken-4">What are you making today?</span>
-          <br/><br/>
-          <p ng-if="allRecipes.length === 0">You don't have any saved recipes</p>
-          <p ng-if="allRecipes.length > 1">You have {{allRecipes.length}} saved recipes</p>
-          <p ng-if="allRecipes.length === 1">You have 1 saved recipe</p>
-          <p ng-if="listsCount === 0">You don't have any saved shopping lists</p>
-          <p ng-if="listsCount === 1">You have 1 saved shopping list</p>
-          <p ng-if="listsCount > 1"> You have {{listsCount}} saved shopping lists</p>
-        </div>
-        <div class="card-reveal teal lighten-3 data-card-back">
-          <span class="card-title white-text text-darken-4"><i class="material-icons small right clickable-content-color">close</i></span>
-          <div ng-if="allRecipes.length > 0">
-            <p>Your priciest recipe, {{mostExpensiveRecipe.title}}, costs ${{mostExpensiveRecipe.price.toFixed(2)}}</p>
-            <p ng-hide="hide">Your cheapest recipe, {{leastExpensiveRecipe.title}}, costs ${{leastExpensiveRecipe.price.toFixed(2)}}</p>
-            <br/>
-            <p ng-if="listsCount > 0"> Your priciest shopping list, {{mostExpensiveList.list_name || mostExpensiveList.date}}, costs ${{mostExpensiveList.totalPrice}}</p>
-          <p ng-hide="hideList"> Your cheapest shopping list, {{leastExpensiveList.list_name || leastExpensiveList.date}}, costs ${{leastExpensiveList.totalPrice}}</p>
-          </div>
-          <div ng-if="allRecipes.length === 0"> You have no recipes</div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4 offset-s1">
-        <a class="row red lighten-2 waves-effect waves-light btn-large" href="#/recipes">Recipes</a>
-      </div>
-      <div class="col s4 offset-s1">
-        <a class="row deep-orange lighten-2 waves-effect waves-light btn-large" href="http://allrecipes.com/" target="_blank">Ideas</a>
-      </div>
-    </div>
-  </div>
+
+
 
 </div>
 </div>
